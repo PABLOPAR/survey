@@ -8,12 +8,6 @@ public class User extends Person{
 	private String email;
 	private String lastName;
 	
-	public User(String country, Date birthday, String firstName, String email, String lastName) {
-		super(country, birthday, firstName);
-		this.email = email;
-		this.lastName = lastName;
-	}
-	
 	
 	public User(String country, Date birthday, String firstName) {
 		super(country, birthday, firstName);
@@ -24,7 +18,6 @@ public class User extends Person{
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}

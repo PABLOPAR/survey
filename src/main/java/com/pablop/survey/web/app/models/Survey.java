@@ -6,11 +6,11 @@ public class Survey {
 	public  String surveyName;
 	private Question[] surveyQuestions;
 	private Double surveyScore;
-	private Friend friendAnalized; 
+	private PeopleAnalyzed friendAnalized; 
 	private User user;
 
 	
-	public Survey(String surveyName, Question[] surveyQuestions, Double surveyScore, Friend friendAnalized, User user) {
+	public Survey(String surveyName, Question[] surveyQuestions, Double surveyScore, PeopleAnalyzed friendAnalized, User user) {
 		super();
 		this.surveyName = surveyName;
 		this.surveyQuestions = surveyQuestions;

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${head}"></title>
+</head>
+<body>
+	<h1 th:text="${peopleAnalyzed}"></h1>
+
+	<div th:if="${peopleAnalyzedList.size()==0}" th:text="${nothingShow}"></div>
+
+	<table th:if="${!peopleAnalyzedList.isEmpty()}">
+		<thead>
+			<tr>
+				<th th:text="${name}"></th>
+				<th th:text="${birthday}"></th>
+				<th th:text="${country}"></th>
+
+			</tr>
+		<tbody>
+			<tr th:each="person: ${peopleAnalyzedList}">
+				<td th:text="${person.firstName}"></td>
+				<td th:text="${person.birthday}"></td>
+				<td th:text="${person.country}"></td>
+
+
+			</tr>
+
+
+
+
+		</tbody>
+	</table>
+
+</body>
+</html>

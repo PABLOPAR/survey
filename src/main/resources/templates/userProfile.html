@@ -6,8 +6,12 @@
 </head>
 
 <body>
-	<h1 th:text="${firstName}"></h1>
-	<h1 th:text="${lastName}"></h1>
+	<h1 th:text="${titleUserProfile}"></h1>
+	<h2 th:text="${fieldUserProfileFirstName}"></h2>
+	<h3 th:text="${user.firstName}"></h3>
+	<h2 th:text="${fieldUserProfileLastName}"></h2>
+	<span th:if="${user.lastName}" th:text="${user.lastName}"></span>
+	<span th:if="${user.lastName==null}" th:text="${incomplete}"></span>
 	
 
 </body>

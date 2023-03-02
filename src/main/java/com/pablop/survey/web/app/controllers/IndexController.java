@@ -1,17 +1,16 @@
 package com.pablop.survey.web.app.controllers;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.pablop.survey.web.app.models.PeopleAnalyzed;
 import com.pablop.survey.web.app.models.User;
+import com.pablop.survey.web.app.services.PeopleService;
 
 
 @Controller
@@ -35,23 +34,14 @@ public class IndexController {
 	public String birthday = "Birthday";
 	public String country = "Country";
 	public String email = "Email";
-	
-	@ModelAttribute("peopleAnalyzedList")
-	public List<PeopleAnalyzed> peopleAnalyzedList(){
 
-		Date mikeBirthay = new Date(07 / 02 / 1990);
-		Date jhonBirthay = new Date(10 / 05 / 2000);
-		Date claudeBirthay = new Date(20 / 12 / 2010);
-		
-		List<PeopleAnalyzed> peopleAnalyzedList = new ArrayList<PeopleAnalyzed>();
-		peopleAnalyzedList.add(new PeopleAnalyzed("England", mikeBirthay, "Mike", "mike@gmail.com"));
-		peopleAnalyzedList.add(new PeopleAnalyzed("United State", jhonBirthay, "Jhon","Jhon@gmail.com"));
-		peopleAnalyzedList.add(new PeopleAnalyzed("France", claudeBirthay, "Claude","Claude@gmail.com"));
-		
-		
-		return peopleAnalyzedList;
-	}
+	@Autowired
+	private PeopleService peopleAnalyzedList;
 	
+	@ModelAttribute("AnalyzedList")
+	public List<PeopleAnalyzed> analyzedList() {
+		return this.peopleAnalyzedList.peopleListAnalized();
+	}
 
 	@GetMapping(value = { "/index", "/", "home" })
 	public String index(Model model) {
@@ -96,8 +86,11 @@ public class IndexController {
 		model.addAttribute("country", country);
 		model.addAttribute("email", email);
 
+
 		return "peopleAnalyzed";
 	}
 
+	
+	
 	
 }

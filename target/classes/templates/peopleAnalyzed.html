@@ -7,9 +7,9 @@
 <body>
 	<h1 th:text="${peopleAnalyzed}"></h1>
 
-	<div th:if="${peopleAnalyzedList.size()==0}" th:text="${nothingShow}"></div>
+	<div th:if="${AnalyzedList.size()==0}" th:text="${nothingShow}"></div>
 
-	<table th:if="${!peopleAnalyzedList.isEmpty()}">
+	<table th:if="${!AnalyzedList.isEmpty()}">
 		<thead>
 			<tr>
 				<th th:text="${name}"></th>
@@ -20,7 +20,7 @@
 			</tr>
 		
 		<tbody>
-			<tr th:each="person: ${peopleAnalyzedList}">
+			<tr th:each="person: ${AnalyzedList}">
 				<td>
 					<ul>
 						<li><a th:href="@{/}" th:text="${person.firstName}"></a></li>

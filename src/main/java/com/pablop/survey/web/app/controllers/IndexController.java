@@ -25,13 +25,16 @@ public class IndexController {
 	public String secondQuestion = "Can I trust my girlfriend/ boyfriend?";
 	public String titleUserProfile = "USER PROFILE";
 	public String fieldUserProfileFirstName = "User first name: ";
+	public String fieldUserProfileEmail = "User email: ";
 	public String fieldUserProfileLastName = "User last name: ";
+	public String fieldUserProfileBirthday = "User Birthday: ";
 	public String incomplete = "Incomplete";
 	public String peopleAnalyzed = "People Analized";
 	public String nothingShow = "Nothing to Show";
 	public String name = "Name";
 	public String birthday = "Birthday";
 	public String country = "Country";
+	public String email = "Email";
 	
 	@ModelAttribute("peopleAnalyzedList")
 	public List<PeopleAnalyzed> peopleAnalyzedList(){
@@ -41,9 +44,9 @@ public class IndexController {
 		Date claudeBirthay = new Date(20 / 12 / 2010);
 		
 		List<PeopleAnalyzed> peopleAnalyzedList = new ArrayList<PeopleAnalyzed>();
-		peopleAnalyzedList.add(new PeopleAnalyzed("England", mikeBirthay, "Mike"));
-		peopleAnalyzedList.add(new PeopleAnalyzed("United State", jhonBirthay, "Jhon"));
-		peopleAnalyzedList.add(new PeopleAnalyzed("France", claudeBirthay, "Claude"));
+		peopleAnalyzedList.add(new PeopleAnalyzed("England", mikeBirthay, "Mike", "mike@gmail.com"));
+		peopleAnalyzedList.add(new PeopleAnalyzed("United State", jhonBirthay, "Jhon","Jhon@gmail.com"));
+		peopleAnalyzedList.add(new PeopleAnalyzed("France", claudeBirthay, "Claude","Claude@gmail.com"));
 		
 		
 		return peopleAnalyzedList;
@@ -69,10 +72,14 @@ public class IndexController {
 		model.addAttribute("incomplete", incomplete);
 		model.addAttribute("fieldUserProfileFirstName", fieldUserProfileFirstName);
 		model.addAttribute("fieldUserProfileLastName", fieldUserProfileLastName);
+		model.addAttribute("fieldUserProfileEmail", fieldUserProfileEmail);
+		model.addAttribute("fieldUserProfileBirthday", fieldUserProfileBirthday);
 
-		User user = new User("Spain", paulBirthay, "Paul");
+
+		User user = new User("Spain", paulBirthay, "Paul", "paul@gmail.com");
 		user.setEmail("paul@gmail.com");
 		user.setLastName("Smith");
+		
 
 		model.addAttribute("user", user);
 		return "userProfile";
@@ -87,6 +94,7 @@ public class IndexController {
 		model.addAttribute("name", name);
 		model.addAttribute("birthday", birthday);
 		model.addAttribute("country", country);
+		model.addAttribute("email", email);
 
 		return "peopleAnalyzed";
 	}

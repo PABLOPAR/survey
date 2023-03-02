@@ -5,22 +5,15 @@ import java.util.Date;
 public class User extends Person{
 
 
-	private String email;
 	private String lastName;
 	
 	
-	public User(String country, Date birthday, String firstName) {
-		super(country, birthday, firstName);
+	public User(String country, Date birthday, String firstName, String email) {
+		super(country, birthday, firstName, email);
 		// TODO Auto-generated constructor stub
 	}
 	
 		
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	public String getLastName() {
 		return lastName;
 	}

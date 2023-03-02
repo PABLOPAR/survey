@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("app/survey")
 public class PeopleAnalyzedController {
 	
-	@GetMapping ("peopleTestedProfile")
+	@GetMapping ("peopleTestedProfile/{}")
 	public String peopleTestedProfile(@RequestParam(required=false) String peopleTested, Model model) {
 		
 		model.addAttribute("peopleTested", peopleTested);

@@ -4,16 +4,17 @@ import java.util.Date;
 
 public abstract class Person {
 
-
+	private String email;
 	private String country;
 	private Date birthday;
 	private String firstName;
 	
-	public Person(String country, Date birthday, String firstName) {
+	public Person(String country, Date birthday, String firstName, String email) {
 		super();
 		this.country = country;
 		this.birthday = birthday;
 		this.firstName = firstName;
+		this.email= email;
 	}
 	
 	
@@ -34,6 +35,16 @@ public abstract class Person {
 	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	

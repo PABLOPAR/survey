@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PeopleAnalyzedController {
 	
 	@GetMapping ("peopleTestedProfile")
-	public String peopleTestedProfile(@RequestParam() String peopleTested, Model model) {
+	public String peopleTestedProfile(@RequestParam(required=false) String peopleTested, Model model) {
 		
 		model.addAttribute("peopleTested", peopleTested);
 		

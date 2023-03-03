@@ -19,12 +19,13 @@
 				<th class="color-blue" th:text="${email}"></th>
 
 			</tr>
-		
 		<tbody>
 			<tr th:each="person: ${AnalyzedList}">
 				<td>
 					<ul>
-						<li><a th:href="@{'survey/peopleTestedProfile/'+ ${person.email}}" th:text="${person.firstName}"></a></li>
+						<li><a
+							th:href="@{'survey/peopleTestedProfile/'+ ${person.email}}"
+							th:text="${person.firstName}"></a></li>
 					</ul>
 				</td>
 
@@ -36,6 +37,10 @@
 
 		</tbody>
 	</table>
+
+	<div>
+		<img th:src="@{/images/ANALYZED.jpg}"></img>
+	</div>
 
 </body>
 </html>

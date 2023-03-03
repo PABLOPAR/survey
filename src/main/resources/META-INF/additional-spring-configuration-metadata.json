@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "text.indexController.index.title",
+    "type": "java.lang.String",
+    "description": "A description for 'text.indexController.index.title'"
+  },
+  {
+    "name": "text.indexController.index.firstAction",
+    "type": "java.lang.String",
+    "description": "A description for 'text.indexController.index.firstAction'"
+  },
+  {
+    "name": "text.indexController.index.firstQuestion",
+    "type": "java.lang.String",
+    "description": "A description for 'text.indexController.index.firstQuestion'"
+  },
+  {
+    "name": "text.indexController.index.secondQuestion",
+    "type": "java.lang.String",
+    "description": "A description for 'text.indexController.index.secondQuestion'"
+  }
+]}

@@ -2,7 +2,9 @@ package com.pablop.survey.web.app.controllers;
 
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,22 +21,61 @@ import com.pablop.survey.web.app.services.PeopleService;
 public class IndexController {
 
 	public String head = "TRUST";
-	public String title = "WHOM TO TRUST?";
-	public String firstAction = "CHOOSE A TEST THAT YOU WANT TO DO";
-	public String firstQuestion = "Can I trust my friend?";
-	public String secondQuestion = "Can I trust my girlfriend/ boyfriend?";
-	public String titleUserProfile = "USER PROFILE";
-	public String fieldUserProfileFirstName = "User first name: ";
-	public String fieldUserProfileEmail = "User email: ";
-	public String fieldUserProfileLastName = "User last name: ";
-	public String fieldUserProfileBirthday = "User Birthday: ";
-	public String incomplete = "Incomplete";
-	public String peopleAnalyzed = "People Analized";
-	public String nothingShow = "Nothing to Show";
-	public String name = "Name";
-	public String birthday = "Birthday";
-	public String country = "Country";
-	public String email = "Email";
+
+	@Value("${text.indexController.index.title}")
+	private String title;
+	
+	@Value("${text.indexController.index.firstAction}")
+	private String firstAction;
+	
+	@Value("${text.indexController.index.firstQuestion}")
+	private String firstQuestion;
+	
+	@Value("${text.indexController.index.secondQuestion}")
+	private String secondQuestion;
+		
+	@Value("${text.indexController.userProfile.titleUserProfile}")
+	private String titleUserProfile;
+	
+	@Value("${text.indexController.userProfile.fieldUserProfileFirstName}")
+	private String fieldUserProfileFirstName;
+	
+	@Value("${text.indexController.userProfile.fieldUserProfileEmail}")
+	private String fieldUserProfileEmail;
+	
+	@Value("${text.indexController.userProfile.fieldUserProfileBirthday}")
+	private String fieldUserProfileBirthday;
+	
+	@Value("${text.indexController.userProfile.fieldUserProfileLastName}")
+	private String fieldUserProfileLastName;
+	
+	@Value("${text.indexController.userProfile.incomplete}")
+	private String incomplete;
+
+	@Value("${text.indexController.analyzedPeople.peopleAnalyzed}")
+	private String peopleAnalyzed;
+	
+	@Value("${text.indexController.analyzedPeople.nothingShow}")
+	private String nothingShow;
+	
+	@Value("${text.indexController.analyzedPeople.name}")
+	private String analyzedPeople;
+	
+	@Value("${text.indexController.analyzedPeople.birthday}")
+	private String birthday;
+	
+	@Value("${text.indexController.analyzedPeople.country}")
+	private String country;
+	
+	@Value("${text.indexController.analyzedPeople.email}")
+	private String email;
+	
+	
+	@Value("${text.indexController.analyzedPeople.name}")
+	private String name;
+	
+	
+		
 
 	@Autowired
 	private PeopleService peopleAnalyzedList;

@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.pablop.survey.web.app.models.PeopleAnalyzed;
+import com.pablop.survey.web.app.entity.PeopleAnalyzed;
 
 @Service
 public class PeopleServiceImpl implements PeopleService{
@@ -26,14 +26,37 @@ public class PeopleServiceImpl implements PeopleService{
 		peopleAnalyzedList.add(new PeopleAnalyzed("United State", jhonBirthay, "Jhon","Jhon@gmail.com"));
 		peopleAnalyzedList.add(new PeopleAnalyzed("France", claudeBirthay, "Claude","Claude@gmail.com"));
 		
-		
+			
 		return peopleAnalyzedList;
 	}
 
 	@Override
 	public PeopleAnalyzed analyzedByEmail(String email) {
+
+		PeopleAnalyzed peopleSearched = null;
+		int index = 0;
+
+		if (!email.isEmpty()) {
+
+
+			while (peopleSearched == null && peopleAnalyzedList.size() > index) {
+				if (peopleAnalyzedList.get(index).getEmail().equalsIgnoreCase(email)) {
+					peopleSearched = peopleAnalyzedList.get(index);
+					
+					System.out.println("MIRAR ACAAAA" +peopleSearched);
+					
+				} else {
+					index++;
+				}
+			}
+		}
+systemOutPrintln(peopleSearched.getEmail());
+		return peopleSearched;
+	}
+
+	private void systemOutPrintln(String email) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 

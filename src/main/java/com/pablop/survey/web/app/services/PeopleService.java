@@ -2,7 +2,7 @@ package com.pablop.survey.web.app.services;
 
 import java.util.List;
 
-import com.pablop.survey.web.app.models.PeopleAnalyzed;
+import com.pablop.survey.web.app.entity.PeopleAnalyzed;
 
 public interface PeopleService {
 

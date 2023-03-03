@@ -8,8 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.pablop.survey.web.app.models.PeopleAnalyzed;
-import com.pablop.survey.web.app.models.User;
+
+import com.pablop.survey.web.app.entity.PeopleAnalyzed;
+import com.pablop.survey.web.app.entity.User;
 import com.pablop.survey.web.app.services.PeopleService;
 
 

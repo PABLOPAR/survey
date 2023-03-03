@@ -23,7 +23,7 @@
 			<tr th:each="person: ${AnalyzedList}">
 				<td>
 					<ul>
-						<li><a th:href="@{/}" th:text="${person.firstName}"></a></li>
+						<li><a th:href="@{'survey/peopleTestedProfile/'+ ${person.email}}" th:text="${person.firstName}"></a></li>
 
 					</ul>
 				</td>

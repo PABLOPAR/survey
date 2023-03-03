@@ -1,6 +1,5 @@
 package com.pablop.survey.web.app.controllers;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +15,11 @@ import com.pablop.survey.web.app.services.PeopleService;
 @RequestMapping("app/survey")
 public class PeopleAnalyzedController {
 	
+	public String fieldPeopleTestedEmail = "People Tested email: ";
+	public String fieldPeopleTestedBirthday = "People Tested Birthday: ";
+	public String fieldUserProfileFirstName = "People Tested Name: ";
+	public String fieldPeopleTestedCountry = "People Tested Country: ";
+	
 	@Autowired
 	private PeopleService peopleAnalyzed;
 	
@@ -28,9 +32,11 @@ public class PeopleAnalyzedController {
 		PeopleAnalyzed peopleSearched = peopleAnalyzed.analyzedByEmail(email);
 		
 		
-		
-		model.addAttribute("peopleSearched", peopleSearched);
-		
+		model.addAttribute("peopleSearched", peopleSearched);	
+		model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
+		model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);
+		model.addAttribute("fieldUserProfileFirstName", fieldUserProfileFirstName);
+		model.addAttribute("fieldPeopleTestedCountry", fieldPeopleTestedCountry);
 		
 		return "peopleTestedProfile";
 	}

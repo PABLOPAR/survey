@@ -2,13 +2,20 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"></link>
 </head>
 
 <body>
-	<h1 th:text="${peopleSearched.email}"></h1>
-	<h1 th:text="${peopleSearched.birthday}"></h1>
-	<h1 th:text="${peopleSearched.firstName}"></h1>
-	<h1 th:text="${peopleSearched.country}"></h1>	
+
+	<h2 class="color-blue" th:text="${fieldPeopleTestedEmail}"></h2>
+	<h3 th:text="${peopleSearched.email}"></h3>
+	<h2 class="color-blue" th:text="${fieldPeopleTestedBirthday}"></h2>
+	<h3 th:text="${peopleSearched.birthday}"></h3>
+	<h2 class="color-blue" th:text="${fieldUserProfileFirstName}"></h2>
+	<h3 th:text="${peopleSearched.firstName}"></h3>
+	<h2 class="color-blue" th:text="${fieldPeopleTestedCountry}"></h2>
+	<h3 th:text="${peopleSearched.country}"></h3>
+
 
 </body>
 </html>

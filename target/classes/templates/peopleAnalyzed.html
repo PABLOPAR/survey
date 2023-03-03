@@ -3,19 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <title th:text="${head}"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"></link>
 </head>
 <body>
-	<h1 th:text="${peopleAnalyzed}"></h1>
+	<h1 class="color-red" th:text="${peopleAnalyzed}"></h1>
 
 	<div th:if="${AnalyzedList.size()==0}" th:text="${nothingShow}"></div>
 
 	<table th:if="${!AnalyzedList.isEmpty()}">
 		<thead>
 			<tr>
-				<th th:text="${name}"></th>
-				<th th:text="${birthday}"></th>
-				<th th:text="${country}"></th>
-				<th th:text="${email}"></th>
+				<th class="color-blue" th:text="${name}"></th>
+				<th class="color-blue" th:text="${birthday}"></th>
+				<th class="color-blue" th:text="${country}"></th>
+				<th class="color-blue" th:text="${email}"></th>
 
 			</tr>
 		
@@ -24,7 +25,6 @@
 				<td>
 					<ul>
 						<li><a th:href="@{'survey/peopleTestedProfile/'+ ${person.email}}" th:text="${person.firstName}"></a></li>
-
 					</ul>
 				</td>
 

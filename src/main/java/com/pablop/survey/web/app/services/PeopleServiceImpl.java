@@ -43,21 +43,16 @@ public class PeopleServiceImpl implements PeopleService{
 				if (peopleAnalyzedList.get(index).getEmail().equalsIgnoreCase(email)) {
 					peopleSearched = peopleAnalyzedList.get(index);
 					
-					System.out.println("MIRAR ACAAAA" +peopleSearched);
-					
 				} else {
 					index++;
 				}
 			}
 		}
-systemOutPrintln(peopleSearched.getEmail());
+
 		return peopleSearched;
 	}
 
-	private void systemOutPrintln(String email) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 
 	

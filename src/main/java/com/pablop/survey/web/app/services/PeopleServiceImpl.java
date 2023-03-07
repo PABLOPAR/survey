@@ -13,20 +13,19 @@ public class PeopleServiceImpl implements PeopleService{
 	
 	List<PeopleAnalyzed> peopleAnalyzedList;
 	
-
-	@Override
-	public List<PeopleAnalyzed> peopleListAnalized() {
-
+	public PeopleServiceImpl() {
 		Date mikeBirthay = new Date(07 / 02 / 1990);
 		Date jhonBirthay = new Date(10 / 05 / 2000);
 		Date claudeBirthay = new Date(20 / 12 / 2010);
-		
+
 		this.peopleAnalyzedList = new ArrayList<PeopleAnalyzed>();
 		peopleAnalyzedList.add(new PeopleAnalyzed("England", mikeBirthay, "Mike", "mike@gmail.com"));
-		peopleAnalyzedList.add(new PeopleAnalyzed("United State", jhonBirthay, "Jhon","Jhon@gmail.com"));
-		peopleAnalyzedList.add(new PeopleAnalyzed("France", claudeBirthay, "Claude","Claude@gmail.com"));
-		
-			
+		peopleAnalyzedList.add(new PeopleAnalyzed("United State", jhonBirthay, "Jhon", "Jhon@gmail.com"));
+		peopleAnalyzedList.add(new PeopleAnalyzed("France", claudeBirthay, "Claude", "Claude@gmail.com"));
+	}
+
+	@Override
+	public List<PeopleAnalyzed> peopleListAnalized() {
 		return peopleAnalyzedList;
 	}
 

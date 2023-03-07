@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${tab}"></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+	<div class="container">
+		<h1 th:text="${title}"></h1>
+
+
+
+		<div th:if="${questionList.size()==0}" th:text="${nothingShow}"></div>
+
+		<div th:each="question: ${questionList}">
+
+
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2"
+					th:text="${question.question}"></label>
+
+				<div th:each="val:${posibleValues}" class="row col-sm-2">
+					<input type="radio" th:value="${posibleValues}" th:text="${val}">
+
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

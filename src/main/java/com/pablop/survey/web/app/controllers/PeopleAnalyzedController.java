@@ -38,8 +38,6 @@ public class PeopleAnalyzedController {
 	@GetMapping ("/peopleTestedProfile/{email}")
 	public String peopleTestedProfile(@PathVariable String email, Model model) {
 		
-		peopleAnalyzed.peopleListAnalized();
-		
 		PeopleAnalyzed peopleSearched = peopleAnalyzed.analyzedByEmail(email);
 		
 		

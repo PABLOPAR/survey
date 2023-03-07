@@ -2,20 +2,20 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"></link>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 
 <body>
+	<div class="container">
+		<h2 class="color-blue" th:text="${fieldPeopleTestedEmail}"></h2>
+		<h3 th:text="${peopleSearched.email}"></h3>
+		<h2 class="color-blue" th:text="${fieldPeopleTestedBirthday}"></h2>
+		<h3 th:text="${peopleSearched.birthday}"></h3>
+		<h2 class="color-blue" th:text="${fieldUserProfileFirstName}"></h2>
+		<h3 th:text="${peopleSearched.firstName}"></h3>
+		<h2 class="color-blue" th:text="${fieldPeopleTestedCountry}"></h2>
+		<h3 th:text="${peopleSearched.country}"></h3>
 
-	<h2 class="color-blue" th:text="${fieldPeopleTestedEmail}"></h2>
-	<h3 th:text="${peopleSearched.email}"></h3>
-	<h2 class="color-blue" th:text="${fieldPeopleTestedBirthday}"></h2>
-	<h3 th:text="${peopleSearched.birthday}"></h3>
-	<h2 class="color-blue" th:text="${fieldUserProfileFirstName}"></h2>
-	<h3 th:text="${peopleSearched.firstName}"></h3>
-	<h2 class="color-blue" th:text="${fieldPeopleTestedCountry}"></h2>
-	<h3 th:text="${peopleSearched.country}"></h3>
-
-
+	</div>
 </body>
 </html>

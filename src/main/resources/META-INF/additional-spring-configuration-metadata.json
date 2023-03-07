@@ -18,5 +18,15 @@
     "name": "text.indexController.index.secondQuestion",
     "type": "java.lang.String",
     "description": "A description for 'text.indexController.index.secondQuestion'"
+  },
+  {
+    "name": "text.indexController.userProfile.titleUserProfile",
+    "type": "java.lang.String",
+    "description": "A description for 'text.indexController.userProfile.titleUserProfile'"
+  },
+  {
+    "name": "text.indexController.userProfile.fieldUserProfileEmail",
+    "type": "java.lang.String",
+    "description": "A description for 'text.indexController.userProfile.fieldUserProfileEmail'"
   }
 ]}

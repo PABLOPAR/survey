@@ -18,6 +18,56 @@ public class Survey {
 		this.friendAnalized = friendAnalized;
 		this.user = user;
 	}
+
+
+	public String getSurveyName() {
+		return surveyName;
+	}
+
+
+	public void setSurveyName(String surveyName) {
+		this.surveyName = surveyName;
+	}
+
+
+	public Question[] getSurveyQuestions() {
+		return surveyQuestions;
+	}
+
+
+	public void setSurveyQuestions(Question[] surveyQuestions) {
+		this.surveyQuestions = surveyQuestions;
+	}
+
+
+	public Double getSurveyScore() {
+		return surveyScore;
+	}
+
+
+	public void setSurveyScore(Double surveyScore) {
+		this.surveyScore = surveyScore;
+	}
+
+
+	public PeopleAnalyzed getFriendAnalized() {
+		return friendAnalized;
+	}
+
+
+	public void setFriendAnalized(PeopleAnalyzed friendAnalized) {
+		this.friendAnalized = friendAnalized;
+	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 	
 	

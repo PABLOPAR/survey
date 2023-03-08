@@ -22,6 +22,10 @@ public class PeopleServiceImpl implements PeopleService{
 		peopleAnalyzedList.add(new PeopleAnalyzed("England", mikeBirthay, "Mike", "mike@gmail.com"));
 		peopleAnalyzedList.add(new PeopleAnalyzed("United State", jhonBirthay, "Jhon", "Jhon@gmail.com"));
 		peopleAnalyzedList.add(new PeopleAnalyzed("France", claudeBirthay, "Claude", "Claude@gmail.com"));
+		PeopleAnalyzed Smith=	new PeopleAnalyzed("Irland", jhonBirthay, "Jeff", "Jeff@gmail.com");
+		Smith.setLastName("Smith");
+		peopleAnalyzedList.add(Smith);
+		
 	}
 
 	@Override

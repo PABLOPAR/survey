@@ -29,6 +29,12 @@ public class PeopleAnalyzedController {
 	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldPeopleTestedCountry}")
 	private String fieldPeopleTestedCountry;
 	
+	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldPeopleTestedLastName}")
+	private String fieldPeopleTestedLastName;
+	
+	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.incompleteField}")
+	private String incompleteField;
+	
 	
 	
 	@Autowired
@@ -46,6 +52,11 @@ public class PeopleAnalyzedController {
 		model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);
 		model.addAttribute("fieldUserProfileFirstName", fieldUserProfileFirstName);
 		model.addAttribute("fieldPeopleTestedCountry", fieldPeopleTestedCountry);
+		model.addAttribute("fieldPeopleTestedLastName", fieldPeopleTestedLastName);	
+		model.addAttribute("incompleteField", incompleteField);		
+		
+		
+		
 		
 		return "peopleTestedProfile";
 	}

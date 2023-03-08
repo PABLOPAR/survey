@@ -15,6 +15,9 @@
 		<h3 th:text="${peopleSearched.firstName}"></h3>
 		<h2 class="color-blue" th:text="${fieldPeopleTestedCountry}"></h2>
 		<h3 th:text="${peopleSearched.country}"></h3>
+		<h2 class="color-blue" th:text="${fieldPeopleTestedLastName}"></h2>
+		<h3 th:if="${peopleSearched.lastName!=null}" th:text="${peopleSearched.lastName}"></h3>
+		<h3 th:if="${peopleSearched.lastName==null}" th:text="${incompleteField}"></h3>
 
 	</div>
 </body>

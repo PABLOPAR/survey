@@ -1,8 +1,7 @@
 package com.pablop.survey.web.app.controllers;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,13 +36,26 @@ public class QuestionSheetController {
 	private String nothingShow;
 	
 	@ModelAttribute("posibleValues")
-	public Map<String,String> posibleValues() {
-		Map<String,String> posibleValues= new HashMap<String, String>();
-		posibleValues.put("Ever","Ever");		
-		posibleValues.put("NotSure","Not Sure");
-		posibleValues.put("Never","Never");
+	public List<String> posibleValues() {
+		ArrayList<String> posibleValues = new ArrayList<String>();
+		posibleValues.add("Ever");
+		posibleValues.add("Not Sure");
+		posibleValues.add("Never");
+
 		return posibleValues;
 	};
+
+	
+//	@ModelAttribute("posibleValues")
+//	public Map<String,String> posibleValues() {
+//		Map<String,String> posibleValues= new HashMap<String, String>();
+//		posibleValues.put("1","Ever");		
+//		posibleValues.put("NotSure","Not Sure");
+//		posibleValues.put("Never","Never");
+//		return posibleValues;
+//	};
+	
+
 	
 	
 	@GetMapping("/type")

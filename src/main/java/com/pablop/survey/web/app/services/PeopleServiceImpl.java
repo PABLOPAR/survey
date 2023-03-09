@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.pablop.survey.web.app.entity.PeopleAnalyzed;
 
-@Service
+@Service("peopleImplementationLocale")
+@Primary
 public class PeopleServiceImpl implements PeopleService{
 	
 	List<PeopleAnalyzed> peopleAnalyzedList;

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,6 +79,7 @@ public class IndexController {
 		
 
 	@Autowired
+	@Qualifier("peopleImplementationLocale")
 	private PeopleService peopleAnalyzedList;
 	
 	@ModelAttribute("AnalyzedList")

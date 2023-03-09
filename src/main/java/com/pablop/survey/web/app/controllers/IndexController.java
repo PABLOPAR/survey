@@ -85,7 +85,7 @@ public class IndexController {
 		return this.peopleAnalyzedList.peopleListAnalized();
 	}
 
-	@GetMapping(value = { "/index", "/", "home" })
+	@GetMapping(value = { "/index", "home" })
 	public String index(Model model) {
 		model.addAttribute("head", head);
 		model.addAttribute("title", title);

@@ -6,10 +6,12 @@ import java.util.List;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.RequestScope;
 
-import com.pablop.survey.web.app.entity.PeopleAnalyzed;
+import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 
 @Service("peopleImplementationLocale")
+@RequestScope
 @Primary
 public class PeopleServiceImpl implements PeopleService{
 	

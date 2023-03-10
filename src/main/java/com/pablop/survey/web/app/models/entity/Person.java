@@ -1,4 +1,4 @@
-package com.pablop.survey.web.app.entity;
+package com.pablop.survey.web.app.models.entity;
 
 import java.util.Date;
 

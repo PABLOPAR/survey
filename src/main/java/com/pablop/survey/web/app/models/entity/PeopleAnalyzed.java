@@ -1,4 +1,4 @@
-package com.pablop.survey.web.app.entity;
+package com.pablop.survey.web.app.models.entity;
 
 import java.util.Date;
 
@@ -10,6 +10,7 @@ public class PeopleAnalyzed extends Person{
 		super(country, birthday, firstName,email);
 		// TODO Auto-generated constructor stub
 	}
+	
 
 	public String getLastName() {
 		return lastName;

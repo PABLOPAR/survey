@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.pablop.survey.web.app.entity.Question;
+import com.pablop.survey.web.app.models.entity.Question;
 import com.pablop.survey.web.app.services.QuestionService;
 
 @Controller

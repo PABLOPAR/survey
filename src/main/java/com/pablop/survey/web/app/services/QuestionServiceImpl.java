@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.RequestScope;
 
-import com.pablop.survey.web.app.entity.Question;
+import com.pablop.survey.web.app.models.entity.Question;
 
 @Service
+@RequestScope
 public class QuestionServiceImpl implements QuestionService{
 
 	private Double pointsEarned;

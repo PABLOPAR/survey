@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${head}"></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+</head>
+<body>
+<form th:action="@{app/peopleAnalyzed/new}" method="post">
+
+<label for= "peopleFirstName" th:text="${fieldPeopleProfileFirstName}"></label>
+<div>
+<input type="text" name="firstName" id="peopleFirstName">
+</div>
+
+<label for= "peopleEmail" th:text="${fieldPeopleTestedEmail}"></label>
+<div>
+<input type="text" name="firstName" id="peopleEmail">
+</div>
+
+<label for= "peopleCountry" th:text="${fieldPeopleTestedCountry}"></label>
+<div>
+<input type="text" name="country" id="peopleCountry">
+</div>
+
+<label for= "peopleBirthday" th:text="${fieldPeopleTestedBirthday}"></label>
+<div>
+<input type="text" name="birthday" id="peopleBirthday">
+</div>
+
+
+
+
+
+</form>
+
+
+
+</body>
+</html>

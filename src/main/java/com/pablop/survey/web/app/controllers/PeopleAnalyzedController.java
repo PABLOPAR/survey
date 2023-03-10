@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.pablop.survey.web.app.entity.PeopleAnalyzed;
+import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 import com.pablop.survey.web.app.services.PeopleService;
 
 @Controller
@@ -23,8 +23,8 @@ public class PeopleAnalyzedController {
 	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldPeopleTestedBirthday}")
 	private String fieldPeopleTestedBirthday;
 	
-	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldUserProfileFirstName}")
-	private String fieldUserProfileFirstName;
+	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldPeopleProfileFirstName}")
+	private String fieldPeopleProfileFirstName;
 	
 	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldPeopleTestedCountry}")
 	private String fieldPeopleTestedCountry;
@@ -50,7 +50,7 @@ public class PeopleAnalyzedController {
 		model.addAttribute("peopleSearched", peopleSearched);	
 		model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
 		model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);
-		model.addAttribute("fieldUserProfileFirstName", fieldUserProfileFirstName);
+		model.addAttribute("fieldPeopleProfileFirstName", fieldPeopleProfileFirstName);
 		model.addAttribute("fieldPeopleTestedCountry", fieldPeopleTestedCountry);
 		model.addAttribute("fieldPeopleTestedLastName", fieldPeopleTestedLastName);	
 		model.addAttribute("incompleteField", incompleteField);		

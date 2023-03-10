@@ -2,7 +2,7 @@ package com.pablop.survey.web.app.services;
 
 import java.util.List;
 
-import com.pablop.survey.web.app.entity.Question;
+import com.pablop.survey.web.app.models.entity.Question;
 
 public interface QuestionService {
 	

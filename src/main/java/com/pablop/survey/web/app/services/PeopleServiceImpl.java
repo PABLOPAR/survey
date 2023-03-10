@@ -59,7 +59,11 @@ public class PeopleServiceImpl implements PeopleService{
 		return peopleSearched;
 	}
 
+	public void addPeopleAnalyzed(PeopleAnalyzed newPeople) {
 
+		peopleAnalyzedList.add(newPeople);
+
+	};
 
 
 	

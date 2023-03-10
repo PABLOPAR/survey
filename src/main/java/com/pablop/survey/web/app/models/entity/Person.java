@@ -2,10 +2,14 @@ package com.pablop.survey.web.app.models.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public abstract class Person {
 
 	private String email;
 	private String country;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
 	private String firstName;
 	

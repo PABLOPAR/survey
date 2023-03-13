@@ -12,24 +12,18 @@
 	<div class="container">
 		<h1 th:text="${title}"></h1>
 
-		<form th:action="@{new}" method="post">
+		<form th:action="@{new}" th:object="${peopleAnalyzed}" method="post">
 
 			<label for="peopleFirstName" th:text="${fieldPeopleProfileFirstName}"></label>
 			<div>
-				<input type="text" name="email" id="firstName" 
-				
-				>
-				</div>
-				
-				
+				<input type="text" id="firstName" th:field="*{firstName}">
+			</div>
 			<div th:if="${errors!=null && errors.containsKey('firstName')}"
 				th:text="${errors.firstName}"></div>
 
-			
-			
 			<label for="peopleEmail" th:text="${fieldPeopleTestedEmail}"></label>
 			<div>
-				<input type="email" name="email" id="peopleEmail">
+				<input type="email" id="email" th:field="*{email}">
 			</div>
 			
 			<div th:if="${errors!=null && errors.containsKey('email')}"
@@ -37,14 +31,14 @@
 
 			<label for="peopleCountry" th:text="${fieldPeopleTestedCountry}"></label>
 			<div>
-				<input type="text" name="country" id="peopleCountry" >
+				<input type="text" id="country" th:field="*{country}" >
 			</div>
 			<div th:if="${errors!=null && errors.containsKey('country')}"
 				th:text="${errors.country}"></div>
 
 			<label for="peopleBirthday" th:text="${fieldPeopleTestedBirthday}"></label>
 			<div>
-				<input type="date" name="birthday" id="peopleBirthday" >
+				<input type="date" id="birthday" th:field="*{birthday}" >
 			</div>
 			<div th:if="${errors!=null && errors.containsKey('birthday')}"
 				th:text="${errors.birthday}"></div>

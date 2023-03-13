@@ -9,5 +9,6 @@ public interface PeopleService {
 	
 	public List<PeopleAnalyzed> peopleListAnalized();
 	public PeopleAnalyzed analyzedByEmail(String email);
-	public void addPeopleAnalyzed(PeopleAnalyzed newPeople);
+	public List<PeopleAnalyzed> addPeopleAnalyzed(PeopleAnalyzed newPeople);
+	public List<PeopleAnalyzed> getPeopleAnalyzedList();
 }

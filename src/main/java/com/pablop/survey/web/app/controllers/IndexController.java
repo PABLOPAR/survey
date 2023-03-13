@@ -72,8 +72,16 @@ public class IndexController {
 	private String email;
 	
 	
+	@Value("${text.indexController.analyzedPeople.lastName}")
+	private String lastName;
+	
 	@Value("${text.indexController.analyzedPeople.name}")
 	private String name;
+	
+	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.incompleteField}")
+	private String noData;
+	
+	
 	
 	
 		
@@ -84,7 +92,7 @@ public class IndexController {
 	
 	@ModelAttribute("AnalyzedList")
 	public List<PeopleAnalyzed> analyzedList() {
-		return this.peopleAnalyzedList.peopleListAnalized();
+		return this.peopleAnalyzedList.getPeopleAnalyzedList();
 	}
 
 	@GetMapping(value = { "/index", "home" })
@@ -122,14 +130,18 @@ public class IndexController {
 
 	@GetMapping("/peopleAnalyzed")
 	public String analyzedPeople(Model model) {
-
+		
+		System.out.println("Mirar aca 4: Size" + peopleAnalyzedList.getPeopleAnalyzedList().size());
+		
 		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
 		model.addAttribute("nothingShow", nothingShow);
 		model.addAttribute("name", name);
 		model.addAttribute("birthday", birthday);
 		model.addAttribute("country", country);
 		model.addAttribute("email", email);
-
+		model.addAttribute("lastName", lastName);
+		model.addAttribute("noData", noData);
+		
 
 		return "peopleAnalyzed";
 	}

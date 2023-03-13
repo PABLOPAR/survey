@@ -15,6 +15,7 @@
 			<thead>
 				<tr>
 					<th class="color-blue" th:text="${name}"></th>
+					<th class="color-blue" th:text="${lastName}"></th>
 					<th class="color-blue" th:text="${birthday}"></th>
 					<th class="color-blue" th:text="${country}"></th>
 					<th class="color-blue" th:text="${email}"></th>
@@ -30,6 +31,8 @@
 						</ul>
 					</td>
 
+					<td th:if="${person.lastName}"  th:text="${person.lastName}"></td>
+					<td th:if="!${person.lastName}"  th:text="${noData}"></td>
 					<td th:text="${person.birthday}"></td>
 					<td th:text="${person.country}"></td>
 					<td th:text="${person.email}"></td>

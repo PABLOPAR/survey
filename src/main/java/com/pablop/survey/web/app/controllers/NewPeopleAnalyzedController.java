@@ -1,20 +1,19 @@
 package com.pablop.survey.web.app.controllers;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.Locale;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 import com.pablop.survey.web.app.services.PeopleService;
@@ -52,7 +51,10 @@ public class NewPeopleAnalyzedController {
 	@GetMapping("/new")
 	public String loadForm(Model model) {
 		
-
+		PeopleAnalyzed peopleAnalyzed= new PeopleAnalyzed();
+		
+		
+		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
 		model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
 		model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);
 		model.addAttribute("fieldPeopleProfileFirstName", fieldPeopleProfileFirstName);
@@ -65,29 +67,72 @@ public class NewPeopleAnalyzedController {
 		return "newPeopleAnalyzed";
 	}
 	
+	
 	@PostMapping("/new")
-	public String loadPeopleAnalyzedData(Model model, @RequestParam String firstName, @RequestParam String email, @RequestParam String country,
-			@RequestParam String birthday) {
+	public String loadPeopleAnalyzedData(@Valid PeopleAnalyzed peopleAnalyzed, BindingResult result, Model model) {
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
 		
-		ZoneId defaultZoneId = ZoneId.systemDefault();
-		LocalDate date1 = LocalDate.of(1000, 1, 1);	
-		Date date = Date.from(date1.atStartOfDay(defaultZoneId).toInstant());
-		
+		if(result.hasErrors()) {
+			Map<String,String> errors=new HashMap<>();
+			
+			result.getFieldErrors().forEach(err -> {
+				errors.put(err.getField(),
+						"Field ".concat(err.getField()).concat(" ").concat(err.getDefaultMessage()));
+				});
 
-		try {
-			date = formatter.parse(birthday);
-		} catch (ParseException e) {
+			model.addAttribute("errors", errors);
+			model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
+			model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);
+			model.addAttribute("fieldPeopleProfileFirstName", fieldPeopleProfileFirstName);
+			model.addAttribute("fieldPeopleTestedCountry", fieldPeopleTestedCountry);
+			model.addAttribute("fieldPeopleTestedLastName", fieldPeopleTestedLastName);	
+			model.addAttribute("title", title);		
+			return "newPeopleAnalyzed";
 		}
 		
-		PeopleAnalyzed peopleAdded=new PeopleAnalyzed(country, date, firstName,email);
 		
 		
-		peopleService.addPeopleAnalyzed(peopleAdded);
 		
-
+		peopleService.addPeopleAnalyzed(peopleAnalyzed);
+		
+		System.out.println("Mirar ACA: " + peopleAnalyzed.toString());
+		System.out.println("Mirar ACA 3: " +  peopleService.getPeopleAnalyzedList().toString());		
+		System.out.println("Mirar aca 5: Size " + peopleService.getPeopleAnalyzedList().size());
+		
 		return "redirect:/app/peopleAnalyzed";
 	}
 	
+	
+	
+	
+	
+	
+	
+//	@PostMapping("/new")
+//	public String loadPeopleAnalyzedData(Model model, @RequestParam String firstName, @RequestParam String email, @RequestParam String country,
+//			@RequestParam String birthday) {
+//		
+//		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+//		
+//		ZoneId defaultZoneId = ZoneId.systemDefault();
+//		LocalDate date1 = LocalDate.of(1000, 1, 1);	
+//		Date date = Date.from(date1.atStartOfDay(defaultZoneId).toInstant());
+//		
+//
+//		try {
+//			date = formatter.parse(birthday);
+//		} catch (ParseException e) {
+//		}
+//		
+//		PeopleAnalyzed peopleAdded=new PeopleAnalyzed(country, date, firstName,email);
+//		
+//		
+//		peopleService.addPeopleAnalyzed(peopleAdded);
+//		
+//		
+//		
+//
+//		return "redirect:/app/peopleAnalyzed";
+//	}
 }
+

@@ -16,24 +16,38 @@
 
 			<label for="peopleFirstName" th:text="${fieldPeopleProfileFirstName}"></label>
 			<div>
-				<input type="text" name="firstName" id="peopleFirstName">
-			</div>
+				<input type="text" name="email" id="firstName" 
+				
+				>
+				</div>
+				
+				
+			<div th:if="${errors!=null && errors.containsKey('firstName')}"
+				th:text="${errors.firstName}"></div>
 
+			
+			
 			<label for="peopleEmail" th:text="${fieldPeopleTestedEmail}"></label>
 			<div>
 				<input type="email" name="email" id="peopleEmail">
 			</div>
+			
+			<div th:if="${errors!=null && errors.containsKey('email')}"
+				th:text="${errors.email}"></div>
 
 			<label for="peopleCountry" th:text="${fieldPeopleTestedCountry}"></label>
 			<div>
-				<input type="text" name="country" id="peopleCountry">
+				<input type="text" name="country" id="peopleCountry" >
 			</div>
+			<div th:if="${errors!=null && errors.containsKey('country')}"
+				th:text="${errors.country}"></div>
 
 			<label for="peopleBirthday" th:text="${fieldPeopleTestedBirthday}"></label>
 			<div>
-				<input type="date" name="birthday" id="peopleBirthday">
+				<input type="date" name="birthday" id="peopleBirthday" >
 			</div>
-
+			<div th:if="${errors!=null && errors.containsKey('birthday')}"
+				th:text="${errors.birthday}"></div>
 
 			<div class="form-group row">
 				<div>

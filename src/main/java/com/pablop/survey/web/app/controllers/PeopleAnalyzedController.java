@@ -51,6 +51,7 @@ public class PeopleAnalyzedController {
 		model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
 		model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);
 		model.addAttribute("fieldPeopleProfileFirstName", fieldPeopleProfileFirstName);
+		model.addAttribute("fieldPeopleProfileFirstName", fieldPeopleProfileFirstName);
 		model.addAttribute("fieldPeopleTestedCountry", fieldPeopleTestedCountry);
 		model.addAttribute("fieldPeopleTestedLastName", fieldPeopleTestedLastName);	
 		model.addAttribute("incompleteField", incompleteField);		

@@ -18,15 +18,15 @@ public class PeopleServiceImpl implements PeopleService{
 	List<PeopleAnalyzed> peopleAnalyzedList;
 	
 	public PeopleServiceImpl() {
-		Date mikeBirthay = new Date(07 / 02 / 1990);
-		Date jhonBirthay = new Date(10 / 05 / 2000);
-		Date claudeBirthay = new Date(20 / 12 / 2010);
+//		Date mikeBirthay = new Date(07 / 02 / 1990);
+//		Date jhonBirthay = new Date(10 / 05 / 2000);
+//		Date claudeBirthay = new Date(20 / 12 / 2010);
 
 		this.peopleAnalyzedList = new ArrayList<PeopleAnalyzed>();
-		peopleAnalyzedList.add(new PeopleAnalyzed("England", mikeBirthay, "Mike", "mike@gmail.com"));
-		peopleAnalyzedList.add(new PeopleAnalyzed("United State", jhonBirthay, "Jhon", "Jhon@gmail.com"));
-		peopleAnalyzedList.add(new PeopleAnalyzed("France", claudeBirthay, "Claude", "Claude@gmail.com"));
-		PeopleAnalyzed Smith=	new PeopleAnalyzed("Irland", jhonBirthay, "Jeff", "Jeff@gmail.com");
+		peopleAnalyzedList.add(new PeopleAnalyzed("England",  "Mike", "mike@gmail.com"));
+		peopleAnalyzedList.add(new PeopleAnalyzed("United State",  "Jhon", "Jhon@gmail.com"));
+		peopleAnalyzedList.add(new PeopleAnalyzed("France", "Claude", "Claude@gmail.com"));
+		PeopleAnalyzed Smith=	new PeopleAnalyzed("Irland", "Jeff", "Jeff@gmail.com");
 		Smith.setLastName("Smith");
 		peopleAnalyzedList.add(Smith);
 		
@@ -59,10 +59,34 @@ public class PeopleServiceImpl implements PeopleService{
 		return peopleSearched;
 	}
 
-	public void addPeopleAnalyzed(PeopleAnalyzed newPeople) {
+	public List<PeopleAnalyzed> addPeopleAnalyzed(PeopleAnalyzed newPeople) {
 
-		peopleAnalyzedList.add(newPeople);
+		List<PeopleAnalyzed> updatedList=peopleAnalyzedList;
+		
+		updatedList.add(newPeople);
+		
+		System.out.println("MIRAR ACA2= "+ updatedList.toString());
+		
+		peopleAnalyzedList=updatedList;
+		
+		setPeopleAnalyzedList(updatedList);
+		
 
+		return updatedList;
+		
+	}
+
+	public List<PeopleAnalyzed> getPeopleAnalyzedList() {
+		return peopleAnalyzedList;
+	}
+
+	public void setPeopleAnalyzedList(List<PeopleAnalyzed> peopleAnalyzedList) {
+		this.peopleAnalyzedList = peopleAnalyzedList;
+	}
+
+	@Override
+	public String toString() {
+		return "PeopleServiceImpl [peopleAnalyzedList=" + peopleAnalyzedList + "]";
 	};
 
 

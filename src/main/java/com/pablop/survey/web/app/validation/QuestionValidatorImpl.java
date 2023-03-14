@@ -1,14 +1,15 @@
 package com.pablop.survey.web.app.validation;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
 
 import com.pablop.survey.web.app.models.entity.Question;
 
 @Component
-public class QuestionValidator implements Validator{
+@Primary
+public class QuestionValidatorImpl implements ItemsValidator{
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -18,9 +19,13 @@ public class QuestionValidator implements Validator{
 
 	@Override
 	public void validate(Object target, Errors errors) {
-	
+		Question question = (Question) target;
+
 		ValidationUtils.rejectIfEmpty(errors, "question", "NotEmpty");
-		
+
+		if (question.getQuestionWeighting()>10 || question.getQuestionWeighting()<0) {
+			errors.rejectValue("questionWeighting", "InvalidRange");
+		}
 	}
 
 }

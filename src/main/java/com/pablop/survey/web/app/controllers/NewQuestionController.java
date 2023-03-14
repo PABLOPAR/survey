@@ -17,7 +17,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.pablop.survey.web.app.models.entity.Question;
 import com.pablop.survey.web.app.services.QuestionService;
-import com.pablop.survey.web.app.validation.QuestionValidator;
+import com.pablop.survey.web.app.validation.ItemsValidator;
 
 @Controller
 @SessionAttributes("question")
@@ -39,7 +39,7 @@ public class NewQuestionController {
 	
 	
 	@Autowired
-	private QuestionValidator validator;
+	private ItemsValidator validator;
 	
 	@InitBinder
 	public void InitBinder(WebDataBinder binder) {

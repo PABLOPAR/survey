@@ -2,15 +2,15 @@
 
 import java.util.Date;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class PeopleAnalyzed extends Person{
 	
+	@Size(min=2)
 	private String lastName;
 	
-
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
 

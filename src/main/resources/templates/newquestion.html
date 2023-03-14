@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${head}"></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+</head>
+
+<body>
+	<div class="container">
+		<h1 th:text="${title}"></h1>
+		<form th:action="@{newquestion}" th:object="${question}" method="post">
+			<ul>
+				<li>
+					<h3 th:text="${addQuestion}"></h3>
+					<div>
+						<input type=text id="question" th:field="*{question}">
+					</div>
+					<div th:if="${#fields.hasErrors('question')}"
+				th:errors="*{question}"></div>
+					
+					
+					
+				</li>
+
+
+				<li>
+					<h3 th:text="${questionWeighting}"></h3>
+					<div>
+						<input type=text id="questionWeighting"
+							th:field="*{questionWeighting}">
+					</div>
+					<div th:if="${#fields.hasErrors('questionWeighting')}"
+						th:errors="*{questionWeighting}"></div>
+
+				</li>
+
+			</ul>
+
+
+			<div class="form-group row">
+				<div>
+
+					<input type="submit">
+
+				</div>
+			</div>
+		</form>
+	</div>
+
+</body>
+</html>

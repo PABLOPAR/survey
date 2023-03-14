@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.pablop.survey.web.app.models.entity.Question;
 import com.pablop.survey.web.app.services.QuestionService;
 
 @Controller
+@SessionAttributes("questionList")
 @RequestMapping ("app/question")
 public class QuestionSheetController {
 	
@@ -71,14 +74,16 @@ public class QuestionSheetController {
 		model.addAttribute("nothingShow", nothingShow);	
 
 		
-		return "questionSheet";
+		return "questionsheet";
 	};
 	
 	
 	
 	@PostMapping("/type")
-	public String load(Model model, @RequestParam List<Question> questionList) {
+	public String load(Model model, @RequestParam List<Question> questionList, SessionStatus status) {
 
+		
+		status.setComplete();
 		return "redirect:/type";
 	}
 	

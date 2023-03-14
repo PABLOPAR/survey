@@ -1,10 +1,19 @@
 package com.pablop.survey.web.app.models.entity;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class Question {
 	
 	private Integer questionId;
+	
+//	@NotEmpty
 	private String question;
+	
+	@NotNull
 	private Integer questionWeighting;
+	
+	
 	private String chosenValue;
 
 

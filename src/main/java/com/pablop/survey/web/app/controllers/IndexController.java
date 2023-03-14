@@ -106,7 +106,7 @@ public class IndexController {
 
 	}
 
-	@GetMapping("/userProfile")
+	@GetMapping("/userprofile")
 	public String userProfile(Model model) {
 
 		Date paulBirthay = new Date(07 / 02 / 1975);
@@ -124,11 +124,11 @@ public class IndexController {
 		
 
 		model.addAttribute("user", user);
-		return "userProfile";
+		return "userprofile";
 	}
 
 
-	@GetMapping("/peopleAnalyzed")
+	@GetMapping("/peopleanalyzed")
 	public String analyzedPeople(Model model) {
 		
 		System.out.println("Mirar aca 4: Size" + peopleAnalyzedList.getPeopleAnalyzedList().size());
@@ -143,7 +143,7 @@ public class IndexController {
 		model.addAttribute("noData", noData);
 		
 
-		return "peopleAnalyzed";
+		return "peopleanalyzed";
 	}
 
 	

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${head}"></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+
+<body>
+
+	<div class="container">
+		<h1 class="color-red" th:text="${titleUserProfile}"></h1>
+		<h2 class="color-blue" th:text="${fieldUserProfileFirstName}"></h2>
+		<h3 th:text="${user.firstName}"></h3>
+		<h2 class="color-blue" th:text="${fieldUserProfileEmail}"></h2>
+		<h3 th:text="${user.email}"></h3>
+
+		<h2 class="color-blue" th:text="${fieldUserProfileBirthday}"></h2>
+		<span th:if="${user.birthday}" th:text="${user.birthday}"></span>
+
+
+		<h2 class="color-blue" th:text="${fieldUserProfileLastName}"></h2>
+		<span th:if="${user.lastName}" th:text="${user.lastName}"></span> <span
+			th:if="${user.lastName==null}" th:text="${incomplete}"></span>
+	</div>
+</body>
+</html>

@@ -1,21 +1,23 @@
 package com.pablop.survey.web.app.models.entity;
 
-import java.util.Date;
-
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.validation.constraints.Size;
 
 public abstract class Person {
 
-	@NotEmpty
+	@Email
+	@Size (min=3, max= 25)
+	@NotBlank
 	private String email;
 	
 	@NotEmpty
+	@Size (min=2, max= 40)
 	private String country;
 
-	
 	@NotEmpty
+	@Size (min=2, max=30)
 	private String firstName;
 	
 	public Person(String country, String firstName, String email) {

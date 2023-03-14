@@ -59,7 +59,11 @@ public class QuestionServiceImpl implements QuestionService{
 		return questionSearched;
 	}
 
+	public void addQuestion(Question question) {
 
+		questionList.add(question);
+
+	}
 
 	public Double getPointsEarned() {
 		return pointsEarned;

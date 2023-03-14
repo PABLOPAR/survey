@@ -41,7 +41,7 @@ public class PeopleAnalyzedController {
 	private PeopleService peopleAnalyzed;
 	
 	
-	@GetMapping ("/peopleTestedProfile/{email}")
+	@GetMapping ("/peopletestedprofile/{email}")
 	public String peopleTestedProfile(@PathVariable String email, Model model) {
 		
 		PeopleAnalyzed peopleSearched = peopleAnalyzed.analyzedByEmail(email);
@@ -59,7 +59,7 @@ public class PeopleAnalyzedController {
 		
 		
 		
-		return "peopleTestedProfile";
+		return "peopletestedprofile";
 	}
 
 }

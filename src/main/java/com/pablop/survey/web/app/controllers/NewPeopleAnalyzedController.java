@@ -1,18 +1,27 @@
 package com.pablop.survey.web.app.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.pablop.survey.web.app.editors.UpperCaseEditor;
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 import com.pablop.survey.web.app.services.PeopleService;
 
@@ -41,12 +50,30 @@ public class NewPeopleAnalyzedController {
 
 	@Value("${text.newPeopleAnalyzed.loadForm.send}")
 	private String send;
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(String.class,"firstName", new UpperCaseEditor());
+		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class,new CustomDateEditor (dateFormat, false));
+	}
+	
 
 	@Autowired
 	private PeopleService peopleService;
+	
+	
+	@ModelAttribute("countryList")
+	private List<String> coutryList() {
+		return peopleService.countryList();
+	}
 
 	@GetMapping("/new")
 	public String loadForm(Model model) {
+		
+		
+		
 
 		PeopleAnalyzed peopleAnalyzed = new PeopleAnalyzed();
 		peopleAnalyzed.setCountry("Angola");
@@ -75,12 +102,11 @@ public class NewPeopleAnalyzedController {
 			model.addAttribute("title", title);
 			return "newpeopleanalyzed";
 		}
+		
+
 
 		peopleService.addPeopleAnalyzed(peopleAnalyzed);
 
-		System.out.println("Mirar ACA: " + peopleAnalyzed.toString());
-		System.out.println("Mirar ACA 3: " + peopleService.getPeopleAnalyzedList().toString());
-		System.out.println("Mirar aca 5: Size " + peopleService.getPeopleAnalyzedList().size());
 
 		status.setComplete();
 		

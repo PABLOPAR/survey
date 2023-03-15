@@ -30,13 +30,17 @@
 
 			<label for="peopleCountry" th:text="${fieldPeopleTestedCountry}"></label>
 			<div>
-				<input type="text" id="country" th:field="*{country}">
+				<select id="country" th:field="*{country}">
+					<option th:each="country: ${countryList}" th:text="${country}"
+						th:value="${country}"></option>
+				</select>
+
 			</div>
 			<div th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div>
 
 			<label for="peopleBirthday" th:text="${fieldPeopleTestedBirthday}"></label>
 			<div>
-				<input type="date" id="birthday" th:field="*{birthday}">
+				<input type="date" id="birthday" th:field="*{birthday}" placeholder=yyyy-MM-dd>
 			</div>
 			<div th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></div>
 

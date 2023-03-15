@@ -17,6 +17,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.pablop.survey.web.app.models.entity.Question;
 import com.pablop.survey.web.app.services.QuestionService;
+import com.pablop.survey.web.app.validation.ArrayNotNullValidator;
 import com.pablop.survey.web.app.validation.ItemsValidator;
 
 @Controller
@@ -41,6 +42,7 @@ public class NewQuestionController {
 	@Autowired
 	private ItemsValidator validator;
 	
+
 	@InitBinder
 	public void InitBinder(WebDataBinder binder) {
 		binder.addValidators(validator);
@@ -66,7 +68,6 @@ public class NewQuestionController {
 		
 		
 		if(result.hasErrors()) {
-//			model.addAttribute("question", question);
 			model.addAttribute("title", title);
 			model.addAttribute("addQuestion", addquestion);
 			model.addAttribute("questionWeighting", questionWeighting);	
@@ -77,6 +78,7 @@ public class NewQuestionController {
 		
 		questionService.addQuestion(question);
 		
+	
 		status.setComplete();
 
 		return "redirect:/app/question/type";

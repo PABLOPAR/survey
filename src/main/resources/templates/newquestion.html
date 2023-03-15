@@ -28,7 +28,7 @@
 				<li>
 					<h3 th:text="${questionWeighting}"></h3>
 					<div>
-						<input type=text id="questionWeighting"
+						<input type="number" id="questionWeighting"
 							th:field="*{questionWeighting}">
 					</div>
 					<div th:if="${#fields.hasErrors('questionWeighting')}"

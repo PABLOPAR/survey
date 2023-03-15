@@ -11,4 +11,5 @@ public interface PeopleService {
 	public PeopleAnalyzed analyzedByEmail(String email);
 	public List<PeopleAnalyzed> addPeopleAnalyzed(PeopleAnalyzed newPeople);
 	public List<PeopleAnalyzed> getPeopleAnalyzedList();
+	public List<String> countryList();
 }

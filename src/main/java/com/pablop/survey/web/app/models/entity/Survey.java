@@ -1,16 +1,23 @@
 package com.pablop.survey.web.app.models.entity;
 
+import java.util.ArrayList;
+
+import com.pablop.survey.web.app.validation.ArrayNotNull;
+
 public class Survey {
 
 
 	public  String surveyName;
-	private Question[] surveyQuestions;
+	
+	@ArrayNotNull
+	private ArrayList<Question> surveyQuestions;
+	
 	private Double surveyScore;
 	private PeopleAnalyzed friendAnalized; 
 	private User user;
 
 	
-	public Survey(String surveyName, Question[] surveyQuestions, Double surveyScore, PeopleAnalyzed friendAnalized, User user) {
+	public Survey(String surveyName, ArrayList<Question> surveyQuestions, Double surveyScore, PeopleAnalyzed friendAnalized, User user) {
 		super();
 		this.surveyName = surveyName;
 		this.surveyQuestions = surveyQuestions;
@@ -30,12 +37,12 @@ public class Survey {
 	}
 
 
-	public Question[] getSurveyQuestions() {
+	public ArrayList<Question> getSurveyQuestions() {
 		return surveyQuestions;
 	}
 
 
-	public void setSurveyQuestions(Question[] surveyQuestions) {
+	public void setSurveyQuestions(ArrayList<Question> surveyQuestions) {
 		this.surveyQuestions = surveyQuestions;
 	}
 

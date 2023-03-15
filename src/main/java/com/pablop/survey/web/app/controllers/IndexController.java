@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 import com.pablop.survey.web.app.models.entity.User;
@@ -19,6 +21,7 @@ import com.pablop.survey.web.app.services.PeopleService;
 
 @Controller
 @RequestMapping("app")
+@SessionAttributes("AnalyzedList") 
 public class IndexController {
 
 	public String head = "TRUST";
@@ -90,10 +93,10 @@ public class IndexController {
 	@Qualifier("peopleImplementationLocale")
 	private PeopleService peopleAnalyzedList;
 	
-	@ModelAttribute("AnalyzedList")
-	public List<PeopleAnalyzed> analyzedList() {
-		return this.peopleAnalyzedList.getPeopleAnalyzedList();
-	}
+//	@ModelAttribute("AnalyzedList")
+//	public List<PeopleAnalyzed> analyzedList() {
+//		return this.peopleAnalyzedList.getPeopleAnalyzedList();
+//	}
 
 	@GetMapping(value = { "/index", "home" })
 	public String index(Model model) {
@@ -109,6 +112,10 @@ public class IndexController {
 	@GetMapping("/userprofile")
 	public String userProfile(Model model) {
 
+
+		
+		
+		
 		Date paulBirthay = new Date(07 / 02 / 1975);
 		model.addAttribute("titleUserProfile", titleUserProfile);
 		model.addAttribute("incomplete", incomplete);
@@ -131,6 +138,8 @@ public class IndexController {
 	@GetMapping("/peopleanalyzed")
 	public String analyzedPeople(Model model) {
 		
+		List<PeopleAnalyzed> AnalyzedList= peopleAnalyzedList.getPeopleAnalyzedList();
+		
 		System.out.println("Mirar aca 4: Size" + peopleAnalyzedList.getPeopleAnalyzedList().size());
 		
 		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
@@ -141,6 +150,9 @@ public class IndexController {
 		model.addAttribute("email", email);
 		model.addAttribute("lastName", lastName);
 		model.addAttribute("noData", noData);
+		model.addAttribute("AnalyzedList", AnalyzedList);
+		
+
 		
 
 		return "peopleanalyzed";

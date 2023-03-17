@@ -1,5 +1,7 @@
 package com.pablop.survey.web.app.services;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -9,6 +11,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.RequestScope;
 
+import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 
 @Service("peopleImplementationLocale")
@@ -17,19 +20,63 @@ import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 public class PeopleServiceImpl implements PeopleService{
 	
 	List<PeopleAnalyzed> peopleAnalyzedList;
+	List<Country> countryListObject;
 	
 	public PeopleServiceImpl() {
-//		Date mikeBirthay = new Date(07 / 02 / 1990);
-//		Date jhonBirthay = new Date(10 / 05 / 2000);
-//		Date claudeBirthay = new Date(20 / 12 / 2010);
+		
+	    String mikeBirthS="25/01/1980"; 
+	    Date mikeBirth=null;
+	    
+	    
+	    try {
+			Date mikeBirth2=new SimpleDateFormat("dd/MM/yyyy").parse(mikeBirthS);
+			mikeBirth=mikeBirth2;
+						
+		} catch (ParseException e) {
+		// TODO Auto-generated catch block
+			mikeBirth=null;
+			e.printStackTrace();
+		}  
 
+	    Country countryMike= new Country ("Antarctica");
+	    Country countryJhon= new Country ("Austria");
+	    Country countryClaude= new Country ("Spain");
+	    Country countrySmith= new Country ("Austria");	    
+	    
 		this.peopleAnalyzedList = new ArrayList<PeopleAnalyzed>();
-		peopleAnalyzedList.add(new PeopleAnalyzed("England",  "Mike", "mike@gmail.com"));
-		peopleAnalyzedList.add(new PeopleAnalyzed("United State",  "Jhon", "Jhon@gmail.com"));
-		peopleAnalyzedList.add(new PeopleAnalyzed("France", "Claude", "Claude@gmail.com"));
-		PeopleAnalyzed Smith=	new PeopleAnalyzed("Irland", "Jeff", "Jeff@gmail.com");
-		Smith.setLastName("Smith");
-		peopleAnalyzedList.add(Smith);
+		
+		
+		PeopleAnalyzed mike=new PeopleAnalyzed("Mike", "mike@gmail.com");
+		PeopleAnalyzed smith=new PeopleAnalyzed("Jeff", "Jeff@gmail.com");
+		PeopleAnalyzed jhon=new PeopleAnalyzed("Jhon", "Jhon@gmail.com");
+		PeopleAnalyzed claude=new PeopleAnalyzed( "Claude", "Claude@gmail.com");
+		
+				
+
+
+		
+		mike.setBirthday(mikeBirth);
+		mike.setLastName("Dior");
+		mike.setCountry(countryMike);
+	
+		
+		smith.setLastName("Smith");
+		smith.setCountry(countrySmith);
+		
+
+		claude.setCountry(countryClaude);
+
+		
+		jhon.setCountry(countryJhon);
+	
+
+		peopleAnalyzedList.add(mike);
+		peopleAnalyzedList.add(jhon);
+		peopleAnalyzedList.add(claude);
+		peopleAnalyzedList.add(smith);		
+		
+		
+		this.countryListObject= createCountryList();
 		
 	}
 
@@ -62,19 +109,13 @@ public class PeopleServiceImpl implements PeopleService{
 
 	public List<PeopleAnalyzed> addPeopleAnalyzed(PeopleAnalyzed newPeople) {
 
-		List<PeopleAnalyzed> updatedList=peopleAnalyzedList;
-		
-		updatedList.add(newPeople);
-		
-		System.out.println("MIRAR ACA2= "+ updatedList.toString());
-		
-		peopleAnalyzedList=updatedList;
-		
-		setPeopleAnalyzedList(updatedList);
-		
+		if (newPeople != null) {
 
-		return updatedList;
-		
+			peopleAnalyzedList.add(newPeople);
+
+		}
+		return peopleAnalyzedList;
+
 	}
 
 	public List<PeopleAnalyzed> getPeopleAnalyzedList() {
@@ -133,12 +174,60 @@ public class PeopleServiceImpl implements PeopleService{
 				"United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu",
 				"Venezuela (Bolivarian Republic of)", "Viet Nam", "Virgin Islands (British)", "Virgin Islands (U.S.)",
 				"Wallis and Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe");
+	}
+
+	public List<Country> createCountryList() {
+
+		countryListObject = new ArrayList<Country>();
+
+		List<String> source = countryList();
+
+		for (String countryName : source) {
+			countryListObject.add(new Country(countryName));
+		}
+
+		return countryListObject;
+	}
+	
+
+
+
+	@Override
+	public List<Country> countryListObject() {
+		// TODO Auto-generated method stub
+		return countryListObject;
+	}
+
+	@Override
+	public Country searchCountryByName(String name) {
+		Country searched = null;
+		int index = 0;
+
+		if (name != null && !name.isEmpty()) {
+
+			while (countryListObject.size() > index && searched == null) {
+
+				if (countryListObject.get(index).getName().equalsIgnoreCase(name)) {
+					searched = countryListObject.get(index);
+
+				} else {
+					index++;
+				}
+				;
+			}
+		}
+		return searched;
 	};
 
+	public List<Country> getCountryListObject() {
+		return countryListObject;
+	}
 
-	
-	
-	
+	public void setCountryListObject(List<Country> countryListObject) {
+		this.countryListObject = countryListObject;
+	}
+
+
 	
 
 }

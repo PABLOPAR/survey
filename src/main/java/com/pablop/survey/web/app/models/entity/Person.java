@@ -12,17 +12,15 @@ public abstract class Person {
 	@NotBlank
 	private String email;
 	
-	@NotEmpty
-	@Size (min=2, max= 40)
-	private String country;
 
 	@NotEmpty
 	@Size (min=2, max=30)
 	private String firstName;
 	
-	public Person(String country, String firstName, String email) {
+	
+	public Person(String firstName, String email) {
 		super();
-		this.country = country;
+
 		this.firstName = firstName;
 		this.email= email;
 	}
@@ -30,13 +28,6 @@ public abstract class Person {
 	public Person() {
 	}
 	
-	
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
 
 	public String getFirstName() {
 		return firstName;

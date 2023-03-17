@@ -19,7 +19,7 @@
 					<th class="color-blue" th:text="${birthday}"></th>
 					<th class="color-blue" th:text="${country}"></th>
 					<th class="color-blue" th:text="${email}"></th>
-
+					
 				</tr>
 			<tbody>
 				<tr th:each="person: ${AnalyzedList}">
@@ -33,8 +33,14 @@
 
 					<td th:if="${person.lastName}"  th:text="${person.lastName}"></td>
 					<td th:if="!${person.lastName}"  th:text="${noData}"></td>
-					<td th:text="${person.birthday}"></td>
-					<td th:text="${person.country}"></td>
+					
+					
+					<td th:text="${#dates.format(person.birthday,'dd/MM/yyyy')}"></td>
+					
+					
+					<td th:text="${person.country.name}"></td>
+					
+					
 					<td th:text="${person.email}"></td>
 
 				</tr>

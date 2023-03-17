@@ -37,7 +37,8 @@ public class PeopleAnalyzedController {
 	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.incompleteField}")
 	private String incompleteField;
 	
-	
+	@Value("${text.indexController.userProfile.peopleTestedProfile.title}")
+	private String titlePeopleTested;
 	
 	@Autowired
 	private PeopleService peopleAnalyzed;
@@ -45,7 +46,7 @@ public class PeopleAnalyzedController {
 	
 	@GetMapping ("/peopletestedprofile/{email}")
 	public String peopleTestedProfile(@PathVariable String email, Model model) {
-		
+		model.addAttribute("titlePeopleTested", titlePeopleTested);
 		PeopleAnalyzed peopleSearched = peopleAnalyzed.analyzedByEmail(email);
 		
 		

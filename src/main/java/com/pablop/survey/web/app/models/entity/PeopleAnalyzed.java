@@ -2,7 +2,7 @@
 
 import java.util.Date;
 
-import javax.validation.constraints.Future;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -14,13 +14,17 @@ public class PeopleAnalyzed extends Person{
 	@Size(min=2)
 	private String lastName;
 	
+	@Past
 	@NotNull
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@Past
 	private Date birthday;
+	
+	@NotNull
+	private Country country;
 
-	public PeopleAnalyzed(String country, String firstName, String email) {
-		super(country, firstName,email);
+
+	public PeopleAnalyzed(String firstName, String email) {
+		super(firstName,email);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -43,15 +47,24 @@ public class PeopleAnalyzed extends Person{
 				+ super.toString() + "]";
 	}
 
-
 	public Date getBirthday() {
 		return birthday;
 	}
 
-
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
+
+
 	
 	
 	

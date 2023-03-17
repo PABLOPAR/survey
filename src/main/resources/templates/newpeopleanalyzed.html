@@ -28,15 +28,22 @@
 
 			<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 
-			<label for="peopleCountry" th:text="${fieldPeopleTestedCountry}"></label>
+			
+			
+			
+			<label for="country" th:text="${fieldPeopleTestedCountry}"></label>
 			<div>
 				<select id="country" th:field="*{country}">
-					<option th:each="country: ${countryList}" th:text="${country}"
-						th:value="${country}"></option>
+					<option th:each="country: ${countryList}" th:text="${country.name}"
+						th:value="${country.name}"></option>
 				</select>
 
 			</div>
 			<div th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div>
+			
+			
+			
+			
 
 			<label for="peopleBirthday" th:text="${fieldPeopleTestedBirthday}"></label>
 			<div>

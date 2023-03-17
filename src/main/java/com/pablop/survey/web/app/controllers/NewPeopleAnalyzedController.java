@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.pablop.survey.web.app.editors.CountryPropertyEditor;
 import com.pablop.survey.web.app.editors.UpperCaseEditor;
+import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 import com.pablop.survey.web.app.services.PeopleService;
 
@@ -51,12 +53,18 @@ public class NewPeopleAnalyzedController {
 	@Value("${text.newPeopleAnalyzed.loadForm.send}")
 	private String send;
 	
+	
+	@Autowired
+	private CountryPropertyEditor countryEditor;
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(String.class,"firstName", new UpperCaseEditor());
-		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+		binder.registerCustomEditor(String.class, "firstName", new UpperCaseEditor());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
-		binder.registerCustomEditor(Date.class,new CustomDateEditor (dateFormat, false));
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+		binder.registerCustomEditor(Country.class, "country",countryEditor);
+
 	}
 	
 
@@ -65,18 +73,18 @@ public class NewPeopleAnalyzedController {
 	
 	
 	@ModelAttribute("countryList")
-	private List<String> coutryList() {
-		return peopleService.countryList();
+	private List<Country> coutryList() {
+		return peopleService.countryListObject();
 	}
 
 	@GetMapping("/new")
 	public String loadForm(Model model) {
 		
-		
+	    Country countryClaude= new Country ("Ukraine");
 		
 
 		PeopleAnalyzed peopleAnalyzed = new PeopleAnalyzed();
-		peopleAnalyzed.setCountry("Angola");
+		peopleAnalyzed.setCountry(countryClaude);
 		peopleAnalyzed.setFirstName("Diego");
 		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
 		model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
@@ -106,6 +114,7 @@ public class NewPeopleAnalyzedController {
 
 
 		peopleService.addPeopleAnalyzed(peopleAnalyzed);
+
 
 
 		status.setComplete();

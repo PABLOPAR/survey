@@ -3,6 +3,7 @@ package com.pablop.survey.web.app.models.entity;
 import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -15,9 +16,12 @@ public class User extends Person{
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
 	
-	
-	public User(String country, Date birthday, String firstName, String email) {
-		super(country, firstName, email);
+	@NotEmpty
+	@Size (min=2, max= 40)
+	private Country country;
+
+	public User(Date birthday, String firstName, String email) {
+		super(firstName, email);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -37,6 +41,16 @@ public class User extends Person{
 
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
+	}
+
+
+	public Country getCountry() {
+		return country;
+	}
+
+
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 	
 	

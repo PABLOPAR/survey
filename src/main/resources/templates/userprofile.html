@@ -9,19 +9,19 @@
 <body>
 
 	<div class="container">
-		<h1 class="color-red" th:text="${titleUserProfile}"></h1>
-		<h2 class="color-blue" th:text="${fieldUserProfileFirstName}"></h2>
+		<h1 class="text-primary" th:text="${titleUserProfile}" ></h1>
+		<h2 class="text-danger" th:text="${fieldUserProfileFirstName}"></h2>
 		<h3 th:text="${user.firstName}"></h3>
-		<h2 class="color-blue" th:text="${fieldUserProfileEmail}"></h2>
+		<h2 class="text-danger" th:text="${fieldUserProfileEmail}"></h2>
 		<h3 th:text="${user.email}"></h3>
-		<h2 class="color-blue" th:text="${fieldUserProfileCountry}"></h2>
+		<h2 class="text-danger" th:text="${fieldUserProfileCountry}"></h2>
 		<h3 th:text="${user.country.name}"></h3>
-		<h2 class="color-blue" th:text="${fieldUserProfileBirthday}"></h2>
+		<h2 class="text-danger" th:text="${fieldUserProfileBirthday}"></h2>
 		<span th:if="${user.birthday}" th:text="${user.birthday}"></span>
 
 
-		<h2 class="color-blue" th:text="${fieldUserProfileLastName}"></h2>
-		<span th:if="${user.lastName}" th:text="${user.lastName}"></span> <span
+		<h2 class="text-danger" th:text="${fieldUserProfileLastName}"></h2>
+		<span th:if="${user.lastName}" th:text="${user.lastName}" class="h2"></span> <span
 			th:if="${user.lastName==null}" th:text="${incomplete}"></span>
 	</div>
 </body>

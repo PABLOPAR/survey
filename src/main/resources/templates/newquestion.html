@@ -9,7 +9,7 @@
 
 <body>
 	<div class="container">
-		<h1 th:text="${title}"></h1>
+		<h1 th:text="${title}" class="text-primary"></h1>
 		<form th:action="@{newquestion}" th:object="${question}" method="post">
 			<ul>
 				<li>
@@ -42,7 +42,7 @@
 			<div class="form-group row">
 				<div>
 
-					<input type="submit">
+					<input type="submit" class="btn btn-primary">
 
 				</div>
 			</div>

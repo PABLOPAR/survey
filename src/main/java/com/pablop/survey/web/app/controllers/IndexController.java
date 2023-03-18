@@ -68,7 +68,7 @@ public class IndexController {
 	@Value("${text.indexController.analyzedPeople.birthday}")
 	private String birthday;
 
-	@Value("${text.indexController.userProfile.fieldUserProfileCountry}")
+	@Value("${text.indexController.analyzedPeople.country}")
 	private String country;
 
 	@Value("${text.indexController.analyzedPeople.email}")

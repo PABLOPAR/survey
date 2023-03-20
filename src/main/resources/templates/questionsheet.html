@@ -10,38 +10,44 @@
 	<div class="container">
 		<h1 th:text="${title}" class="text-primary"></h1>
 
-		<div class="h5">
 
-			<div th:if="${questionList.size()==0}" th:text="${nothingShow}"></div>
-
-			<div th:each="question: ${questionList}">
+		<form th:action="@{type}" th:object="${allQuestionChosenValues}"
+			method="post">
 
 
-				<div class="form-group row">
-					<label class="col-form-label col-sm-5"
-						th:text="${question.question}"></label>
+			<div class="h5">
 
-					<div th:each="val:${posibleValues}" class="col-form-label col-sm-2">
-						<div class="text-danger">
+				<div th:if="${questionList.size()==0}" th:text="${nothingShow}"></div>
 
-							<input type="radio" th:field="*{question.chosenValue}"
-								th:value="${val}" class="form-control col-sm-1">
-								
 
+				<div th:each="question: ${questionList}">
+
+
+					<div class="form-group row">
+						<label class="col-form-label col-sm-5"
+							th:text="${question.question}"></label>
+
+						<div class="col-form-label col-sm-2" th:each="val: ${posibleValues}">
+
+							<input type="radio" th:value="${val}"> <label
+							class="col-form-label col-sm-2"
+								th:for="${val}" th:text="${val}"></label>
 						</div>
 					</div>
-
 				</div>
-
 			</div>
 
-		</div>
 
-		<div class="form-group row">
-			<div class="col-sm-4">
-				<input type="submit" class="btn btn-primary">
+
+			<div class="form-group row">
+				<div class="col-sm-4">
+					<input type="submit" class="btn btn-primary">
+				</div>
 			</div>
-		</div>
+		</form>
 	</div>
+
+
+
 </body>
 </html>

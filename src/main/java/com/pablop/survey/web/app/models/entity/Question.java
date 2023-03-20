@@ -16,7 +16,7 @@ public class Question {
 	@Max(10)
 	private Integer questionWeighting;
 	
-	
+
 	private String chosenValue;
 
 

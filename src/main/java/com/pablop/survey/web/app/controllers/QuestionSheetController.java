@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.pablop.survey.web.app.editors.AllQuestionChosenValues;
 import com.pablop.survey.web.app.models.entity.Question;
 import com.pablop.survey.web.app.services.QuestionService;
 
@@ -49,24 +50,15 @@ public class QuestionSheetController {
 	};
 
 	
-//	@ModelAttribute("posibleValues")
-//	public Map<String,String> posibleValues() {
-//		Map<String,String> posibleValues= new HashMap<String, String>();
-//		posibleValues.put("1","Ever");		
-//		posibleValues.put("NotSure","Not Sure");
-//		posibleValues.put("Never","Never");
-//		return posibleValues;
-//	};
-	
 
-	
-	
 	@GetMapping("/type")
 	public String showQuestion(Model model) {
 		
 		List<Question> questionList= questionService.questionList();
 		
+		AllQuestionChosenValues allQuestionChosenValues= new AllQuestionChosenValues();
 		
+		model.addAttribute("chosenValuesList",allQuestionChosenValues);
 		model.addAttribute("questionList", questionList);
 		model.addAttribute("title", title);
 		model.addAttribute("tab", tab);		
@@ -80,7 +72,7 @@ public class QuestionSheetController {
 	
 	
 	@PostMapping("/type")
-	public String load(Model model, @RequestParam List<Question> questionList, SessionStatus status) {
+	public String load(@ModelAttribute AllQuestionChosenValues chosenValuesList, SessionStatus status, Model model) {
 
 		
 		status.setComplete();

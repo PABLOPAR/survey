@@ -13,17 +13,24 @@ public class Survey {
 	private ArrayList<Question> surveyQuestions;
 	
 	private Double surveyScore;
-	private PeopleAnalyzed friendAnalized; 
+	
+	private PeopleAnalyzed peopleAnalized; 
+	
 	private User user;
+	
+	private String type;
 
 	
-	public Survey(String surveyName, ArrayList<Question> surveyQuestions, Double surveyScore, PeopleAnalyzed friendAnalized, User user) {
+	public Survey(String surveyName, PeopleAnalyzed peopleAnalized) {
 		super();
 		this.surveyName = surveyName;
-		this.surveyQuestions = surveyQuestions;
-		this.surveyScore = surveyScore;
-		this.friendAnalized = friendAnalized;
-		this.user = user;
+		this.peopleAnalized = peopleAnalized;
+		surveyQuestions= new ArrayList<Question>();
+	}
+
+	
+	public Survey() {
+		super();
 	}
 
 
@@ -58,12 +65,12 @@ public class Survey {
 
 
 	public PeopleAnalyzed getFriendAnalized() {
-		return friendAnalized;
+		return peopleAnalized;
 	}
 
 
 	public void setFriendAnalized(PeopleAnalyzed friendAnalized) {
-		this.friendAnalized = friendAnalized;
+		this.peopleAnalized = friendAnalized;
 	}
 
 
@@ -74,6 +81,16 @@ public class Survey {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+
+	public String getType() {
+		return type;
+	}
+
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

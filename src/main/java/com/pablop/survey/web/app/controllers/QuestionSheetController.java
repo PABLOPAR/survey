@@ -56,6 +56,21 @@ public class QuestionSheetController {
 		
 		List<Question> questionList= questionService.questionList();
 		
+//		if(questionList.size()>0) {
+//			for(int i=0;questionList.size()>i; i++) {
+//				
+//				String ini= "ini"+ i;
+//				ini= questionList.get(i).getChosenValue();
+//				
+//				model.addAttribute("ini",ini);
+//				}
+//		}
+		
+		model.addAttribute("questionList", questionList);
+		
+		
+		
+		
 		AllQuestionChosenValues allQuestionChosenValues= new AllQuestionChosenValues();
 		
 		model.addAttribute("chosenValuesList",allQuestionChosenValues);

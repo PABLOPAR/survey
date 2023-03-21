@@ -76,7 +76,7 @@ public class NewQuestionController {
 		}
 		
 		
-		questionService.addQuestion(question);
+//		questionService.addQuestion(question);
 		
 	
 		status.setComplete();

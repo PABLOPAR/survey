@@ -29,6 +29,12 @@ public class AllQuestionChosenValues {
 		this.questionChosenValueList = questionChosenValueList;
 	}
 
+
+	@Override
+	public String toString() {
+		return "AllQuestionChosenValues [questionChosenValueList=" + questionChosenValueList + "]";
+	}
+
 	
 	
 

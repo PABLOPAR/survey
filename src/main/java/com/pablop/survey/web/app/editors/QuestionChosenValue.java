@@ -24,6 +24,10 @@ public class QuestionChosenValue {
 		this.chosenValue=chosenValue;
 
 	}
+	@Override
+	public String toString() {
+		return "QuestionChosenValue [chosenValue=" + chosenValue + ", question=" + question + "]";
+	}
 	
 	
 	

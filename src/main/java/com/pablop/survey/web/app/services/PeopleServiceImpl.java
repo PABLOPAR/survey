@@ -13,6 +13,7 @@ import org.springframework.web.context.annotation.RequestScope;
 
 import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
+import com.pablop.survey.web.app.models.entity.Survey;
 
 @Service("peopleImplementationLocale")
 @RequestScope
@@ -21,6 +22,8 @@ public class PeopleServiceImpl implements PeopleService{
 	
 	List<PeopleAnalyzed> peopleAnalyzedList;
 	List<Country> countryListObject;
+	List<Survey> surveyList;
+	
 	
 	public PeopleServiceImpl() {
 		
@@ -190,6 +193,24 @@ public class PeopleServiceImpl implements PeopleService{
 	}
 	
 
+	public List<Survey> exampleListSurvey(){
+		
+		
+		PeopleAnalyzed peopleAnalyzed= new PeopleAnalyzed("Martin","martin@gmail.com");
+		PeopleAnalyzed peopleAnalyzed2= new PeopleAnalyzed("German","german@gmail.com");
+		
+		Survey s1=new Survey("It he reliable?",peopleAnalyzed);
+		Survey s2=new Survey("Is he a successful person?",peopleAnalyzed2);	
+		
+		ArrayList<Survey> exampleArraySurvey= new ArrayList<Survey>();
+		
+		exampleArraySurvey.add(s1);
+		exampleArraySurvey.add(s2);
+		
+		return exampleArraySurvey;
+	}
+	
+	
 
 
 	@Override

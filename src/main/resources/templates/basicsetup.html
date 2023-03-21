@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${head}"></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+</head>
+<body>
+
+	<div class="container">
+	<h1 th:text="${title}" class="text-primary"></h1>
+
+
+
+		<div class="font-weight-bold">
+			<h2 class="text-primary" th:text="${surveyList}"></h2>
+
+		</div>
+
+		<ul>
+
+			<li th:each="survey: ${exampleListSurvey}">
+				<h5 th:text="${survey.surveyName}"></h5>
+
+			</li>
+
+
+		</ul>
+
+
+
+
+		<ul>
+			<li><a
+				th:href="@{/app/question/type}"
+				th:text="${'Survey Example'}"></a></li>
+		</ul>
+
+
+	</div>
+	
+	
+	
+</body>
+</html>

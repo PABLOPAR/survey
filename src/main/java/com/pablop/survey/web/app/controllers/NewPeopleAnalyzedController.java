@@ -80,10 +80,10 @@ public class NewPeopleAnalyzedController {
 	@GetMapping("/new")
 	public String loadForm(Model model) {
 		
-	    Country countryClaude= new Country ("Ukraine");
-		
-
+	    Country countryClaude= peopleService.searchCountryByName("Ukraine");
+	    		
 		PeopleAnalyzed peopleAnalyzed = new PeopleAnalyzed();
+			
 		peopleAnalyzed.setCountry(countryClaude);
 		peopleAnalyzed.setFirstName("Diego");
 		model.addAttribute("peopleAnalyzed", peopleAnalyzed);

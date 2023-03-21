@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
+import com.pablop.survey.web.app.models.entity.Survey;
 
 public interface PeopleService {
 
@@ -15,4 +16,5 @@ public interface PeopleService {
 	public List<String> countryList();
 	public List<Country> countryListObject();
 	public Country searchCountryByName(String name);
+	public List<Survey> exampleListSurvey();
 }

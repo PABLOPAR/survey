@@ -27,9 +27,17 @@
 						<label class="col-form-label col-sm-5"
 							th:text="${question.question}"></label>
 
-						<div class="col-form-label col-sm-2" th:each="val: ${posibleValues}">
+						<div class="col-form-label col-sm-2" 
+						th:each="val: ${posibleValues}">
 
-							<input type="radio" th:value="${val}"> <label
+							<input type="radio" th:value="${val}"
+							
+							>
+							
+<!-- 								th:field="*{question.chosenValue}"						 -->
+
+
+							 <label
 							class="col-form-label col-sm-2"
 								th:for="${val}" th:text="${val}"></label>
 						</div>

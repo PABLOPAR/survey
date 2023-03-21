@@ -79,11 +79,11 @@ public class NewPeopleAnalyzedController {
 
 	@GetMapping("/new")
 	public String loadForm(Model model) {
-		
-	    Country countryClaude= peopleService.searchCountryByName("Ukraine");
-	    		
+
+		Country countryClaude = peopleService.searchCountryByName("Ukraine");
+
 		PeopleAnalyzed peopleAnalyzed = new PeopleAnalyzed();
-			
+
 		peopleAnalyzed.setCountry(countryClaude);
 		peopleAnalyzed.setFirstName("Diego");
 		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
@@ -99,7 +99,8 @@ public class NewPeopleAnalyzedController {
 	}
 
 	@PostMapping("/new")
-	public String loadPeopleAnalyzedData(@Valid PeopleAnalyzed peopleAnalyzed, BindingResult result, Model model, SessionStatus status) {
+	public String loadPeopleAnalyzedData(@Valid PeopleAnalyzed peopleAnalyzed, BindingResult result, Model model,
+			SessionStatus status) {
 
 		if (result.hasErrors()) {
 			model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
@@ -110,15 +111,11 @@ public class NewPeopleAnalyzedController {
 			model.addAttribute("title", title);
 			return "newpeopleanalyzed";
 		}
-		
-
 
 		peopleService.addPeopleAnalyzed(peopleAnalyzed);
 
-
-
 		status.setComplete();
-		
+
 		return "redirect:/app/peopleanalyzed";
 	}
 

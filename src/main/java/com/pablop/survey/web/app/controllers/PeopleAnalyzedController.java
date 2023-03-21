@@ -27,41 +27,40 @@ public class PeopleAnalyzedController {
 	
 	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldPeopleProfileFirstName}")
 	private String fieldPeopleProfileFirstName;
-	
+
 	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldPeopleTestedCountry}")
 	private String fieldPeopleTestedCountry;
-	
+
 	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldPeopleTestedLastName}")
 	private String fieldPeopleTestedLastName;
-	
+
 	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.incompleteField}")
 	private String incompleteField;
-	
+
 	@Value("${text.indexController.userProfile.peopleTestedProfile.title}")
 	private String titlePeopleTested;
-	
+
+	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.back}")
+	private String back;
+
 	@Autowired
 	private PeopleService peopleAnalyzed;
-	
-	
-	@GetMapping ("/peopletestedprofile/{email}")
+
+	@GetMapping("/peopletestedprofile/{email}")
 	public String peopleTestedProfile(@PathVariable String email, Model model) {
 		model.addAttribute("titlePeopleTested", titlePeopleTested);
 		PeopleAnalyzed peopleSearched = peopleAnalyzed.analyzedByEmail(email);
-		
-		
-		model.addAttribute("peopleSearched", peopleSearched);	
+
+		model.addAttribute("peopleSearched", peopleSearched);
 		model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
 		model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);
 		model.addAttribute("fieldPeopleProfileFirstName", fieldPeopleProfileFirstName);
 		model.addAttribute("fieldPeopleProfileFirstName", fieldPeopleProfileFirstName);
 		model.addAttribute("fieldPeopleTestedCountry", fieldPeopleTestedCountry);
-		model.addAttribute("fieldPeopleTestedLastName", fieldPeopleTestedLastName);	
-		model.addAttribute("incompleteField", incompleteField);		
-		
-		
-		
-		
+		model.addAttribute("fieldPeopleTestedLastName", fieldPeopleTestedLastName);
+		model.addAttribute("incompleteField", incompleteField);
+		model.addAttribute("back", back);
+
 		return "peopletestedprofile";
 	}
 

@@ -6,12 +6,13 @@ import javax.servlet.http.HttpServletResponse;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 
 @Component("ExecutionTime")
-public class ExecutionTime implements HandlerInterceptor{
+public class ExecutionTimeInterceptor implements HandlerInterceptor{
 
 //private static final Logger logger= LoggerFactory.getLogger(ExecutionTime.class);	
 	
@@ -33,7 +34,7 @@ public void postHandle(HttpServletRequest request, HttpServletResponse response,
 
 	long spentTime = endTaskTime - beginningTime;
 
-	if (modelAndView != null) {
+	if (modelAndView != null && handler instanceof HandlerMethod) {
 
 		modelAndView.addObject("SpentTime", spentTime);
 

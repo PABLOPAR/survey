@@ -6,9 +6,7 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
-	<div class="alert alert-success">
-		<span th:text="${TextSpentTime} + ' '+ ${SpentTime} + ' ms'"></span>
-	</div>
+
 
 
 	<div class="container">
@@ -28,7 +26,7 @@
 				</tr>
 			<tbody>
 				<tr th:each="person: ${AnalyzedList}">
-					<td tr class="h5">
+					<td class="h5">
 						<ul>
 							<li><a
 								th:href="@{'survey/peopletestedprofile/'+ ${person.email}}"
@@ -58,5 +56,8 @@
 				width="200" height="200"></img>
 		</div>
 	</div>
+
+	<section th:replace="components/template :: interceptor"></section>
+
 </body>
 </html>

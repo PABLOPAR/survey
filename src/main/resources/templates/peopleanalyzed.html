@@ -6,6 +6,11 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
+	<div class="alert alert-success">
+		<span th:text="${TextSpentTime} + ' '+ ${SpentTime} + ' ms'"></span>
+	</div>
+
+
 	<div class="container">
 		<h1 th:text="${peopleAnalyzed}" class="text-primary"></h1>
 
@@ -14,12 +19,12 @@
 		<table class="col-sm-10" th:if="${!AnalyzedList.isEmpty()}">
 			<thead>
 				<tr class="h4">
-					<th class="text-danger" th:text="${name}" ></th>
+					<th class="text-danger" th:text="${name}"></th>
 					<th class="text-danger" th:text="${lastName}"></th>
 					<th class="text-danger" th:text="${birthday}"></th>
 					<th class="text-danger" th:text="${country}"></th>
 					<th class="text-danger" th:text="${email}"></th>
-					
+
 				</tr>
 			<tbody>
 				<tr th:each="person: ${AnalyzedList}">
@@ -31,16 +36,16 @@
 						</ul>
 					</td>
 
-					<td th:if="${person.lastName}"  th:text="${person.lastName}"></td>
-					<td th:if="!${person.lastName}"  th:text="${noData}"></td>
-					
-					
+					<td th:if="${person.lastName}" th:text="${person.lastName}"></td>
+					<td th:if="!${person.lastName}" th:text="${noData}"></td>
+
+
 					<td th:text="${#dates.format(person.birthday,'dd/MM/yyyy')}"></td>
-					
-					
+
+
 					<td th:text="${person.country.name}"></td>
-					
-					
+
+
 					<td th:text="${person.email}"></td>
 
 				</tr>
@@ -49,7 +54,8 @@
 		</table>
 
 		<div>
-			<img class="rounded mx-auto d-block" th:src="@{/images/ANALYZED.jpg}" width="200" height="200"></img>
+			<img class="rounded mx-auto d-block" th:src="@{/images/ANALYZED.jpg}"
+				width="200" height="200"></img>
 		</div>
 	</div>
 </body>

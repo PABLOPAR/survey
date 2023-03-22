@@ -83,7 +83,8 @@ public class IndexController {
 	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.incompleteField}")
 	private String noData;
 
-
+	@Value("${text.indexController.analyzedPeople.textTimeSpent}")
+	private String TextSpentTime;
 	
 	
 	
@@ -150,6 +151,9 @@ public class IndexController {
 		model.addAttribute("lastName", lastName);
 		model.addAttribute("noData", noData);
 		model.addAttribute("AnalyzedList", AnalyzedList);
+		model.addAttribute("TextSpentTime", TextSpentTime);	
+		
+		
 
 		return "peopleanalyzed";
 	}

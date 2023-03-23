@@ -22,7 +22,7 @@ public class MvcConfig implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 
 		registry.addInterceptor(executionTime).addPathPatterns("/app/peopleanalyzed", "/app/userprofile","/app/peopleanalyzed/new");
-		registry.addInterceptor(WebSiteAvailableTimeInterceptor);
+//		registry.addInterceptor(WebSiteAvailableTimeInterceptor).addPathPatterns("/app/peopleanalyzed");
 	
 	}
 	

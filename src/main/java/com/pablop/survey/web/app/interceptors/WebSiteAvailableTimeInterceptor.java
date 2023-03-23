@@ -67,7 +67,10 @@ public class WebSiteAvailableTimeInterceptor implements HandlerInterceptor{
 			request.setAttribute("messagge", messagge.toString());
 			return true;
 		}
-		return true;
+		
+		response.sendRedirect("/app/index");
+		
+		return false;
 
 	}
 

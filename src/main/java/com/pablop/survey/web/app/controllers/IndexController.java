@@ -122,8 +122,7 @@ public class IndexController {
 		model.addAttribute("fieldUserProfileBirthday", fieldUserProfileBirthday);
 		model.addAttribute("fieldUserProfileCountry", country);	
 		
-		
-		
+	
 	    Country countryUser= new Country ("Antarctica");
 	    
 

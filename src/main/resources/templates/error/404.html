@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${head}"></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<title th:text="${message}"></title>
+</head>
+<body>
+	<div class="container">
+		<div class="text-center">
+			<h1 class="font-weight-bold"></h1>
+			<h1 class="text-primary" th:text="${'We are ashamed that you have reached this page'}"></h1>
+			<img class="rounded mx-auto d-block" th:src="@{/images/dogSad.jpg}"
+				width="400" height="300"></img>
+			<h1 class="text-danger" th:text="${'We promise to improve!'}"></h1>
+			<h3 th:text="${'Error Type:404'}"></h3>
+		</div>
+	</div>
+</body>
+</html>

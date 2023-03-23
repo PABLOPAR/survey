@@ -9,6 +9,18 @@
 		</div>
 
 	</section>
+	
+	
+	<section th:fragment="workingHour">
+
+		<div class="alert alert-success" th:if="${workingHours!=null}">
+			<span th:text="${workingHours}"></span>
+		</div>
+
+	</section>
+	
+	
+	
 
 </body>
 </html>

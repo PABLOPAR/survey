@@ -1,10 +1,10 @@
 package com.pablop.survey.web.app.models.entity;
 
-import javax.validation.constraints.NotNull;
+
 
 public class Country {
 	
-	@NotNull
+
 	private String name;
 	private String code;
 	

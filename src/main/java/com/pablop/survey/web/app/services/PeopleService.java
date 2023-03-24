@@ -13,7 +13,6 @@ public interface PeopleService {
 	public PeopleAnalyzed analyzedByEmail(String email);
 	public List<PeopleAnalyzed> addPeopleAnalyzed(PeopleAnalyzed newPeople);
 	public List<PeopleAnalyzed> getPeopleAnalyzedList();
-	public List<String> countryList();
 	public List<Country> countryListObject();
 	public Country searchCountryByName(String name);
 	public List<Survey> exampleListSurvey();

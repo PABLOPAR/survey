@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,12 +14,12 @@ public class User extends Person {
 	@NotEmpty
 	private String lastName;
 
-	@NotEmpty
+	@NotNull
+	@Past
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthday;
 
-	@NotEmpty
-	@Size(min = 2, max = 40)
+	@NotNull
 	private Country country;
 
 	private ArrayList<Survey> userListSurvey;
@@ -30,6 +31,17 @@ public class User extends Person {
 		userListSurvey= new ArrayList<Survey>();
 		userPeopleAnalyzed= new ArrayList<PeopleAnalyzed>();
 		
+	}
+	
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public User(String firstName, String email) {
+		super(firstName, email);
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getLastName() {
@@ -70,6 +82,13 @@ public class User extends Person {
 
 	public void setUserPeopleAnalyzed(ArrayList<PeopleAnalyzed> userPeopleAnalyzed) {
 		this.userPeopleAnalyzed = userPeopleAnalyzed;
+	}
+
+
+	@Override
+	public String toString() {
+		return "User [lastName=" + lastName + ", birthday=" + birthday + ", country=" + country + ", userListSurvey="
+				+ userListSurvey + ", userPeopleAnalyzed=" + userPeopleAnalyzed + "]";
 	}
 
 }

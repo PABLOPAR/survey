@@ -12,25 +12,32 @@
 	<div class="container">
 		<h1 th:text="${title}" class="text-primary"></h1>
 
-		<form th:action="@{new}" th:object="${peopleAnalyzed}" method="post">
+		<form th:action="@{newuser}" th:object="${user}" method="post">
 			<div class="h4">
-				<label for="peopleFirstName"
-					th:text="${fieldPeopleProfileFirstName}"></label>
+				<label for="peopleFirstName" th:text="${fieldUserProfileFirstName}"></label>
 				<div>
 					<input type="text" id="firstName" th:field="*{firstName}"
 						class="form-control col-sm-3">
 				</div>
 			</div>
-
-			<div th:if="${#fields.hasErrors('firstName')}"
+						<div th:if="${#fields.hasErrors('firstName')}"
 				th:errors="*{firstName}" class="alert alert-danger  col-sm-5"></div>
 
 
+			<div class="h4">
+				<label for="lastName" th:text="${fieldUserProfileLastName}"></label>
+				<div>
 
+					<input type="text" id="lastName" th:field="*{lastName}"
+						class="form-control col-sm-3">
+				</div>
+			</div>
+			<div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+				class="alert alert-danger col-sm-5"></div>
 
 
 			<div class="h4">
-				<label for="peopleEmail" th:text="${fieldPeopleTestedEmail}"></label>
+				<label for="peopleEmail" th:text="${fieldUserProfileEmail}"></label>
 				<div>
 					<input type="email" id="email" th:field="*{email}"
 						class="form-control col-sm-3">
@@ -39,10 +46,8 @@
 			<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
 				class="alert alert-danger col-sm-5"></div>
 
-
-
 			<div class="h4">
-				<label for="country" th:text="${fieldPeopleTestedCountry}"></label>
+				<label for="country" th:text="${countryText}"></label>
 				<div>
 					<select id="country" th:field="*{country}"
 						class="form-control col-sm-3">
@@ -59,7 +64,7 @@
 
 
 			<div class="h4">
-				<label for="peopleBirthday" th:text="${fieldPeopleTestedBirthday}"></label>
+				<label for="peopleBirthday" th:text="${fieldUserProfileBirthday}"></label>
 				<div>
 					<input type="date" id="birthday" th:field="*{birthday}"
 						class="form-control col-sm-3" placeholder=yyyy-MM-dd>
@@ -82,7 +87,7 @@
 		</form>
 
 	</div>
-		<section th:replace="components/template :: interceptor"></section>
+	<section th:replace="components/template :: interceptor"></section>
 </body>
 
 </html>

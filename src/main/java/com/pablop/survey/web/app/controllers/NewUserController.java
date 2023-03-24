@@ -50,16 +50,11 @@ public class NewUserController {
 	@Value("${text.NewUserController.title}")
 	private String title;
 
-
+	@Value("${text.duplicateUserException.title1}")
+	private String title1;
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Value("${text.duplicateUserException.title2}")
+	private String title2;
 	
 	
 	@Autowired
@@ -110,13 +105,25 @@ public class NewUserController {
 			model.addAttribute("fieldUserProfileLastName", fieldUserProfileLastName);
 			model.addAttribute("fieldUserProfileEmail", fieldUserProfileEmail);
 			model.addAttribute("fieldUserProfileBirthday", fieldUserProfileBirthday);
-
+			model.addAttribute("countryText", countryText);
 			return "newuser";
 		}
 
-		System.out.println(user.toString());
-
-		mainAppService.addUser(user);
+		
+		if(mainAppService.addUser(user)!=true) {
+			model.addAttribute("title", title);
+			model.addAttribute("incomplete", incomplete);
+			model.addAttribute("fieldUserProfileFirstName", fieldUserProfileFirstName);
+			model.addAttribute("fieldUserProfileLastName", fieldUserProfileLastName);
+			model.addAttribute("fieldUserProfileEmail", fieldUserProfileEmail);
+			model.addAttribute("fieldUserProfileBirthday", fieldUserProfileBirthday);
+			model.addAttribute("duplicateEmail", "duplicateEmail");
+			model.addAttribute("title1", title1);	
+			model.addAttribute("title2", title2);
+			model.addAttribute("email", user.getEmail());			
+			model.addAttribute("countryText", countryText);
+			return "newuser";
+		};
 
 		status.setComplete();
 

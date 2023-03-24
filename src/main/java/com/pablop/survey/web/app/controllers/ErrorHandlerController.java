@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.pablop.survey.web.app.errors.DuplicateUserException;
+
 @ControllerAdvice
 public class ErrorHandlerController{
 	
@@ -40,6 +42,16 @@ public class ErrorHandlerController{
 //		return "error/404";
 //	}
 
+	@ExceptionHandler(Error.class)
+	public String EmailDuplicated(DuplicateUserException err, Model model) {
+		model.addAttribute("message", message);
+		model.addAttribute("promise", promise);
+		model.addAttribute("errorType", errorType);
+		model.addAttribute("class", err.getClass());
+		model.addAttribute("type",HttpStatus.INTERNAL_SERVER_ERROR.value());
+		return "error/404";
+	}
+	
 	
 	
 }

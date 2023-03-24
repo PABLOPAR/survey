@@ -88,7 +88,11 @@ public class User extends Person {
 	@Override
 	public String toString() {
 		return "User [lastName=" + lastName + ", birthday=" + birthday + ", country=" + country + ", userListSurvey="
-				+ userListSurvey + ", userPeopleAnalyzed=" + userPeopleAnalyzed + "]";
+				+ userListSurvey + ", userPeopleAnalyzed=" + userPeopleAnalyzed + ", getFirstName()=" + getFirstName()
+				+ ", getEmail()=" + getEmail() + "]";
 	}
+
+
+
 
 }

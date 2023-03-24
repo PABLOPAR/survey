@@ -7,6 +7,7 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.pablop.survey.web.app.errors.DuplicateUserException;
 import com.pablop.survey.web.app.models.entity.Survey;
 import com.pablop.survey.web.app.models.entity.User;
 
@@ -67,16 +68,23 @@ public class MainAppServiceImpl implements MainAppService{
 	}
 	
 	
-	public User addUser(User user) {
+	public boolean addUser(User user) {
+		
+		boolean result=false;
 
 		if (user != null) {
 
 			if (searchUserByEmail(user.getEmail()) == null) {
 
 				userList.add(user);
-			}
+				result=true;
+
+			} 
+//			else {
+//				throw new DuplicateUserException(user.getEmail());
+//			}
 		}
-		return user;
+		return result;
 	}
 	
 	
@@ -110,11 +118,9 @@ public class MainAppServiceImpl implements MainAppService{
 		this.surveyList = surveyList;
 	}
 
-
 	public ArrayList<User> getUserList() {
 		return userList;
 	}
-
 
 	public void setUserList(ArrayList<User> userList) {
 		this.userList = userList;

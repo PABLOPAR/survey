@@ -45,6 +45,14 @@
 			</div>
 			<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
 				class="alert alert-danger col-sm-5"></div>
+			<div th:if="${duplicateEmail !=null}" th:text="${title1} + ${' '}+ ${email}+${' '}+ ${title2}"
+				class="alert alert-danger col-sm-5"></div>
+
+
+
+
+
+
 
 			<div class="h4">
 				<label for="country" th:text="${countryText}"></label>

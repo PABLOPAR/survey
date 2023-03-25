@@ -8,6 +8,7 @@
 </head>
 
 <body>
+	<section th:replace="components/template :: menuBar"></section>
 	<div class="container">
 		<h1 th:text="${title}" class="text-primary"></h1>
 		<form th:action="@{newquestion}" th:object="${question}" method="post">

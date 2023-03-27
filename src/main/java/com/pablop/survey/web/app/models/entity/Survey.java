@@ -1,19 +1,39 @@
 package com.pablop.survey.web.app.models.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.pablop.survey.web.app.validation.ArrayNotNull;
 
-public class Survey {
 
 
+@Entity
+@Table(name="surveys")
+public class Survey implements Serializable{
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+
+	private static final long serialVersionUID = 1L;
+
+	@Column(name="survey_name")
 	public  String surveyName;
 	
 	@ArrayNotNull
+	@Column(name="survey_questions")
 	private ArrayList<Question> surveyQuestions;
 	
 	private Double surveyScore;
 	
+	@Column(name="people_analized")
 	private PeopleAnalyzed peopleAnalized; 
 	
 	private User user;

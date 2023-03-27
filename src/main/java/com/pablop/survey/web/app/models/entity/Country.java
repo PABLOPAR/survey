@@ -18,6 +18,8 @@ public class Country {
 		this.name = name;
 
 	}
+	
+
 
 	public String getName() {
 		return name;

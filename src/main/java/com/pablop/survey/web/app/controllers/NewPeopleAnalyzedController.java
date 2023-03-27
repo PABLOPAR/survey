@@ -25,6 +25,7 @@ import com.pablop.survey.web.app.editors.CountryPropertyEditor;
 import com.pablop.survey.web.app.editors.UpperCaseEditor;
 import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
+import com.pablop.survey.web.app.services.CountryListService;
 import com.pablop.survey.web.app.services.PeopleService;
 
 @Controller
@@ -53,6 +54,9 @@ public class NewPeopleAnalyzedController {
 	@Value("${text.newPeopleAnalyzed.loadForm.send}")
 	private String send;
 	
+	@Autowired
+	private CountryListService countryListService;
+	
 	
 	@Autowired
 	private CountryPropertyEditor countryEditor;
@@ -74,13 +78,13 @@ public class NewPeopleAnalyzedController {
 	
 	@ModelAttribute("countryList")
 	private List<Country> coutryList() {
-		return peopleService.countryListObject();
+		return countryListService.getCountryListObject();
 	}
 
 	@GetMapping("/new")
 	public String loadForm(Model model) {
 
-		Country countryClaude = peopleService.searchCountryByName("Ukraine");
+		Country countryClaude = countryListService.searchCountryByName("Ukraine");
 
 		PeopleAnalyzed peopleAnalyzed = new PeopleAnalyzed();
 

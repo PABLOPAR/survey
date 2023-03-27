@@ -39,26 +39,6 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 
 
-	@Override
-	public Question searchQuestionByID(Integer ID) {
-
-		Question questionSearched = null;
-		Integer index = 0;
-
-		if (ID != null) {
-
-			while (questionSearched == null && index < questionList.size()) {
-				if (questionList.get(index).getQuestionId() == ID) {
-					questionSearched = questionList.get(index);
-
-				} else {
-					index++;
-				}
-			}
-		}
-		return questionSearched;
-	}
-
 	public void addQuestion(Question question) {
 
 		questionList.add(question);

@@ -7,7 +7,6 @@ import com.pablop.survey.web.app.models.entity.Question;
 public interface QuestionService {
 	
 	public List<Question> questionList();
-	public Question searchQuestionByID(Integer ID);
 	public void addQuestion(Question question);
 
 }

@@ -24,13 +24,14 @@ public abstract class Person implements Serializable{
 	private Long id;
 	
 	@Email
+	@Column(name="emails")
 	@Size (min=3, max= 25)
 	@NotBlank
 	private String email;
 	
 
 	@NotEmpty
-	@Column(name="first_name")
+	@Column(name="first_names")
 	@Size (min=2, max=30)
 	private String firstName;
 	

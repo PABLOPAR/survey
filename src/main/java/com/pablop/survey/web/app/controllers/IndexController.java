@@ -87,10 +87,10 @@ public class IndexController {
 	private String TextSpentTime;
 	
 	
-	
+//	private IpeopleAan
 	
 	@Autowired
-	@Qualifier("peopleImplementationLocale")
+	@Qualifier("PeopleAnalyzedDaoJPA")
 	private PeopleService peopleAnalyzedList;
 
 //	@ModelAttribute("AnalyzedList")
@@ -139,7 +139,6 @@ public class IndexController {
 	public String analyzedPeople(Model model) {
 
 		List<PeopleAnalyzed> AnalyzedList = peopleAnalyzedList.getPeopleAnalyzedList();
-		System.out.println("Ver aca:"+AnalyzedList.toString() );
 
 		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
 		model.addAttribute("nothingShow", nothingShow);

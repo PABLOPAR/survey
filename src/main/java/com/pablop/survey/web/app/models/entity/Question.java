@@ -22,23 +22,22 @@ public class Question implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
-	private Integer questionId;
 	
 	@NotEmpty
+	@Column(name="questions")
 	private String question;
 	
 	@Min(1)
 	@Max(10)
-	@Column(name="question_weighting")
+	@Column(name="questions_weighting")
 	private Integer questionWeighting;
 	
-	@Column(name="chosen_value")
+	@Column(name="chosen_values")
 	private String chosenValue;
 
 
 	public Question(Integer questionId, String question, Integer questionWeighting) {
 		super();
-		this.questionId = questionId;
 		this.question = question;
 		this.questionWeighting = questionWeighting;
 	}
@@ -54,14 +53,6 @@ public class Question implements Serializable{
 	
 	public void setChosenValue(String chosenValue) {
 		this.chosenValue = chosenValue;
-	}
-
-	public Integer getQuestionId() {
-		return questionId;
-	}
-
-	public void setQuestionId(Integer questionId) {
-		this.questionId = questionId;
 	}
 
 	public String getQuestion() {
@@ -86,6 +77,14 @@ public class Question implements Serializable{
 
 	public void setQuestionWeighting(Integer questionWeighting) {
 		this.questionWeighting = questionWeighting;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 

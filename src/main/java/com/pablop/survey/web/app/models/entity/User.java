@@ -31,7 +31,7 @@ public class User extends Person implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@NotEmpty
-	@Column(name="last_name")
+	@Column(name="last_names")
 	private String lastName;
 
 	@NotNull
@@ -41,9 +41,10 @@ public class User extends Person implements Serializable{
 	private Date birthday;
 
 	@NotNull
+	@Column(name="countries")	
 	private Country country;
 
-	@Column(name="user_list_survey")
+	@Column(name="user_list_survys")
 	private ArrayList<Survey> userListSurvey;
 
 	@Column(name="user_people_analyzed")

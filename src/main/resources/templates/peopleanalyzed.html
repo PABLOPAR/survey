@@ -14,8 +14,14 @@
 	<div class="container">
 		<h1 th:text="${peopleAnalyzed}" class="text-primary"></h1>
 
-		<div th:if="${AnalyzedList.size()==0}" th:text="${nothingShow}"></div>
-
+		<div th:if="${AnalyzedList==null}" th:text="${nothingShow}"></div>
+		
+		
+		
+		<div th:if="${AnalyzedList!=null}">
+		
+		
+		
 		<table class="col-sm-10" th:if="${!AnalyzedList.isEmpty()}">
 			<thead>
 				<tr class="h4">
@@ -52,6 +58,8 @@
 
 			</tbody>
 		</table>
+		
+		</div>
 
 		<div>
 			<img class="rounded mx-auto d-block" th:src="@{/images/ANALYZED.jpg}"

@@ -2,6 +2,7 @@ package com.pablop.survey.web.app.models.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +19,13 @@ public class Country implements Serializable{
 	private Long id;
 	
 	private static final long serialVersionUID = 1L;
+	
+	@Column(name="names")
 	private String name;
+	
+	@Column(name="codes")
 	private String code;
+	
 	
 	public Country() {
 		super();

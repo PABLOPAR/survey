@@ -30,12 +30,13 @@ public class PeopleAnalyzed extends Person implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Size(min=2)
-	@Column(name="last_jame")
+	@Column(name="last_names")
 	private String lastName;
 	
 	@Past
 	@NotNull
 	@Temporal(TemporalType.DATE)
+	@Column(name="birthdays")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
 	

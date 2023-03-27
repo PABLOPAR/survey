@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pablop.survey.web.app.models.entity.Survey;
+import com.pablop.survey.web.app.services.IServiceSurvey;
 import com.pablop.survey.web.app.services.PeopleService;
 
 @Controller
@@ -32,11 +33,14 @@ public class AppAdminController {
 	@Autowired
 	private PeopleService peopleService;
 	
+	@Autowired
+	private IServiceSurvey iServiceSurvey;
+	
 	
 	@GetMapping("/setup")
 	public String basicSetUp(Model model) {
 		
-		ArrayList<Survey> exampleListSurvey= (ArrayList<Survey>) peopleService.exampleListSurvey();
+		ArrayList<Survey> exampleListSurvey= (ArrayList<Survey>) iServiceSurvey.exampleListSurvey();
 		
 		model.addAttribute("title", title);
 		model.addAttribute("surveyList", surveyList);	 

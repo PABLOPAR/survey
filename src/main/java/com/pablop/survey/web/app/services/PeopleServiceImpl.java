@@ -138,59 +138,10 @@ public class PeopleServiceImpl implements PeopleService{
 		return "PeopleServiceImpl [peopleAnalyzedList=" + peopleAnalyzedList + "]";
 	}
 
-	public List<Country> createCountryList() {
-
-		return countryListObject.getCountryListObject();
-	}
 	
-
-	public List<Survey> exampleListSurvey(){
-		
-		
-		PeopleAnalyzed peopleAnalyzed= new PeopleAnalyzed("Martin","martin@gmail.com");
-		PeopleAnalyzed peopleAnalyzed2= new PeopleAnalyzed("German","german@gmail.com");
-		
-		Survey s1=new Survey("It he reliable?",peopleAnalyzed);
-		Survey s2=new Survey("Is he a successful person?",peopleAnalyzed2);	
-		
-		ArrayList<Survey> exampleArraySurvey= new ArrayList<Survey>();
-		
-		exampleArraySurvey.add(s1);
-		exampleArraySurvey.add(s2);
-		
-		return exampleArraySurvey;
-	}
+	@Autowired
+	private CountryListService countryListService;
 	
-	
-	@Override
-	public List<Country> countryListObject() {
-		// TODO Auto-generated method stub
-		return countryListObject.getCountryListObject();
-	}
-
-	@Override
-	public Country searchCountryByName(String name) {
-		Country searched = null;
-		int index = 0;
-
-		if (name != null && !name.isEmpty()) {
-
-			while (countryListObject().size() > index && searched == null) {
-
-				if (countryListObject().get(index).getName().equalsIgnoreCase(name)) {
-					searched = countryListObject().get(index);
-
-				} else {
-					index++;
-				}
-				;
-			}
-		}
-		return searched;
-	}
-
-
-
 	
 
 }

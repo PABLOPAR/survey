@@ -3,13 +3,15 @@ package com.pablop.survey.web.app.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.RequestScope;
 
 import com.pablop.survey.web.app.models.entity.Question;
 
-@Service
+@Service("QuestionServiceImpl")
 @RequestScope
+@Primary
 public class QuestionServiceImpl implements QuestionService{
 
 	private Double pointsEarned;

@@ -86,17 +86,17 @@ public class IndexController {
 	@Value("${text.indexController.analyzedPeople.textTimeSpent}")
 	private String TextSpentTime;
 	
+	@Value("${text.indexController.index.showButtonTest}")
+	private String showButtonTest;
 	
-//	private IpeopleAan
 	
+	
+	
+
 	@Autowired
 	@Qualifier("PeopleAnalyzedDaoJPA")
 	private PeopleService peopleAnalyzedList;
 
-//	@ModelAttribute("AnalyzedList")
-//	public List<PeopleAnalyzed> analyzedList() {
-//		return this.peopleAnalyzedList.getPeopleAnalyzedList();
-//	}
 
 	@GetMapping(value = { "/index", "home" })
 	public String index(Model model) {
@@ -106,6 +106,10 @@ public class IndexController {
 		model.addAttribute("firstAction", firstAction);
 		model.addAttribute("firstQuestion", firstQuestion);
 		model.addAttribute("secondQuestion", secondQuestion);
+		model.addAttribute("showButtonTest", showButtonTest);	
+		
+		
+		
 		return "index";
 
 	}

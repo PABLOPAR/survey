@@ -3,18 +3,26 @@ package com.pablop.survey.web.app.models.entity;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+
+
 @Entity
 @Table(name="persons")
+@DiscriminatorColumn(name="type")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Person implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -24,14 +32,14 @@ public abstract class Person implements Serializable{
 	private Long id;
 	
 	@Email
-	@Column(name="emails")
+	@Column(name="email")
 	@Size (min=3, max= 25)
 	@NotBlank
 	private String email;
 	
 
 	@NotEmpty
-	@Column(name="first_names")
+	@Column(name="first_name")
 	@Size (min=2, max=30)
 	private String firstName;
 	

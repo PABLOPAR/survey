@@ -4,10 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,18 +19,24 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
-@Table(name="peopleAnalyzed")
+@Table(name="people_analyzed")
+@DiscriminatorColumn(name="peopleAnalyzed")
+@DiscriminatorValue(value="peopleAnalyzed")
 public class PeopleAnalyzed extends Person implements Serializable{
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+//	@Id
+//	@GeneratedValue(strategy=GenerationType.IDENTITY)
+//	private Long id;
 
 	private static final long serialVersionUID = 1L;
 
 	@Size(min=2)
-	@Column(name="last_names")
+	@Column(name="last_name")
 	private String lastName;
+	
+	@Column(name="id_User")
+	Long idPerson;
+	
 	
 	@Past
 	@NotNull
@@ -40,7 +45,9 @@ public class PeopleAnalyzed extends Person implements Serializable{
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
 	
-	@NotNull
+	
+	
+//	@NotNull
 	private Country country;
 
 
@@ -82,6 +89,14 @@ public class PeopleAnalyzed extends Person implements Serializable{
 
 	public void setCountry(Country country) {
 		this.country = country;
+	}
+
+	public Long getIdPerson() {
+		return idPerson;
+	}
+
+	public void setIdPerson(Long idPerson) {
+		this.idPerson = idPerson;
 	}
 
 

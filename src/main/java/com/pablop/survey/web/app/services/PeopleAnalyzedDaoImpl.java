@@ -13,15 +13,18 @@ import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 @Repository ("PeopleAnalyzedDaoJPA")
 public class PeopleAnalyzedDaoImpl implements PeopleService {
 
-	@PersistenceContext
+	@PersistenceContext 
 	private EntityManager em;
 	
+	
+
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly=true)
-	public List<PeopleAnalyzed> findAll() {
-		em.createQuery("from User").getResultList(); 
+	public List<PeopleAnalyzed> getPeopleAnalyzedList() {
 		
-		return null;
+		System.out.println("mirar aca" + em.createQuery("from User").getResultList().toString());
+		
+		return em.createQuery("from User").getResultList(); 
 	}
 
 	@Override
@@ -42,10 +45,5 @@ public class PeopleAnalyzedDaoImpl implements PeopleService {
 		return null;
 	}
 
-	@Override
-	public List<PeopleAnalyzed> getPeopleAnalyzedList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

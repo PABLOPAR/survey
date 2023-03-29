@@ -15,7 +15,14 @@
 		</div>
 		<h2 class="text-danger" th:text="${firstAction}"></h2>
 
+		<div class="row">
 		<h3 class="text-dark" th:text="${firstQuestion}"></h3>
+		<ul>
+			<li><a th:href="@{/app/question/type}"
+				th:text="${showButtonTest}" class="btn btn-primary"></a></li>
+		</ul>
+		</div>
+
 		<h3 class="text-dark" th:text="${secondQuestion}"></h3>
 	</div>
 		<section th:replace="components/template :: interceptor"></section>

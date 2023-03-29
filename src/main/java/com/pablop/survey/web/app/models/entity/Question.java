@@ -24,15 +24,15 @@ public class Question implements Serializable{
 
 	
 	@NotEmpty
-	@Column(name="questions")
+	@Column(name="question")
 	private String question;
 	
 	@Min(1)
 	@Max(10)
-	@Column(name="questions_weighting")
+	@Column(name="question_weighting")
 	private Integer questionWeighting;
 	
-	@Column(name="chosen_values")
+	@Column(name="chosen_value")
 	private String chosenValue;
 
 

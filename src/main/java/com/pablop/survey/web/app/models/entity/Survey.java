@@ -24,14 +24,14 @@ public class Survey implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="survey_names")
+	@Column(name="survey_name")
 	public  String surveyName;
 	
 	@ArrayNotNull
-	@Column(name="survey_questions")
+	@Column(name="survey_question")
 	private ArrayList<Question> surveyQuestions;
 
-	@Column(name="survey_scores")
+	@Column(name="survey_score")
 	private Double surveyScore;
 	
 	@Column(name="people_analized")

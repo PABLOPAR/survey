@@ -12,7 +12,7 @@ import com.pablop.survey.web.app.models.entity.Question;
 @Service("QuestionServiceImpl")
 @RequestScope
 @Primary
-public class QuestionServiceImpl implements QuestionService{
+public class QuestionServiceImpl implements IQuestionService{
 
 	private Double pointsEarned;
 	

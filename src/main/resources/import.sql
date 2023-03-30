@@ -3,3 +3,7 @@ INSERT INTO persons (id,email,first_name,last_name,id_User,type) VALUES(100,'McC
 INSERT INTO persons (id,email,first_name,last_name,id_User,type) VALUES(101,'McCartney@gmail.com','Paul','McCartney',1,'people_analyzed');
 INSERT INTO persons (id,email,first_name,last_name,id_User,type) VALUES(102,'George@gmail.com','George','Harrison',1,'people_analyzed');
 INSERT INTO persons (id,email,first_name,last_name,id_User,type) VALUES(103,'Ringo@gmail.com','Ringo','Starr',1,'people_analyzed');
+
+INSERT INTO Countries (name, code) VALUES ( 'United Kingdom of Great Britain and Northern Ireland' , 'UK');
+INSERT INTO Countries (name, code) VALUES ( 'Ukraine' , 'UA');
+INSERT INTO Countries (name, code) VALUES ( 'Spain' , 'ES');

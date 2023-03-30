@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 
 @Repository ("PeopleAnalyzedDaoJPA")
-public class PeopleAnalyzedDaoImpl implements PeopleService {
+public class PeopleAnalyzedDaoImpl implements IPeopleService {
 
 	@PersistenceContext 
 	private EntityManager em;
@@ -27,10 +27,11 @@ public class PeopleAnalyzedDaoImpl implements PeopleService {
 		return em.createQuery("from User").getResultList(); 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PeopleAnalyzed> peopleListAnalized() {
 		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("from User").getResultList();
 	}
 
 	@Override

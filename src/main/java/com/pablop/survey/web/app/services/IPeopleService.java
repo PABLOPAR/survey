@@ -6,7 +6,7 @@ import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 import com.pablop.survey.web.app.models.entity.Survey;
 
-public interface PeopleService {
+public interface IPeopleService {
 
 	
 	public List<PeopleAnalyzed> peopleListAnalized();

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.pablop.survey.web.app.models.entity.User;
 
-public interface MainAppService {
+public interface IMainAppService {
 
 	
 	public boolean addUser(User user);

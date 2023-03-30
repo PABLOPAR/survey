@@ -19,12 +19,12 @@ import com.pablop.survey.web.app.models.entity.Survey;
 @Service("peopleImplementationLocale")
 @RequestScope
 @Primary
-public class PeopleServiceImpl implements PeopleService{
+public class PeopleServiceImpl implements IPeopleService{
 	
 	List<PeopleAnalyzed> peopleAnalyzedList;
 	
 	@Autowired
-	CountryListService countryListObject;
+	CountryListServiceImpl countryListObject;
 	
 	List<Survey> surveyList;
 	
@@ -140,7 +140,7 @@ public class PeopleServiceImpl implements PeopleService{
 
 	
 	@Autowired
-	private CountryListService countryListService;
+	private CountryListServiceImpl countryListServiceImpl;
 	
 	
 

@@ -12,7 +12,7 @@ import com.pablop.survey.web.app.models.entity.Survey;
 import com.pablop.survey.web.app.models.entity.User;
 
 @Component
-public class MainAppServiceImpl implements MainAppService{
+public class MainAppServiceImpl implements IMainAppService{
 
 	private ArrayList<Survey> surveyList;
 	private ArrayList<User> userList;

@@ -17,7 +17,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.pablop.survey.web.app.editors.AllQuestionChosenValues;
 import com.pablop.survey.web.app.models.entity.Question;
-import com.pablop.survey.web.app.services.QuestionService;
+import com.pablop.survey.web.app.services.IQuestionService;
 
 @Controller
 @SessionAttributes("questionList")
@@ -25,7 +25,7 @@ import com.pablop.survey.web.app.services.QuestionService;
 public class QuestionSheetController {
 	
 	@Autowired
-	private QuestionService questionService;
+	private IQuestionService iQuestionService;
 	
 	@Value("${text.QuestionSheetController.showQuestion.title}")
 	private String title;
@@ -54,7 +54,7 @@ public class QuestionSheetController {
 	@GetMapping("/type")
 	public String showQuestion(Model model) {
 		
-		List<Question> questionList= questionService.questionList();
+		List<Question> questionList= iQuestionService.questionList();
 		
 //		if(questionList.size()>0) {
 //			for(int i=0;questionList.size()>i; i++) {

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
-import com.pablop.survey.web.app.services.PeopleService;
+import com.pablop.survey.web.app.services.IPeopleService;
 
 @Controller
 @SessionAttributes("peopleAnalyzed") 
@@ -44,7 +44,7 @@ public class PeopleAnalyzedController {
 	private String back;
 
 	@Autowired
-	private PeopleService peopleAnalyzed;
+	private IPeopleService peopleAnalyzed;
 
 	@GetMapping("/peopletestedprofile/{email}")
 	public String peopleTestedProfile(@PathVariable String email, Model model) {

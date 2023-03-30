@@ -17,7 +17,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 import com.pablop.survey.web.app.models.entity.User;
-import com.pablop.survey.web.app.services.PeopleService;
+import com.pablop.survey.web.app.services.IPeopleService;
 
 @Controller
 @RequestMapping("app")
@@ -95,7 +95,7 @@ public class IndexController {
 
 	@Autowired
 	@Qualifier("PeopleAnalyzedDaoJPA")
-	private PeopleService peopleAnalyzedList;
+	private IPeopleService peopleAnalyzedList;
 
 
 	@GetMapping(value = { "/index", "home" })
@@ -143,6 +143,8 @@ public class IndexController {
 	public String analyzedPeople(Model model) {
 
 		List<PeopleAnalyzed> AnalyzedList = peopleAnalyzedList.getPeopleAnalyzedList();
+		
+		System.out.println("mirar acaaaa: " +AnalyzedList.toString());
 
 		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
 		model.addAttribute("nothingShow", nothingShow);

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pablop.survey.web.app.models.entity.Survey;
 import com.pablop.survey.web.app.services.IServiceSurvey;
-import com.pablop.survey.web.app.services.PeopleService;
+import com.pablop.survey.web.app.services.IPeopleService;
 
 @Controller
 @RequestMapping("admin")
@@ -31,7 +31,7 @@ public class AppAdminController {
 	
 	
 	@Autowired
-	private PeopleService peopleService;
+	private IPeopleService iPeopleService;
 	
 	@Autowired
 	private IServiceSurvey iServiceSurvey;

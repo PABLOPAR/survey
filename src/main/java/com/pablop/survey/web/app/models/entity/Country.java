@@ -20,10 +20,8 @@ public class Country implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name="name")
 	private String name;
 	
-	@Column(name="code")
 	private String code;
 	
 	

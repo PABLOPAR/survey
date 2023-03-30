@@ -8,37 +8,34 @@ import javax.persistence.PersistenceContext;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import com.pablop.survey.web.app.models.entity.Question;
+
+import com.pablop.survey.web.app.models.entity.Country;
 
 
-@Repository ("QuestionServiceDao")
-public class QuestionServiceDaoImpl implements IQuestionService{
-	
+
+@Repository ("CountryListServiceDAO")
+@Primary
+public class CountryListServiceDAO implements CountryListService{
+
 	@PersistenceContext
 	private EntityManager em;
 	
+	@Transactional(readOnly=true)
+	@Override
+	public Country searchCountryByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly=true)
-	public List<Question> findAll() {
-		em.createQuery("from User").getResultList(); //Incomplete
+	public List<Country> getCountryListObject() {
 		
-		return null;
-	}
-	
+		System.out.println("Mirar aca " +em.createQuery("from Country").getResultList().toString());
 
-	@Override
-	public List<Question> questionList() {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("from Country").getResultList();
 	}
-
-	@Override
-	public void addQuestion(Question question) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
 	
 
 }

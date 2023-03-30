@@ -12,16 +12,14 @@ import com.pablop.survey.web.app.models.entity.Survey;
 import com.pablop.survey.web.app.models.entity.User;
 
 @Component
-public class MainAppServiceImpl implements IMainAppService{
+public class UserServiceImpl implements IUserService{
 
-	private ArrayList<Survey> surveyList;
 	private ArrayList<User> userList;
 	
 	
-	public MainAppServiceImpl() {
+	public UserServiceImpl() {
 		super();
-		surveyList= new ArrayList<Survey>();
-		userList= new ArrayList<User>();
+			userList= new ArrayList<User>();
 		
 		
 		
@@ -80,9 +78,7 @@ public class MainAppServiceImpl implements IMainAppService{
 				result=true;
 
 			} 
-//			else {
-//				throw new DuplicateUserException(user.getEmail());
-//			}
+
 		}
 		return result;
 	}
@@ -108,22 +104,19 @@ public class MainAppServiceImpl implements IMainAppService{
 	
 	
 
-
-	public ArrayList<Survey> getSurveyList() {
-		return surveyList;
-	}
-
-
-	public void setSurveyList(ArrayList<Survey> surveyList) {
-		this.surveyList = surveyList;
-	}
-
 	public ArrayList<User> getUserList() {
 		return userList;
 	}
 
 	public void setUserList(ArrayList<User> userList) {
 		this.userList = userList;
+	}
+
+
+	@Override
+	public void save(User user) {
+		userList.add(user);
+		
 	}
 	
 	

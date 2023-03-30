@@ -1,5 +1,6 @@
 package com.pablop.survey.web.app.controllers;
 
+import java.beans.PropertyEditor;
 import java.util.Date;
 import java.util.List;
 
@@ -8,12 +9,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
+import com.pablop.survey.web.app.editors.ICountryEditor;
 import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 import com.pablop.survey.web.app.models.entity.User;
@@ -89,7 +91,13 @@ public class IndexController {
 	@Value("${text.indexController.index.showButtonTest}")
 	private String showButtonTest;
 	
+	@Autowired
+	private ICountryEditor countryEditor;
 	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(Country.class, "country", (PropertyEditor) countryEditor);
+	}
 	
 	
 

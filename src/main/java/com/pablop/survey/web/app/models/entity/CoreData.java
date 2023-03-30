@@ -2,7 +2,8 @@ package com.pablop.survey.web.app.models.entity;
 
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,31 +21,32 @@ public class CoreData implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-//	private List<User> userList;
-//	private List<Survey> surveyList;
+	private ArrayList<User> userList;
+	private ArrayList<Survey> surveyList;
 	
 	public CoreData() {
 		super();
+		userList= new ArrayList<User>();
+		surveyList= new ArrayList<Survey>();
+		
 	}
 
 	
-	
-	
-//	public List<User> getUserList() {
-//		return userList;
-//	}
-//
-//	public void setUserList(List<User> userList) {
-//		this.userList = userList;
-//	}
-//
-//	public List<Survey> getSurveyList() {
-//		return surveyList;
-//	}
-//
-//	public void setSurveyList(List<Survey> surveyList) {
-//		this.surveyList = surveyList;
-//	}
+	public ArrayList<User> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(ArrayList<User> userList) {
+		this.userList = userList;
+	}
+
+	public ArrayList<Survey> getSurveyList() {
+		return surveyList;
+	}
+
+	public void setSurveyList(ArrayList<Survey> surveyList) {
+		this.surveyList = surveyList;
+	}
 	
 	
 	

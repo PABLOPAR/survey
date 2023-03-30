@@ -8,4 +8,5 @@ public interface IUserService {
 
 	
 	public List<User> getUserList();
+	public void save (User user);
 }

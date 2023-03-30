@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -20,11 +21,28 @@ public class CountryListServiceDAO implements CountryListService{
 	@PersistenceContext
 	private EntityManager em;
 	
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	@Override
 	public Country searchCountryByName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+
+		@SuppressWarnings("unchecked")
+		List<Country> countryList = ((Query) em).getResultList();
+
+		Country searched = null;
+		int index = 0;
+
+		if (!name.isEmpty()) {
+			while (index < countryList.size() && searched == null) {
+				if (countryList.get(index).getName().equalsIgnoreCase(name)) {
+					searched = countryList.get(index);
+				} else {
+					index++;
+				}
+			}
+		}
+		return searched;
+
 	}
 
 	@Override

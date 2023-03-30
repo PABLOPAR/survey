@@ -22,7 +22,7 @@ import com.pablop.survey.web.app.editors.CountryPropertyEditor;
 import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.User;
 import com.pablop.survey.web.app.services.CountryListService;
-import com.pablop.survey.web.app.services.IMainAppService;
+import com.pablop.survey.web.app.services.IUserService;
 
 @Controller
 @RequestMapping("app/user")
@@ -58,7 +58,7 @@ public class NewUserController {
 	
 	
 	@Autowired
-	private IMainAppService iMainAppService;
+	private IUserService iUserService;
 	
 	@Autowired
 	private CountryListService countryListService;
@@ -109,21 +109,8 @@ public class NewUserController {
 			return "newuser";
 		}
 
+		iUserService.save(user);
 		
-		if(iMainAppService.addUser(user)!=true) {
-			model.addAttribute("title", title);
-			model.addAttribute("incomplete", incomplete);
-			model.addAttribute("fieldUserProfileFirstName", fieldUserProfileFirstName);
-			model.addAttribute("fieldUserProfileLastName", fieldUserProfileLastName);
-			model.addAttribute("fieldUserProfileEmail", fieldUserProfileEmail);
-			model.addAttribute("fieldUserProfileBirthday", fieldUserProfileBirthday);
-			model.addAttribute("duplicateEmail", "duplicateEmail");
-			model.addAttribute("title1", title1);	
-			model.addAttribute("title2", title2);
-			model.addAttribute("email", user.getEmail());			
-			model.addAttribute("countryText", countryText);
-			return "newuser";
-		};
 
 		status.setComplete();
 

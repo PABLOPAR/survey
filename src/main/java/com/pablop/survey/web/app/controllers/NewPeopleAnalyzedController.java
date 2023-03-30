@@ -54,6 +54,7 @@ public class NewPeopleAnalyzedController {
 	@Value("${text.newPeopleAnalyzed.loadForm.send}")
 	private String send;
 	
+	
 	@Autowired
 	private CountryListServiceImpl countryListServiceImpl;
 	

@@ -29,10 +29,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @DiscriminatorValue(value="user")
 public class User extends Person implements Serializable{
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	
+
 	
 	private static final long serialVersionUID = 1L;
 

@@ -22,11 +22,13 @@ public class PeopleAnalyzedDaoImpl implements IPeopleService {
 	@Transactional(readOnly=true)
 	public List<PeopleAnalyzed> getPeopleAnalyzedList() {
 		
-		System.out.println("mirar aca" + em.createQuery("from User").getResultList().toString());
+//		System.out.println("mirar ACA" + em.createNamedQuery("SelectAllPeopleAnalyzed", PeopleAnalyzed.class).getResultList().toString());
 		
 		return em.createQuery("from User").getResultList(); 
 	}
 
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<PeopleAnalyzed> peopleListAnalized() {

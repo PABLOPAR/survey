@@ -23,7 +23,7 @@
 
 	<section th:fragment="menuBar">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-			<a class="navbar-brand" href="#">Navbar</a>
+			<a class="navbar-brand" href="">BEST SURVEYS</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -34,35 +34,49 @@
 					<li class="nav-item active"><a class="nav-link"
 						th:href="@{/app/index}">Home<span class="sr-only">(current)</span>
 					</a></li>
-					
-					
-					<li class="nav-item active"><a class="nav-link"
-						th:href="@{/app/peopleanalyzed}">People Analyzed<span class="sr-only"></span>
-					</a></li>
+
 
 					<li class="nav-item active"><a class="nav-link"
-						th:href="@{/app/user/newuser}">New User<span class="sr-only"></span>
+						th:href="@{/app/peopleanalyzed}">People Analyzed<span
+							class="sr-only"></span>
 					</a></li>
+
 
 					<li class="nav-item active"><a class="nav-link"
 						th:href="@{/app/userprofile}">User Profile<span
 							class="sr-only"></span>
 					</a></li>
-
-
-
-
-
+					
+					<li class="nav-item active"><a class="nav-link"
+						th:href="@{/app/peopleanalyzed/new}">New
+								P. Analyzed<span
+							class="sr-only"></span>
+					</a></li>
+					
+								<li class="nav-item active"><a class="nav-link"
+						th:href="@{/app/user/newuser}">New User<span
+							class="sr-only"></span>
+					</a></li>		
+					
+					
+					
+					
+					
 
 					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
+						class="nav-link dropdown-toggle" href=""
 						id="navbarDropdownMenuLink" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> Dropdown link </a>
+						aria-haspopup="true" aria-expanded="false">
+							New Items </a>
+						
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">Action</a> <a
-								class="dropdown-item" href="#">Another action</a> <a
-								class="dropdown-item" href="#">Something else here</a>
+							<a class="dropdown-item" href="">New
+								People Analyzed</a> <a class="dropdown-item"
+								href="">New User</a> <a
+								class="dropdown-item" href="">New
+								Question</a>
+
 						</div></li>
 				</ul>
 			</div>

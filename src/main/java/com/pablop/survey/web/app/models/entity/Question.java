@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="questions")
@@ -29,6 +30,7 @@ public class Question implements Serializable{
 	
 	@Min(1)
 	@Max(10)
+	@NotNull
 	@Column(name="question_weighting")
 	private Integer questionWeighting;
 	

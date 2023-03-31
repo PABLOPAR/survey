@@ -30,7 +30,8 @@
 					<th class="text-danger" th:text="${birthday}"></th>
 					<th class="text-danger" th:text="${country}"></th>
 					<th class="text-danger" th:text="${email}"></th>
-
+					<th class="text-danger" th:text="${creationDateText}"></th>
+					
 				</tr>
 			<tbody>
 				<tr th:each="person: ${AnalyzedList}">
@@ -50,7 +51,7 @@
 
 
 					
-<!-- 					<td th:if="${person.country.first_name}" th:text="${person.country.first_name}"></td> -->
+					<td th:if="${person.country}" th:text="${person.getCountryString()}"></td>
 					<td th:if="!${person.country}" th:text="${noData}">	
 					
 
@@ -58,7 +59,11 @@
 					<td th:if="${person.email}" th:text="${person.email}"></td>
 					<td th:if="!${person.email}" th:text="${noData}"></td>
 
-				</tr>
+						<td th:if="${person.creationDate}" th:text="${person.creationDate}"></td>
+						<td th:if="!${person.creationDate}" th:text="${noData}"></td>
+
+
+					</tr>
 
 			</tbody>
 		</table>

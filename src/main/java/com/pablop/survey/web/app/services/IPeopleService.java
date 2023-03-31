@@ -11,7 +11,7 @@ public interface IPeopleService {
 	
 	public List<PeopleAnalyzed> peopleListAnalized();
 	public PeopleAnalyzed analyzedByEmail(String email);
-	public List<PeopleAnalyzed> addPeopleAnalyzed(PeopleAnalyzed newPeople);
+	public void addPeopleAnalyzed(PeopleAnalyzed newPeople);
 	public List<PeopleAnalyzed> getPeopleAnalyzedList();
 
 }

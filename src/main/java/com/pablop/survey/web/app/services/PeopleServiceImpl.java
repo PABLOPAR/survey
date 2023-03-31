@@ -18,7 +18,6 @@ import com.pablop.survey.web.app.models.entity.Survey;
 
 @Service("peopleImplementationLocale")
 @RequestScope
-@Primary
 public class PeopleServiceImpl implements IPeopleService{
 	
 	List<PeopleAnalyzed> peopleAnalyzedList;
@@ -114,14 +113,13 @@ public class PeopleServiceImpl implements IPeopleService{
 		return peopleSearched;
 	}
 
-	public List<PeopleAnalyzed> addPeopleAnalyzed(PeopleAnalyzed newPeople) {
+	public void addPeopleAnalyzed(PeopleAnalyzed newPeople) {
 
 		if (newPeople != null) {
 
 			peopleAnalyzedList.add(newPeople);
 
 		}
-		return peopleAnalyzedList;
 
 	}
 

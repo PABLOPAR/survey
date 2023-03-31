@@ -8,7 +8,10 @@
 <body>
 	<section th:replace="components/template :: menuBar"></section>
 	<div class="container">
-		<h1 th:text="${title}" class="text-primary"></h1>
+		<h1 th:text="${title}"
+			class="text-primary border border-primary border-top-0 border-left-0 border-right-0 border-bottom-5 p-2 "></h1>
+
+
 
 
 		<form th:action="@{type}" th:object="${allQuestionChosenValues}"
@@ -23,35 +26,54 @@
 				<div th:each="question: ${questionList}">
 
 
-					<div class="form-group row">
+					<div
+						class="form-group row border border-secondary border-top-0 border-left-0 border-right-0">
 						<label class="col-form-label col-sm-5"
 							th:text="${question.question}"></label>
 
-						<div class="col-form-label col-sm-2" 
-						th:each="val: ${posibleValues}">
+						<div class="col-form-label col-sm-2"
+							th:each="val: ${posibleValues}">
 
-							<input type="radio" th:value="${val}"
-							
-							>
-							
-<!-- 								th:field="*{question.chosenValue}"						 -->
+							<input type="radio" th:value="${val}">
+
+							<!-- 								th:field="*{question.chosenValue}"						 -->
 
 
-							 <label
-							class="col-form-label col-sm-2"
-								th:for="${val}" th:text="${val}"></label>
+							<label class="col-form-label col-sm-2" th:for="${val}"
+								th:text="${val}"></label>
 						</div>
 					</div>
 				</div>
 			</div>
 
+			<div class='col-xs-3'>
+				<div class= "form-group row">
 
 
-			<div class="form-group row">
-				<div class="col-sm-4">
-					<input type="submit" class="btn btn-primary">
-				</div>
-			</div>
+
+
+							<div class="col-sm-1">
+								<input type="submit" class="btn btn-primary">
+							</div>
+
+
+
+
+
+							<div>
+								<a th:href="@{/app/survey/newquestion}"
+									th:text="${addNewQuestion}" class="btn btn-danger"></a>
+							</div>
+						</div>
+
+
+						</div>
+
+
+
+
+
+
 		</form>
 	</div>
 

@@ -1,12 +1,14 @@
 package com.pablop.survey.web.app.controllers;
 
 import java.beans.PropertyEditor;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -91,12 +93,19 @@ public class IndexController {
 	@Value("${text.indexController.index.showButtonTest}")
 	private String showButtonTest;
 	
+	@Value("${text.indexController.creationDate}")
+	private String creationDateText;
+	
+	
+	
 	@Autowired
 	private ICountryEditor countryEditor;
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Country.class, "country", (PropertyEditor) countryEditor);
+		
+	
 	}
 	
 	
@@ -105,6 +114,9 @@ public class IndexController {
 	@Qualifier("PeopleAnalyzedDaoJPA")
 	private IPeopleService peopleAnalyzedList;
 
+	
+
+	
 
 	@GetMapping(value = { "/index", "home" })
 	public String index(Model model) {
@@ -164,7 +176,7 @@ public class IndexController {
 		model.addAttribute("noData", noData);
 		model.addAttribute("AnalyzedList", AnalyzedList);
 		model.addAttribute("TextSpentTime", TextSpentTime);	
-		
+		model.addAttribute("creationDateText", creationDateText);		
 		
 
 		return "peopleanalyzed";

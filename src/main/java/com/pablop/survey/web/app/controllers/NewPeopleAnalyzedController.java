@@ -1,5 +1,6 @@
 package com.pablop.survey.web.app.controllers;
 
+import java.beans.PropertyEditor;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -21,11 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.pablop.survey.web.app.editors.CountryPropertyEditor;
+import com.pablop.survey.web.app.editors.ICountryEditor;
 import com.pablop.survey.web.app.editors.UpperCaseEditor;
 import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
-import com.pablop.survey.web.app.services.CountryListServiceImpl;
+import com.pablop.survey.web.app.services.CountryListService;
 import com.pablop.survey.web.app.services.IPeopleService;
 
 @Controller
@@ -54,13 +55,16 @@ public class NewPeopleAnalyzedController {
 	@Value("${text.newPeopleAnalyzed.loadForm.send}")
 	private String send;
 	
+	@Value("${text.indexController.analyzedPeople.lastName}")
+	private String lastName;
+	
 	
 	@Autowired
-	private CountryListServiceImpl countryListServiceImpl;
+	private CountryListService countryListService;
 	
 	
 	@Autowired
-	private CountryPropertyEditor countryEditor;
+	private ICountryEditor countryEditor;
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -68,7 +72,7 @@ public class NewPeopleAnalyzedController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
-		binder.registerCustomEditor(Country.class, "country",countryEditor);
+		binder.registerCustomEditor(Country.class, "country", (PropertyEditor) countryEditor);
 
 	}
 	
@@ -79,24 +83,22 @@ public class NewPeopleAnalyzedController {
 	
 	@ModelAttribute("countryList")
 	private List<Country> coutryList() {
-		return countryListServiceImpl.getCountryListObject();
+		return countryListService.getCountryListObject();
 	}
 
 	@GetMapping("/new")
 	public String loadForm(Model model) {
 
-		Country countryClaude = countryListServiceImpl.searchCountryByName("Ukraine");
-
 		PeopleAnalyzed peopleAnalyzed = new PeopleAnalyzed();
 
-		peopleAnalyzed.setCountry(countryClaude);
-		peopleAnalyzed.setFirstName("Diego");
+
 		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
 		model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
 		model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);
 		model.addAttribute("fieldPeopleProfileFirstName", fieldPeopleProfileFirstName);
 		model.addAttribute("fieldPeopleTestedCountry", fieldPeopleTestedCountry);
 		model.addAttribute("fieldPeopleTestedLastName", fieldPeopleTestedLastName);
+		model.addAttribute("lastName", lastName);		
 		model.addAttribute("title", title);
 		model.addAttribute("send", send);
 
@@ -113,6 +115,7 @@ public class NewPeopleAnalyzedController {
 			model.addAttribute("fieldPeopleProfileFirstName", fieldPeopleProfileFirstName);
 			model.addAttribute("fieldPeopleTestedCountry", fieldPeopleTestedCountry);
 			model.addAttribute("fieldPeopleTestedLastName", fieldPeopleTestedLastName);
+			model.addAttribute("lastName", lastName);
 			model.addAttribute("title", title);
 			return "newpeopleanalyzed";
 		}

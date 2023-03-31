@@ -1,5 +1,6 @@
 package com.pablop.survey.web.app.controllers;
 
+import java.beans.PropertyEditor;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.pablop.survey.web.app.editors.CountryPropertyEditor;
+import com.pablop.survey.web.app.editors.ICountryEditor;
 import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.User;
 import com.pablop.survey.web.app.services.CountryListService;
@@ -64,12 +65,12 @@ public class NewUserController {
 	private CountryListService countryListService;
 	
 	@Autowired
-	private CountryPropertyEditor countryEditor;
+	private ICountryEditor countryEditor;
 	
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(Country.class, "country", countryEditor);
+		binder.registerCustomEditor(Country.class, "country", (PropertyEditor) countryEditor);
 	}
 	
 	

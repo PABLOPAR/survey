@@ -4,6 +4,7 @@ import java.beans.PropertyEditorSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.services.CountryListService;
 
 
@@ -13,7 +14,7 @@ public class CountryEditorDao  extends PropertyEditorSupport implements ICountry
 	
 	
 	@Autowired
-	private CountryListService countryListServiceImpl;
+	private CountryListService countryListService;
 	
 	
 	
@@ -23,10 +24,17 @@ public class CountryEditorDao  extends PropertyEditorSupport implements ICountry
 		if(text!=null && text.length()>0) {
 			
 			
-		this.setValue(countryListServiceImpl.searchCountryByName(text));
+		this.setValue(countryListService.searchCountryByName(text));
 		}else {
 			setValue(null);
 		}
+	}
+	
+	
+	public String getCountryName(Country country) {
+
+		return country.getName();
+
 	}
 
 }

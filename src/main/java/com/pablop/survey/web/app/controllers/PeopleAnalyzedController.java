@@ -43,6 +43,8 @@ public class PeopleAnalyzedController {
 	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.back}")
 	private String back;
 
+	
+	
 	@Autowired
 	private IPeopleService peopleAnalyzed;
 

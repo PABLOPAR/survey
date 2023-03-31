@@ -28,7 +28,16 @@
 				th:errors="*{firstName}" class="alert alert-danger  col-sm-5"></div>
 
 
+			<div class="h4">
+				<label for="lastName" th:text="${lastName}"></label>
+				<div>
 
+					<input type="text" id="lastName" th:field="*{lastName}"
+						class="form-control col-sm-3">
+				</div>
+			</div>
+			<div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+				class="alert alert-danger col-sm-5"></div>
 
 
 			<div class="h4">

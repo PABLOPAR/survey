@@ -24,13 +24,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 @DiscriminatorValue(value="peopleAnalyzed")
 public class PeopleAnalyzed extends Person implements Serializable{
 	
-//	@Id
-//	@GeneratedValue(strategy=GenerationType.IDENTITY)
-//	private Long id;
 
 	private static final long serialVersionUID = 1L;
 
-	@Size(min=2)
+//	@Size(min=2)
 	@Column(name="last_name")
 	private String lastName;
 	
@@ -41,7 +38,6 @@ public class PeopleAnalyzed extends Person implements Serializable{
 	@Past
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	@Column(name="birthdays")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
 	
@@ -68,12 +64,6 @@ public class PeopleAnalyzed extends Person implements Serializable{
 	}
 
 
-	@Override
-	public String toString() {
-		return "PeopleAnalyzed [lastName=" + lastName + ", getCountry()=" + getCountry() + ", getBirthday()="
-				 + ", getFirstName()=" + getFirstName() + ", getEmail()=" + getEmail() + ", toString()="
-				+ super.toString() + "]";
-	}
 
 	public Date getBirthday() {
 		return birthday;
@@ -85,6 +75,10 @@ public class PeopleAnalyzed extends Person implements Serializable{
 
 	public Country getCountry() {
 		return country;
+	}
+	
+	public String getCountryString() {
+		return country.getName();
 	}
 
 	public void setCountry(Country country) {
@@ -101,6 +95,16 @@ public class PeopleAnalyzed extends Person implements Serializable{
 
 
 
+	@Override
+	public String toString() {
+		return "PeopleAnalyzed [lastName=" + lastName + ", getCountry()=" + getCountry() + ", getBirthday()="
+				+ ", getFirstName()=" + getFirstName() + ", getEmail()=" + getEmail() + ", toString()="
+				+ super.toString() + "]";
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 	
 	

@@ -39,6 +39,13 @@ public class QuestionSheetController {
 	@Value("${text.indexController.analyzedPeople.nothingShow}")
 	private String nothingShow;
 	
+	@Value("${text.AppAdminController.basicSetUp.addNewQuestion}")
+	private String addNewQuestion;
+	
+	
+	
+	
+	
 	@ModelAttribute("posibleValues")
 	public List<String> posibleValues() {
 		ArrayList<String> posibleValues = new ArrayList<String>();
@@ -69,7 +76,7 @@ public class QuestionSheetController {
 		model.addAttribute("tab", tab);		
 		model.addAttribute("option", option);		
 		model.addAttribute("nothingShow", nothingShow);	
-
+		model.addAttribute("addNewQuestion", addNewQuestion);	
 		
 		return "questionsheet";
 	};

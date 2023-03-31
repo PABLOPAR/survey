@@ -45,7 +45,7 @@ public class NewQuestionController {
 
 	@InitBinder
 	public void InitBinder(WebDataBinder binder) {
-		binder.addValidators(validator);
+//		binder.addValidators(validator);
 	}
 	
 	
@@ -76,7 +76,7 @@ public class NewQuestionController {
 		}
 		
 		
-//		questionService.addQuestion(question);
+		iQuestionService.addQuestion(question);
 		
 	
 		status.setComplete();

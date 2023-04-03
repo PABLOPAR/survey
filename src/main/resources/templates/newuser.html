@@ -18,11 +18,11 @@
 				<label for="peopleFirstName" th:text="${fieldUserProfileFirstName}"></label>
 				<div>
 					<input type="text" id="firstName" th:field="*{firstName}"
-						class="form-control col-sm-3">
+						class="form-control col-sm-3" th:errorclass=" 'form-control alert-danger' ">
 				</div>
 			</div>
 						<div th:if="${#fields.hasErrors('firstName')}"
-				th:errors="*{firstName}" class="alert alert-danger  col-sm-5"></div>
+				th:errors="*{firstName}" class="form-text text-danger   col-sm-5"></div>
 
 
 			<div class="h4">
@@ -30,24 +30,25 @@
 				<div>
 
 					<input type="text" id="lastName" th:field="*{lastName}"
-						class="form-control col-sm-3">
+						class="form-control col-sm-3" th:errorclass=" 'form-control alert-danger' ">
 				</div>
 			</div>
 			<div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
-				class="alert alert-danger col-sm-5"></div>
+				class="form-text text-danger   col-sm-5"></div>
 
 
 			<div class="h4">
 				<label for="peopleEmail" th:text="${fieldUserProfileEmail}"></label>
 				<div>
 					<input type="email" id="email" th:field="*{email}"
-						class="form-control col-sm-3">
+						class="form-control col-sm-3" th:errorclass=" 'form-control alert-danger' ">
 				</div>
 			</div>
 			<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-				class="alert alert-danger col-sm-5"></div>
+				class="form-text text-danger   col-sm-5"></div>
+				
 			<div th:if="${duplicateEmail !=null}" th:text="${title1} + ${' '}+ ${email}+${' '}+ ${title2}"
-				class="alert alert-danger col-sm-5"></div>
+				class="form-text text-danger   col-sm-5"></div>
 
 
 
@@ -59,7 +60,7 @@
 				<label for="country" th:text="${countryText}"></label>
 				<div>
 					<select id="country" th:field="*{country}"
-						class="form-control col-sm-3">
+						class="form-control col-sm-3" th:errorclass=" 'form-control alert-danger' ">
 						<option th:each="country: ${countryList}"
 							th:text="${country.name}" th:value="${country.name}"></option>
 					</select>
@@ -76,11 +77,11 @@
 				<label for="peopleBirthday" th:text="${fieldUserProfileBirthday}"></label>
 				<div>
 					<input type="date" id="birthday" th:field="*{birthday}"
-						class="form-control col-sm-3" placeholder=yyyy-MM-dd>
+						class="form-control col-sm-3" placeholder=yyyy-MM-dd th:errorclass=" 'form-control alert-danger' ">
 				</div>
 			</div>
 			<div th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"
-				class="alert alert-danger  col-sm-5"></div>
+				class="alert alert-danger  col-sm-3"></div>
 
 
 

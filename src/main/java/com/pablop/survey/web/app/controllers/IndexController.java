@@ -96,6 +96,9 @@ public class IndexController {
 	@Value("${text.indexController.creationDate}")
 	private String creationDateText;
 	
+	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.addNewUser}")
+	private String addNewUser;
+	
 	
 	
 	@Autowired
@@ -177,6 +180,8 @@ public class IndexController {
 		model.addAttribute("AnalyzedList", AnalyzedList);
 		model.addAttribute("TextSpentTime", TextSpentTime);	
 		model.addAttribute("creationDateText", creationDateText);		
+		model.addAttribute("addNewUser", addNewUser);	
+		
 		
 
 		return "peopleanalyzed";

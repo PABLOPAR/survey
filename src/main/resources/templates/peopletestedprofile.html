@@ -5,33 +5,45 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 
+
 <body>
 	<div class="container">
 		<section th:replace="components/template :: menuBar"></section>
-		<div class="container">
-			<h1 th:text="${titlePeopleTested}" class="text-primary"></h1>
+
 			<div class="container">
-				<h2 class="text-danger" th:text="${fieldPeopleTestedEmail}"></h2>
-				<h3 th:text="${peopleSearched.email}"></h3>
-				<h2 class="text-danger" th:text="${fieldPeopleTestedBirthday}"></h2>
-				<h3 th:text="${peopleSearched.birthday}"></h3>
-				<h2 class="text-danger" th:text="${fieldPeopleProfileFirstName}"></h2>
-				<h3 th:text="${peopleSearched.firstName}"></h3>
-				<h2 class="text-danger" th:text="${fieldPeopleTestedCountry}"></h2>
-				<h3 th:text="${peopleSearched.country.name}"></h3>
-				<h2 class="text-danger" th:text="${fieldPeopleTestedLastName}"></h2>
-				<h3 th:if="${peopleSearched.lastName!=null}"
-					th:text="${peopleSearched.lastName}"></h3>
-				<h3 th:if="${peopleSearched.lastName==null}"
-					th:text="${incompleteField}"></h3>
+				<h1 th:text="${titlePeopleTested}" class="text-primary"></h1>
+				
+				
+				<div th:if="${peopleSearched ==null}" th:text="${nothingShow}" class="my-3"></div>	
+				
+							
+			<div th:if="${peopleSearched !=null}">	
+			
+					
+				
+				<div class="container">
+					<h2 class="text-danger" th:text="${fieldPeopleTestedEmail}"></h2>
+					<h3 th:text="${peopleSearched.email}"></h3>
+					<h2 class="text-danger" th:text="${fieldPeopleTestedBirthday}"></h2>
+					<h3 th:text="${peopleSearched.birthday}"></h3>
+					<h2 class="text-danger" th:text="${fieldPeopleProfileFirstName}"></h2>
+					<h3 th:text="${peopleSearched.firstName}"></h3>
+					<h2 class="text-danger" th:text="${fieldPeopleTestedCountry}"></h2>
+					<h3 th:text="${peopleSearched.country.name}"></h3>
+					<h2 class="text-danger" th:text="${fieldPeopleTestedLastName}"></h2>
+					<h3 th:if="${peopleSearched.lastName!=null}"
+						th:text="${peopleSearched.lastName}"></h3>
+					<h3 th:if="${peopleSearched.lastName==null}"
+						th:text="${incompleteField}"></h3>
 
+				</div>
 			</div>
-
 			<a th:href="@{/app/peopleanalyzed}" class="btn btn-success"
-				th:text="${back}"></a>
+				th:text="${back}" ></a>
 
 		</div>
 	</div>
+
 	<section th:replace="components/template :: interceptor"></section>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

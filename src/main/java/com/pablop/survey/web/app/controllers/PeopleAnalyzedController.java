@@ -44,6 +44,9 @@ public class PeopleAnalyzedController {
 	private String back;
 
 	
+	@Value("${text.indexController.analyzedPeople.nothingShow}")
+	private String nothingShow;
+	
 	
 	@Autowired
 	private IPeopleService peopleAnalyzed;
@@ -62,6 +65,8 @@ public class PeopleAnalyzedController {
 		model.addAttribute("fieldPeopleTestedLastName", fieldPeopleTestedLastName);
 		model.addAttribute("incompleteField", incompleteField);
 		model.addAttribute("back", back);
+		model.addAttribute("nothingShow", nothingShow);
+		
 
 		return "peopletestedprofile";
 	}

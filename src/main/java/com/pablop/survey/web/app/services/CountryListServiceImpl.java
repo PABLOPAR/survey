@@ -106,4 +106,10 @@ public class CountryListServiceImpl implements CountryListService{
 	public void setCountryListObject(List<Country> countryListObject) {
 		this.countryListObject = countryListObject;
 	}
+
+	@Override
+	public Country searchCountryById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

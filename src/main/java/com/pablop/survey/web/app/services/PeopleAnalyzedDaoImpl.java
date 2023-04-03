@@ -10,27 +10,22 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
+import com.pablop.survey.web.app.models.entity.Person;
 
 @Repository ("PeopleAnalyzedDaoJPA")
 @Primary
 public class PeopleAnalyzedDaoImpl implements IPeopleService {
 
-	@PersistenceContext 
+	@PersistenceContext
 	private EntityManager em;
-	
-	
 
 	@SuppressWarnings("unchecked")
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public List<PeopleAnalyzed> getPeopleAnalyzedList() {
-		
-//		System.out.println("mirar ACA" + em.createNamedQuery("SelectAllPeopleAnalyzed", PeopleAnalyzed.class).getResultList().toString());
-		
-		return em.createQuery("from PeopleAnalyzed").getResultList(); 
+
+		return em.createQuery("from PeopleAnalyzed").getResultList();
 	}
-	
-	
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
@@ -40,6 +35,7 @@ public class PeopleAnalyzedDaoImpl implements IPeopleService {
 	}
 
 	@Override
+	@Transactional
 	public PeopleAnalyzed analyzedByEmail(String email) {
 		@SuppressWarnings("unchecked")
 		List<PeopleAnalyzed> peopleList = em.createQuery("from PeopleAnalyzed").getResultList();
@@ -58,14 +54,27 @@ public class PeopleAnalyzedDaoImpl implements IPeopleService {
 				}
 			}
 		}
+	
 		return peopleSearched;
 	}
+	
 
 	@Override
 	@Transactional
 	public void addPeopleAnalyzed(PeopleAnalyzed newPeople) {
-		em.persist(newPeople);
+
+		if (newPeople.getId()!=null && newPeople.getId()>0 ) {
+			em.merge(newPeople);
+			
+		} else {
+			em.persist(newPeople);
+		}
 	}
 
+	@Override
+	public PeopleAnalyzed findPeopleById(Long id) {
+
+		return (PeopleAnalyzed) em.find(Person.class, id);
+	}
 
 }

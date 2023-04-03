@@ -13,5 +13,6 @@ public interface IPeopleService {
 	public PeopleAnalyzed analyzedByEmail(String email);
 	public void addPeopleAnalyzed(PeopleAnalyzed newPeople);
 	public List<PeopleAnalyzed> getPeopleAnalyzedList();
+	public PeopleAnalyzed findPeopleById(Long id);
 
 }

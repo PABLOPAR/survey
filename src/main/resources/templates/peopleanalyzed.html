@@ -23,51 +23,58 @@
 		
 		
 		<table class="col-sm-10" th:if="${!AnalyzedList.isEmpty()}">
-			<thead>
-				<tr class="h4">
-					<th class="text-danger" th:text="${name}"></th>
-					<th class="text-danger" th:text="${lastName}"></th>
-					<th class="text-danger" th:text="${birthday}"></th>
-					<th class="text-danger" th:text="${country}"></th>
-					<th class="text-danger" th:text="${email}"></th>
-					<th class="text-danger" th:text="${creationDateText}"></th>
+					<thead>
+						<tr class="h4">
+							<th class="text-danger" th:text="${name}"></th>
+							<th class="text-danger" th:text="${lastName}"></th>
+							<th class="text-danger" th:text="${birthday}"></th>
+							<th class="text-danger" th:text="${country}"></th>
+							<th class="text-danger" th:text="${email}"></th>
+							<th class="text-danger" th:text="${creationDateText}"></th>
+							<th class="text-danger" th:text="${edit}"></th>
+
+						</tr>
 					
-				</tr>
-			<tbody>
-				<tr th:each="person: ${AnalyzedList}">
-					<td class="h5">
-						<ul>
-							<li><a
-								th:href="@{'survey/peopletestedprofile/'+ ${person.email}}"
-								th:text="${person.firstName}"></a></li>
-						</ul>
-					</td>
+					<tbody>
+						<tr th:each="person: ${AnalyzedList}">
+							<td class="h5">
+								<ul>
+									<li><a
+										th:href="@{'survey/peopletestedprofile/'+ ${person.email}}"
+										th:text="${person.firstName}"></a></li>
+								</ul>
+							</td>
 
-					<td th:if="${person.lastName}" th:text="${person.lastName}"></td>
-					<td th:if="!${person.lastName}" th:text="${noData}"></td>
-
-
-					<td th:text="${#dates.format(person.birthday,'dd/MM/yyyy')}"></td>
+							<td th:if="${person.lastName}" th:text="${person.lastName}"></td>
+							<td th:if="!${person.lastName}" th:text="${noData}"></td>
 
 
-					
-					<td th:if="${person.country}" th:text="${person.getCountryString()}"></td>
-					<td th:if="!${person.country}" th:text="${noData}">	
-					
+							<td th:text="${#dates.format(person.birthday,'dd/MM/yyyy')}"></td>
 
 
-					<td th:if="${person.email}" th:text="${person.email}"></td>
-					<td th:if="!${person.email}" th:text="${noData}"></td>
 
-						<td th:if="${person.creationDate}" th:text="${person.creationDate}"></td>
-						<td th:if="!${person.creationDate}" th:text="${noData}"></td>
+							<td th:if="${person.country}"
+								th:text="${person.getCountryString()}"></td>
+							<td th:if="!${person.country}" th:text="${noData}">
+							<td th:if="${person.email}" th:text="${person.email}"></td>
+							<td th:if="!${person.email}" th:text="${noData}"></td>
+
+							<td th:if="${person.creationDate}"
+								th:text="${person.creationDate}"></td>
+							<td th:if="!${person.creationDate}" th:text="${noData}"></td>
 
 
-					</tr>
-			
+							<td><a th:href="@{'/app/peopleanalyzed/edit/'+ ${person.id}}"
+								th:text="${edit}" class="btn btn-success"></a></td>
 
-			</tbody>
-		</table>
+
+
+
+						</tr>
+
+
+					</tbody>
+				</table>
 		
 		</div>
 			<div class="form-group row">

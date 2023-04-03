@@ -14,13 +14,15 @@
 	<div class="container">
 		<h1 th:text="${title}" class="text-primary"></h1>
 
-		<form th:action="@{new}" th:object="${peopleAnalyzed}" method="post">
+		<form th:action="@{/app/peopleanalyzed/new}"
+			th:object="${peopleAnalyzed}" method="post">
 			<div class="h4">
 				<label for="peopleFirstName"
 					th:text="${fieldPeopleProfileFirstName}"></label>
 				<div>
 					<input type="text" id="firstName" th:field="*{firstName}"
-						class="form-control col-sm-3" th:errorclass=" 'form-control alert-danger' " >
+						class="form-control col-sm-3"
+						th:errorclass=" 'form-control alert-danger' ">
 				</div>
 			</div>
 
@@ -33,7 +35,8 @@
 				<div>
 
 					<input type="text" id="lastName" th:field="*{lastName}"
-						class="form-control col-sm-3" th:errorclass=" 'form-control alert-danger' " >
+						class="form-control col-sm-3"
+						th:errorclass=" 'form-control alert-danger' ">
 				</div>
 			</div>
 			<div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
@@ -44,7 +47,8 @@
 				<label for="peopleEmail" th:text="${fieldPeopleTestedEmail}"></label>
 				<div>
 					<input type="email" id="email" th:field="*{email}"
-						class="form-control col-sm-3" th:errorclass=" 'form-control alert-danger' " >
+						class="form-control col-sm-3"
+						th:errorclass=" 'form-control alert-danger' ">
 				</div>
 			</div>
 			<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
@@ -56,7 +60,8 @@
 				<label for="country" th:text="${fieldPeopleTestedCountry}"></label>
 				<div>
 					<select id="country" th:field="*{country}"
-						class="form-control col-sm-3" th:errorclass=" 'form-control alert-danger' "  >
+						class="form-control col-sm-3"
+						th:errorclass=" 'form-control alert-danger' ">
 						<option th:each="country: ${countryList}"
 							th:text="${country.name}" th:value="${country.name}"></option>
 					</select>
@@ -73,7 +78,8 @@
 				<label for="peopleBirthday" th:text="${fieldPeopleTestedBirthday}"></label>
 				<div>
 					<input type="date" id="birthday" th:field="*{birthday}"
-						class="form-control col-sm-3" placeholder=yyyy-MM-dd th:errorclass=" 'form-control alert-danger' " >
+						class="form-control col-sm-3" placeholder=yyyy-MM-dd
+						th:errorclass=" 'form-control alert-danger' ">
 				</div>
 			</div>
 			<div th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"
@@ -89,7 +95,7 @@
 
 				</div>
 			</div>
-
+			<input type="hidden" th:field="*{id}" />
 		</form>
 
 	</div>

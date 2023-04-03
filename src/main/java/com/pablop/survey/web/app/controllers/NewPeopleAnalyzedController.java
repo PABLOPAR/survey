@@ -49,15 +49,14 @@ public class NewPeopleAnalyzedController {
 	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldPeopleTestedLastName}")
 	private String fieldPeopleTestedLastName;
 
-	@Value("${text.newPeopleAnalyzed.loadForm.title}")
-	private String title;
-
-	@Value("${text.newPeopleAnalyzed.loadForm.send}")
-	private String send;
-	
 	@Value("${text.indexController.analyzedPeople.lastName}")
 	private String lastName;
+
+	@Value("${text.newPeopleAnalyzed.loadForm.title}")
+	private String title;
 	
+	@Value("${text.newPeopleAnalyzed.loadForm.send}")
+	private String send;
 	
 	@Autowired
 	private CountryListService countryListService;
@@ -65,16 +64,6 @@ public class NewPeopleAnalyzedController {
 	
 	@Autowired
 	private ICountryEditor countryEditor;
-	
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(String.class, "firstName", new UpperCaseEditor());
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		dateFormat.setLenient(false);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
-		binder.registerCustomEditor(Country.class, "country", (PropertyEditor) countryEditor);
-
-	}
 	
 
 	@Autowired
@@ -85,6 +74,19 @@ public class NewPeopleAnalyzedController {
 	private List<Country> coutryList() {
 		return countryListService.getCountryListObject();
 	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(Country.class, "country", (PropertyEditor) countryEditor);
+		binder.registerCustomEditor(String.class, "firstName", new UpperCaseEditor());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+
+	
+	}
+	
+	
 
 	@GetMapping("/new")
 	public String loadForm(Model model) {

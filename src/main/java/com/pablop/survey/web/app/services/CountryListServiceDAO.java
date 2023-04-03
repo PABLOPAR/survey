@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pablop.survey.web.app.models.entity.Country;
+import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
+import com.pablop.survey.web.app.models.entity.Person;
 
 
 
@@ -50,9 +52,13 @@ public class CountryListServiceDAO implements CountryListService{
 	@Transactional(readOnly=true)
 	public List<Country> getCountryListObject() {
 		
-		System.out.println("Mirar aca " +em.createQuery("from Country").getResultList().toString());
-
 		return em.createQuery("from Country").getResultList();
+	}
+
+	@Override
+	public Country searchCountryById(Long id) {
+
+		return (Country) em.find(Country.class, id);
 	}
 	
 

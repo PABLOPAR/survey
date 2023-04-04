@@ -119,6 +119,9 @@ public class PeopleAnalyzedController {
 	@Value("${text.delete}")
 	private String delete;
 	
+	@Value("${text.deleteConfirmation}")
+	private String deleteConfirmation;
+	
 	
 	
 	@Autowired
@@ -173,6 +176,8 @@ public class PeopleAnalyzedController {
 		model.addAttribute("edit", edit);		
 		model.addAttribute("title", title);		
 		model.addAttribute("delete", delete);		
+		model.addAttribute("deleteConfirmation", deleteConfirmation);		
+		
 		
 
 		return "peopleanalyzed";

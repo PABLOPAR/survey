@@ -71,7 +71,8 @@
 
 							<td><a
 								th:href="@{'/app/survey/peopleAnalyzed/delete/'+ ${person.id}}"
-								th:text="${delete}" class="btn btn-danger"></a></td>
+								th:text="${delete}" class="btn btn-danger"
+								onclick="return confirm ('Are you sure to delete this item?')"></a></td>
 
 
 						</tr>

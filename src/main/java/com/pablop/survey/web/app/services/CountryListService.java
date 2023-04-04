@@ -8,5 +8,5 @@ public interface CountryListService {
 
 	public Country searchCountryByName(String name);
 	public List<Country> getCountryListObject();
-	public Country searchCountryById(Long id);
+	public Country getCountrybyId(Long id);
 }

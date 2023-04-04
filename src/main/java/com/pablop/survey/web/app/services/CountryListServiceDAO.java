@@ -56,7 +56,7 @@ public class CountryListServiceDAO implements CountryListService{
 	}
 
 	@Override
-	public Country searchCountryById(Long id) {
+	public Country getCountrybyId(Long id) {
 
 		return (Country) em.find(Country.class, id);
 	}

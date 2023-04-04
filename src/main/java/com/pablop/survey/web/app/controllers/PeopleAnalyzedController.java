@@ -115,6 +115,11 @@ public class PeopleAnalyzedController {
 	@Value("${text.indexController.analyzedPeople.edit}")
 	private String edit;
 	
+
+	
+	
+	
+	
 	@Autowired
 	@Qualifier("PeopleAnalyzedDaoJPA")
 	private IPeopleService peopleAnalyzedList;

@@ -57,7 +57,7 @@ public class CountryListServiceImpl implements CountryListService{
 				"Taiwan, Province of China[a]", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Timor-Leste",
 				"Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan",
 				"Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates",
-				"United Kingdom of Great Britain and Northern Ireland", "United States of America",
+				"United Kingdom", "United States of America",
 				"United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu",
 				"Venezuela (Bolivarian Republic of)", "Viet Nam", "Virgin Islands (British)", "Virgin Islands (U.S.)",
 				"Wallis and Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe");
@@ -108,7 +108,7 @@ public class CountryListServiceImpl implements CountryListService{
 	}
 
 	@Override
-	public Country searchCountryById(Long id) {
+	public Country getCountrybyId(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

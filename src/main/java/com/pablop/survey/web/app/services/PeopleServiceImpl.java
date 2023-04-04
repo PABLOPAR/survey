@@ -20,7 +20,7 @@ public class PeopleServiceImpl implements IPeopleService {
 	List<PeopleAnalyzed> peopleAnalyzedList;
 
 	@Autowired
-	CountryListServiceImpl countryListObject;
+	CountryListService countryListObject;
 
 	List<Survey> surveyList;
 

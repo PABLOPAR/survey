@@ -1,6 +1,8 @@
 package com.pablop.survey.web.app.editors;
 
 import java.beans.PropertyEditorSupport;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -8,14 +10,12 @@ import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.pablop.survey.web.app.models.entity.Country;
-import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
-import com.pablop.survey.web.app.models.entity.Person;
 import com.pablop.survey.web.app.services.CountryListService;
 
 
 
 
-public class CountryEditorDao  extends PropertyEditorSupport implements ICountryEditor{
+public class CountryEditorDao  extends PropertyEditorSupport implements ICountryEditor, CountryListService{
 	
 	
 	@Autowired
@@ -48,5 +48,37 @@ public class CountryEditorDao  extends PropertyEditorSupport implements ICountry
 		return (Country) em.find(Country.class, id);
 
 	}
+
+
+	@Override
+	public Country searchCountryByName(String name) {
+
+		ArrayList <Country> countryListServiceS= (ArrayList<Country>) em.createQuery("from Country").getResultList();
+		
+		
+		Country searched = null;
+		int index = 0;
+
+		if (!name.isEmpty()) {
+			while (index < countryListServiceS.size() && searched == null) {
+				if (countryListServiceS.get(index).getName().equalsIgnoreCase(name)) {
+					searched = countryListServiceS.get(index);
+				} else {
+					index++;
+				}
+			}
+
+		}
+		return searched;
+	}
+
+
+	@Override
+	public List<Country> getCountryListObject() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }

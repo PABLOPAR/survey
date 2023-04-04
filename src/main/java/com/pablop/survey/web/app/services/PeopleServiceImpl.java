@@ -123,6 +123,12 @@ public class PeopleServiceImpl implements IPeopleService {
 		// Not Implemented yet
 		return null;
 	}
+
+	@Override
+	public void deletePeopleAnalyzedById(Long id) {
+		// Not implemented
+		
+	}
 	
 
 }

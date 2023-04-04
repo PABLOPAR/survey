@@ -140,9 +140,7 @@ public class IndexController {
 	@Autowired
 	private ICountryEditor countryEditor;
 	
-	@Autowired
-	private IPeopleService iPeopleService;
-	
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Country.class, "country", (PropertyEditor) countryEditor);
@@ -155,13 +153,6 @@ public class IndexController {
 	
 	}
 
-	@Autowired
-	@Qualifier("PeopleAnalyzedDaoJPA")
-	private IPeopleService peopleAnalyzedList;
-
-	
-
-	
 
 	@GetMapping(value = { "/index", "home" })
 	public String index(Model model) {

@@ -63,6 +63,9 @@ public class NewPeopleAnalyzedController {
 	@Value("${text.indexController.analyzedPeople.edit}")
 	private String edit;
 	
+	@Value("${text.delete}")
+	private String delete;
+	
 	@Autowired
 	private CountryListService countryListService;
 	
@@ -172,5 +175,6 @@ public class NewPeopleAnalyzedController {
 	}
 
 	
+
 	
 }

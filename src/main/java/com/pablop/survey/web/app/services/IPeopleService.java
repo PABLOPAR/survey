@@ -14,5 +14,6 @@ public interface IPeopleService {
 	public void addPeopleAnalyzed(PeopleAnalyzed newPeople);
 	public List<PeopleAnalyzed> getPeopleAnalyzedList();
 	public PeopleAnalyzed findPeopleById(Long id);
+	public void deletePeopleAnalyzedById(Long id);
 
 }

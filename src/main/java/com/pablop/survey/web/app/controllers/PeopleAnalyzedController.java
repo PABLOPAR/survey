@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -49,7 +50,7 @@ public class PeopleAnalyzedController {
 	@Value("${text.indexController.analyzedPeople.nothingShow}")
 	private String nothingShow;
 	
-	@Value("${text.indexController.index.title}")
+	@Value("${text.indexController.userProfile.peopleTestedProfile.title}")
 	private String title;
 
 	@Value("${text.indexController.index.firstAction}")
@@ -115,8 +116,8 @@ public class PeopleAnalyzedController {
 	@Value("${text.indexController.analyzedPeople.edit}")
 	private String edit;
 	
-
-	
+	@Value("${text.delete}")
+	private String delete;
 	
 	
 	
@@ -170,10 +171,23 @@ public class PeopleAnalyzedController {
 		model.addAttribute("creationDateText", creationDateText);		
 		model.addAttribute("addNewUser", addNewUser);	
 		model.addAttribute("edit", edit);		
+		model.addAttribute("title", title);		
+		model.addAttribute("delete", delete);		
 		
 
 		return "peopleanalyzed";
 	}
 	
+	
+	@GetMapping(value = "/peopleAnalyzed/delete/{id}")
+	public String deleteById(@PathVariable Long id, Model model) {
+
+		if (id > 0) {
+
+			peopleAnalyzedList.deletePeopleAnalyzedById(id);
+		}
+		
+		return "redirect:/app/survey/peopleanalyzed";
+	}
 	
 }

@@ -1,7 +1,10 @@
 package com.pablop.survey.web.app.controllers;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,9 +46,80 @@ public class PeopleAnalyzedController {
 	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.back}")
 	private String back;
 
-	
 	@Value("${text.indexController.analyzedPeople.nothingShow}")
 	private String nothingShow;
+	
+	@Value("${text.indexController.index.title}")
+	private String title;
+
+	@Value("${text.indexController.index.firstAction}")
+	private String firstAction;
+
+	@Value("${text.indexController.index.firstQuestion}")
+	private String firstQuestion;
+
+	@Value("${text.indexController.index.secondQuestion}")
+	private String secondQuestion;
+
+	@Value("${text.indexController.userProfile.titleUserProfile}")
+	private String titleUserProfile;
+
+	@Value("${text.indexController.userProfile.fieldUserProfileFirstName}")
+	private String fieldUserProfileFirstName;
+
+	@Value("${text.indexController.userProfile.fieldUserProfileEmail}")
+	private String fieldUserProfileEmail;
+
+	@Value("${text.indexController.userProfile.fieldUserProfileBirthday}")
+	private String fieldUserProfileBirthday;
+
+	@Value("${text.indexController.userProfile.fieldUserProfileLastName}")
+	private String fieldUserProfileLastName;
+
+	@Value("${text.indexController.userProfile.incomplete}")
+	private String incomplete;
+
+	@Value("${text.indexController.analyzedPeople.name}")
+	private String analyzedPeople;
+
+	@Value("${text.indexController.analyzedPeople.birthday}")
+	private String birthday;
+
+	@Value("${text.indexController.analyzedPeople.country}")
+	private String country;
+
+	@Value("${text.indexController.analyzedPeople.email}")
+	private String email;
+
+	@Value("${text.indexController.analyzedPeople.lastName}")
+	private String lastName;
+
+	@Value("${text.indexController.analyzedPeople.name}")
+	private String name;
+
+	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.incompleteField}")
+	private String noData;
+
+	@Value("${text.indexController.analyzedPeople.textTimeSpent}")
+	private String TextSpentTime;
+	
+	@Value("${text.indexController.index.showButtonTest}")
+	private String showButtonTest;
+	
+	@Value("${text.indexController.creationDate}")
+	private String creationDateText;
+	
+	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.addNewUser}")
+	private String addNewUser;
+	
+	@Value("${text.indexController.analyzedPeople.edit}")
+	private String edit;
+	
+	@Autowired
+	@Qualifier("PeopleAnalyzedDaoJPA")
+	private IPeopleService peopleAnalyzedList;
+	
+	
 	
 	
 	@Autowired
@@ -71,4 +145,30 @@ public class PeopleAnalyzedController {
 		return "peopletestedprofile";
 	}
 
+	
+	
+	@GetMapping("/peopleanalyzed")
+	public String analyzedPeople(Model model) {
+
+		List<PeopleAnalyzed> AnalyzedList = peopleAnalyzedList.getPeopleAnalyzedList();
+		
+		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
+		model.addAttribute("nothingShow", nothingShow);
+		model.addAttribute("name", name);
+		model.addAttribute("birthday", birthday);
+		model.addAttribute("country", country);
+		model.addAttribute("email", email);
+		model.addAttribute("lastName", lastName);
+		model.addAttribute("noData", noData);
+		model.addAttribute("AnalyzedList", AnalyzedList);
+		model.addAttribute("TextSpentTime", TextSpentTime);	
+		model.addAttribute("creationDateText", creationDateText);		
+		model.addAttribute("addNewUser", addNewUser);	
+		model.addAttribute("edit", edit);		
+		
+
+		return "peopleanalyzed";
+	}
+	
+	
 }

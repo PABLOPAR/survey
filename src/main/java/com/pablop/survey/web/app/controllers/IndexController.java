@@ -181,59 +181,9 @@ public class IndexController {
 
 
 
-	@GetMapping("/peopleanalyzed")
-	public String analyzedPeople(Model model) {
 
-		List<PeopleAnalyzed> AnalyzedList = peopleAnalyzedList.getPeopleAnalyzedList();
-		
-		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
-		model.addAttribute("nothingShow", nothingShow);
-		model.addAttribute("name", name);
-		model.addAttribute("birthday", birthday);
-		model.addAttribute("country", country);
-		model.addAttribute("email", email);
-		model.addAttribute("lastName", lastName);
-		model.addAttribute("noData", noData);
-		model.addAttribute("AnalyzedList", AnalyzedList);
-		model.addAttribute("TextSpentTime", TextSpentTime);	
-		model.addAttribute("creationDateText", creationDateText);		
-		model.addAttribute("addNewUser", addNewUser);	
-		model.addAttribute("edit", edit);		
-		
 
-		return "peopleanalyzed";
-	}
-
-	@GetMapping("/peopleanalyzed/edit/{id}")
-	public String edit(@PathVariable(value = "id") Long id, Model model) {
-
-		PeopleAnalyzed peopleAnalyzed = null;
-		String urlResult="newpeopleanalyzed";
-
-		if (id > 0) {
-
-			peopleAnalyzed = peopleAnalyzedList.findPeopleById(id);
-			
-			System.out.println("Persona analizada "+ peopleAnalyzed.toString());
-			
-			
-		} else {
-			urlResult= "redirect:peopleanalyzed";
-		}
-		
-		model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
-		model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);
-		model.addAttribute("fieldPeopleProfileFirstName", fieldPeopleProfileFirstName);
-		model.addAttribute("fieldPeopleTestedCountry", fieldPeopleTestedCountry);
-		model.addAttribute("fieldPeopleTestedLastName", fieldPeopleTestedLastName);
-		model.addAttribute("lastName", lastName);
-		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
-		model.addAttribute("title", edit);
-		
-		
-		return urlResult;
-	}
-
+	
 
 	
 	

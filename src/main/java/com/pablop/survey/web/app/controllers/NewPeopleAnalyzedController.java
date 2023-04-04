@@ -8,6 +8,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -58,6 +60,9 @@ public class NewPeopleAnalyzedController {
 	@Value("${text.newPeopleAnalyzed.loadForm.send}")
 	private String send;
 	
+	@Value("${text.indexController.analyzedPeople.edit}")
+	private String edit;
+	
 	@Autowired
 	private CountryListService countryListService;
 	
@@ -69,6 +74,9 @@ public class NewPeopleAnalyzedController {
 	@Autowired
 	private IPeopleService iPeopleService;
 	
+	@Autowired
+	@Qualifier("PeopleAnalyzedDaoJPA")
+	private IPeopleService peopleAnalyzedList;
 	
 	@ModelAttribute("countryList")
 	private List<Country> coutryList() {
@@ -130,7 +138,39 @@ public class NewPeopleAnalyzedController {
 
 		status.setComplete();
 
-		return "redirect:/app/peopleanalyzed";
+		return "redirect:/app/survey/peopleanalyzed";
 	}
 
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable(value = "id") Long id, Model model) {
+
+		PeopleAnalyzed peopleAnalyzed = null;
+		String urlResult="newpeopleanalyzed";
+
+		if (id > 0) {
+
+			peopleAnalyzed = peopleAnalyzedList.findPeopleById(id);
+			
+			System.out.println("Persona analizada "+ peopleAnalyzed.toString());
+			
+			
+		} else {
+			urlResult= "redirect:peopleanalyzed";
+		}
+		
+		model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
+		model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);
+		model.addAttribute("fieldPeopleProfileFirstName", fieldPeopleProfileFirstName);
+		model.addAttribute("fieldPeopleTestedCountry", fieldPeopleTestedCountry);
+		model.addAttribute("fieldPeopleTestedLastName", fieldPeopleTestedLastName);
+		model.addAttribute("lastName", lastName);
+		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
+		model.addAttribute("title", edit);
+		
+		
+		return urlResult;
+	}
+
+	
+	
 }

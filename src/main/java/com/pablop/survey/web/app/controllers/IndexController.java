@@ -179,30 +179,7 @@ public class IndexController {
 
 	}
 
-	@GetMapping("/userprofile")
-	public String userProfile(Model model) {
 
-		Date paulBirthay = new Date(07 / 02 / 1975);
-		model.addAttribute("titleUserProfile", titleUserProfile);
-		model.addAttribute("incomplete", incomplete);
-		model.addAttribute("fieldUserProfileFirstName", fieldUserProfileFirstName);
-		model.addAttribute("fieldUserProfileLastName", fieldUserProfileLastName);
-		model.addAttribute("fieldUserProfileEmail", fieldUserProfileEmail);
-		model.addAttribute("fieldUserProfileBirthday", fieldUserProfileBirthday);
-		model.addAttribute("fieldUserProfileCountry", country);	
-
-	
-	    Country countryUser= new Country ("Antarctica");
-	    
-
-		User user = new User(paulBirthay, "Paul", "paul@gmail.com");
-		user.setCountry(countryUser);
-		user.setEmail("paul@gmail.com");
-		user.setLastName("Smith");
-
-		model.addAttribute("user", user);
-		return "userprofile";
-	}
 
 	@GetMapping("/peopleanalyzed")
 	public String analyzedPeople(Model model) {

@@ -93,7 +93,8 @@ public class NewPeopleAnalyzedController {
 
 		PeopleAnalyzed peopleAnalyzed = new PeopleAnalyzed();
 
-
+		peopleAnalyzed.setCountry(peopleAnalyzed.getCountry());
+		
 		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
 		model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
 		model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);
@@ -111,6 +112,9 @@ public class NewPeopleAnalyzedController {
 	public String loadPeopleAnalyzedData(@Valid PeopleAnalyzed peopleAnalyzed, BindingResult result, Model model,
 			SessionStatus status) {
 
+
+		
+		
 		if (result.hasErrors()) {
 			model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
 			model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);

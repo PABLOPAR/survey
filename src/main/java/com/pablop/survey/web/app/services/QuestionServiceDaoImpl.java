@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pablop.survey.web.app.models.entity.Question;
 
 @Repository("QuestionServiceDao")
-@Primary
+
 public class QuestionServiceDaoImpl implements IQuestionService {
 
 	@PersistenceContext

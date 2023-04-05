@@ -7,12 +7,10 @@
 </head>
 <body>
 
-	<section th:replace="components/template :: menuBar"></section>
 	<section th:replace="components/template :: workingHour"></section>
 
+
 	<div class="container">
-
-
 
 		<h1 th:text="${title}" class="text-primary"></h1>
 
@@ -22,75 +20,80 @@
 		<div th:if="${AnalyzedList!=null}">
 			<div th:if="${AnalyzedList!=null}">
 
-
-
-				<table class="col-sm-10" th:if="${!AnalyzedList.isEmpty()}">
-					<thead>
-						<tr class="h4">
-							<th class="text-danger" th:text="${name}"></th>
-							<th class="text-danger" th:text="${lastName}"></th>
-							<th class="text-danger" th:text="${birthday}"></th>
-							<th class="text-danger" th:text="${country}"></th>
-							<th class="text-danger" th:text="${email}"></th>
-							<th class="text-danger" th:text="${creationDateText}"></th>
-							<th class="text-danger" th:text="${edit}"></th>
-
-						</tr>
-					<tbody>
-						<tr th:each="person: ${AnalyzedList}">
-							<td class="h5">
-								<ul>
-									<li><a
-										th:href="@{'/app/survey/peopletestedprofile/'+ ${person.email}}"
-										th:text="${person.firstName}"></a></li>
-								</ul>
-							</td>
-
-							<td th:if="${person.lastName}" th:text="${person.lastName}"></td>
-							<td th:if="!${person.lastName}" th:text="${noData}"></td>
-
-
-							<td th:text="${#dates.format(person.birthday,'dd/MM/yyyy')}"></td>
+				<div class="card">
 
 
 
-							<td th:if="${person.country}"
-								th:text="${person.getCountryString()}"></td>
-							<td th:if="!${person.country}" th:text="${noData}">
-							<td th:if="${person.email}" th:text="${person.email}"></td>
-							<td th:if="!${person.email}" th:text="${noData}"></td>
+					<table class="col-sm-16" th:if="${!AnalyzedList.isEmpty()}">
+						<thead class="card-header" >
+							<tr class="h4">
+								<th class="text-danger" th:text="${name}"></th>
+								<th class="text-danger" th:text="${lastName}"></th>
+								<th class="text-danger" th:text="${birthday}"></th>
+								<th class="text-danger" th:text="${country}"></th>
+								<th class="text-danger" th:text="${email}"></th>
+								<th class="text-danger" th:text="${creationDateText}"></th>
+								<th class="text-danger" th:text="${edit}"></th>
+								<th class="text-danger" th:text="${delete}"></th>
+							</tr>
+							
+							
+						<tbody class="card-body">
 
-							<td th:if="${person.creationDate}"
-								th:text="${person.creationDate}"></td>
-							<td th:if="!${person.creationDate}" th:text="${noData}"></td>
+							<tr th:each="person: ${AnalyzedList}">
+								<td class="h5">
+									<ul>
+										<li><a
+											th:href="@{'/app/survey/peopletestedprofile/'+ ${person.email}}"
+											th:text="${person.firstName}"></a></li>
+									</ul>
+								</td>
+
+								<td th:if="${person.lastName}" th:text="${person.lastName}"></td>
+								<td th:if="!${person.lastName}" th:text="${noData}"></td>
 
 
-							<td><a
-								th:href="@{'/app/peopleanalyzed/edit/'+ ${person.id}}"
-								th:text="${edit}" class="btn btn-success"></a></td>
-
-							<td><a
-								th:href="@{'/app/survey/peopleAnalyzed/delete/'+ ${person.id}}"
-								th:text="${delete}" class="btn btn-danger"
-								onclick="return confirm ('Are you sure to delete this item?')"></a></td>
+								<td th:text="${#dates.format(person.birthday,'dd/MM/yyyy')}"></td>
 
 
-						</tr>
+
+								<td th:if="${person.country}"
+									th:text="${person.getCountryString()}"></td>
+								<td th:if="!${person.country}" th:text="${noData}">
+								<td th:if="${person.email}" th:text="${person.email}"></td>
+								<td th:if="!${person.email}" th:text="${noData}"></td>
+
+								<td th:if="${person.creationDate}"
+									th:text="${person.creationDate}"></td>
+								<td th:if="!${person.creationDate}" th:text="${noData}"></td>
 
 
-					</tbody>
-				</table>
+								<td><a
+									th:href="@{'/app/peopleanalyzed/edit/'+ ${person.id}}"
+									th:text="${edit}" class="btn btn-success"></a></td>
 
-			</div>
-			<div class="form-group row">
-				<div>
+								<td><a
+									th:href="@{'/app/survey/peopleAnalyzed/delete/'+ ${person.id}}"
+									th:text="${delete}" class="btn btn-danger"
+									onclick="return confirm ('Are you sure to delete this item?')"></a></td>
 
-					<a th:href="@{/app/peopleanalyzed/new}" th:text="${addNewUser}"
-						class="btn btn-primary"></a>
+
+							</tr>
+
+
+						</tbody>
+					</table>
 
 				</div>
-			</div>
+				<div class="form-group row">
+					<div>
 
+						<a th:href="@{/app/peopleanalyzed/new}" th:text="${addNewUser}"
+							class="btn btn-primary"></a>
+
+					</div>
+				</div>
+			</div>
 
 			<div>
 				<img class="rounded mx-auto d-block"
@@ -99,6 +102,7 @@
 		</div>
 	</div>
 	<section th:replace="components/template :: interceptor"></section>
+	<section th:replace="components/template :: footer"></section>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>

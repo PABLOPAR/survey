@@ -9,54 +9,66 @@
 <body>
 
 	<section th:replace="components/template :: menuBar"></section>
+
+
 	<div class="container">
-		<div class="container">
-			<h1 th:text="${titlePeopleTested}" class="text-primary"></h1>
 
+		<div class="card">
 
-			<div th:if="${peopleSearched ==null}" th:text="${nothingShow}"
-				class="my-3"></div>
+			<div class="card-header">
+				<h1 th:text="${titlePeopleTested}" class="text-primary"></h1>
 
-
-			<div th:if="${peopleSearched !=null}">
-
-
-
-				<div class="container">
-					<h2 class="text-danger" th:text="${fieldPeopleTestedEmail}"></h2>
-					<h3 th:text="${peopleSearched.email}"></h3>
-					<h2 class="text-danger" th:text="${fieldPeopleTestedBirthday}"></h2>
-
-					<div th:if="${peopleSearched.birthday!=null}">
-						<h3 th:text="${peopleSearched.birthday}"></h3>
-					</div>
-					<h3 th:if="${peopleSearched.birthday==null}"
-						th:text="${nothingShow}"></h3>
-					<h2 class="text-danger" th:text="${fieldPeopleProfileFirstName}"></h2>
-					<h3 th:text="${peopleSearched.firstName}"></h3>
-					<h2 class="text-danger" th:text="${fieldPeopleTestedCountry}"></h2>
-
-					<div th:if="${peopleSearched.country!=null}">
-						<h3 th:text="${peopleSearched.country.name}"></h3>
-					</div>
-					<h3 th:if="${peopleSearched.country==null}"
-						th:text="${nothingShow}"></h3>
-
-					<h2 class="text-danger" th:text="${fieldPeopleTestedLastName}"></h2>
-					<h3 th:if="${peopleSearched.lastName!=null}"
-						th:text="${peopleSearched.lastName}"></h3>
-					<h3 th:if="${peopleSearched.lastName==null}"
-						th:text="${incompleteField}"></h3>
-
-				</div>
 			</div>
-			<a th:href="@{/app/survey/peopleanalyzed}" class="btn btn-success"
-				th:text="${back}"></a>
 
+			<div class="card-body">
+
+
+
+
+				<div th:if="${peopleSearched ==null}" th:text="${nothingShow}"
+					class="my-3"></div>
+
+
+				<div th:if="${peopleSearched !=null}">
+
+
+
+					<div class="container">
+						<h2 class="text-danger" th:text="${fieldPeopleTestedEmail}"></h2>
+						<h3 th:text="${peopleSearched.email}"></h3>
+						<h2 class="text-danger" th:text="${fieldPeopleTestedBirthday}"></h2>
+
+						<div th:if="${peopleSearched.birthday!=null}">
+							<h3 th:text="${peopleSearched.birthday}"></h3>
+						</div>
+						<h3 th:if="${peopleSearched.birthday==null}"
+							th:text="${nothingShow}"></h3>
+						<h2 class="text-danger" th:text="${fieldPeopleProfileFirstName}"></h2>
+						<h3 th:text="${peopleSearched.firstName}"></h3>
+						<h2 class="text-danger" th:text="${fieldPeopleTestedCountry}"></h2>
+
+						<div th:if="${peopleSearched.country!=null}">
+							<h3 th:text="${peopleSearched.country.name}"></h3>
+						</div>
+						<h3 th:if="${peopleSearched.country==null}"
+							th:text="${nothingShow}"></h3>
+
+						<h2 class="text-danger" th:text="${fieldPeopleTestedLastName}"></h2>
+						<h3 th:if="${peopleSearched.lastName!=null}"
+							th:text="${peopleSearched.lastName}"></h3>
+						<h3 th:if="${peopleSearched.lastName==null}"
+							th:text="${incompleteField}"></h3>
+
+					</div>
+				</div>
+				<a th:href="@{/app/survey/peopleanalyzed}" class="btn btn-success"
+					th:text="${back}"></a>
+
+			</div>
 		</div>
 	</div>
-
 	<section th:replace="components/template :: interceptor"></section>
+	<section th:replace="components/template :: footer"></section>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>

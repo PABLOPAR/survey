@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pablop.survey.web.app.models.entity.User;
 
 @Repository ("UserServiceImplDao")
-@Primary
+
 public class UserServiceImplDao implements IUserService{
 
 	@PersistenceContext 

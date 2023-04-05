@@ -2,34 +2,27 @@ package com.pablop.survey.web.app.services;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pablop.survey.web.app.models.entity.Country;
-import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
-import com.pablop.survey.web.app.models.entity.Person;
 
+@Service
+@Primary
+public class CountryListServiceCrudImpl implements CountryListService {
 
+	@Autowired
+	private ICountryListCrud iCountryListCrud;
 
-@Repository ("CountryListServiceDAO")
-
-public class CountryListServiceDAO implements CountryListService{
-
-	@PersistenceContext
-	private EntityManager em;
-	
 	@Transactional(readOnly = true)
 	@Override
 	public Country searchCountryByName(String name) {
-		// TODO Auto-generated method stub
 
-		@SuppressWarnings("unchecked")
-		List<Country> countryList = ((Query) em).getResultList();
+		List<Country> countryList = (List<Country>) iCountryListCrud.findAll();
 
 		Country searched = null;
 		int index = 0;
@@ -48,18 +41,17 @@ public class CountryListServiceDAO implements CountryListService{
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public List<Country> getCountryListObject() {
-		
-		return em.createQuery("from Country").getResultList();
+		// TODO Auto-generated method stub
+		return (List<Country>) iCountryListCrud.findAll();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Country getCountrybyId(Long id) {
 
-		return (Country) em.find(Country.class, id);
+		return iCountryListCrud.findById(id).orElse(null);
 	}
-	
 
 }

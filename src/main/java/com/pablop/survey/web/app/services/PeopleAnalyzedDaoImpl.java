@@ -13,7 +13,7 @@ import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 import com.pablop.survey.web.app.models.entity.Person;
 
 @Repository ("PeopleAnalyzedDaoJPA")
-@Primary
+
 public class PeopleAnalyzedDaoImpl implements IPeopleService {
 
 	

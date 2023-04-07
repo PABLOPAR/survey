@@ -56,6 +56,13 @@ public class OptionQuestionCategory implements Serializable{
 	public void setOptionName(String optionName) {
 		this.optionName = optionName;
 	}
+
+	@Override
+	public String toString() {
+		return "OptionQuestionCategory [id=" + id + ", categoryOption=" + categoryOption + ", optionName=" + optionName
+				+ ", getId()=" + getId() + ", getCategoryOption()=" + getCategoryOption() + ", getOptionName()="
+				+ getOptionName() + "]";
+	}
     
 	
 	

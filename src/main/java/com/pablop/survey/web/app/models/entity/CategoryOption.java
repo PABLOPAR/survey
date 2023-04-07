@@ -15,9 +15,6 @@ public class CategoryOption implements Serializable{
 
 
 	private static final long serialVersionUID = 1L;
-
-
-	private String categoryName;
 	
 	
 	@Id
@@ -27,6 +24,16 @@ public class CategoryOption implements Serializable{
 	
 	
 	@Column(name="category_name")
+	private String categoryName;
+	
+	
+	
+	
+	public CategoryOption() {
+	}
+	
+	
+
 	public String getCategoryName() {
 		return categoryName;
 	}
@@ -35,8 +42,6 @@ public class CategoryOption implements Serializable{
 		this.categoryName = categoryName;
 	}
 
-	public CategoryOption() {
-	}
 
 	public Long getId() {
 		return id;
@@ -44,6 +49,14 @@ public class CategoryOption implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "CategoryOption [id=" + id + ", categoryName=" + categoryName + ", getCategoryName()="
+				+ getCategoryName() + ", getId()=" + getId() + "]";
 	}
 	
 	

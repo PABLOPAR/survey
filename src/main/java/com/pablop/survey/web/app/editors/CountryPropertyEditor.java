@@ -7,14 +7,14 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import com.pablop.survey.web.app.models.entity.Country;
-import com.pablop.survey.web.app.services.CountryListServiceImpl;
+import com.pablop.survey.web.app.services.CountryListService;
 
 @Component
 @Primary
 public class CountryPropertyEditor extends PropertyEditorSupport implements ICountryEditor{
 
 	@Autowired
-	private CountryListServiceImpl countryListServiceImpl;
+	private CountryListService countryListServiceImpl;
 	
 	
 	

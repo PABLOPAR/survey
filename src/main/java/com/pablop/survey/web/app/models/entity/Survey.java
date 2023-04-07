@@ -43,14 +43,6 @@ public class Survey implements Serializable{
 	private String type;
 
 	
-	public Survey(String surveyName, PeopleAnalyzed peopleAnalized) {
-		super();
-		this.surveyName = surveyName;
-		this.peopleAnalized = peopleAnalized;
-		surveyQuestions= new ArrayList<Question>();
-	}
-
-	
 	public Survey() {
 		super();
 	}

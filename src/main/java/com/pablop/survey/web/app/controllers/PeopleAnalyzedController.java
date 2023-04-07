@@ -125,7 +125,6 @@ public class PeopleAnalyzedController {
 	
 	
 	@Autowired
-	@Qualifier("PeopleAnalyzedDaoJPA")
 	private IPeopleService peopleAnalyzedList;
 	
 	

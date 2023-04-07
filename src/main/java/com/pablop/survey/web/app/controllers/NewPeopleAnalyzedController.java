@@ -78,7 +78,6 @@ public class NewPeopleAnalyzedController {
 	private IPeopleService iPeopleService;
 	
 	@Autowired
-	@Qualifier("PeopleAnalyzedDaoJPA")
 	private IPeopleService peopleAnalyzedList;
 	
 	@ModelAttribute("countryList")

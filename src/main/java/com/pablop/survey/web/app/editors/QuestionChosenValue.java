@@ -1,6 +1,6 @@
 package com.pablop.survey.web.app.editors;
 
-public class QuestionChosenValue {
+public class QuestionChosenValue implements IEditorQuestion{
 
 	private String chosenValue;
 	private String question;
@@ -19,11 +19,10 @@ public class QuestionChosenValue {
 		this.question = question;
 	}
 	
-	
 	public QuestionChosenValue(String chosenValue) {
 		this.chosenValue=chosenValue;
-
 	}
+	
 	@Override
 	public String toString() {
 		return "QuestionChosenValue [chosenValue=" + chosenValue + ", question=" + question + "]";

@@ -1,6 +1,8 @@
 package com.pablop.survey.web.app.models.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -28,20 +28,33 @@ public class Question implements Serializable{
 	@Column(name="question")
 	private String question;
 	
-	@Min(1)
-	@Max(10)
 	@NotNull
-	@Column(name="question_weighting")
-	private Integer questionWeighting;
+	@Column(name = "chosen_value")
+	private QuestionOption chosenValue;
+
 	
-	@Column(name="chosen_value")
-	private String chosenValue;
-
-
-	public Question(Integer questionId, String question, Integer questionWeighting) {
+	@Column(name="question_weighting")
+	private ArrayList<QuestionOption> options;
+	
+	@Column (name="target_people_analyzed")
+	private PeopleAnalyzed peopleAnalyzed;
+	
+	
+	@Column (name="survey_name")
+	private Survey surveyName;
+	
+	@Column (name="researcher_user")
+	private Survey researcherUser;
+	
+	
+	
+	
+	
+	
+	public Question(Integer questionId, String question) {
 		super();
 		this.question = question;
-		this.questionWeighting = questionWeighting;
+
 	}
 
 	public Question() {
@@ -49,13 +62,6 @@ public class Question implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public String getChosenValue() {
-		return chosenValue;
-	}
-	
-	public void setChosenValue(String chosenValue) {
-		this.chosenValue = chosenValue;
-	}
 
 	public String getQuestion() {
 		return question;
@@ -65,21 +71,6 @@ public class Question implements Serializable{
 		this.question = question;
 	}
 
-	public Integer getQuestionValue() {
-		return questionWeighting;
-	}
-
-	public void setQuestionValue(Integer questionValue) {
-		this.questionWeighting = questionValue;
-	}
-
-	public Integer getQuestionWeighting() {
-		return questionWeighting;
-	}
-
-	public void setQuestionWeighting(Integer questionWeighting) {
-		this.questionWeighting = questionWeighting;
-	}
 
 	public Long getId() {
 		return id;
@@ -87,6 +78,22 @@ public class Question implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public List<QuestionOption> getOptiones() {
+		return options;
+	}
+
+	public void setOptiones(List<QuestionOption> optiones) {
+		this.options = options;
+	}
+
+	public QuestionOption getChosenValue() {
+		return chosenValue;
+	}
+
+	public void setChosenValue(QuestionOption chosenValue) {
+		this.chosenValue = chosenValue;
 	}
 
 

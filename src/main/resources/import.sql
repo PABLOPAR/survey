@@ -7,3 +7,5 @@ INSERT INTO persons (id,email,first_name,last_name,id_User,type) VALUES(1003,'Ri
 INSERT INTO Countries (name, code) VALUES ( 'United Kingdom' , 'UK');
 INSERT INTO Countries (name, code) VALUES ( 'Ukraine' , 'UA');
 INSERT INTO Countries (name, code) VALUES ( 'Spain' , 'ES');
+
+INSERT INTO category_options (category_name) VALUES ('Three basic');

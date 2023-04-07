@@ -13,8 +13,7 @@ import com.pablop.survey.web.app.models.entity.Survey;
 
 @Service("peopleImplementationLocale")
 @RequestScope
-@Primary
-public class PeopleServiceImpl implements IPeopleService {
+public class PeopleServiceCrudImpl implements IPeopleService {
 
 	
 	@Autowired
@@ -32,7 +31,7 @@ public class PeopleServiceImpl implements IPeopleService {
 	
 	
 	
-	public PeopleServiceImpl() {
+	public PeopleServiceCrudImpl() {
 
 
 	}
@@ -85,20 +84,6 @@ public class PeopleServiceImpl implements IPeopleService {
 		return (List<PeopleAnalyzed>) iPeopleServiceCrud.findAll();
 	}
 	
-	
-	
-	
-//	@Transactional(readOnly = true)
-//	public void setPeopleAnalyzedList(List<PeopleAnalyzed> peopleAnalyzedList) {
-//		this.peopleAnalyzedList = peopleAnalyzedList;
-//	}
-
-	
-	
-	@Override
-	public String toString() {
-		return "PeopleServiceImpl [peopleAnalyzedList=" + peopleAnalyzedList + "]";
-	}
 
 	
 	

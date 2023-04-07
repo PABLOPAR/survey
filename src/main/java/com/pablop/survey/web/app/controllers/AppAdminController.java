@@ -2,55 +2,83 @@ package com.pablop.survey.web.app.controllers;
 
 import java.util.ArrayList;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.pablop.survey.web.app.models.entity.Survey;
-import com.pablop.survey.web.app.services.IServiceSurvey;
-import com.pablop.survey.web.app.services.IPeopleService;
+import com.pablop.survey.web.app.models.entity.CategoryOption;
+import com.pablop.survey.web.app.models.entity.OptionQuestionCategory;
+import com.pablop.survey.web.app.services.ICategoryOptionCrud;
+import com.pablop.survey.web.app.services.IOptionQuestionCategoryCrud;
+import com.pablop.survey.web.app.services.IQuestionCrud;
 
 @Controller
-@RequestMapping("admin")
+@RequestMapping("/app/admin")
 public class AppAdminController {
 	
-	@Value ("${text.AppAdminController.basicSetUp.title}")
+	@Value ("${text.addNewQuestionOptionTitle}")
 	private String title;
 	
-	@Value ("${text.AppAdminController.basicSetUp.surveyList}")
-	private String surveyList;
+	@Value ("${text.AppAdminController.addOption}")
+	private String addOption;
 	
-	@Value ("${text.AppAdminController.basicSetUp.addSurvey}")
-	private String addSurvey;
-	
-	@Value ("${text.AppAdminController.basicSetUp.ViewSurvey}")
-	private String ViewSurvey;	
+	@Value ("${text.AppAdminController.selectCategory}")
+	private String selectCategory;
 	
 	
 	@Autowired
-	private IPeopleService iPeopleService;
+	private IQuestionCrud iquestiocrud;
 	
 	@Autowired
-	private IServiceSurvey iServiceSurvey;
+	private IOptionQuestionCategoryCrud iOptionQuestionCategoryCrud;
 	
 	
-	@GetMapping("/setup")
-	public String basicSetUp(Model model) {
+	@Autowired
+	private ICategoryOptionCrud iCategoryOptionCrud;
+
+	
+	@GetMapping("/setup/addnewquestionoption")
+	public String getNewQuestionOptionForm(Model model) {
 		
-		ArrayList<Survey> exampleListSurvey= (ArrayList<Survey>) iServiceSurvey.exampleListSurvey();
+		ArrayList<CategoryOption> categoryOptionList= (ArrayList<CategoryOption>) iCategoryOptionCrud.findAll();
+		OptionQuestionCategory optionQuestionCategory=new OptionQuestionCategory();
 		
+		
+		model.addAttribute("optionQuestionCategory", optionQuestionCategory);
+		model.addAttribute("addOption", addOption);
+		model.addAttribute("selectCategory", selectCategory);
+		model.addAttribute("categoryOptionList", categoryOptionList);
 		model.addAttribute("title", title);
-		model.addAttribute("surveyList", surveyList);	 
-		model.addAttribute("addSurvey", addSurvey);	
-		model.addAttribute("ViewSurvey", ViewSurvey);
-		model.addAttribute("exampleListSurvey", exampleListSurvey);
+
+	
+		return "addnewquestionoption";
+	}
+	
+	
+	@PostMapping("/setup/addnewquestionoption")
+	public String addNewQuestionOption(@Valid OptionQuestionCategory optionQuestionCategory, BindingResult result,Model model) {
+		
+		if (result.hasErrors()) {
+			model.addAttribute("title", title);
+			return "addnewquestionoption";
+		}
 		
 		
+	
 		
-		return "basicsetup";
+		
+	
+		model.addAttribute("title", title);
+
+
+		return "addnewquestionoption";
 	}
 
 }

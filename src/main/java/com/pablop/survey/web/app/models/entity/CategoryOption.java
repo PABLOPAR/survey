@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="category_options")
@@ -22,7 +23,7 @@ public class CategoryOption implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;	
 	
-	
+	@NotEmpty
 	@Column(name="category_name")
 	private String categoryName;
 	

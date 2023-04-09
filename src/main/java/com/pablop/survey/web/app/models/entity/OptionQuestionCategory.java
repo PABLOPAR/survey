@@ -24,9 +24,17 @@ public class OptionQuestionCategory implements Serializable{
 	@Column (name="category_option")
     private CategoryOption categoryOption;
 	
+	@Column (name="category_option_id")
+	private Long category_id;
+	
 		
 	@Column (name="option_name") 
 	private String optionName;
+	
+	@Column (name="ranking_option")
+	private int rankingOption;
+	
+	
 
 	public OptionQuestionCategory() {
 		super();
@@ -36,6 +44,8 @@ public class OptionQuestionCategory implements Serializable{
 	public Long getId() {
 		return id;
 	}
+	
+	
 
 	public void setId(Long id) {
 		this.id = id;
@@ -57,11 +67,26 @@ public class OptionQuestionCategory implements Serializable{
 		this.optionName = optionName;
 	}
 
+	public Long getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(Long category_id) {
+		this.category_id = category_id;
+	}
+
+	public int getRankingOption() {
+		return rankingOption;
+	}
+
+	public void setRankingOption(int rankingOption) {
+		this.rankingOption = rankingOption;
+	}
+
 	@Override
 	public String toString() {
-		return "OptionQuestionCategory [id=" + id + ", categoryOption=" + categoryOption + ", optionName=" + optionName
-				+ ", getId()=" + getId() + ", getCategoryOption()=" + getCategoryOption() + ", getOptionName()="
-				+ getOptionName() + "]";
+		return "OptionQuestionCategory [id=" + id + ", category_id=" + category_id + ", optionName=" + optionName
+				+ ", rankingOption=" + rankingOption + "]";
 	}
     
 	

@@ -37,6 +37,15 @@ public class AppAdminController {
 	private String selectCategory;
 	
 	
+	@Value ("${text.questionSetUpController.addRanking}")
+	private String addRanking;
+	
+	@Value ("${text.questionSetUpController.addRankingExplanation}")
+	private String addRankingExplanation;
+	
+	
+	
+	
 	@Autowired
 	private IQuestionCrud iquestiocrud;
 	
@@ -49,6 +58,11 @@ public class AppAdminController {
 	
 	@Autowired
 	private CategoryOptionEditor categoryOptionEditor;
+	
+	
+	
+	
+
 	
 	
 
@@ -75,8 +89,10 @@ public class AppAdminController {
 		model.addAttribute("selectCategory", selectCategory);
 		model.addAttribute("categoryOptionList", categoryOptionList);
 		model.addAttribute("title", title);
-
-	
+		model.addAttribute("addRanking", addRanking);
+		model.addAttribute("addRankingExplanation", addRankingExplanation);
+		
+		
 		return "addnewquestionoption";
 	}
 	
@@ -92,7 +108,8 @@ public class AppAdminController {
 			model.addAttribute("addOption", addOption);
 			model.addAttribute("selectCategory", selectCategory);
 			model.addAttribute("categoryOptionList", categoryOptionList);
-						
+			model.addAttribute("addRanking", addRanking);
+			model.addAttribute("addRankingExplanation", addRankingExplanation);
 			return "addnewquestionoption";
 		}
 		System.out.println("Cumple" + optionQuestionCategory);

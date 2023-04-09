@@ -52,8 +52,30 @@
 
 						</div>
 					</div>
-					
-					
+
+
+
+					<div class="h4">
+						<label for="rankingOption" th:text="${addRanking}"></label>
+						<div>
+							<input type="number" id="rankingOption"
+								th:field="*{rankingOption}" class="form-control col-sm-3"
+								th:errorclass=" 'form-control alert-danger' ">
+						</div>
+					</div>
+
+					<div th:if="${#fields.hasErrors('rankingOption')}"
+						th:errors="*{rankingOption}"
+						class="form-text text-danger   col-sm-5"></div>
+
+					<h6 th:text="${addRankingExplanation}"></h6>
+
+
+
+
+
+
+
 					<div th:if="${#fields.hasErrors('categoryOption')}" th:errors="*{categoryOption}"
 						class="alert alert-danger  col-sm-5"></div>
 

@@ -52,7 +52,12 @@
 						th:href="@{/app/user/newuser}">New User<span class="sr-only"></span>
 					</a></li>
 
-					<li class="nav-item dropdown"><a
+						<li class="nav-item active"><a class="nav-link"
+							th:href="@{/app/survey/list}">Survey List<span class="sr-only"></span>
+						</a></li>
+
+
+						<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href=""
 						id="navbarDropdownMenuLink" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> New Items </a>
@@ -78,13 +83,15 @@
 	<section th:fragment="footer">
 
 
-		<div class="card-footer bg-primary border-success">
 
-			<a th:href="${'https://www.linkedin.com/in/pablo-parodi/'}"
-				class="text-light" th:text="${'Developed by:Pablo Parodi'}"></a> 
-<!-- 				<img -->
-<!-- 				th:src="@{/images/SPRING_JAVA.jpg}" alt="Spring logo" width="70" height="50" class="rounded mx-auto d-block"> -->
-		</div>
+
+			<div class="card-footer bg-primary border-success">
+
+				<a th:href="${'https://www.linkedin.com/in/pablo-parodi/'}"
+					class="text-light" th:text="${'Developed by:Pablo Parodi'}"></a>
+				<!-- 				<img -->
+				<!-- 				th:src="@{/images/SPRING_JAVA.jpg}" alt="Spring logo" width="70" height="50" class="rounded mx-auto d-block"> -->
+			</div>
 
 	</section>
 

@@ -12,7 +12,7 @@ import com.pablop.survey.web.app.models.entity.User;
 
 @Service
 @Primary
-public class UserServiceCrudImpl implements IUserService {
+public class UserServiceImplCrud implements IUserService {
 
 	@Autowired
 	private IUserServiceCrud iUserServiceCrud;

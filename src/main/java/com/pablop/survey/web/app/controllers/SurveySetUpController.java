@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.pablop.survey.web.app.editors.CategoryOptionEditor;
 import com.pablop.survey.web.app.models.entity.CategoryOption;
 import com.pablop.survey.web.app.models.entity.Survey;
 import com.pablop.survey.web.app.services.ICategoryOptionCrud;
 import com.pablop.survey.web.app.services.IOptionQuestionCategoryCrud;
+import com.pablop.survey.web.app.services.IServiceSurvey;
 
 @Controller 
 @RequestMapping("/app/admin")
@@ -52,7 +52,8 @@ public class SurveySetUpController {
 	private ICategoryOptionCrud iCategoryOptionCrud;
 	
 
-	
+	@Autowired
+	private IServiceSurvey iServiceSurvey;
 	
 	
 	@GetMapping ("/surveysetup")
@@ -60,19 +61,19 @@ public class SurveySetUpController {
 		
 		Survey survey=new Survey();
 		ArrayList<CategoryOption> categoryOptionList= (ArrayList<CategoryOption>) iCategoryOptionCrud.findAll();
-		
-		
+System.out.println("llega aca GET");
 		model.addAttribute("titleSetUpIndex", titleSetUpIndex);
 		model.addAttribute("addSurveyNameTitle", addSurveyNameTitle);
 		model.addAttribute("selectCategory", selectCategory);
 		model.addAttribute("survey",survey );
 		model.addAttribute("categoryOptionList", categoryOptionList);		
-//		model.addAttribute("", );	
-//		model.addAttribute("", );	
-//		model.addAttribute("", );	
-//		model.addAttribute("", );	
-//		model.addAttribute("", );	
 		return "surveyindexsetup";
+		
+//		model.addAttribute("", );	
+//		model.addAttribute("", );	
+//		model.addAttribute("", );	
+//		model.addAttribute("", );	
+//		model.addAttribute("", );	
 	}
 	
 	
@@ -81,23 +82,24 @@ public class SurveySetUpController {
 	@PostMapping ("/surveysetup")
 	public String createSurvey(@Valid Survey survey, BindingResult result, Model model) {
 		
+		System.out.println("llega aca POST");
+	
 		if (result.hasErrors()) {
-
-			return "surveysetup";
+			ArrayList<CategoryOption> categoryOptionList= (ArrayList<CategoryOption>) iCategoryOptionCrud.findAll();
+			model.addAttribute("titleSetUpIndex", titleSetUpIndex);
+			model.addAttribute("addSurveyNameTitle", addSurveyNameTitle);
+			model.addAttribute("selectCategory", selectCategory);
+			model.addAttribute("survey",survey );
+			model.addAttribute("categoryOptionList", categoryOptionList);		
+			return "surveyindexsetup";
 		}
 
-
 		
-		model.addAttribute("titleSetUpIndex", titleSetUpIndex);
-//		model.addAttribute("addSurveyNameTitle",addSurveyNameTitle );
-		model.addAttribute("survey",survey );
-//		model.addAttribute("", );		
-//		model.addAttribute("", );	
-//		model.addAttribute("", );	
-//		model.addAttribute("", );	
-//		model.addAttribute("", );	
-//		model.addAttribute("", );	
-		return "redirect:";
+		iServiceSurvey.save(survey);
+	
+		
+		return "redirect:/app/survey/list";
+	
 	}
 	
 	

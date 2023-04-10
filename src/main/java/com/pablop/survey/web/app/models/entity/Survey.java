@@ -30,7 +30,7 @@ public class Survey implements Serializable{
 	
 	@ArrayNotNull
 	@Column(name="survey_question")
-	private ArrayList<Question> surveyQuestions;
+	private ArrayList<Question> surveyQuestions= new ArrayList<Question>();
 
 	@Column(name="survey_score")
 	private Double surveyScore;
@@ -140,6 +140,14 @@ public class Survey implements Serializable{
 
 	public void setCategoryOptionId(Long categoryOptionId) {
 		this.categoryOptionId = categoryOptionId;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Survey [id=" + id + ", surveyName=" + surveyName + ", surveyQuestions=" + surveyQuestions
+				+ ", surveyScore=" + surveyScore + ", peopleAnalized=" + peopleAnalized + ", categoryOptionId="
+				+ categoryOptionId + ", user=" + user + ", type=" + type + "]";
 	}
 	
 	

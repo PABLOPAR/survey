@@ -1,5 +1,7 @@
 package com.pablop.survey.web.app.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,7 @@ public class SurveyServiceCrudImp implements IServiceSurvey {
 	@Override
 	public void save(Survey survey) {
 
-		if (surveyfindById(survey.getId()) == null) {
+		if (surveyfindById(survey.getId()) == null && surveyFindByName(survey.getSurveyName())==null) {
 			iSurveyServiceCrud.save(survey);
 		}
 
@@ -31,6 +33,34 @@ public class SurveyServiceCrudImp implements IServiceSurvey {
 		}
 
 		return survey;
+	}
+
+	@Override
+	public Survey surveyFindByName(String name) {
+
+		Survey surveySearched = null;
+		int index = 0;
+
+		List<Survey> surveyList = (List<Survey>) iSurveyServiceCrud.findAll();
+
+		if (name.length() > 0) {
+
+			while (surveySearched == null && index < surveyList.size()) {
+				if (surveyList.get(index).surveyName.equalsIgnoreCase(name)) {
+					surveySearched = surveyList.get(index);
+				} else {
+					index++;
+				}
+			}
+		}
+
+		return surveySearched;
+	}
+
+	@Override
+	public List<Survey> findSurveyList() {
+
+		return (List<Survey>) iSurveyServiceCrud.findAll();
 	}
 
 }

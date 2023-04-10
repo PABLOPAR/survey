@@ -8,4 +8,6 @@ public interface IServiceSurvey {
 	
 	public void save (Survey survey);
 	public Survey surveyfindById(Long id);
+	public Survey surveyFindByName(String name);
+	public List<Survey> findSurveyList();
 }

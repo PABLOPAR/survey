@@ -26,6 +26,7 @@
 			</div>
 			<div th:if="${#fields.hasErrors('surveyName')}"
 				th:errors="*{surveyName}" class="form-text text-danger   col-sm-5"></div>
+				<div th:if="${NameNotRepeated!=Null}" th:text="${NameNotRepeated}"></div>
 
 
 					<div class="h4">

@@ -33,9 +33,9 @@ public class SurveySetUpController {
 	
 	@Value ("${text.AppAdminController.selectCategory}")
 	private String selectCategory;
-//	
-//	@Value("${}")
-//	private String ;
+	
+	@Value("${text.SurveyListController.NameNotRepeated}")
+	private String NameNotRepeated ;
 //	
 //	@Value("${}")
 //	private String ;
@@ -95,9 +95,24 @@ System.out.println("llega aca GET");
 		}
 
 		
+		
+		int iniSize=iServiceSurvey.findSurveyList().size();
+		
 		iServiceSurvey.save(survey);
 	
+		int finSize=iServiceSurvey.findSurveyList().size();
 		
+		if(iniSize-finSize==0){
+			ArrayList<CategoryOption> categoryOptionList= (ArrayList<CategoryOption>) iCategoryOptionCrud.findAll();
+			model.addAttribute("titleSetUpIndex", titleSetUpIndex);
+			model.addAttribute("addSurveyNameTitle", addSurveyNameTitle);
+			model.addAttribute("selectCategory", selectCategory);
+			model.addAttribute("survey",survey );
+			model.addAttribute("categoryOptionList", categoryOptionList);	
+			model.addAttribute("NameNotRepeated",NameNotRepeated );
+			return "surveyindexsetup";
+		}else {
+	
 		return "redirect:/app/survey/list";
 	
 	}
@@ -105,6 +120,6 @@ System.out.println("llega aca GET");
 	
 	
 	
-	
+	}
 
 }

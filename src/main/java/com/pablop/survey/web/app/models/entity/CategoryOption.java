@@ -56,9 +56,12 @@ public class CategoryOption implements Serializable{
 
 	@Override
 	public String toString() {
-		return "CategoryOption [id=" + id + ", categoryName=" + categoryName + ", getCategoryName()="
-				+ getCategoryName() + ", getId()=" + getId() + "]";
+		return "CategoryOption [id=" + id + ", categoryName=" + categoryName + "]";
 	}
+
+
+
+
 	
 	
 }

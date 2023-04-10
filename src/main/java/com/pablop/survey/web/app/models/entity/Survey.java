@@ -19,6 +19,7 @@ import com.pablop.survey.web.app.validation.ArrayNotNull;
 public class Survey implements Serializable{
 
 	@Id
+	@Column
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
@@ -37,9 +38,13 @@ public class Survey implements Serializable{
 	@Column(name="people_analized")
 	private PeopleAnalyzed peopleAnalized; 
 	
+	@Column (name="category_option_id")
+    private Long categoryOptionId;
+	
 	@Column(name="users")
 	private User user;
 	
+	@Column
 	private String type;
 
 	
@@ -105,6 +110,36 @@ public class Survey implements Serializable{
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public PeopleAnalyzed getPeopleAnalized() {
+		return peopleAnalized;
+	}
+
+
+	public void setPeopleAnalized(PeopleAnalyzed peopleAnalized) {
+		this.peopleAnalized = peopleAnalized;
+	}
+
+
+	public Long getCategoryOptionId() {
+		return categoryOptionId;
+	}
+
+
+	public void setCategoryOptionId(Long categoryOptionId) {
+		this.categoryOptionId = categoryOptionId;
 	}
 	
 	

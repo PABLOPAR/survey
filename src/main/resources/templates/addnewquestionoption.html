@@ -40,12 +40,12 @@
 
 
 					<div class="h4">
-						<label for="categoryOption" th:text="${selectCategory}"></label>
+						<label for="categoryOptionId" th:text="${selectCategory}"></label>
 						<div>
-							<select id="categoryOption" th:field="*{categoryOption}"
+							<select id="categoryOptionId" th:field="*{categoryOptionId}"
 								class="form-control col-sm-3"
 								th:errorclass=" 'form-control alert-danger' ">
-								
+
 								<option th:each="category: ${categoryOptionList}"
 									th:text="${category.categoryName} " th:value="${category.id}"></option>
 							</select>
@@ -54,6 +54,9 @@
 					</div>
 
 
+					<div th:if="${#fields.hasErrors('categoryOptionId')}"
+						th:errors="*{categoryOptionId}"
+						class="alert alert-danger  col-sm-5"></div>
 
 					<div class="h4">
 						<label for="rankingOption" th:text="${addRanking}"></label>
@@ -69,15 +72,6 @@
 						class="form-text text-danger   col-sm-5"></div>
 
 					<h6 th:text="${addRankingExplanation}"></h6>
-
-
-
-
-
-
-
-					<div th:if="${#fields.hasErrors('categoryOption')}" th:errors="*{categoryOption}"
-						class="alert alert-danger  col-sm-5"></div>
 
 
 

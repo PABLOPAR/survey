@@ -1,6 +1,5 @@
 package com.pablop.survey.web.app.controllers;
 
-import java.beans.PropertyEditor;
 import java.util.ArrayList;
 
 import javax.validation.Valid;
@@ -42,9 +41,7 @@ public class AppAdminController {
 	
 	@Value ("${text.questionSetUpController.addRankingExplanation}")
 	private String addRankingExplanation;
-	
-	
-	
+
 	
 	@Autowired
 	private IQuestionCrud iquestiocrud;
@@ -69,7 +66,7 @@ public class AppAdminController {
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		
-		binder.registerCustomEditor(CategoryOption.class, "categoryOption", (PropertyEditor) categoryOptionEditor);
+//		binder.registerCustomEditor(CategoryOption.class, "categoryOption", (PropertyEditor) categoryOptionEditor);
 		
 	}
 	
@@ -101,6 +98,8 @@ public class AppAdminController {
 	public String addNewQuestionOption(@Valid OptionQuestionCategory optionQuestionCategory, BindingResult result,Model model) {
 		
 		ArrayList<CategoryOption> categoryOptionList= (ArrayList<CategoryOption>) iCategoryOptionCrud.findAll();
+		
+		
 		
 		if (result.hasErrors()) {
 			model.addAttribute("title", title);

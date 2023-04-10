@@ -22,6 +22,8 @@ public class QuestionSetUpController {
 	@Value("${text.questionSetUpController.titleNewCategory}")
 	private String titleNewCategory;
 	
+	@Value("${text.questionSetUpController.titleSetQuestion}")
+	private String titleSetQuestion;
 	
 	
 	
@@ -69,13 +71,18 @@ public class QuestionSetUpController {
 	
 	
 	
-	@GetMapping ("/questions")
-	public String questionSetup() {
-		
+	@GetMapping ("/questionsetup")
+	public String questionsetup(Model model) {
+		model.addAttribute("titleNewCategory", titleNewCategory);
 		
 		
 		return "questionsetup";
 	}
+	
+
+	
+	
+	
 	
 	
 }

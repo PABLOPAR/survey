@@ -7,10 +7,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pablop.survey.web.app.models.entity.Survey;
-import com.pablop.survey.web.app.services.ISurveyServiceCrud;
+import com.pablop.survey.web.app.services.IServiceSurvey;
 
 @Controller
 @RequestMapping ("app/survey")
@@ -34,14 +35,16 @@ public class SurveyListController {
 	@Value("${text.SurveyListController.StartTest}")
 	private String startTest;
 	
-
+	@Value("${text.delete}")
+	private String delete;
+	
 	@Autowired
-	private ISurveyServiceCrud iSurveyServiceCrud;
+	private IServiceSurvey iServiceSurvey;
 	
 	@GetMapping("/list")
 	public String surveylist(Model model) {
 		
-		List<Survey> surveyList= (List<Survey>) iSurveyServiceCrud.findAll();
+		List<Survey> surveyList= (List<Survey>) iServiceSurvey.findSurveyList();
 		
 		model.addAttribute("chooseYourSurvey", chooseYourSurvey);	
 		model.addAttribute("surveyList", surveyList);
@@ -50,9 +53,27 @@ public class SurveyListController {
 		model.addAttribute("start", start);	
 		model.addAttribute("startTest", startTest);			
 		model.addAttribute("AddNewSurvey", AddNewSurvey);		
+		model.addAttribute("delete", delete);		
 
 		
 		
 		return "surveylist";
 	}
+	
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable Long id) {
+
+		if (survey != null) {
+
+			Survey surveyRegister = iServiceSurvey.surveyfindById(id);
+
+			if (surveyRegister != null) {
+
+				iServiceSurvey.deleteSurveyById(id);
+			}
+		}
+
+		return "redirect:/app/survey/list";
+	}
+	
 }

@@ -128,8 +128,6 @@ public class PeopleAnalyzedController {
 	private IPeopleService peopleAnalyzedList;
 	
 	
-	
-	
 	@Autowired
 	private IPeopleService peopleAnalyzed;
 

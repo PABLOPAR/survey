@@ -10,4 +10,6 @@ public interface IServiceSurvey {
 	public Survey surveyfindById(Long id);
 	public Survey surveyFindByName(String name);
 	public List<Survey> findSurveyList();
+	public void deleteSurveyById(Long id);
+
 }

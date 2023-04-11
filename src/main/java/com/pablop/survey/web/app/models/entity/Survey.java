@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import com.pablop.survey.web.app.validation.ArrayNotNull;
 
@@ -26,6 +27,7 @@ public class Survey implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Column(name="survey_name")
+	@NotEmpty
 	public  String surveyName;
 	
 	@ArrayNotNull

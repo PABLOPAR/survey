@@ -20,7 +20,7 @@ public class SurveyServiceCrudImp implements IServiceSurvey {
 		if (surveyfindById(survey.getId()) == null && surveyFindByName(survey.getSurveyName())==null) {
 			iSurveyServiceCrud.save(survey);
 		}
-
+		
 	}
 
 	@Override
@@ -61,6 +61,21 @@ public class SurveyServiceCrudImp implements IServiceSurvey {
 	public List<Survey> findSurveyList() {
 
 		return (List<Survey>) iSurveyServiceCrud.findAll();
+	}
+
+	
+	@Override
+	public void deleteSurveyById(Long id) {
+		
+		if(id>0){
+			Survey surveyToBeDeleted=surveyfindById(id);
+			
+			if(surveyToBeDeleted!=null){
+				iSurveyServiceCrud.delete(surveyToBeDeleted);
+				
+			}
+		}
+
 	}
 
 }

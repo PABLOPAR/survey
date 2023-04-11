@@ -18,41 +18,43 @@
 		</div>
 
 
-<div class="container">
+		<div class="container">
 
-		<h1 th:text="${title}" class="text-primary"></h1>
+			<h1 th:text="${title}" class="text-primary"></h1>
 
-		<div th:if="${surveyList==null}" th:text="${nothingShow}"></div>
+			<div th:if="${surveyList==null}" th:text="${nothingShow}"></div>
 
 
-		<div th:if="${surveyList!=null}">
 			<div th:if="${surveyList!=null}">
+				<div th:if="${surveyList!=null}">
 
-				<div class="card">
+					<div class="card">
 
 
 
-					<table class="col-sm-16" th:if="${!surveyList.isEmpty()}">
-						<thead class="card-header" >
-							<tr class="h4">
-								<th class="text-danger" th:text="${survey}"></th>
-								<th class="text-danger" th:text="${edit}"></th>
-								<th class="text-danger" th:text="${startTest}"></th>
-							</tr>
-							
-							
-						<tbody class="card-body">
+						<table class="col-sm-16" th:if="${!surveyList.isEmpty()}">
+							<thead class="card-header">
+								<tr class="h4">
+									<th class="text-primary" th:text="${survey}"></th>
+									<th class="text-primary" th:text="${edit}"></th>
+									<th class="text-primary" th:text="${delete}"></th>
+									<th class="text-primary" th:text="${startTest}"></th>
+								</tr>
+							<tbody class="card-body">
 
-							<tr th:each="survey: ${surveyList}">
-								<td class="h5">
-									<ul>
-									<li><h4 th:text="${survey.surveyName}"></h4>
-									
-									</ul>
-								</td>
+								<tr th:each="survey: ${surveyList}">
+									<td class="h5">
+										<ul>
+											<li><h4 th:text="${survey.surveyName}"></h4>
+										</ul>
+									</td>
 
-									<td><a th:href="@{''+ ${''}}" th:text="${edit}"
-										class="btn btn-danger"></a></td>
+									<td><a th:href="@{'/app/survey/edit/'+ ${survey.id}}" th:text="${edit}"
+										class="btn btn-warning"></a></td>
+
+									<td><a th:href="@{'/app/survey/delete/'+ ${survey.id}}"
+										th:text="${delete}" class="btn btn-danger"
+										onclick="return confirm ('Are you sure to delete this item?')"></a></td>
 
 									<td><a th:href="@{''}" th:text="${startTest}"
 										class="btn btn-success"
@@ -63,17 +65,17 @@
 								</tr>
 
 
-						</tbody>
-					</table>
-						
-						
-						<a th:href="@{/app/admin/surveysetup}" th:text="${AddNewSurvey}"
+							</tbody>
+						</table>
+
+
+						<a th:href="@{/app/survey/surveysetup}" th:text="${AddNewSurvey}"
 							class="btn btn-primary"></a>
 					</div>
-					
-					
 
-			</div>
+
+
+				</div>
 			</div>
 
 		</div>

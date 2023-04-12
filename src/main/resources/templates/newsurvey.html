@@ -36,36 +36,22 @@
 				<div class="row">
 
 
+					<div class="h5"></div>
 
-					<div class="h5">
-						<select id="categoryOptionId" th:field="*{categoryOptionId}"
-							class="form-control col-sm-20 offset-md-1"
-							th:errorclass=" 'form-control alert-danger' ">
+					<h5 th:text="${categoryAlreadySelected}" class="text-success"></h5>
+					<h5 th:text="${survey.categoryOptionId}"></h5>
 
-							<option th:each="category: ${categoryOptionList}"
-								th:text="${category.categoryName} " th:value="${category.id}"></option>
-						</select>
-
-					</div>
-
-<!-- 					<div> -->
-
-<!-- 						<a th:href="@{/app/admin/questionsetup/addnewcategory}" -->
-<!-- 							th:text="${AddNewCategory}" -->
-<!-- 							class="btn btn-primary col-md-15 offset-md-8"></a> -->
-
-<!-- 					</div> -->
+				</div>
 
 					<a th:href="@{/app/admin/questionsetup/categorylistdetail}"
 						th:text="${ViewCatDetail}"
-						class="btn btn-primary col-md-13 offset-md-1"></a>
+						class="btn btn-success col-md-2 offset-md-0"></a>
 
-				</div>
-					
-					
 
-				</div>
+
+
 			</div>
+
 
 			<div class="form-group row">
 				<div>
@@ -78,8 +64,8 @@
 
 
 		</form>
-
 	</div>
+
 
 
 

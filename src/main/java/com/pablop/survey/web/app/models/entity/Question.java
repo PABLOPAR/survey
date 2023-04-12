@@ -32,9 +32,8 @@ public class Question implements Serializable{
 	@Column(name = "chosen_value")
 	private QuestionOption chosenValue;
 
-	
-	@Column(name="question_weighting")
-	private ArrayList<QuestionOption> options;
+	@Column(name="question_Importance")
+	private int questionImportance;
 	
 	@Column (name="target_people_analyzed")
 	private PeopleAnalyzed peopleAnalyzed;
@@ -45,9 +44,6 @@ public class Question implements Serializable{
 	
 	@Column (name="researcher_user")
 	private Survey researcherUser;
-	
-	
-	
 	
 	
 	
@@ -80,13 +76,7 @@ public class Question implements Serializable{
 		this.id = id;
 	}
 
-	public List<QuestionOption> getOptiones() {
-		return options;
-	}
 
-	public void setOptiones(List<QuestionOption> optiones) {
-		this.options = options;
-	}
 
 	public QuestionOption getChosenValue() {
 		return chosenValue;
@@ -94,6 +84,38 @@ public class Question implements Serializable{
 
 	public void setChosenValue(QuestionOption chosenValue) {
 		this.chosenValue = chosenValue;
+	}
+
+	public int getQuestionImportance() {
+		return questionImportance;
+	}
+
+	public void setQuestionImportance(int questionImportance) {
+		this.questionImportance = questionImportance;
+	}
+
+	public PeopleAnalyzed getPeopleAnalyzed() {
+		return peopleAnalyzed;
+	}
+
+	public void setPeopleAnalyzed(PeopleAnalyzed peopleAnalyzed) {
+		this.peopleAnalyzed = peopleAnalyzed;
+	}
+
+	public Survey getSurveyName() {
+		return surveyName;
+	}
+
+	public void setSurveyName(Survey surveyName) {
+		this.surveyName = surveyName;
+	}
+
+	public Survey getResearcherUser() {
+		return researcherUser;
+	}
+
+	public void setResearcherUser(Survey researcherUser) {
+		this.researcherUser = researcherUser;
 	}
 
 

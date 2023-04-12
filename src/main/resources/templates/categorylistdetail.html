@@ -16,27 +16,58 @@
 
 		<div th:each="category: ${categoryList}">
 
-			<h5 th:text="${category.categoryName}" class="text-danger"></h5>
+			<div class="card  py-2">
+
+				<h4 th:text="${categoryNumber}+ ' ' +  ${category.id}" class="text-primary"></h4>
+
+				<h5 th:text="${category.categoryName}" class="text-danger"></h5>
 
 
-			<div th:if="${iCategoryService.GetOptionsByCategory(category)==null}">
-
-				<h6 th:text="${'Nothing to show'}"></h6>
-
-			</div>
 
 
-			<div th:if="${iCategoryService.GetOptionsByCategory(category)!=null}">
 
 				<div
-					th:each="option: ${iCategoryService.GetOptionsByCategory(category)}">
+					th:if="${iCategoryService.GetOptionsByCategory(category)==null}">
 
-				<h6 th:text="${option.optionName}"></h6>
+					<h6 th:text="${'Nothing to show'}"></h6>
+
 				</div>
 
+
+				<div
+					th:if="${iCategoryService.GetOptionsByCategory(category)!=null}">
+
+					<div
+						th:each="option: ${iCategoryService.GetOptionsByCategory(category)}">
+
+						<h6 th:text="${option.optionName}"></h6>
+					</div>
+
+				</div>
+
+				<div class="row">
+
+					<a th:href="@{'/app/admin/setup/addnewquestionoption/'+${category.id}}"
+						th:text="${addOption}" class="btn btn-primary  col-md-0 offset-md-1"></a> <a
+						th:href="@{'/app/survey/categorylistdetail/'+ ${category.id}}"
+						
+				
+						
+						
+						th:text="${selectThisOption}" class="btn btn-success  col-md-0 offset-md-7"></a>
+
+				</div>
 			</div>
 
+
+			<div class="py-1"></div>
+			
 		</div>
+
+
+		<a th:href="@{'/app/admin/questionsetup/addnewcategory'}"
+			th:text="${textAddNewCategory}" class="btn btn-primary"></a>
+
 
 
 	</div>

@@ -12,8 +12,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.pablop.survey.web.app.editors.CategoryOptionEditor;
 import com.pablop.survey.web.app.models.entity.Category;
@@ -24,6 +27,7 @@ import com.pablop.survey.web.app.services.IQuestionCrud;
 
 @Controller
 @RequestMapping("/app/admin")
+@SessionAttributes("optionQuestionCategory")
 public class AppAdminController {
 	
 	@Value ("${text.addNewQuestionOptionTitle}")
@@ -42,6 +46,12 @@ public class AppAdminController {
 	@Value ("${text.questionSetUpController.addRankingExplanation}")
 	private String addRankingExplanation;
 
+	@Value("${text.questionSetUpController.categoryAlreadySelected}")
+	private String categoryAlreadySelected;
+	
+	
+	
+	
 	
 	@Autowired
 	private IQuestionCrud iquestiocrud;
@@ -74,16 +84,17 @@ public class AppAdminController {
 	
 	
 	
-	@GetMapping("/setup/addnewquestionoption")
-	public String getNewQuestionOptionForm(Model model) {
+	@GetMapping("/setup/addnewquestionoption/{id}")
+	public String getNewQuestionOptionForm(@PathVariable Long id, Model model) {
 		
 		ArrayList<Category> categoryOptionList= (ArrayList<Category>) iCategoryService.getListCategory();
 		OptionQuestionCategory optionQuestionCategory=new OptionQuestionCategory();
-		
+		optionQuestionCategory.setCategoryOptionId(id);
+System.out.println("mirar aca:" + optionQuestionCategory.toString() );
 		
 		model.addAttribute("optionQuestionCategory", optionQuestionCategory);
 		model.addAttribute("addOption", addOption);
-		model.addAttribute("selectCategory", selectCategory);
+		model.addAttribute("categoryAlreadySelected", categoryAlreadySelected);
 		model.addAttribute("categoryOptionList", categoryOptionList);
 		model.addAttribute("title", title);
 		model.addAttribute("addRanking", addRanking);
@@ -95,7 +106,7 @@ public class AppAdminController {
 	
 	
 	@PostMapping("/setup/addnewquestionoption")
-	public String addNewQuestionOption(@Valid OptionQuestionCategory optionQuestionCategory, BindingResult result,Model model) {
+	public String addNewQuestionOption(@Valid OptionQuestionCategory optionQuestionCategory, BindingResult result,Model model, SessionStatus status) {
 		
 		ArrayList<Category> categoryOptionList= (ArrayList<Category>) iCategoryService.getListCategory();
 		
@@ -105,18 +116,18 @@ public class AppAdminController {
 			model.addAttribute("title", title);
 			model.addAttribute("optionQuestionCategory", optionQuestionCategory);
 			model.addAttribute("addOption", addOption);
-			model.addAttribute("selectCategory", selectCategory);
+			model.addAttribute("categoryAlreadySelected", categoryAlreadySelected);
 			model.addAttribute("categoryOptionList", categoryOptionList);
 			model.addAttribute("addRanking", addRanking);
 			model.addAttribute("addRankingExplanation", addRankingExplanation);
 			return "addnewquestionoption";
 		}
-		System.out.println("Cumple" + optionQuestionCategory);
+System.out.println("Cumple" + optionQuestionCategory);
 		
 		iOptionQuestionCategoryCrud.save(optionQuestionCategory);
-		
+		status.setComplete();
 	
-		return "redirect:/app/index";
+		return "redirect:/app/admin/questionsetup/categorylistdetail";
 	}
 
 }

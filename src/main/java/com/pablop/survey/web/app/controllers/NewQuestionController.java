@@ -1,5 +1,7 @@
 package com.pablop.survey.web.app.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +12,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.pablop.survey.web.app.models.entity.Category;
 import com.pablop.survey.web.app.models.entity.Question;
+import com.pablop.survey.web.app.services.ICategoryService;
 import com.pablop.survey.web.app.services.IQuestionService;
 import com.pablop.survey.web.app.validation.ArrayNotNullValidator;
 import com.pablop.survey.web.app.validation.ItemsValidator;
@@ -42,7 +47,9 @@ public class NewQuestionController {
 	@Autowired
 	private ItemsValidator validator;
 	
-
+	@Autowired
+	private ICategoryService iCategoryService;
+	
 	@InitBinder
 	public void InitBinder(WebDataBinder binder) {
 //		binder.addValidators(validator);
@@ -83,6 +90,10 @@ public class NewQuestionController {
 
 		return "redirect:/app/question/type";
 	}
+	
+	
+
+	
 	
 	
 

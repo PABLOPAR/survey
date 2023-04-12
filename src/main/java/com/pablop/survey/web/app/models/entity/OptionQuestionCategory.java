@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="options_questions_category")
@@ -27,9 +30,11 @@ public class OptionQuestionCategory implements Serializable{
 	@Column (name="category_option_id")
     private Long categoryOptionId;
 	
+	@NotEmpty
 	@Column (name="option_name") 
 	private String optionName;
 	
+	@Min(value=1)
 	@Column (name="ranking_option")
 	private int rankingOption;
 	
@@ -65,9 +70,7 @@ public class OptionQuestionCategory implements Serializable{
 		return rankingOption;
 	}
 
-	public void setRankingOption(int rankingOption) {
-		this.rankingOption = rankingOption;
-	}
+
 
 
 	public Long getCategoryOptionId() {
@@ -83,6 +86,12 @@ public class OptionQuestionCategory implements Serializable{
 		return "OptionQuestionCategory [id=" + id + ", categoryOptionId=" + categoryOptionId + ", optionName="
 				+ optionName + ", rankingOption=" + rankingOption + "]";
 	}
+
+	public void setRankingOption(int rankingOption) {
+		this.rankingOption = rankingOption;
+	}
+
+
     
 	
 	

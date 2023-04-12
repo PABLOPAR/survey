@@ -22,44 +22,39 @@
 
 			<div class="card-body">
 
-				<form th:action="@{/app/admin/setup/addnewquestionoption}" th:object="${optionQuestionCategory}" method="post">
+				<form th:action="@{/app/admin/setup/addnewquestionoption}"
+					th:object="${optionQuestionCategory}" method="post">
 					<div class="h4">
-						<label for="optionName"
-							th:text="${addOption}"></label>
+						<label for="optionName" th:text="${addOption}"
+							class="text-primary"></label>
 						<div>
 							<input type="text" id="optionName" th:field="*{optionName}"
 								class="form-control col-sm-3"
 								th:errorclass=" 'form-control alert-danger' ">
 						</div>
 					</div>
-					
-					<div th:if="${#fields.hasErrors('optionName')}"
-						th:errors="*{optionName}" class="form-text text-danger   col-sm-5"></div>
 
+					<div th:if="${optionQuestionCategory.id!=null}">
 
-
-
-					<div class="h4">
-						<label for="categoryOptionId" th:text="${selectCategory}"></label>
-						<div>
-							<select id="categoryOptionId" th:field="*{categoryOptionId}"
-								class="form-control col-sm-3"
-								th:errorclass=" 'form-control alert-danger' ">
-
-								<option th:each="category: ${categoryOptionList}"
-									th:text="${category.categoryName} " th:value="${category.id}"></option>
-							</select>
-
-						</div>
+						<div th:if="${#fields.hasErrors('optionName')}"
+							th:errors="*{optionName}"
+							class="form-text text-danger   col-sm-5"></div>
 					</div>
 
 
-					<div th:if="${#fields.hasErrors('categoryOptionId')}"
-						th:errors="*{categoryOptionId}"
-						class="alert alert-danger  col-sm-5"></div>
+
+					<h4 class="h4 text-primary" th:text="${categoryAlreadySelected}"></h4>
+					<div>
+
+						<h4 class="h4"
+							th:text="${optionQuestionCategory.categoryOptionId}"></h4>
+						<div></div>
+					</div>
+
 
 					<div class="h4">
-						<label for="rankingOption" th:text="${addRanking}"></label>
+						<label for="rankingOption" th:text="${addRanking}"
+							class="text-primary"></label>
 						<div>
 							<input type="number" id="rankingOption"
 								th:field="*{rankingOption}" class="form-control col-sm-3"
@@ -67,9 +62,13 @@
 						</div>
 					</div>
 
-					<div th:if="${#fields.hasErrors('rankingOption')}"
-						th:errors="*{rankingOption}"
-						class="form-text text-danger   col-sm-5"></div>
+
+
+						<div th:if="${#fields.hasErrors('rankingOption')}"
+							th:errors="*{rankingOption}"
+							class="form-text text-danger   col-sm-5"></div>
+
+
 
 					<h6 th:text="${addRankingExplanation}"></h6>
 

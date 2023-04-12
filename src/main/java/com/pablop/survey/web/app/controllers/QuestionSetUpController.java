@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -33,10 +34,20 @@ public class QuestionSetUpController {
 	@Value("${text.questionSetUpController.titleCategoryDetail}")
 	private String titleCategoryDetail;
 	
-	
+	@Value ("${text.AppAdminController.addOption}")
+	private String addOption;
 	
 	@Value("${text.questionSetUpController.textAddNewCategory}")
 	private String textAddNewCategory;
+	
+	
+	@Value("${text.questionSetUpController.selectThisOption}")
+	private String selectThisOption;
+	
+	@Value("${text.questionSetUpController.categoryNumber}")
+	private String categoryNumber;	
+	
+	
 	
 	@Autowired
 	private ICategoryService iCategoryService;
@@ -68,12 +79,11 @@ public class QuestionSetUpController {
 			model.addAttribute("categoryOption", category);	
 			return "addcategoryoption";
 		}
-		
-System.out.println("llego hasta aca" + category.toString());
+
 		
 		iCategoryService.saveCategory(category);
 		status.setComplete();
-		return "redirect:/app/survey/list";
+		return "redirect:/app/admin/questionsetup/categorylistdetail";
 	}
 	
 	
@@ -99,6 +109,15 @@ System.out.println("llego hasta aca" + category.toString());
 		
 		model.addAttribute("titleCategoryDetail", titleCategoryDetail);
 		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("textAddNewCategory", textAddNewCategory);
+		model.addAttribute("addOption", addOption);
+		model.addAttribute("selectThisOption", selectThisOption);
+		
+		model.addAttribute("categoryNumber",categoryNumber );	
+//		model.addAttribute("", );	
+		
+
+		
 		
 		
 		
@@ -106,7 +125,7 @@ System.out.println("llego hasta aca" + category.toString());
 		return "categorylistdetail";
 	}
 	
-	
+
 	
 	
 }

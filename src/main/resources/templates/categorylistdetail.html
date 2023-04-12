@@ -9,36 +9,25 @@
 <body>
 	<section th:replace="components/template :: menuBar"></section>
 
+	<div class="card-header">
+
+		<h1 th:text="${titleCategoryDetail}" class="text-primary"></h1>
 
 
-	<div class="container">
+		<div th:each="category: ${categoryList}">
 
-		<div class="card">
+			<h5 th:text="${category.categoryName}"></h5>
 
-			<div class="card-header">
-				<h3 th:text="${titleNewCategory}" class="text-primary"></h3>
+			<div th:each="option: ${getOptions()}">
+
+				<h6 th:text="${option.optionName}"></h6>
+
 			</div>
-			<div class="card-body">
-				<form th:action="@{/app/admin/questionsetup/addnewcategory}"
-					th:object="${categoryOption}" method="post">
-					<label for="categoryName" th:text="${textAddNewCategory}"></label>
-					<input type="text" id="categoryName" th:field="*{categoryName}"
-						class="form-control col-sm-3"
-						th:errorclass=" 'form-control alert-danger' ">
 
 
-					<div th:if="${#fields.hasErrors('categoryName')}"
-						th:errors="*{categoryName}" class="form-text text-danger   col-sm-5"></div>
-
-
-						<div>
-
-							<input type="submit" class="btn btn-primary">
-
-						</div>
-				</form>
-			</div>
 		</div>
+
+
 	</div>
 
 
@@ -47,9 +36,11 @@
 
 
 
-	<div class="fixed-bottom">
+
+
+
 	<section th:replace="components/template :: footer"></section>
-</div>
+
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>

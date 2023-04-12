@@ -50,13 +50,6 @@ public class OptionQuestionCategory implements Serializable{
 		this.id = id;
 	}
 
-//	public CategoryOption getCategoryOption() {
-//		return categoryOption;
-//	}
-//
-//	public void setCategoryOption(CategoryOption categoryOption) {
-//		this.categoryOption = categoryOption;
-//	}
 
 	public String getOptionName() {
 		return optionName;
@@ -66,13 +59,7 @@ public class OptionQuestionCategory implements Serializable{
 		this.optionName = optionName;
 	}
 
-//	public Long getCategory_id() {
-//		return category_id;
-//	}
-//
-//	public void setCategory_id(Long category_id) {
-//		this.category_id = category_id;
-//	}
+
 
 	public int getRankingOption() {
 		return rankingOption;

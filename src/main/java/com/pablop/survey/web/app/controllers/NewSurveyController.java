@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.pablop.survey.web.app.models.entity.CategoryOption;
+import com.pablop.survey.web.app.models.entity.Category;
 import com.pablop.survey.web.app.models.entity.Survey;
-import com.pablop.survey.web.app.services.ICategoryOptionCrud;
+import com.pablop.survey.web.app.services.ICategoryService;
 import com.pablop.survey.web.app.services.IOptionQuestionCategoryCrud;
 import com.pablop.survey.web.app.services.IServiceSurvey;
 
@@ -40,12 +40,12 @@ public class NewSurveyController {
 	
 	@Value("${text.SurveyListController.NameNotRepeated}")
 	private String NameNotRepeated ;
-//	
-//	@Value("${}")
-//	private String ;
-//	
-//	@Value("${}")
-//	private String ;
+	
+	@Value("${text.NewSurveyController.AddNewCategory}")
+	private String AddNewCategory;
+
+	@Value("${text.NewSurveyController.ViewCatDetail}")
+	private String ViewCatDetail;
 	
 	
 	@Autowired
@@ -53,7 +53,7 @@ public class NewSurveyController {
 	
 	
 	@Autowired
-	private ICategoryOptionCrud iCategoryOptionCrud;
+	private ICategoryService iCategoryService;
 	
 
 	@Autowired
@@ -64,12 +64,17 @@ public class NewSurveyController {
 	public String surveyIndexSetUp(Model model) {
 		
 		Survey survey=new Survey();
-		ArrayList<CategoryOption> categoryOptionList= (ArrayList<CategoryOption>) iCategoryOptionCrud.findAll();
+		ArrayList<Category> categoryOptionList= (ArrayList<Category>) iCategoryService.getListCategory();
 		model.addAttribute("titleSetUpIndex", titleSetUpIndex);
 		model.addAttribute("addSurveyNameTitle", addSurveyNameTitle);
 		model.addAttribute("selectCategory", selectCategory);
 		model.addAttribute("survey",survey );
-		model.addAttribute("categoryOptionList", categoryOptionList);		
+		model.addAttribute("categoryOptionList", categoryOptionList);	
+		model.addAttribute("AddNewCategory", AddNewCategory);	
+		model.addAttribute("ViewCatDetail", ViewCatDetail);			
+		
+
+		
 		return "newsurvey";
 		
 	}
@@ -82,12 +87,16 @@ public class NewSurveyController {
 
 
 		if (result.hasErrors()) {
-			ArrayList<CategoryOption> categoryOptionList = (ArrayList<CategoryOption>) iCategoryOptionCrud.findAll();
+			ArrayList<Category> categoryOptionList = (ArrayList<Category>) iCategoryService.getListCategory();
 			model.addAttribute("titleSetUpIndex", titleSetUpIndex);
 			model.addAttribute("addSurveyNameTitle", addSurveyNameTitle);
 			model.addAttribute("selectCategory", selectCategory);
 			model.addAttribute("survey", survey);
 			model.addAttribute("categoryOptionList", categoryOptionList);
+			model.addAttribute("AddNewCategory", AddNewCategory);
+			model.addAttribute("ViewCatDetail", ViewCatDetail);		
+			
+			
 			return "newsurvey";
 		}
 
@@ -105,13 +114,16 @@ public class NewSurveyController {
 
 
 		if (iniSize - finSize == 0) {
-			ArrayList<CategoryOption> categoryOptionList = (ArrayList<CategoryOption>) iCategoryOptionCrud.findAll();
+			ArrayList<Category> categoryOptionList = (ArrayList<Category>) iCategoryService.getListCategory();
 			model.addAttribute("titleSetUpIndex", titleSetUpIndex);
 			model.addAttribute("addSurveyNameTitle", addSurveyNameTitle);
 			model.addAttribute("selectCategory", selectCategory);
 			model.addAttribute("survey", survey);
 			model.addAttribute("categoryOptionList", categoryOptionList);
 			model.addAttribute("NameNotRepeated", NameNotRepeated);
+			model.addAttribute("AddNewCategory", AddNewCategory);
+			model.addAttribute("ViewCatDetail", ViewCatDetail);		
+			
 			return "newsurvey";
 		} else {
 
@@ -131,13 +143,15 @@ public class NewSurveyController {
 			if (surveyToBeEdited != null) {
 
 				Survey survey = surveyToBeEdited;
-				ArrayList<CategoryOption> categoryOptionList = (ArrayList<CategoryOption>) iCategoryOptionCrud
-						.findAll();
+				ArrayList<Category> categoryOptionList = (ArrayList<Category>) iCategoryService.getListCategory();
 				model.addAttribute("titleSetUpIndex", titleSetUpIndex);
 				model.addAttribute("addSurveyNameTitle", addSurveyNameTitle);
 				model.addAttribute("selectCategory", selectCategory);
 				model.addAttribute("survey", survey);
 				model.addAttribute("categoryOptionList", categoryOptionList);
+				model.addAttribute("AddNewCategory", AddNewCategory);
+				model.addAttribute("ViewCatDetail", ViewCatDetail);		
+				
 				return "newsurvey";
 
 			}

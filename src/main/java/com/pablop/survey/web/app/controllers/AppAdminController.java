@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pablop.survey.web.app.editors.CategoryOptionEditor;
-import com.pablop.survey.web.app.models.entity.CategoryOption;
+import com.pablop.survey.web.app.models.entity.Category;
 import com.pablop.survey.web.app.models.entity.OptionQuestionCategory;
-import com.pablop.survey.web.app.services.ICategoryOptionCrud;
+import com.pablop.survey.web.app.services.ICategoryService;
 import com.pablop.survey.web.app.services.IOptionQuestionCategoryCrud;
 import com.pablop.survey.web.app.services.IQuestionCrud;
 
@@ -51,7 +51,7 @@ public class AppAdminController {
 	
 	
 	@Autowired
-	private ICategoryOptionCrud iCategoryOptionCrud;
+	private ICategoryService iCategoryService;
 	
 	@Autowired
 	private CategoryOptionEditor categoryOptionEditor;
@@ -77,7 +77,7 @@ public class AppAdminController {
 	@GetMapping("/setup/addnewquestionoption")
 	public String getNewQuestionOptionForm(Model model) {
 		
-		ArrayList<CategoryOption> categoryOptionList= (ArrayList<CategoryOption>) iCategoryOptionCrud.findAll();
+		ArrayList<Category> categoryOptionList= (ArrayList<Category>) iCategoryService.getListCategory();
 		OptionQuestionCategory optionQuestionCategory=new OptionQuestionCategory();
 		
 		
@@ -97,7 +97,7 @@ public class AppAdminController {
 	@PostMapping("/setup/addnewquestionoption")
 	public String addNewQuestionOption(@Valid OptionQuestionCategory optionQuestionCategory, BindingResult result,Model model) {
 		
-		ArrayList<CategoryOption> categoryOptionList= (ArrayList<CategoryOption>) iCategoryOptionCrud.findAll();
+		ArrayList<Category> categoryOptionList= (ArrayList<Category>) iCategoryService.getListCategory();
 		
 		
 		

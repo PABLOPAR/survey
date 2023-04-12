@@ -77,6 +77,12 @@ public class OptionQuestionCategory implements Serializable{
 	public void setCategoryOptionId(Long categoryOptionId) {
 		this.categoryOptionId = categoryOptionId;
 	}
+
+	@Override
+	public String toString() {
+		return "OptionQuestionCategory [id=" + id + ", categoryOptionId=" + categoryOptionId + ", optionName="
+				+ optionName + ", rankingOption=" + rankingOption + "]";
+	}
     
 	
 	

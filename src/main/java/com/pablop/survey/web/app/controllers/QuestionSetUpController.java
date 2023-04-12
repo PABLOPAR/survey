@@ -94,6 +94,9 @@ System.out.println("llego hasta aca" + category.toString());
 		
 		List<Category> categoryList= iCategoryService.getListCategory();
 		
+		model.addAttribute("iCategoryService", iCategoryService);
+		
+		
 		model.addAttribute("titleCategoryDetail", titleCategoryDetail);
 		model.addAttribute("categoryList", categoryList);
 		

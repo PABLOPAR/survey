@@ -18,12 +18,25 @@
 
 			<h5 th:text="${category.categoryName}"></h5>
 
-			<div th:each="option: ${getOptions()}">
+
+			<div th:if="${iCategoryService.GetOptionsByCategory(category)==null}">
+
+				<h6 th:text="${'Nothing to show'}"></h6>
+
+			</div>
+
+
+			<div th:if="${iCategoryService.GetOptionsByCategory(category)!=null}">
+
+				<div
+					th:each="option: ${iCategoryService.GetOptionsByCategory(category)}">
+
+
+				</div>
 
 				<h6 th:text="${option.optionName}"></h6>
 
 			</div>
-
 
 		</div>
 

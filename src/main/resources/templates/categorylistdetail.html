@@ -16,7 +16,7 @@
 
 		<div th:each="category: ${categoryList}">
 
-			<h5 th:text="${category.categoryName}"></h5>
+			<h5 th:text="${category.categoryName}" class="text-danger"></h5>
 
 
 			<div th:if="${iCategoryService.GetOptionsByCategory(category)==null}">
@@ -31,10 +31,8 @@
 				<div
 					th:each="option: ${iCategoryService.GetOptionsByCategory(category)}">
 
-
-				</div>
-
 				<h6 th:text="${option.optionName}"></h6>
+				</div>
 
 			</div>
 

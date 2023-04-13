@@ -9,69 +9,70 @@
 <body>
 	<section th:replace="components/template :: menuBar"></section>
 
-	<div class="card-header">
 
-		<h1 th:text="${titleCategoryDetail}" class="text-primary"></h1>
+	<h1 th:text="${titleCategoryDetail}" class="text-primary"></h1>
 
+	<div class="card-header card py-2">
 
 		<div th:each="category: ${categoryList}">
 
 			<div class="card  py-2">
 
-				<h4 th:text="${categoryNumber}+ ' ' +  ${category.id}" class="text-primary"></h4>
+				<h4 th:text="${categoryNumber}+ ' ' +  ${category.id}"
+					class="text-primary"></h4>
 
-				<h5 th:text="${category.categoryName}" class="text-danger"></h5>
+			</div >
+			<div class="card py-2">
+				<h4 th:text="${category.categoryName}" class="text-warning"></h4>
 
-
-
-
-
-				<div
-					th:if="${iCategoryService.GetOptionsByCategory(category)==null}">
-
-					<h6 th:text="${'Nothing to show'}"></h6>
-
-				</div>
-
-
-				<div
-					th:if="${iCategoryService.GetOptionsByCategory(category)!=null}">
+				<div class="card-body bg-light text-dark">
 
 					<div
-						th:each="option: ${iCategoryService.GetOptionsByCategory(category)}">
+						th:if="${iCategoryService.GetOptionsByCategory(category)==null}">
 
-						<h6 th:text="${option.optionName}"></h6>
+						<h5 th:text="${'Nothing to show'}"></h5>
+
 					</div>
 
-				</div>
+					<div
+						th:if="${iCategoryService.GetOptionsByCategory(category)!=null}">
 
+						<div class="row">
+							<div
+								th:each="option: ${iCategoryService.GetOptionsByCategory(category)}">
+
+								<h5 th:text="${option.optionName}" class="col-md-auto"></h5>
+							</div>
+						</div>
+
+					</div>
+				</div>
 				<div class="row">
 
-					<a th:href="@{'/app/admin/setup/addnewquestionoption/'+${category.id}}"
-						th:text="${addOption}" class="btn btn-primary  col-md-0 offset-md-1"></a> <a
+					<a
+						th:href="@{'/app/admin/setup/addnewquestionoption/'+${category.id}}"
+						th:text="${addOption}"
+						class="btn btn-primary  col-md-2 offset-md-1"></a> <a
 						th:href="@{'/app/survey/categorylistdetail/'+ ${category.id}}"
-						
-				
-						
-						
-						th:text="${selectThisOption}" class="btn btn-success  col-md-0 offset-md-7"></a>
+						th:text="${selectThisOption}"
+						class="btn btn-success  col-md-0 offset-md-7"></a>
 
 				</div>
+
 			</div>
 
+				<div class="py-1"></div>
 
-			<div class="py-1"></div>
-			
+
+
+
 		</div>
 
-
-		<a th:href="@{'/app/admin/questionsetup/addnewcategory'}"
-			th:text="${textAddNewCategory}" class="btn btn-primary"></a>
-
+				<a th:href="@{'/app/admin/questionsetup/addnewcategory'}"
+					th:text="${textAddNewCategory}" class="btn btn-danger"></a>
 
 
 	</div>
-
 
 
 

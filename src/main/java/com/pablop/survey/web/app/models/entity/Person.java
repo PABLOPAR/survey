@@ -25,10 +25,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 
-@Entity
-@Table(name="persons")
+@Entity(name="persons")
 @DiscriminatorColumn(name="type")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Person implements Serializable{
 
 	private static final long serialVersionUID = 1L;

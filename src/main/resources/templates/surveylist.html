@@ -40,13 +40,18 @@
 									<th class="text-primary" th:text="${delete}"></th>
 									<th class="text-primary" th:text="${startTest}"></th>
 								</tr>
+							
 							<tbody class="card-body">
 
 								<tr th:each="survey: ${surveyList}">
 									<td class="h5">
-										<ul>
-											<li><h4 th:text="${survey.surveyName}"></h4>
-										</ul>
+
+											<h4 th:text="${survey.surveyName}"></h4>
+										<div>
+											<a th:href="@{'/app/survey/question/questionlist'}"
+												th:text="${'List of questions'}" class="text-primary"></a>
+										</div>
+
 									</td>
 
 									<td><a th:href="@{'/app/survey/edit/'+ ${survey.id}}" th:text="${edit}"

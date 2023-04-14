@@ -9,8 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="Countries")
+@Entity(name="Countries")
 public class Country implements Serializable{
 	
 

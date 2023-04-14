@@ -12,8 +12,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name="options_questions_category")
+@Entity(name="options_questions_category")
 public class OptionQuestionCategory implements Serializable{
 
 

@@ -1,18 +1,17 @@
 package com.pablop.survey.web.app.services;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.annotation.RequestScope;
+
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 import com.pablop.survey.web.app.models.entity.Survey;
 
 @Service("peopleImplementationLocale")
-@RequestScope
 public class PeopleServiceCrudImpl implements IPeopleService {
 
 	

@@ -15,8 +15,7 @@ import com.pablop.survey.web.app.validation.ArrayNotNull;
 
 
 
-@Entity
-@Table(name="surveys")
+@Entity(name="surveys")
 public class Survey implements Serializable{
 
 	@Id

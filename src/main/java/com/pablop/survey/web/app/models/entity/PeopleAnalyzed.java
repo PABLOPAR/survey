@@ -18,9 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 
-@Entity
-@Table(name="people_analyzed")
-@DiscriminatorColumn(name="peopleAnalyzed")
+@Entity(name="people_analyzed")
 @DiscriminatorValue(value="peopleAnalyzed")
 public class PeopleAnalyzed extends Person implements Serializable{
 	

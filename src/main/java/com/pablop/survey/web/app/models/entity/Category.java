@@ -16,8 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.pablop.survey.web.app.services.IQuestionOptionService;
 
-@Entity
-@Table(name="category_options")
+@Entity(name="category_options")
 public class Category implements Serializable{
 
 

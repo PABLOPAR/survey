@@ -38,6 +38,14 @@ public class SurveyListController {
 	@Value("${text.delete}")
 	private String delete;
 	
+	@Value("${text.surveylistcontroller.listquestion}")
+	private String listQuest;
+	
+	
+	
+	
+	
+	
 	@Autowired
 	private IServiceSurvey iServiceSurvey;
 	
@@ -54,7 +62,7 @@ public class SurveyListController {
 		model.addAttribute("startTest", startTest);			
 		model.addAttribute("AddNewSurvey", AddNewSurvey);		
 		model.addAttribute("delete", delete);		
-
+		model.addAttribute("listQuest", listQuest);	
 		
 		
 		return "surveylist";

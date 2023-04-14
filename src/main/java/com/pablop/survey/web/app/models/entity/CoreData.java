@@ -11,8 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="CoreData")
+@Entity(name="CoreData")
 public class CoreData implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

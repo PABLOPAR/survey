@@ -90,7 +90,7 @@ public class AppAdminController {
 		ArrayList<Category> categoryOptionList= (ArrayList<Category>) iCategoryService.getListCategory();
 		OptionQuestionCategory optionQuestionCategory=new OptionQuestionCategory();
 		optionQuestionCategory.setCategoryOptionId(id);
-System.out.println("mirar aca:" + optionQuestionCategory.toString() );
+
 		
 		model.addAttribute("optionQuestionCategory", optionQuestionCategory);
 		model.addAttribute("addOption", addOption);
@@ -122,7 +122,6 @@ System.out.println("mirar aca:" + optionQuestionCategory.toString() );
 			model.addAttribute("addRankingExplanation", addRankingExplanation);
 			return "addnewquestionoption";
 		}
-System.out.println("Cumple" + optionQuestionCategory);
 		
 		iOptionQuestionCategoryCrud.save(optionQuestionCategory);
 		status.setComplete();

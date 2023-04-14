@@ -1,8 +1,6 @@
 package com.pablop.survey.web.app.models.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,28 +8,33 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name="questions")
+
+
+@Entity(name="questions")
 public class Question implements Serializable{
 	
 	@Id
+	@Column
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	private static final long serialVersionUID = 1L;
 
-	
+		
 	@NotEmpty
 	@Column(name="question")
 	private String question;
 	
-	@NotNull
-	@Column(name = "chosen_value")
-	private QuestionOption chosenValue;
 
+//	@Column(name = "chosen_value")
+//	private QuestionOption chosenValue;
+
+	@Max(10)
+	@Min(1)
 	@Column(name="question_Importance")
 	private int questionImportance;
 	
@@ -47,15 +50,9 @@ public class Question implements Serializable{
 	
 	
 	
-	public Question(Integer questionId, String question) {
-		super();
-		this.question = question;
-
-	}
-
 	public Question() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	
 
@@ -78,13 +75,13 @@ public class Question implements Serializable{
 
 
 
-	public QuestionOption getChosenValue() {
-		return chosenValue;
-	}
-
-	public void setChosenValue(QuestionOption chosenValue) {
-		this.chosenValue = chosenValue;
-	}
+//	public QuestionOption getChosenValue() {
+//		return chosenValue;
+//	}
+//
+//	public void setChosenValue(QuestionOption chosenValue) {
+//		this.chosenValue = chosenValue;
+//	}
 
 	public int getQuestionImportance() {
 		return questionImportance;

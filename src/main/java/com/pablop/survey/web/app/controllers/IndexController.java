@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.pablop.survey.web.app.editors.ICountryEditor;
-import com.pablop.survey.web.app.editors.UpperCaseEditor;
+import com.pablop.survey.web.app.editors.FormatEditorImp;
 import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 import com.pablop.survey.web.app.models.entity.User;
@@ -144,7 +144,7 @@ public class IndexController {
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Country.class, "country", (PropertyEditor) countryEditor);
-		binder.registerCustomEditor(String.class, "firstName", new UpperCaseEditor());
+		binder.registerCustomEditor(String.class, "firstName", new FormatEditorImp());
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
@@ -172,12 +172,6 @@ public class IndexController {
 
 
 
-
-
-	
-
-	
-	
 
 	
 }

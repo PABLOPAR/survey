@@ -12,8 +12,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 
-@Entity
-@Table(name="question_options")
+@Entity(name="question_options")
 public class QuestionOption implements Serializable{
 
 

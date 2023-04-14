@@ -65,6 +65,7 @@ public class SurveyListController {
 		model.addAttribute("listQuest", listQuest);	
 		
 		
+		
 		return "surveylist";
 	}
 	

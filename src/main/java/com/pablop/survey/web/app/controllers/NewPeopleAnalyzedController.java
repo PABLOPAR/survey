@@ -153,7 +153,6 @@ public class NewPeopleAnalyzedController {
 
 			peopleAnalyzed = peopleAnalyzedList.findPeopleById(id);
 			
-			System.out.println("Persona analizada "+ peopleAnalyzed.toString());
 			
 			
 		} else {

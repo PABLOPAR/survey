@@ -63,7 +63,7 @@ public class CategoryServiceImplCrud implements ICategoryService {
 		if (category != null && findCategoryById(category.getId()) != null) {
 
 			for (OptionQuestionCategory option : allOptionQuestion) {
-				System.out.println("Llega???");
+
 
 				if (option.getCategoryOptionId() == category.getId()) {
 					categoryOptionSelected.add(option);

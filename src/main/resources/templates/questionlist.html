@@ -7,75 +7,38 @@
 </head>
 <body>
 	<section th:replace="components/template :: menuBar"></section>
-<!-- 	<div class="container"> -->
-<!-- 		<h1 th:text="${title}" -->
-<!-- 			class="text-primary border border-primary border-top-0 border-left-0 border-right-0 border-bottom-5 p-2 "></h1> -->
+	<div class="container">
+		<h1 th:text="${QuestionListTitle}"
+			class="text-primary border border-primary border-top-0 border-left-0 border-right-0 border-bottom-5 p-2 "></h1>
+
+		<div class="card-header">
+
+			<h4 th:text="${headerTitle}"></h4>
+
+		</div>
+		<div class="card-body">
+
+			<div th:if="${#lists.isEmpty(questionsIncluded)}"></div>
+			<h5 class="text-danger" th:text="${NoRegistersOnList}"></h5>
+
+		<div th:if="${not #lists.isEmpty(questionsIncluded)}">
+			<div th:each="question: ${questionsIncluded}"></div>
+			<h5 th:text="${question.question}"></h5>
+
+		</div>
+
+		</div>
+
+							<div>
+								<a th:href="@{/app/survey/question/newquestion}"
+									th:text="${addNewQuestion}" class="btn btn-danger"></a>
+							</div>
+
+	</div>
 
 
 
-
-<!-- 		<form th:action="@{type}" th:object="${allQuestionChosenValues}" -->
-<!-- 			method="post"> -->
-
-
-<!-- 			<div class="h5"> -->
-
-<!-- 				<div th:if="${questionList.size()==0}" th:text="${nothingShow}"></div> -->
-
-
-<!-- 				<div th:each="question: ${questionList}"> -->
-
-
-<!-- 					<div -->
-<!-- 						class="form-group row border border-secondary border-top-0 border-left-0 border-right-0"> -->
-<!-- 						<label class="col-form-label col-sm-5" -->
-<!-- 							th:text="${question.question}"></label> -->
-
-<!-- 						<div class="col-form-label col-sm-2" -->
-<!-- 							th:each="val: ${posibleValues}"> -->
-
-<!-- 							<input type="radio" th:value="${val}"> -->
-
-<!-- 															th:field="*{question.chosenValue}"						 -->
-
-
-<!-- 							<label class="col-form-label col-sm-2" th:for="${val}" -->
-<!-- 								th:text="${val}"></label> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-
-<!-- 			<div class='col-xs-3'> -->
-<!-- 				<div class= "form-group row"> -->
-
-
-
-
-<!-- 							<div class="col-sm-2"> -->
-<!-- 								<input type="submit" class="btn btn-primary"> -->
-<!-- 							</div> -->
-
-
-
-
-
-<!-- 							<div> -->
-<!-- 								<a th:href="@{redirecttonewquestion}" -->
-<!-- 									th:text="${addNewQuestion}" class="btn btn-danger"></a> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-
-
-<!-- 						</div> -->
-
-
-
-
-
-
-<!-- 		</form> -->
-<!-- 	</div> -->
+	</div>
 
 	<section th:replace="components/template :: footer"></section>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -30,6 +30,7 @@ public class Question implements Serializable{
 	private String question;
 	
 
+
 //	@Column(name = "chosen_value")
 //	private QuestionOption chosenValue;
 

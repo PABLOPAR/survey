@@ -38,7 +38,7 @@ public class SurveyListController {
 	@Value("${text.delete}")
 	private String delete;
 	
-	@Value("${text.surveylistcontroller.listquestion}")
+	@Value("${text.SurveyListController.listQuest}")
 	private String listQuest;
 	
 	

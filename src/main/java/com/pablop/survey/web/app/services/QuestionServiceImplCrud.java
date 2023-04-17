@@ -32,8 +32,15 @@ public class QuestionServiceImplCrud implements IQuestionService{
 	@Override
 	@Transactional
 	public void addQuestion(Question question) {
-		iQuestionCrud.save(question);
-		
+
+		if (question != null) {
+
+			if (findByQuestionText(question.getQuestion()) == null) {
+
+				iQuestionCrud.save(question);
+
+			}
+		}
 	}
 
 	@Override
@@ -44,6 +51,27 @@ public class QuestionServiceImplCrud implements IQuestionService{
 	}
 	
 	
+	
+	public Question findByQuestionText(String questionText) {
+
+		Question questionSearched = null;
+		List<Question> questionList = questionList();
+		int index = 0;
+
+		while (index < questionList.size() && questionSearched == null) {
+
+			if (questionList.get(index).getQuestion().equalsIgnoreCase(questionText)) {
+				questionSearched = questionList.get(index);
+
+			} else {
+
+				index++;
+			}
+
+		}
+
+		return questionSearched;
+	}
 	
 
 }

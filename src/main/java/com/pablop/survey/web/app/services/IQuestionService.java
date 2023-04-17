@@ -10,6 +10,7 @@ public interface IQuestionService {
 	public List<Question> questionList();
 	public void addQuestion(Question question);
 	public Question findQuestionById(Long id);
+	public Question findByQuestionText(String questionText);
 
 
 }

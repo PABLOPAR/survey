@@ -11,31 +11,52 @@
 		<h1 th:text="${QuestionListTitle}"
 			class="text-primary border border-primary border-top-0 border-left-0 border-right-0 border-bottom-5 p-2 "></h1>
 
-		<div class="card-header">
 
-			<h4 th:text="${headerTitle}"></h4>
+		<div class="card">
 
-		</div>
+			<table class="col-sm-16" th:if="${!questionsIncluded.isEmpty()}">
 
 
-		<div th:if="${not #lists.isEmpty(questionsIncluded)}">
-			<div th:each="question: ${questionsIncluded}">
-				<div class="card-body">
-					<h5 th:text="${question.question}"></h5>
-				</div>
+				<thead class="card-header">
+					<tr class="h4">
+						<th class="text-danger" th:text="${questionTitleCard}"></th>
+						<th class="text-danger" th:text="${edit}"></th>
+					</tr>
+				<tbody class="card-body">
 
-			</div>
+					<tr th:each="question: ${questionsIncluded}">
+
+						<td>
+							<div>
+								<h5 th:text="${question.question}"></h5>
+							</div>
+						</td>
+
+						<td>
+
+							<div>
+								<a th:href="@{'/app/survey/question/edit/'+ ${question.id}}"
+									th:text="${edit}" class="btn btn-success"></a>
+							</div>
+						</td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+
+
 			<div th:if="${#lists.isEmpty(questionsIncluded)}">
-				<h5 class="text-danger" th:text="${NoRegistersOnList}"></h5>
+				<h5  th:text="${NoRegistersOnList}"></h5>
 			</div>
-		</div>
 
+
+		</div>
 		<div>
 			<a th:href="@{/app/survey/question/newquestion}"
 				th:text="${addNewQuestion}" class="btn btn-danger"></a>
 		</div>
-
-	</div>
 
 
 

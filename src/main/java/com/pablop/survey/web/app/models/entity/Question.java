@@ -17,6 +17,13 @@ import javax.validation.constraints.NotEmpty;
 @Entity(name="questions")
 public class Question implements Serializable{
 	
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", question=" + question + ", questionImportance=" + questionImportance
+				+ ", peopleAnalyzed=" + peopleAnalyzed + ", surveyName=" + surveyName + ", researcherUser="
+				+ researcherUser + "]";
+	}
+
 	@Id
 	@Column
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

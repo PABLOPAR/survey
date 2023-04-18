@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -55,6 +56,19 @@ public class QuestionController {
 	@Value("${text.QuestionController.duplicateQuestion}")
 	public String duplicateQuestion;
 	
+	@Value("${text.indexController.analyzedPeople.edit}")
+	private String edit;
+	
+	@Value("${text.QuestionSheetController.showQuestion.tab}")
+	private String questionTitleCard;
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -69,8 +83,8 @@ public class QuestionController {
 		model.addAttribute("questionsIncluded",questionsIncluded );
 		model.addAttribute("NoRegistersOnList",NoRegistersOnList );
 		model.addAttribute("addNewQuestion",addNewQuestion );
-
-		
+		model.addAttribute("edit", edit);	
+		model.addAttribute("questionTitleCard", questionTitleCard);		
 
 		
 		
@@ -130,6 +144,41 @@ public class QuestionController {
 		}
 		return "redirect:/app/survey/question/questionlist";
 	}
+	
+	
+	@GetMapping("/edit/{id}")
+	public String editQuestion(@PathVariable Long id, Model model) {
+
+		Question question = new Question();
+
+		if ( id > 0) {
+
+			question = iQuestionService.findQuestionById(id);
+
+			if (question == null) {
+				return "redirect:/app/survey/question/questionlist";
+			}
+
+			else {
+
+				model.addAttribute("question", question);
+				model.addAttribute("title", title);
+				model.addAttribute("addYourQuestion", addYourQuestion);
+				model.addAttribute("valueExplain", valueExplain);
+				model.addAttribute("send", send);
+				model.addAttribute("edit", edit);
+				model.addAttribute("questionTitleCard", questionTitleCard);
+
+				System.out.println("Mirar aca:" + question.toString());
+
+				return "newquestion";
+			}
+
+		}
+
+		return "redirect:/app/survey/question/newquestion";
+	}
+	
 	
 	
 }

@@ -3,15 +3,18 @@ package com.pablop.survey.web.app.editors;
 import java.beans.PropertyEditorSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.services.CountryListService;
 
 @Component
-public class CountryPropertyEditor extends PropertyEditorSupport{
+@Primary
+public class CountryPropertyEditor extends PropertyEditorSupport implements ICountryEditor{
 
 	@Autowired
-	private CountryListService countryListService;
+	private CountryListService countryListServiceImpl;
 	
 	
 	
@@ -23,10 +26,17 @@ public class CountryPropertyEditor extends PropertyEditorSupport{
 		if(text!=null && text.length()>0) {
 			
 			
-		this.setValue(countryListService.searchCountryByName(text));
+		this.setValue(countryListServiceImpl.searchCountryByName(text));
 		}else {
 			setValue(null);
 		}
+	}
+
+
+	@Override
+	public Country getCountrybyId(Long id) {
+		// Not yet Implemented
+		return null;
 	}
 	
 	

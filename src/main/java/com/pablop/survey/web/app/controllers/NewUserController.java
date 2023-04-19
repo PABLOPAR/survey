@@ -1,5 +1,7 @@
 package com.pablop.survey.web.app.controllers;
 
+import java.beans.PropertyEditor;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -18,11 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.pablop.survey.web.app.editors.CountryPropertyEditor;
+import com.pablop.survey.web.app.editors.ICountryEditor;
 import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.User;
 import com.pablop.survey.web.app.services.CountryListService;
-import com.pablop.survey.web.app.services.MainAppService;
+import com.pablop.survey.web.app.services.IUserService;
 
 @Controller
 @RequestMapping("app/user")
@@ -58,18 +60,23 @@ public class NewUserController {
 	
 	
 	@Autowired
-	private MainAppService mainAppService;
+	private IUserService iUserService;
 	
 	@Autowired
 	private CountryListService countryListService;
 	
 	@Autowired
-	private CountryPropertyEditor countryEditor;
+	private ICountryEditor countryEditor;
 	
+	@Value("${text.indexController.userProfile.titleUserProfile}")
+	private String titleUserProfile;
+	
+	@Value("${text.indexController.analyzedPeople.country}")
+	private String country;
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(Country.class, "country", countryEditor);
+		binder.registerCustomEditor(Country.class, "country", (PropertyEditor) countryEditor);
 	}
 	
 	
@@ -109,25 +116,40 @@ public class NewUserController {
 			return "newuser";
 		}
 
+		iUserService.save(user);
 		
-		if(mainAppService.addUser(user)!=true) {
-			model.addAttribute("title", title);
-			model.addAttribute("incomplete", incomplete);
-			model.addAttribute("fieldUserProfileFirstName", fieldUserProfileFirstName);
-			model.addAttribute("fieldUserProfileLastName", fieldUserProfileLastName);
-			model.addAttribute("fieldUserProfileEmail", fieldUserProfileEmail);
-			model.addAttribute("fieldUserProfileBirthday", fieldUserProfileBirthday);
-			model.addAttribute("duplicateEmail", "duplicateEmail");
-			model.addAttribute("title1", title1);	
-			model.addAttribute("title2", title2);
-			model.addAttribute("email", user.getEmail());			
-			model.addAttribute("countryText", countryText);
-			return "newuser";
-		};
 
 		status.setComplete();
 
 		return "redirect:/app/index";
 	}
 
+	@GetMapping("/userprofile")
+	public String userProfile(Model model) {
+
+		Date paulBirthay = new Date(07 / 02 / 1975);
+		model.addAttribute("titleUserProfile", titleUserProfile);
+		model.addAttribute("incomplete", incomplete);
+		model.addAttribute("fieldUserProfileFirstName", fieldUserProfileFirstName);
+		model.addAttribute("fieldUserProfileLastName", fieldUserProfileLastName);
+		model.addAttribute("fieldUserProfileEmail", fieldUserProfileEmail);
+		model.addAttribute("fieldUserProfileBirthday", fieldUserProfileBirthday);
+		model.addAttribute("fieldUserProfileCountry", country);	
+
+	
+	    Country countryUser= new Country ("Antarctica");
+	    
+
+		User user = new User(paulBirthay, "Paul", "paul@gmail.com");
+		user.setCountry(countryUser);
+		user.setEmail("paul@gmail.com");
+		user.setLastName("Smith");
+
+		model.addAttribute("user", user);
+		return "userprofile";
+	}
+	
+	
+	
+	
 }

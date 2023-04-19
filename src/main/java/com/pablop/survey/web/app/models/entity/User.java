@@ -1,29 +1,54 @@
 package com.pablop.survey.web.app.models.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class User extends Person {
+
+
+@Entity(name="users")
+@DiscriminatorValue(value="user")
+public class User extends Person implements Serializable{
+
+
+	
+	private static final long serialVersionUID = 1L;
 
 	@NotEmpty
+	@Column(name="last_names")
 	private String lastName;
 
 	@NotNull
 	@Past
+	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthday;
 
 	@NotNull
+	@Column(name="countries")	
 	private Country country;
 
+	@Column(name="user_list_survys")
 	private ArrayList<Survey> userListSurvey;
 
+	@Column(name="user_people_analyzed")
 	private ArrayList<PeopleAnalyzed> userPeopleAnalyzed;
 
 	public User(Date birthday, String firstName, String email) {

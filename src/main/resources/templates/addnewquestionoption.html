@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${head}"></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+</head>
+
+
+<body>
+	<section th:replace="components/template :: menuBar"></section>
+	<div class="container">
+
+		<div class="card">
+
+			<div class="card-header">
+
+				<h1 th:text="${title}" class="text-primary"></h1>
+
+			</div>
+
+			<div class="card-body">
+
+				<form th:action="@{/app/admin/setup/addnewquestionoption}"
+					th:object="${optionQuestionCategory}" method="post">
+					<div class="h4">
+						<label for="optionName" th:text="${addOption}"
+							class="text-primary"></label>
+						<div>
+							<input type="text" id="optionName" th:field="*{optionName}"
+								class="form-control col-sm-3"
+								th:errorclass=" 'form-control alert-danger' ">
+						</div>
+					</div>
+
+					<div th:if="${optionQuestionCategory.id!=null}">
+
+						<div th:if="${#fields.hasErrors('optionName')}"
+							th:errors="*{optionName}"
+							class="form-text text-danger   col-sm-5"></div>
+					</div>
+
+
+
+					<h4 class="h4 text-primary" th:text="${categoryAlreadySelected}"></h4>
+					<div>
+
+						<h4 class="h4"
+							th:text="${optionQuestionCategory.categoryOptionId}"></h4>
+						<div></div>
+					</div>
+
+
+					<div class="h4">
+						<label for="rankingOption" th:text="${addRanking}"
+							class="text-primary"></label>
+						<div>
+							<input type="number" id="rankingOption"
+								th:field="*{rankingOption}" class="form-control col-sm-3"
+								th:errorclass=" 'form-control alert-danger' ">
+						</div>
+					</div>
+
+
+
+						<div th:if="${#fields.hasErrors('rankingOption')}"
+							th:errors="*{rankingOption}"
+							class="form-text text-danger   col-sm-5"></div>
+
+
+
+					<h6 th:text="${addRankingExplanation}"></h6>
+
+
+
+
+
+					<div class="form-group row">
+						<div>
+
+							<input type="submit" class="btn btn-primary">
+
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<section th:replace="components/template :: interceptor"></section>
+	<section th:replace="components/template :: footer"></section>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 package com.pablop.survey.web.app.controllers;
 
+import java.beans.PropertyEditor;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -16,16 +18,18 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.pablop.survey.web.app.editors.CountryPropertyEditor;
-import com.pablop.survey.web.app.editors.UpperCaseEditor;
+import com.pablop.survey.web.app.editors.ICountryEditor;
+import com.pablop.survey.web.app.editors.FormatEditorImp;
 import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
-import com.pablop.survey.web.app.services.PeopleService;
+import com.pablop.survey.web.app.services.CountryListService;
+import com.pablop.survey.web.app.services.IPeopleService;
 
 @Controller
 @SessionAttributes("peopleAnalyzed") 
@@ -47,51 +51,67 @@ public class NewPeopleAnalyzedController {
 	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldPeopleTestedLastName}")
 	private String fieldPeopleTestedLastName;
 
+	@Value("${text.indexController.analyzedPeople.lastName}")
+	private String lastName;
+
 	@Value("${text.newPeopleAnalyzed.loadForm.title}")
 	private String title;
-
+	
 	@Value("${text.newPeopleAnalyzed.loadForm.send}")
 	private String send;
 	
+	@Value("${text.indexController.analyzedPeople.edit}")
+	private String edit;
+	
+	@Value("${text.delete}")
+	private String delete;
 	
 	@Autowired
-	private CountryPropertyEditor countryEditor;
+	private CountryListService countryListService;
 	
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(String.class, "firstName", new UpperCaseEditor());
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		dateFormat.setLenient(false);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
-		binder.registerCustomEditor(Country.class, "country",countryEditor);
-
-	}
+	
+	@Autowired
+	private ICountryEditor countryEditor;
 	
 
 	@Autowired
-	private PeopleService peopleService;
+	private IPeopleService iPeopleService;
 	
+	@Autowired
+	private IPeopleService peopleAnalyzedList;
 	
 	@ModelAttribute("countryList")
 	private List<Country> coutryList() {
-		return peopleService.countryListObject();
+		return countryListService.getCountryListObject();
 	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(Country.class, "country", (PropertyEditor) countryEditor);
+		binder.registerCustomEditor(String.class, "firstName", new FormatEditorImp());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+
+	
+	}
+	
+	
 
 	@GetMapping("/new")
 	public String loadForm(Model model) {
 
-		Country countryClaude = peopleService.searchCountryByName("Ukraine");
-
 		PeopleAnalyzed peopleAnalyzed = new PeopleAnalyzed();
 
-		peopleAnalyzed.setCountry(countryClaude);
-		peopleAnalyzed.setFirstName("Diego");
+		peopleAnalyzed.setCountry(peopleAnalyzed.getCountry());
+		
 		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
 		model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
 		model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);
 		model.addAttribute("fieldPeopleProfileFirstName", fieldPeopleProfileFirstName);
 		model.addAttribute("fieldPeopleTestedCountry", fieldPeopleTestedCountry);
 		model.addAttribute("fieldPeopleTestedLastName", fieldPeopleTestedLastName);
+		model.addAttribute("lastName", lastName);		
 		model.addAttribute("title", title);
 		model.addAttribute("send", send);
 
@@ -102,21 +122,57 @@ public class NewPeopleAnalyzedController {
 	public String loadPeopleAnalyzedData(@Valid PeopleAnalyzed peopleAnalyzed, BindingResult result, Model model,
 			SessionStatus status) {
 
+
+		
+		
 		if (result.hasErrors()) {
 			model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
 			model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);
 			model.addAttribute("fieldPeopleProfileFirstName", fieldPeopleProfileFirstName);
 			model.addAttribute("fieldPeopleTestedCountry", fieldPeopleTestedCountry);
 			model.addAttribute("fieldPeopleTestedLastName", fieldPeopleTestedLastName);
+			model.addAttribute("lastName", lastName);
 			model.addAttribute("title", title);
 			return "newpeopleanalyzed";
 		}
 
-		peopleService.addPeopleAnalyzed(peopleAnalyzed);
+		iPeopleService.addPeopleAnalyzed(peopleAnalyzed);
 
 		status.setComplete();
 
-		return "redirect:/app/peopleanalyzed";
+		return "redirect:/app/survey/peopleanalyzed";
 	}
 
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable(value = "id") Long id, Model model) {
+
+		PeopleAnalyzed peopleAnalyzed = null;
+		String urlResult="newpeopleanalyzed";
+
+		if (id > 0) {
+
+			peopleAnalyzed = peopleAnalyzedList.findPeopleById(id);
+			
+			
+			
+		} else {
+			urlResult= "redirect:peopleanalyzed";
+		}
+		
+		model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
+		model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);
+		model.addAttribute("fieldPeopleProfileFirstName", fieldPeopleProfileFirstName);
+		model.addAttribute("fieldPeopleTestedCountry", fieldPeopleTestedCountry);
+		model.addAttribute("fieldPeopleTestedLastName", fieldPeopleTestedLastName);
+		model.addAttribute("lastName", lastName);
+		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
+		model.addAttribute("title", edit);
+		
+		
+		return urlResult;
+	}
+
+	
+
+	
 }

@@ -23,9 +23,9 @@ public class QuestionValidatorImpl implements ItemsValidator{
 
 //		ValidationUtils.rejectIfEmpty(errors, "question", "NotEmpty");
 
-		if (question.getQuestionWeighting()>10 || question.getQuestionWeighting()<0) {
-			errors.rejectValue("questionWeighting", "InvalidRange");
-		}
+//		if (question.getQuestionWeighting()>10 || question.getQuestionWeighting()<0) {
+//			errors.rejectValue("questionWeighting", "InvalidRange");
+//		}
 	}
 
 }

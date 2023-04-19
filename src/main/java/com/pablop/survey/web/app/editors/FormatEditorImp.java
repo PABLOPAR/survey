@@ -2,7 +2,7 @@ package com.pablop.survey.web.app.editors;
 
 import java.beans.PropertyEditorSupport;
 
-public class UpperCaseEditor extends PropertyEditorSupport{
+public class FormatEditorImp extends PropertyEditorSupport{
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
@@ -10,6 +10,9 @@ public class UpperCaseEditor extends PropertyEditorSupport{
 		setValue(text.toUpperCase().trim());
 	}
 
+
+
+	
 	
 	
 }

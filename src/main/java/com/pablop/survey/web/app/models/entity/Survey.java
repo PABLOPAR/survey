@@ -1,52 +1,32 @@
 package com.pablop.survey.web.app.models.entity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 
 import com.pablop.survey.web.app.validation.ArrayNotNull;
 
+public class Survey {
 
 
-@Entity(name="surveys")
-public class Survey implements Serializable{
-
-	@Id
-	@Column
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-
-	private static final long serialVersionUID = 1L;
-
-	@Column(name="survey_name")
-	@NotEmpty
 	public  String surveyName;
 	
 	@ArrayNotNull
-	@Column(name="survey_question")
-	private ArrayList<Question> surveyQuestions= new ArrayList<Question>();
-
-	@Column(name="survey_score")
+	private ArrayList<Question> surveyQuestions;
+	
 	private Double surveyScore;
 	
-	@Column(name="people_analized")
 	private PeopleAnalyzed peopleAnalized; 
 	
-	@Column (name="category_option_id")
-    private Long categoryOptionId;
-	
-	@Column(name="users")
 	private User user;
 	
-	@Column
 	private String type;
+
+	
+	public Survey(String surveyName, PeopleAnalyzed peopleAnalized) {
+		super();
+		this.surveyName = surveyName;
+		this.peopleAnalized = peopleAnalized;
+		surveyQuestions= new ArrayList<Question>();
+	}
 
 	
 	public Survey() {
@@ -111,44 +91,6 @@ public class Survey implements Serializable{
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-
-	public Long getId() {
-		return id;
-	}
-
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-
-	public PeopleAnalyzed getPeopleAnalized() {
-		return peopleAnalized;
-	}
-
-
-	public void setPeopleAnalized(PeopleAnalyzed peopleAnalized) {
-		this.peopleAnalized = peopleAnalized;
-	}
-
-
-	public Long getCategoryOptionId() {
-		return categoryOptionId;
-	}
-
-
-	public void setCategoryOptionId(Long categoryOptionId) {
-		this.categoryOptionId = categoryOptionId;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Survey [id=" + id + ", surveyName=" + surveyName + ", surveyQuestions=" + surveyQuestions
-				+ ", surveyScore=" + surveyScore + ", peopleAnalized=" + peopleAnalized + ", categoryOptionId="
-				+ categoryOptionId + ", user=" + user + ", type=" + type + "]";
 	}
 	
 	

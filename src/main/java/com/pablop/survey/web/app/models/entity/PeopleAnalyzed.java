@@ -1,47 +1,25 @@
 	package com.pablop.survey.web.app.models.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
-
-@Entity(name="people_analyzed")
-@DiscriminatorValue(value="peopleAnalyzed")
-public class PeopleAnalyzed extends Person implements Serializable{
+public class PeopleAnalyzed extends Person{
 	
-
-	private static final long serialVersionUID = 1L;
-
-//	@Size(min=2)
-	@Column(name="last_name")
+	@Size(min=2)
 	private String lastName;
-	
-	@Column(name="id_User")
-	Long idPerson;
-	
 	
 	@Past
 	@NotNull
-	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
 	
-	
-	
-//	@NotNull
+	@NotNull
 	private Country country;
 
 
@@ -62,6 +40,12 @@ public class PeopleAnalyzed extends Person implements Serializable{
 	}
 
 
+	@Override
+	public String toString() {
+		return "PeopleAnalyzed [lastName=" + lastName + ", getCountry()=" + getCountry() + ", getBirthday()="
+				 + ", getFirstName()=" + getFirstName() + ", getEmail()=" + getEmail() + ", toString()="
+				+ super.toString() + "]";
+	}
 
 	public Date getBirthday() {
 		return birthday;
@@ -74,35 +58,13 @@ public class PeopleAnalyzed extends Person implements Serializable{
 	public Country getCountry() {
 		return country;
 	}
-	
-	public String getCountryString() {
-		return country.getName();
-	}
 
 	public void setCountry(Country country) {
 		this.country = country;
 	}
 
-	public Long getIdPerson() {
-		return idPerson;
-	}
-
-	public void setIdPerson(Long idPerson) {
-		this.idPerson = idPerson;
-	}
 
 
-
-	@Override
-	public String toString() {
-		return "PeopleAnalyzed [lastName=" + lastName + ", getCountry()=" + getCountry() + ", getBirthday()="
-				+ ", getFirstName()=" + getFirstName() + ", getEmail()=" + getEmail() + ", toString()="
-				+ super.toString() + "]";
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	
 	
 	

@@ -1,41 +1,27 @@
 package com.pablop.survey.web.app.controllers;
 
-import java.beans.PropertyEditor;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.validation.Valid;
-
-import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.pablop.survey.web.app.editors.ICountryEditor;
-import com.pablop.survey.web.app.editors.FormatEditorImp;
 import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.PeopleAnalyzed;
 import com.pablop.survey.web.app.models.entity.User;
-import com.pablop.survey.web.app.services.CountryListService;
-import com.pablop.survey.web.app.services.IPeopleService;
+import com.pablop.survey.web.app.services.PeopleService;
 
 @Controller
 @RequestMapping("app")
-@SessionAttributes("peopleAnalyzed")
+@SessionAttributes("AnalyzedList")
 public class IndexController {
 
 	public String head = "TRUST";
@@ -100,59 +86,17 @@ public class IndexController {
 	@Value("${text.indexController.analyzedPeople.textTimeSpent}")
 	private String TextSpentTime;
 	
-	@Value("${text.indexController.index.showButtonTest}")
-	private String showButtonTest;
 	
-	@Value("${text.indexController.creationDate}")
-	private String creationDateText;
 	
-	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.addNewUser}")
-	private String addNewUser;
-	
-	@Value("${text.indexController.analyzedPeople.edit}")
-	private String edit;
-	
-	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldPeopleTestedEmail}")
-	private String fieldPeopleTestedEmail;
-
-	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldPeopleTestedBirthday}")
-	private String fieldPeopleTestedBirthday;
-
-	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldPeopleProfileFirstName}")
-	private String fieldPeopleProfileFirstName;
-
-	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldPeopleTestedCountry}")
-	private String fieldPeopleTestedCountry;
-
-	@Value("${text.PeopleAnalyzedController.peopleTestedProfile.fieldPeopleTestedLastName}")
-	private String fieldPeopleTestedLastName;
-
-
 	
 	@Autowired
-	private CountryListService countryListService;
-	
-	@ModelAttribute("countryList")
-	private List<Country> coutryList() {
-		return countryListService.getCountryListObject();
-	}
+	@Qualifier("peopleImplementationLocale")
+	private PeopleService peopleAnalyzedList;
 
-	@Autowired
-	private ICountryEditor countryEditor;
-	
-
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(Country.class, "country", (PropertyEditor) countryEditor);
-		binder.registerCustomEditor(String.class, "firstName", new FormatEditorImp());
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		dateFormat.setLenient(false);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
-
-
-	
-	}
-
+//	@ModelAttribute("AnalyzedList")
+//	public List<PeopleAnalyzed> analyzedList() {
+//		return this.peopleAnalyzedList.getPeopleAnalyzedList();
+//	}
 
 	@GetMapping(value = { "/index", "home" })
 	public String index(Model model) {
@@ -162,18 +106,55 @@ public class IndexController {
 		model.addAttribute("firstAction", firstAction);
 		model.addAttribute("firstQuestion", firstQuestion);
 		model.addAttribute("secondQuestion", secondQuestion);
-		model.addAttribute("showButtonTest", showButtonTest);	
-		
-		
-		
 		return "index";
 
 	}
 
+	@GetMapping("/userprofile")
+	public String userProfile(Model model) {
 
-
-
+		Date paulBirthay = new Date(07 / 02 / 1975);
+		model.addAttribute("titleUserProfile", titleUserProfile);
+		model.addAttribute("incomplete", incomplete);
+		model.addAttribute("fieldUserProfileFirstName", fieldUserProfileFirstName);
+		model.addAttribute("fieldUserProfileLastName", fieldUserProfileLastName);
+		model.addAttribute("fieldUserProfileEmail", fieldUserProfileEmail);
+		model.addAttribute("fieldUserProfileBirthday", fieldUserProfileBirthday);
+		model.addAttribute("fieldUserProfileCountry", country);	
+		
 	
+	    Country countryUser= new Country ("Antarctica");
+	    
+
+		User user = new User(paulBirthay, "Paul", "paul@gmail.com");
+		user.setCountry(countryUser);
+		user.setEmail("paul@gmail.com");
+		user.setLastName("Smith");
+
+		model.addAttribute("user", user);
+		return "userprofile";
+	}
+
+	@GetMapping("/peopleanalyzed")
+	public String analyzedPeople(Model model) {
+
+		List<PeopleAnalyzed> AnalyzedList = peopleAnalyzedList.getPeopleAnalyzedList();
+		System.out.println("Ver aca:"+AnalyzedList.toString() );
+
+		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
+		model.addAttribute("nothingShow", nothingShow);
+		model.addAttribute("name", name);
+		model.addAttribute("birthday", birthday);
+		model.addAttribute("country", country);
+		model.addAttribute("email", email);
+		model.addAttribute("lastName", lastName);
+		model.addAttribute("noData", noData);
+		model.addAttribute("AnalyzedList", AnalyzedList);
+		model.addAttribute("TextSpentTime", TextSpentTime);	
+		
+		
+
+		return "peopleanalyzed";
+	}
+
 }
-	
-

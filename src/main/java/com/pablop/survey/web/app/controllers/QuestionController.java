@@ -1,5 +1,6 @@
 package com.pablop.survey.web.app.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.pablop.survey.web.app.models.entity.IdRegister;
 import com.pablop.survey.web.app.models.entity.Question;
 import com.pablop.survey.web.app.services.IQuestionService;
+import com.pablop.survey.web.app.services.ISupportForm;
 
 
 @Controller
@@ -28,6 +31,9 @@ public class QuestionController {
 
 	@Autowired
 	private IQuestionService iQuestionService;
+	
+	@Autowired
+	ISupportForm iSupportForm;
 	
 	@Value("${text.QuestionController.QuestionListTitle}")
 	public String QuestionListTitle;
@@ -62,12 +68,30 @@ public class QuestionController {
 	@Value("${text.QuestionSheetController.showQuestion.tab}")
 	private String questionTitleCard;
 	
+	@Value("${text.select}")
+	public String select;
+	
+	@Value("${text.QuestionSheetController.QuestionOptionTitle}")
+	public String QuestionOptionTitle;
+	
+//	@Value("${}")
+//	public String ;
+//	
+//	@Value("${}")
+//	public String ;
+	
+//	@Value("${}")
+//	public String ;
+//	
+//	@Value("${}")
+//	public String ;
 	
 	
-	
-	
-	
-	
+//	@Value("${}")
+//	public String ;
+//	
+//	@Value("${}")
+//	public String ;
 	
 	
 	
@@ -78,6 +102,10 @@ public class QuestionController {
 	
 		List<Question> questionsIncluded= iQuestionService.questionList();
 		
+		
+		
+		IdRegister idRegister= new IdRegister();
+		
 		model.addAttribute("QuestionListTitle", QuestionListTitle);
 		model.addAttribute("headerTitle",headerTitle );
 		model.addAttribute("questionsIncluded",questionsIncluded );
@@ -85,8 +113,12 @@ public class QuestionController {
 		model.addAttribute("addNewQuestion",addNewQuestion );
 		model.addAttribute("edit", edit);	
 		model.addAttribute("questionTitleCard", questionTitleCard);		
-
-		
+		model.addAttribute("select",select );
+		model.addAttribute("QuestionOptionTitle",QuestionOptionTitle );
+	
+		model.addAttribute("idRegister", idRegister);		
+//		model.addAttribute("", );
+//		model.addAttribute("", );		
 		
 		
 		return "questionlist";
@@ -178,6 +210,16 @@ public class QuestionController {
 
 		return "redirect:/app/survey/question/newquestion";
 	}
+	
+
+//	@PostMapping("/loadquestionids")
+//	private loadQuestionIdsToSurvey() {
+//		
+//
+//		
+//		
+//		
+//	}
 	
 	
 	

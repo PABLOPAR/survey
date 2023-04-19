@@ -8,51 +8,75 @@
 <body>
 	<section th:replace="components/template :: menuBar"></section>
 	<div class="container">
-		<h1 th:text="${QuestionListTitle}"
+		<h1 th:text="${QuestionOptionTitle}"
 			class="text-primary border border-primary border-top-0 border-left-0 border-right-0 border-bottom-5 p-2 "></h1>
 
+		<form th:action="@{/app/survey/question/loadquestionids}"
+			th:object="${idRegister}" method="post">
+			<div class="card">
 
-		<div class="card">
-
-			<table class="col-sm-16" th:if="${!questionsIncluded.isEmpty()}">
-
-
-				<thead class="card-header">
-					<tr class="h4">
-						<th class="text-danger" th:text="${questionTitleCard}"></th>
-						<th class="text-danger" th:text="${edit}"></th>
-					</tr>
-				<tbody class="card-body">
-
-					<tr th:each="question: ${questionsIncluded}">
-
-						<td>
-							<div>
-								<h5 th:text="${question.question}"></h5>
-							</div>
-						</td>
-
-						<td>
-
-							<div>
-								<a th:href="@{'/app/survey/question/edit/'+ ${question.id}}"
-									th:text="${edit}" class="btn btn-success"></a>
-							</div>
-						</td>
-
-					</tr>
-
-				</tbody>
-
-			</table>
+				<table class="col-sm-16" th:if="${!questionsIncluded.isEmpty()}">
 
 
-			<div th:if="${#lists.isEmpty(questionsIncluded)}">
-				<h5  th:text="${NoRegistersOnList}"></h5>
+
+					<thead class="card-header">
+						<tr class="h4">
+							<th class="text-danger" th:text="${questionTitleCard}"></th>
+							<th class="text-danger" th:text="${select}"></th>
+						</tr>
+					<tbody class="card-body">
+
+						<tr th:each="question: ${questionsIncluded}">
+
+							<td>
+								<div>
+									<h5 th:text="${question.question}"></h5>
+								</div>
+							</td>
+
+							<td>
+
+								<div>
+
+
+
+																		<input type="checkbox" th:field="*{id}"
+																			th:value="${question.id}" class="form-control col-sm-3"
+																			th:errorclass=" 'form-control alert-danger' ">
+
+
+
+
+
+
+								</div>
+							</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+
+
+				<div th:if="${#lists.isEmpty(questionsIncluded)}">
+					<h5 th:text="${NoRegistersOnList}"></h5>
+				</div>
+
+
 			</div>
 
+			<div class="form-group row">
+				<div>
 
-		</div>
+					<input type="submit" class="btn btn-primary">
+
+				</div>
+			</div>
+
+		</form>
+
+
 		<div>
 			<a th:href="@{/app/survey/question/newquestion}"
 				th:text="${addNewQuestion}" class="btn btn-danger"></a>

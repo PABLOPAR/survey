@@ -16,30 +16,20 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity(name="questions")
 public class Question implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
-	@Override
-	public String toString() {
-		return "Question [id=" + id + ", question=" + question + ", questionImportance=" + questionImportance
-				+ ", peopleAnalyzed=" + peopleAnalyzed + ", surveyName=" + surveyName + ", researcherUser="
-				+ researcherUser + "]";
-	}
+	
 
 	@Id
 	@Column
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private static final long serialVersionUID = 1L;
-
 		
 	@NotEmpty
 	@Column(name="question")
 	private String question;
 	
-
-
-//	@Column(name = "chosen_value")
-//	private QuestionOption chosenValue;
 
 	@Max(10)
 	@Min(1)
@@ -123,6 +113,11 @@ public class Question implements Serializable{
 		this.researcherUser = researcherUser;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", question=" + question + ", questionImportance=" + questionImportance
+				+ ", peopleAnalyzed=" + peopleAnalyzed + ", surveyName=" + surveyName + ", researcherUser="
+				+ researcherUser + "]";
+	}
 
 }

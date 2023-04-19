@@ -1,6 +1,5 @@
 package com.pablop.survey.web.app.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.pablop.survey.web.app.models.entity.IdRegister;
 import com.pablop.survey.web.app.models.entity.Question;
+import com.pablop.survey.web.app.models.entity.QuestionSurveySelected;
 import com.pablop.survey.web.app.services.IQuestionService;
 import com.pablop.survey.web.app.services.ISupportForm;
 
@@ -99,16 +99,31 @@ public class QuestionController {
 	@GetMapping("/questionlist")
 	public String questionlist(Model model) {
 		
+		QuestionSurveySelected questionSurveySelected= new QuestionSurveySelected();
 	
-		List<Question> questionsIncluded= iQuestionService.questionList();
+//		List<Question> questionsIncluded= iQuestionService.questionList();
+		
+		List<Question> allQuestionAvailable=iQuestionService.questionList();
 		
 		
+System.out.println("LISTA VACIA"+allQuestionAvailable.toString());
+
+if(allQuestionAvailable.size()>0){
+	
+	for(Question question:allQuestionAvailable) {
+		questionSurveySelected.addQuestion(question);
+		
+		
+	}
+	
+}
+
 		
 		IdRegister idRegister= new IdRegister();
 		
 		model.addAttribute("QuestionListTitle", QuestionListTitle);
 		model.addAttribute("headerTitle",headerTitle );
-		model.addAttribute("questionsIncluded",questionsIncluded );
+		model.addAttribute("questionsIncluded",questionSurveySelected );
 		model.addAttribute("NoRegistersOnList",NoRegistersOnList );
 		model.addAttribute("addNewQuestion",addNewQuestion );
 		model.addAttribute("edit", edit);	

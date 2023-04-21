@@ -40,8 +40,8 @@ public class Question implements Serializable{
 	private PeopleAnalyzed peopleAnalyzed;
 	
 	
-	@Column (name="survey_name")
-	private Survey surveyName;
+	@Column (name="survey_id_fk")
+	private Survey surveyIdFk;
 	
 	@Column (name="researcher_user")
 	private Survey researcherUser;
@@ -100,13 +100,9 @@ public class Question implements Serializable{
 		this.peopleAnalyzed = peopleAnalyzed;
 	}
 
-	public Survey getSurveyName() {
-		return surveyName;
-	}
 
-	public void setSurveyName(Survey surveyName) {
-		this.surveyName = surveyName;
-	}
+
+
 
 	public Survey getResearcherUser() {
 		return researcherUser;
@@ -120,7 +116,7 @@ public class Question implements Serializable{
 	@Override
 	public String toString() {
 		return "Question [id=" + id + ", question=" + question + ", questionImportance=" + questionImportance
-				+ ", peopleAnalyzed=" + peopleAnalyzed + ", surveyName=" + surveyName + ", researcherUser="
+				+ ", peopleAnalyzed=" + peopleAnalyzed + ", surveyName=" + surveyIdFk + ", researcherUser="
 				+ researcherUser + "]";
 	}
 
@@ -132,6 +128,16 @@ public class Question implements Serializable{
 
 	public void setSelected(boolean selected) {
 		this.selected = selected;
+	}
+
+
+	public Survey getSurveyIdFk() {
+		return surveyIdFk;
+	}
+
+
+	public void setSurveyIdFk(Survey surveyIdFk) {
+		this.surveyIdFk = surveyIdFk;
 	}
 
 

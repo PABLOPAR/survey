@@ -17,14 +17,15 @@
 
 		<div class="card">
 
-			<form th:action="@{newquestion}" th:object="${question}" method="post">
+			<form th:action="@{newquestion}" th:object="${question}"
+				method="post">
 
 
 				<div class="h4">
 					<label for="question" th:text="${addYourQuestion}"></label>
 
 				</div>
-				
+
 				<div>
 					<input type="text" id="question" th:field="*{question}"
 						class="form-control col-sm-8"
@@ -52,57 +53,19 @@
 
 
 
-
-
-
-
-
-
 				<div class="form-group row">
 					<div>
 
-						<input type="submit" class="btn btn-primary offset-md-3" >
+						<input type="submit" class="btn btn-primary offset-md-3">
 
 					</div>
 				</div>
 			</form>
-			
 
-			
-
-
-<!-- 	<div class="container"> -->
-<!-- 		<h1 th:text="${title}" class="text-primary"></h1> -->
-<!-- 		<form th:action="@{'/app/survey/newquestion'}" th:object="${question}" method="post"> -->
-<!-- 			<ul> -->
-<!-- 				<li> -->
-<!-- 					<h3 th:text="${addQuestion}"></h3> -->
-<!-- 					<div> -->
-<!-- 						<input type=text id="question" th:field="*{question}" -->
-<!-- 							class="form-control col-sm-8" -->
-<!-- 							th:errorclass=" 'form-control alert-danger' "> -->
-<!-- 					</div> -->
-<!-- 					<div class="form-text text-danger" -->
-<!-- 						th:if="${#fields.hasErrors('question')}" th:errors="*{question}"></div> -->
+		</div>
+	</div>
 
 
-<!-- 					<div class="form-group row"> -->
-<!-- 						<div> -->
-
-<!-- 							<input type="submit" class="btn btn-primary"> -->
-
-						</div>
-					</div>
-
-<!-- 				</li> -->
-
-
-<!-- 			</ul> -->
-
-
-<!-- 		</form> -->
-
-<!-- 	</div> -->
 
 
 	<div class="fixed-bottom">

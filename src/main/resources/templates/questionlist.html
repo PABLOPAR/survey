@@ -12,9 +12,9 @@
 			class="text-primary border border-primary border-top-0 border-left-0 border-right-0 border-bottom-5 p-2 "></h1>
 	</div>
 
-<div class="container">
+	<div class="container">
 
-		<form th:action="@{/app/survey/question/loadquestionids}"
+		<form th:action="@{/app/survey/question/questionlist}"
 			th:object="${questionSurveySelected}" method="post">
 			<div class="card">
 
@@ -28,7 +28,6 @@
 							<th class="text-danger" th:text="${select}"></th>
 
 						</tr>
-					
 					<tbody class="card-body">
 
 						<tr th:each="question, itemStat: *{questionAsList}">
@@ -38,9 +37,22 @@
 								<div th:text="${question.question}"></div>
 							</td>
 
-							<td class="h4">
-							<input type="checkbox" th:field="*{questionAsList[__${itemStat.index}__].selected}"
-								value="0" class = "btn-check offset-md-1"></td>
+							<td class="h4"><input type="checkbox"
+								th:field="*{questionAsList[__${itemStat.index}__].selected}"
+								value="1" class="btn-check offset-md-1"></td>
+
+							<td><input type="hidden"
+								th:field="*{questionAsList[__${itemStat.index}__].id}">
+							</td>
+
+							<td><input type="hidden"
+								th:field="*{questionAsList[__${itemStat.index}__].question}">
+							</td>
+
+							<td><input type="hidden"
+								th:field="*{questionAsList[__${itemStat.index}__].surveyIdFk}">
+							</td>
+
 
 						</tr>
 
@@ -50,16 +62,28 @@
 
 
 			</div>
+			
 
+			
+			<div>
+
+				<input type="submit" class="btn btn-primary">
+			</div>
+			
+			
 		</form>
-</div>
+
+
+	</div>
+
+
 
 
 
 	<div class="fixed-bottom">
-	<section th:replace="components/template :: footer"></section>
+		<section th:replace="components/template :: footer"></section>
 	</div>
-	
+
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>

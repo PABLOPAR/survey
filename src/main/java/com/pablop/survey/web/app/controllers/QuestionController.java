@@ -1,5 +1,6 @@
 package com.pablop.survey.web.app.controllers;
 
+import java.beans.PropertyEditor;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -10,13 +11,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.IdRegister;
 import com.pablop.survey.web.app.models.entity.Question;
 import com.pablop.survey.web.app.models.entity.QuestionSurveySelected;
@@ -93,11 +97,14 @@ public class QuestionController {
 //	@Value("${}")
 //	public String ;
 	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+//		binder.registerCustomEditor(Country.class, "country", (PropertyEditor) countryEditor);
+	}
 	
 	
-	
-	@GetMapping("/questionlist")
-	public String questionlist(Model model) {
+	@GetMapping("/questionlist/{id}")
+	public String questionlist(@PathVariable Long id, Model model) {
 
 		List<Question> allQuestionAvailable = iQuestionService.questionList();
 
@@ -136,6 +143,69 @@ public class QuestionController {
 		
 		return "questionlist";
 	}
+	
+	
+	@PostMapping("/questionlist")
+	public String saveQuestionSelected(QuestionSurveySelected questionSurveySelected, Model model) {
+
+System.out.println("CREO ESTE SURVEY DE PREGUNTAS"+questionSurveySelected);
+		
+		
+		
+
+		
+		
+		
+//		QuestionSurveySelected questionSurveySelected = new QuestionSurveySelected();
+//		List<Question> questionAsList=questionSurveySelected.getQuestionAsList();
+//IdRegister idRegister= new IdRegister();
+	//		model.addAttribute("QuestionListTitle", QuestionListTitle);
+//		model.addAttribute("headerTitle",headerTitle );
+//model.addAttribute("questionSurveySelected",questionSurveySelected);
+//		model.addAttribute("NoRegistersOnList",NoRegistersOnList );
+//		model.addAttribute("addNewQuestion",addNewQuestion );
+//		model.addAttribute("edit", edit);	
+//		model.addAttribute("questionTitleCard", questionTitleCard);		
+//		model.addAttribute("select",select );
+//		model.addAttribute("QuestionOptionTitle",QuestionOptionTitle );
+//		model.addAttribute("QuestionOptionTitle",QuestionOptionTitle );
+//		model.addAttribute("questionAsList", questionAsList);
+//		
+//		
+//		model.addAttribute("idRegister", idRegister);		
+//		model.addAttribute("", );
+//		model.addAttribute("", );		
+		
+		
+		return "questionlist";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	@GetMapping("/newquestion")

@@ -62,6 +62,14 @@ public class SurveyListController {
 	public String addQuestionToTest;
 	
 	
+	@Value("${text.SurveyListController.AddQuestionHeader}")
+	public String AddQuestionHeader;
+	
+	@Value("${text.SurveyListController.CreateQuestionHeader}")
+	public String CreateQuestionHeader;
+
+	
+	
 	
 	@Value("${text.NoRegistersOnList}")
 	public String NoRegistersOnList;
@@ -97,7 +105,10 @@ public class SurveyListController {
 		model.addAttribute("AddNewSurvey", AddNewSurvey);		
 		model.addAttribute("delete", delete);		
 		model.addAttribute("listQuest", listQuest);	
+		model.addAttribute("AddQuestionHeader", AddQuestionHeader);		
+		model.addAttribute("CreateQuestionHeader", CreateQuestionHeader);			
 		
+
 		
 		
 		return "surveylist";

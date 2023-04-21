@@ -47,6 +47,9 @@ public class Question implements Serializable{
 	private Survey researcherUser;
 	
 	
+	private boolean selected=false;
+	
+	
 	
 	public Question() {
 		super();
@@ -113,11 +116,24 @@ public class Question implements Serializable{
 		this.researcherUser = researcherUser;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Question [id=" + id + ", question=" + question + ", questionImportance=" + questionImportance
 				+ ", peopleAnalyzed=" + peopleAnalyzed + ", surveyName=" + surveyName + ", researcherUser="
 				+ researcherUser + "]";
 	}
+
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
+
+
 
 }

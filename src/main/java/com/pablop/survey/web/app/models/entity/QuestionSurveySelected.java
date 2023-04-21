@@ -1,62 +1,66 @@
 package com.pablop.survey.web.app.models.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import com.pablop.survey.web.app.services.IQuestionService;
+@Entity
+public class QuestionSurveySelected implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-public class QuestionSurveySelected {
+	@Id
+	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-//	@Autowired
-//	private IQuestionService iQuestionService;
-
-	private List<Question> questionListSurvey;
+	private ArrayList<Question> questionAsList;
 
 
 	public QuestionSurveySelected() {
-		questionListSurvey = new ArrayList<Question>();
-//System.out.println("para aca??");
-//		loadAllQuestionPossibilities();
-//System.out.println("O para aca??");
+		super();
+		questionAsList= new ArrayList<Question> ();
 	}
+	
 
-//	public void loadAllQuestionPossibilities() {
-//		if (iQuestionService.questionList() != null) {
-//			if (iQuestionService.questionList().size() > 0) {
-//				for (Question question : iQuestionService.questionList()) {
-//					questionListSurvey.add(question);
-//				}
-//			}
-//		}
-//	}
-
+	
 	public void addQuestion(Question question) {
-		this.questionListSurvey.add(question);
+		questionAsList.add(question);
+	
+	
+}
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public ArrayList<Question> getQuestionAsList() {
+		return questionAsList;
+	}
+
+	public void setQuestionAsList(ArrayList<Question> questionAsList) {
+		this.questionAsList = questionAsList;
 	}
 
 
-
-	public List<Question> getQuestionListSurvey() {
-		return questionListSurvey;
-	}
-
-	public void setQuestionListSurvey(List<Question> questionListSurvey) {
-		this.questionListSurvey = questionListSurvey;
-	}
 
 	@Override
 	public String toString() {
-		return "QuestionSurveySelected [questionListSurvey=" + questionListSurvey + "]";
+		return "QuestionSurveySelected [id=" + id + ", questionAsList=" + questionAsList + "]";
 	}
 
-
-
-
-
-
-
 	
-	
+
+
 }

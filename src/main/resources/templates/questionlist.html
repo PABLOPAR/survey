@@ -10,83 +10,56 @@
 	<div class="container">
 		<h1 th:text="${QuestionOptionTitle}"
 			class="text-primary border border-primary border-top-0 border-left-0 border-right-0 border-bottom-5 p-2 "></h1>
-
-<!-- 		<form th:action="@{/app/survey/question/loadquestionids}" -->
-<!-- 			th:object="${questionsIncluded}" method="post"> -->
-<!-- 			<div class="card"> -->
-
-<!-- 				<table class="col-sm-16" th:if="${questionsIncluded!=null}"> -->
-
-<!-- <!-- !questionsIncluded.isEmpty()} --> -->
-
-<!-- 					<thead class="card-header"> -->
-<!-- 						<tr class="h4"> -->
-<!-- 							<th class="text-danger" th:text="${questionTitleCard}"></th> -->
-<!-- 							<th class="text-danger" th:text="${select}"></th> -->
-<!-- 						</tr> -->
-<!-- 					<tbody class="card-body"> -->
-
-<!-- 						<tr th:each="question, itemStat: *{questionsIncluded}"> -->
-
-<!-- 							<td> -->
-<!-- 								<div> -->
-<!-- 									<h5 th:text="*{questionsIncluded[__${itemStat}__].question}"></h5> -->
-<!-- 								</div> -->
-<!-- 							</td> -->
-
-<!-- 							<td> -->
-
-<!-- 								<div> -->
-
-
-
-<!-- 									<input type="checkbox" th:field="*{id}" -->
-<!-- 										th:value="${question.id}" class="form-control col-sm-3" -->
-<!-- 										th:errorclass=" 'form-control alert-danger' "> -->
-
-
-
-
-
-
-<!-- 								</div> -->
-<!-- 							</td> -->
-
-<!-- 						</tr> -->
-
-<!-- 					</tbody> -->
-
-<!-- 				</table> -->
-
-
-<!-- 				<div th:if="${#questionsIncluded.isEmpty()}"> -->
-<!-- 					<h5 th:text="${NoRegistersOnList}"></h5> -->
-<!-- 				</div> -->
-
-
-<!-- 			</div> -->
-
-<!-- 			<div class="form-group row"> -->
-<!-- 				<div> -->
-
-<!-- 					<input type="submit" class="btn btn-primary"> -->
-
-<!-- 				</div> -->
-<!-- 			</div> -->
-
-<!-- 		</form> -->
-
-
-		<div>
-			<a th:href="@{/app/survey/question/newquestion}"
-				th:text="${addNewQuestion}" class="btn btn-danger"></a>
-		</div>
-
-
-
 	</div>
 
+<div class="container">
+
+		<form th:action="@{/app/survey/question/loadquestionids}"
+			th:object="${questionSurveySelected}" method="post">
+			<div class="card">
+
+				<table class="col-sm-16">
+
+
+
+					<thead class="card-header">
+						<tr class="h4">
+							<th class="text-danger" th:text="${questionTitleCard}"></th>
+							<th class="text-danger" th:text="${select}"></th>
+
+						</tr>
+					
+					<tbody class="card-body">
+
+						<tr th:each="question, itemStat: *{questionAsList}">
+
+
+							<td class="h4">
+								<div th:text="${question.question}"></div>
+							</td>
+
+							<td class="h4">
+							<input type="checkbox" th:field="*{questionAsList[__${itemStat.index}__].selected}"
+								value="0" class = "btn-check offset-md-1"></td>
+
+						</tr>
+
+
+					</tbody>
+				</table>
+
+
+			</div>
+
+		</form>
+</div>
+
+
+
+	<div class="fixed-bottom">
 	<section th:replace="components/template :: footer"></section>
+	</div>
+	
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>

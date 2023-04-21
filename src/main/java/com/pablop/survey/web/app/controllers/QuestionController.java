@@ -98,39 +98,37 @@ public class QuestionController {
 	
 	@GetMapping("/questionlist")
 	public String questionlist(Model model) {
-		
-		QuestionSurveySelected questionSurveySelected= new QuestionSurveySelected();
-	
-//		List<Question> questionsIncluded= iQuestionService.questionList();
-		
-		List<Question> allQuestionAvailable=iQuestionService.questionList();
-		
-		
-System.out.println("LISTA VACIA"+allQuestionAvailable.toString());
 
-if(allQuestionAvailable.size()>0){
-	
-	for(Question question:allQuestionAvailable) {
-		questionSurveySelected.addQuestion(question);
-		
-		
-	}
-	
-}
+		List<Question> allQuestionAvailable = iQuestionService.questionList();
 
+		QuestionSurveySelected questionSurveySelected = new QuestionSurveySelected();
+
+		if (allQuestionAvailable.size() > 0) {
+
+			for (Question question : allQuestionAvailable) {
+				questionSurveySelected.addQuestion(question);
+
+			}
+		}
 		
+		List<Question> questionAsList=questionSurveySelected.getQuestionAsList();
+
+
 		IdRegister idRegister= new IdRegister();
 		
 		model.addAttribute("QuestionListTitle", QuestionListTitle);
 		model.addAttribute("headerTitle",headerTitle );
-		model.addAttribute("questionsIncluded",questionSurveySelected );
+		model.addAttribute("questionSurveySelected",questionSurveySelected);
 		model.addAttribute("NoRegistersOnList",NoRegistersOnList );
 		model.addAttribute("addNewQuestion",addNewQuestion );
 		model.addAttribute("edit", edit);	
 		model.addAttribute("questionTitleCard", questionTitleCard);		
 		model.addAttribute("select",select );
 		model.addAttribute("QuestionOptionTitle",QuestionOptionTitle );
-	
+		model.addAttribute("QuestionOptionTitle",QuestionOptionTitle );
+		model.addAttribute("questionAsList", questionAsList);
+		
+		
 		model.addAttribute("idRegister", idRegister);		
 //		model.addAttribute("", );
 //		model.addAttribute("", );		
@@ -189,7 +187,7 @@ if(allQuestionAvailable.size()>0){
 			iQuestionService.addQuestion(question);
 
 		}
-		return "redirect:/app/survey/question/questionlist";
+		return "redirect:/app/survey/list";
 	}
 	
 	
@@ -216,7 +214,7 @@ if(allQuestionAvailable.size()>0){
 				model.addAttribute("edit", edit);
 				model.addAttribute("questionTitleCard", questionTitleCard);
 
-				System.out.println("Mirar aca:" + question.toString());
+
 
 				return "newquestion";
 			}
@@ -227,14 +225,7 @@ if(allQuestionAvailable.size()>0){
 	}
 	
 
-//	@PostMapping("/loadquestionids")
-//	private loadQuestionIdsToSurvey() {
-//		
-//
-//		
-//		
-//		
-//	}
+
 	
 	
 	

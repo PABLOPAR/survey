@@ -39,6 +39,7 @@
 									<th class="text-primary" th:text="${edit}"></th>
 									<th class="text-primary" th:text="${delete}"></th>
 									<th class="text-primary" th:text="${startTest}"></th>
+									<th class="text-primary" th:text="${AddQuestionHeader}"></th>
 								</tr>
 							
 							<tbody class="card-body">
@@ -61,10 +62,17 @@
 										th:text="${delete}" class="btn btn-danger"
 										onclick="return confirm ('Are you sure to delete this item?')"></a></td>
 
-									<td><a th:href="@{''}" th:text="${AddQuestions}"
+									<td><a th:href="@{''}" th:text="${startTest}"
 										class="btn btn-success"
 										onclick="return confirm ('Are you sure to delete this item?')">
 									</a></td>
+
+
+									<td><a th:href="@{/app/survey/question/questionlist}"
+										th:text="${AddQuestions}" class="btn btn-danger"></a></td>
+
+
+
 
 
 								</tr>
@@ -77,6 +85,8 @@
 						<a th:href="@{/app/survey/surveysetup}" th:text="${AddNewSurvey}"
 							class="btn btn-primary"></a>
 					</div>
+									<div><a th:href="@{/app/survey/question/newquestion}"
+										th:text="${CreateQuestionHeader}" class="btn btn-danger"></a></div>
 
 
 

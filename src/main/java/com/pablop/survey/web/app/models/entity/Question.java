@@ -41,13 +41,13 @@ public class Question implements Serializable{
 	
 	
 	@Column (name="survey_id_fk")
-	private Survey surveyIdFk;
+	private Long surveyIdFk;
 	
-	@Column (name="researcher_user")
-	private Survey researcherUser;
+//	@Column (name="researcher_user")
+//	private Survey researcherUser;
 	
-	
-	private boolean selected=false;
+	@Column  (name="question_selected")
+	private boolean selected;
 	
 	
 	
@@ -75,15 +75,6 @@ public class Question implements Serializable{
 	}
 
 
-
-//	public QuestionOption getChosenValue() {
-//		return chosenValue;
-//	}
-//
-//	public void setChosenValue(QuestionOption chosenValue) {
-//		this.chosenValue = chosenValue;
-//	}
-
 	public int getQuestionImportance() {
 		return questionImportance;
 	}
@@ -104,21 +95,16 @@ public class Question implements Serializable{
 
 
 
-	public Survey getResearcherUser() {
-		return researcherUser;
-	}
+//	public Survey getResearcherUser() {
+//		return researcherUser;
+//	}
+//
+//	public void setResearcherUser(Survey researcherUser) {
+//		this.researcherUser = researcherUser;
+//	}
 
-	public void setResearcherUser(Survey researcherUser) {
-		this.researcherUser = researcherUser;
-	}
 
 
-	@Override
-	public String toString() {
-		return "Question [id=" + id + ", question=" + question + ", questionImportance=" + questionImportance
-				+ ", peopleAnalyzed=" + peopleAnalyzed + ", surveyName=" + surveyIdFk + ", researcherUser="
-				+ researcherUser + "]";
-	}
 
 
 	public boolean isSelected() {
@@ -131,14 +117,24 @@ public class Question implements Serializable{
 	}
 
 
-	public Survey getSurveyIdFk() {
+	public Long getSurveyIdFk() {
 		return surveyIdFk;
 	}
 
 
-	public void setSurveyIdFk(Survey surveyIdFk) {
+	public void setSurveyIdFk(Long surveyIdFk) {
 		this.surveyIdFk = surveyIdFk;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", question=" + question + ", questionImportance=" + questionImportance
+				+ ", peopleAnalyzed=" + peopleAnalyzed + ", surveyIdFk=" + surveyIdFk + ", selected=" + selected + "]";
+	}
+
+
+
 
 
 

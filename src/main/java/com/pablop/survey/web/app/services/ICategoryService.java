@@ -13,7 +13,7 @@ public interface ICategoryService {
 	public List<Category> getListCategory();
 	public void saveCategory(Category category);
 	public Category findCategoryById(Long id);
-	public ArrayList<OptionQuestionCategory> GetOptionsByCategory(Category categorty);
+	public ArrayList<OptionQuestionCategory> GetOptionsByCategory(Long id);
 	
 	
 }

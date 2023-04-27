@@ -11,6 +11,7 @@ public interface IQuestionService {
 	public void addQuestion(Question question);
 	public Question findQuestionById(Long id);
 	public Question findByQuestionText(String questionText);
+	public List<Question> getQuestionBySurveyId(Long id);
 
 
 }

@@ -104,6 +104,7 @@ public class QuestionSetUpController {
 		
 		List<Category> categoryList= iCategoryService.getListCategory();
 		
+				
 		model.addAttribute("iCategoryService", iCategoryService);
 		
 		

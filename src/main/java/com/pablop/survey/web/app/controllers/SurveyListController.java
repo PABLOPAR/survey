@@ -1,5 +1,6 @@
 package com.pablop.survey.web.app.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pablop.survey.web.app.models.entity.Question;
+import com.pablop.survey.web.app.models.entity.QuestionSurveySelected;
 import com.pablop.survey.web.app.models.entity.Survey;
 import com.pablop.survey.web.app.services.IQuestionService;
+import com.pablop.survey.web.app.services.IQuestionSurveySelected;
 import com.pablop.survey.web.app.services.IServiceSurvey;
 
 @Controller
@@ -22,6 +25,8 @@ public class SurveyListController {
 	@Autowired
 	private IQuestionService iQuestionService;
 	
+	@Autowired
+	private IQuestionSurveySelected iQuestionSurveySelected;
 	
 	@Value("${text.SurveyListController.chooseYourSurvey}")
 	private String chooseYourSurvey;
@@ -68,6 +73,10 @@ public class SurveyListController {
 	@Value("${text.SurveyListController.CreateQuestionHeader}")
 	public String CreateQuestionHeader;
 
+	
+	@Value("${text.back}")
+	public String back;
+	
 	
 	
 	
@@ -129,26 +138,42 @@ public class SurveyListController {
 
 		return "redirect:/app/survey/list";
 	}
-	
-	
+
 	
 	
 	@GetMapping("/surveyquestions/{id}")
-	public String surveyList(@PathVariable Long id, Model model){
-		
+	public String surveyList(@PathVariable Long id, Model model) {
+
 		Survey survey = iServiceSurvey.surveyfindById(id);
+
+		List<Question> questionIncluded = iQuestionService.getQuestionBySurveyId(id);
+
+		survey.setSurveyQuestions((ArrayList<Question>) questionIncluded);
 		
-		List<Question> surveyQuestion= survey.getSurveyQuestions();
+		//fila con error abajo:
+
+		//List<Question> questionSurveySelected = iQuestionSurveySelected.questionInThisSurveySelected(id);
+
+		ArrayList<Question> questionSelectedTrue = new ArrayList<Question>();
+
 		
-		model.addAttribute("surveyQuestion", surveyQuestion);
-		model.addAttribute("titleListQuest",titleListQuest );	
-		model.addAttribute("addQuestionToTest",addQuestionToTest );
-		model.addAttribute("NoRegistersOnList",NoRegistersOnList );	
-		model.addAttribute("select",select );
-//		model.addAttribute("", );
-//		model.addAttribute("", );
-//		model.addAttribute("", );
-		
+//		if (questionSurveySelected != null) {
+//			for (Question question : questionSurveySelected) {
+//				if (question.isSelected() == true) {
+//					questionSelectedTrue.add(question);
+//				}
+//			}
+//		}
+//
+//		survey.setSurveyQuestions((ArrayList<Question>) questionSurveySelected);
+
+		model.addAttribute("surveyQuestions", questionSelectedTrue);
+		model.addAttribute("titleListQuest", titleListQuest);
+		model.addAttribute("addQuestionToTest", addQuestionToTest);
+		model.addAttribute("NoRegistersOnList", NoRegistersOnList);
+		model.addAttribute("select", select);
+		model.addAttribute("back", back);
+
 		return "questionlistsurvey";
 	}
 	

@@ -13,32 +13,28 @@
 
 
 		<div class="card">
+		
+		<div th:if="${surveyQuestions != null}">
 
-			<table class="col-sm-16" th:if="${!surveyQuestion.isEmpty()}">
+			<table class="col-sm-16" th:if="${!surveyQuestions.isEmpty()}">
 
 
 				<thead class="card-header">
 					<tr class="h4">
 						<th class="text-danger" th:text="${questionTitleCard}"></th>
-<!-- 						<th class="text-danger" th:text="${edit}"></th> -->
+						<th class="text-danger" th:text="${edit}"></th>
 					</tr>
 				<tbody class="card-body">
 
-					<tr th:each="question: ${surveyQuestion}">
+					<tr th:each="question: ${surveyQuestions}">
 
 						<td>
 							<div>
 								<h5 th:text="${question.question}"></h5>
 							</div>
-						</td>
 
-						<td>
 
-							<div>
-<!-- 								<a th:href="@{'/app/survey/question/edit/'+ ${question.id}}" -->
-<!-- 									th:text="${edit}" class="btn btn-success"></a> -->
-							</div>
-						</td>
+
 
 					</tr>
 
@@ -47,13 +43,17 @@
 			</table>
 
 
-			<div th:if="${#lists.isEmpty(questionsIncluded)}">
+			<div th:if="${#lists.isEmpty(surveyQuestions)}">
 				<h5  th:text="${NoRegistersOnList}"></h5>
 			</div>
 
 
 		</div>
+</div>
 
+								<div><a
+									th:href="@{'/app/survey/list'}"
+									th:text="${back}" class="btn btn-primary"></a></div>
 
 
 

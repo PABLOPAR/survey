@@ -1,12 +1,12 @@
 package com.pablop.survey.web.app.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.annotation.RequestScope;
 
 import com.pablop.survey.web.app.models.entity.Question;
 
@@ -72,6 +72,18 @@ public class QuestionServiceImplCrud implements IQuestionService{
 
 		return questionSearched;
 	}
-	
 
+	@Override
+	public List<Question> getQuestionBySurveyId(Long id) {
+
+		ArrayList<Question> questionSelected = new ArrayList<Question>();
+
+		for (Question question : questionList()) {
+
+			if (question.getSurveyIdFk() == id) {
+				questionSelected.add(question);
+			}
+		}
+		return questionSelected;
+	}
 }

@@ -29,15 +29,14 @@ public class CategoryServiceImplCrud implements ICategoryService {
 		return (List<Category>) iCategoryCrud.findAll();
 	}
 
-	
 	@Override
 	@Transactional
 	public void saveCategory(Category category) {
-		if(category!=null) {
+		if (category != null) {
 
 			iCategoryCrud.save(category);
 		}
-		
+
 	}
 
 	@Override
@@ -45,7 +44,7 @@ public class CategoryServiceImplCrud implements ICategoryService {
 	public Category findCategoryById(Long id) {
 		Category categorySearched = null;
 
-		if (id > 0 && id!=null) {
+		if (id > 0 && id != null) {
 			categorySearched = iCategoryCrud.findById(id).orElse(null);
 		}
 
@@ -54,27 +53,27 @@ public class CategoryServiceImplCrud implements ICategoryService {
 
 
 	@Override
-	public ArrayList<OptionQuestionCategory> GetOptionsByCategory(Category category) {
+	public ArrayList<OptionQuestionCategory> GetOptionsByCategory(Long id) {
 
+		Category category = findCategoryById(id);
 		List<OptionQuestionCategory> allOptionQuestion = iQuestionOptionService.getOptionQuestionList();
 
 		ArrayList<OptionQuestionCategory> categoryOptionSelected = new ArrayList<OptionQuestionCategory>();
 
-		if (category != null && findCategoryById(category.getId()) != null) {
-
+		if (category != null) {
 			for (OptionQuestionCategory option : allOptionQuestion) {
 
+				if (option.getCategoryOptionId().equals(id)) {
 
-				if (option.getCategoryOptionId() == category.getId()) {
 					categoryOptionSelected.add(option);
-
 				}
 			}
-		
-			if(categoryOptionSelected.isEmpty()) { 
-				categoryOptionSelected= null;
+
+			if (categoryOptionSelected.isEmpty()) {
+				categoryOptionSelected = null;
 			}
 		}
+
 		return categoryOptionSelected;
 	}
 

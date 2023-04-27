@@ -40,7 +40,7 @@
 
 							<div class="row">
 								<div
-									th:each="option: ${iCategoryService.GetOptionsByCategory(category)}">
+									th:each="option: ${iCategoryService.GetOptionsByCategory(category.id)}">
 
 									<h5 th:text="${option.optionName}" class="col-md-auto"></h5>
 								</div>

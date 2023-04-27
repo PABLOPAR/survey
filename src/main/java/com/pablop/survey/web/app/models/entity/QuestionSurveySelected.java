@@ -19,9 +19,13 @@ public class QuestionSurveySelected implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(length = 3000)
 	private ArrayList<Question> questionAsList;
 
-
+	@Column(name = "id_survey")
+	private Long idSurvey;
+	
+	
 	public QuestionSurveySelected() {
 		super();
 		questionAsList= new ArrayList<Question> ();
@@ -55,9 +59,22 @@ public class QuestionSurveySelected implements Serializable {
 
 
 
+	public Long getIdSurvey() {
+		return idSurvey;
+	}
+
+
+
+	public void setIdSurvey(Long idSurvey) {
+		this.idSurvey = idSurvey;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "QuestionSurveySelected [id=" + id + ", questionAsList=" + questionAsList + "]";
+		return "QuestionSurveySelected [id=" + id + ", questionAsList=" + questionAsList + ", idSurvey=" + idSurvey
+				+ "]";
 	}
 
 	

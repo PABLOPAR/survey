@@ -1,6 +1,5 @@
 package com.pablop.survey.web.app.controllers;
 
-import java.beans.PropertyEditor;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -20,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.IdRegister;
 import com.pablop.survey.web.app.models.entity.Question;
 import com.pablop.survey.web.app.models.entity.QuestionSurveySelected;
 import com.pablop.survey.web.app.services.IQuestionService;
+import com.pablop.survey.web.app.services.IQuestionSurveySelected;
 import com.pablop.survey.web.app.services.ISupportForm;
 
 
@@ -35,6 +34,9 @@ public class QuestionController {
 
 	@Autowired
 	private IQuestionService iQuestionService;
+	
+	@Autowired
+	private IQuestionSurveySelected iQuestionSurveySelected;
 	
 	@Autowired
 	ISupportForm iSupportForm;
@@ -109,10 +111,15 @@ public class QuestionController {
 		List<Question> allQuestionAvailable = iQuestionService.questionList();
 
 		QuestionSurveySelected questionSurveySelected = new QuestionSurveySelected();
+		
+		questionSurveySelected.setIdSurvey(id);
+		
+
 
 		if (allQuestionAvailable.size() > 0) {
 
 			for (Question question : allQuestionAvailable) {
+				question.setSurveyIdFk(id);
 				questionSurveySelected.addQuestion(question);
 
 			}
@@ -148,36 +155,16 @@ public class QuestionController {
 	@PostMapping("/questionlist")
 	public String saveQuestionSelected(QuestionSurveySelected questionSurveySelected, Model model) {
 
-System.out.println("CREO ESTE SURVEY DE PREGUNTAS"+questionSurveySelected);
-		
-		
-		
 
 		
+		QuestionSurveySelected questionsToBeAdded= new QuestionSurveySelected();
+		questionsToBeAdded.setQuestionAsList(questionSurveySelected.getQuestionAsList());
+		questionsToBeAdded.setIdSurvey(questionSurveySelected.getIdSurvey());
 		
-		
-//		QuestionSurveySelected questionSurveySelected = new QuestionSurveySelected();
-//		List<Question> questionAsList=questionSurveySelected.getQuestionAsList();
-//IdRegister idRegister= new IdRegister();
-	//		model.addAttribute("QuestionListTitle", QuestionListTitle);
-//		model.addAttribute("headerTitle",headerTitle );
-//model.addAttribute("questionSurveySelected",questionSurveySelected);
-//		model.addAttribute("NoRegistersOnList",NoRegistersOnList );
-//		model.addAttribute("addNewQuestion",addNewQuestion );
-//		model.addAttribute("edit", edit);	
-//		model.addAttribute("questionTitleCard", questionTitleCard);		
-//		model.addAttribute("select",select );
-//		model.addAttribute("QuestionOptionTitle",QuestionOptionTitle );
-//		model.addAttribute("QuestionOptionTitle",QuestionOptionTitle );
-//		model.addAttribute("questionAsList", questionAsList);
-//		
-//		
-//		model.addAttribute("idRegister", idRegister);		
-//		model.addAttribute("", );
-//		model.addAttribute("", );		
-		
-		
-		return "questionlist";
+
+		iQuestionSurveySelected.QuestionSurveySelectedAdd(questionsToBeAdded);
+
+		return "redirect:/app/survey/list";
 	}
 	
 	

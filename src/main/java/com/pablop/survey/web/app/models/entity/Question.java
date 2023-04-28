@@ -43,8 +43,6 @@ public class Question implements Serializable{
 	@Column (name="survey_id_fk")
 	private Long surveyIdFk;
 	
-//	@Column (name="researcher_user")
-//	private Survey researcherUser;
 	
 	@Column  (name="question_selected")
 	private boolean selected;
@@ -90,18 +88,6 @@ public class Question implements Serializable{
 	public void setPeopleAnalyzed(PeopleAnalyzed peopleAnalyzed) {
 		this.peopleAnalyzed = peopleAnalyzed;
 	}
-
-
-
-
-
-//	public Survey getResearcherUser() {
-//		return researcherUser;
-//	}
-//
-//	public void setResearcherUser(Survey researcherUser) {
-//		this.researcherUser = researcherUser;
-//	}
 
 
 

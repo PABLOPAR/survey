@@ -68,11 +68,6 @@ public class QuestionSurveySelectedImp implements IQuestionSurveySelected {
 	}
 	
 	
-	
-	
-	
-	
-
 
 	@Override
 	public List<QuestionSurveySelected> findAllQuestSurveySelect() {

@@ -155,27 +155,22 @@ public class QuestionController {
 	@PostMapping("/questionlist")
 	public String saveQuestionSelected(QuestionSurveySelected questionSurveySelected, Model model) {
 
-
 		
 		QuestionSurveySelected questionsToBeAdded = new QuestionSurveySelected();
 
 		for (Question question : questionSurveySelected.getQuestionAsList()) {
 
-			System.out.println(" question selected SELECCIONADAS QUESTIONCONTROLLER"+ question.toString());
-			
+		
 			if (question.isSelected() == true) {
 				
-System.out.println("Paso filtro true SELECCIONADAS QUESTIONCONTROLLER"+question.toString());  
 				
 				questionsToBeAdded.getQuestionAsList().add(question);
 			}
 		}
 		
-System.out.println("ARRAY PARA EL QUESTION LIST CON PREG. SELECCIONADAS QUESTIONCONTROLLER"+questionsToBeAdded.toString() );
-
 		questionsToBeAdded.setIdSurvey(questionSurveySelected.getIdSurvey());
 		
-		
+	
 
 		iQuestionSurveySelected.QuestionSurveySelectedAdd(questionsToBeAdded);
 

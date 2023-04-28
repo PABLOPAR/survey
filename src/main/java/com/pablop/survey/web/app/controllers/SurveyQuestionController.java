@@ -2,6 +2,7 @@ package com.pablop.survey.web.app.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -9,18 +10,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.pablop.survey.web.app.models.entity.Question;
-import com.pablop.survey.web.app.models.entity.Survey;
+import com.pablop.survey.web.app.services.IQuestionService;
 import com.pablop.survey.web.app.services.IQuestionSurveySelected;
-import com.pablop.survey.web.app.services.IServiceSurvey;
 
 @Controller
-@RequestMapping ("app/survey")
-public class SurveyListController {
+@RequestMapping ("app/survey/test")
+public class SurveyQuestionController {
 
+	@Autowired
+	private IQuestionService iQuestionService;
 	
 	@Autowired
 	private IQuestionSurveySelected iQuestionSurveySelected;
+	
+
 	
 	@Value("${text.SurveyListController.chooseYourSurvey}")
 	private String chooseYourSurvey;
@@ -72,6 +77,23 @@ public class SurveyListController {
 	public String back;
 	
 	
+	@Value("${text.Options}")
+	public String Options;
+	
+	@Value("${text.SurveyQuestionController.Questions}")
+	public String Questions;
+	
+	
+	@Value("${text.SurveyQuestionController.FillInTitle}")
+	public String FillInTitle;
+	
+	
+
+	
+	
+	
+	
+	
 	
 	
 	@Value("${text.NoRegistersOnList}")
@@ -79,80 +101,32 @@ public class SurveyListController {
 	
 	@Value("${text.select}")
 	public String select;
-//	
-//	
-//	@Value("${}")
-//	public String ;
-//	
-//	@Value("${}")
-//	public String ;
 	
 	
 	
 	
-		
-	@Autowired
-	private IServiceSurvey iServiceSurvey;
-	
-	@GetMapping("/list")
-	public String surveylist(Model model) {
-		
-		List<Survey> surveyList= (List<Survey>) iServiceSurvey.findSurveyList();
-		
-		model.addAttribute("chooseYourSurvey", chooseYourSurvey);	
-		model.addAttribute("surveyList", surveyList);
-		model.addAttribute("survey", survey);		
-		model.addAttribute("edit", edit);		
-		model.addAttribute("AddQuestions", AddQuestions);	
-		model.addAttribute("startTest", startTest);			
-		model.addAttribute("AddNewSurvey", AddNewSurvey);		
-		model.addAttribute("delete", delete);		
-		model.addAttribute("listQuest", listQuest);	
-		model.addAttribute("AddQuestionHeader", AddQuestionHeader);		
-		model.addAttribute("CreateQuestionHeader", CreateQuestionHeader);			
-		
+	@GetMapping("/start/{id}")
+	public String surveyTest(@PathVariable Long id, Model model) {
 
-		
-		
-		return "surveylist";
-	}
-	
-	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable Long id) {
-
-		if (survey != null) {
-
-			Survey surveyRegister = iServiceSurvey.surveyfindById(id);
-
-			if (surveyRegister != null) {
-
-				iServiceSurvey.deleteSurveyById(id);
-			}
-		}
-
-		return "redirect:/app/survey/list";
-	}
-
-	
-	
-	@GetMapping("/surveyquestions/{id}")
-	public String surveyList(@PathVariable Long id, Model model) {
-
-		
+			
 		
 		List<Question> questionIncluded=iQuestionSurveySelected.getQuestionSurveyBySurveyId(id).getQuestionAsList();
 		
 
 		model.addAttribute("surveyQuestions", questionIncluded);
-		model.addAttribute("titleListQuest", titleListQuest);
-		model.addAttribute("addQuestionToTest", addQuestionToTest);
+		model.addAttribute("FillInTitle", FillInTitle);
+		model.addAttribute("Questions", Questions);
 		model.addAttribute("NoRegistersOnList", NoRegistersOnList);
-		model.addAttribute("select", select);
+		model.addAttribute("Options", Options);
 		model.addAttribute("back", back);
 
-		return "questionlistsurvey";
+		
+		
+		
+		
+		
+
+		return "surveytest";
 	}
-	
-	
 	
 }

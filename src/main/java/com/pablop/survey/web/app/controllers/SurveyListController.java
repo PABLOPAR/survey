@@ -144,11 +144,15 @@ public class SurveyListController {
 	@GetMapping("/surveyquestions/{id}")
 	public String surveyList(@PathVariable Long id, Model model) {
 
-		Survey survey = iServiceSurvey.surveyfindById(id);
+//		Survey survey = iServiceSurvey.surveyfindById(id);
 
-		List<Question> questionIncluded = iQuestionService.getQuestionBySurveyId(id);
+		
+		@SuppressWarnings("unchecked")
+		List<Question> questionIncluded=iQuestionSurveySelected.getQuestionSurveyBySurveyId(id).getQuestionAsList();
+		
+//		List<Question> questionIncluded = iQuestionService.getQuestionBySurveyId(id);
 
-		survey.setSurveyQuestions((ArrayList<Question>) questionIncluded);
+//		survey.setSurveyQuestions((ArrayList<Question>) questionIncluded);
 		
 		//fila con error abajo:
 
@@ -167,7 +171,7 @@ public class SurveyListController {
 //
 //		survey.setSurveyQuestions((ArrayList<Question>) questionSurveySelected);
 
-		model.addAttribute("surveyQuestions", questionSelectedTrue);
+		model.addAttribute("surveyQuestions", questionIncluded);
 		model.addAttribute("titleListQuest", titleListQuest);
 		model.addAttribute("addQuestionToTest", addQuestionToTest);
 		model.addAttribute("NoRegistersOnList", NoRegistersOnList);

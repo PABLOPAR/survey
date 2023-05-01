@@ -24,6 +24,7 @@ import com.pablop.survey.web.app.models.entity.Question;
 import com.pablop.survey.web.app.models.entity.QuestionSurveySelected;
 import com.pablop.survey.web.app.services.IQuestionService;
 import com.pablop.survey.web.app.services.IQuestionSurveySelected;
+import com.pablop.survey.web.app.services.IServiceSurvey;
 import com.pablop.survey.web.app.services.ISupportForm;
 
 
@@ -37,6 +38,9 @@ public class QuestionController {
 	
 	@Autowired
 	private IQuestionSurveySelected iQuestionSurveySelected;
+	
+	@Autowired
+	private IServiceSurvey iServiceSurvey;
 	
 	@Autowired
 	ISupportForm iSupportForm;
@@ -152,8 +156,8 @@ public class QuestionController {
 	}
 	
 	
-	@PostMapping("/questionlist")
-	public String saveQuestionSelected(QuestionSurveySelected questionSurveySelected, Model model) {
+	@PostMapping("/questionlist/{id}")
+	public String saveQuestionSelected(@PathVariable Long id, QuestionSurveySelected questionSurveySelected, Model model, SessionStatus status) {
 
 		
 		QuestionSurveySelected questionsToBeAdded = new QuestionSurveySelected();
@@ -168,11 +172,27 @@ public class QuestionController {
 			}
 		}
 		
-		questionsToBeAdded.setIdSurvey(questionSurveySelected.getIdSurvey());
+	
+		
+		questionsToBeAdded.setIdSurvey(id);
 		
 	
 
 		iQuestionSurveySelected.QuestionSurveySelectedAdd(questionsToBeAdded);
+		
+		
+		System.out.println("PREGUNTAS A AGREGAR QUESTIONCONTROLLER"+ questionsToBeAdded );
+		
+		
+		iServiceSurvey.setQuestionSurveyByID(questionsToBeAdded.getQuestionAsList(),id);
+		
+		
+		
+		
+		
+		
+		status.setComplete();
+		
 
 		return "redirect:/app/survey/list";
 	}

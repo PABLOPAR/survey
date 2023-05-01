@@ -2,6 +2,7 @@ package com.pablop.survey.web.app.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.pablop.survey.web.app.models.entity.Question;
 import com.pablop.survey.web.app.models.entity.Survey;
 import com.pablop.survey.web.app.services.IQuestionSurveySelected;
@@ -97,8 +99,10 @@ public class SurveyListController {
 	@GetMapping("/list")
 	public String surveylist(Model model) {
 		
-		List<Survey> surveyList= (List<Survey>) iServiceSurvey.findSurveyList();
+		ArrayList<Survey> surveyList= (ArrayList<Survey>) iServiceSurvey.findSurveyList();
 		
+	System.out.println(" Mirar lista SURLISTCONTR"+ surveyList );
+
 		model.addAttribute("chooseYourSurvey", chooseYourSurvey);	
 		model.addAttribute("surveyList", surveyList);
 		model.addAttribute("survey", survey);		
@@ -111,11 +115,10 @@ public class SurveyListController {
 		model.addAttribute("AddQuestionHeader", AddQuestionHeader);		
 		model.addAttribute("CreateQuestionHeader", CreateQuestionHeader);			
 		
-
-		
-		
 		return "surveylist";
 	}
+	
+	
 	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Long id) {
@@ -139,16 +142,16 @@ public class SurveyListController {
 	public String surveyList(@PathVariable Long id, Model model) {
 
 		
-		
+
 		List<Question> questionIncluded=iQuestionSurveySelected.getQuestionSurveyBySurveyId(id).getQuestionAsList();
 		
-
 		model.addAttribute("surveyQuestions", questionIncluded);
 		model.addAttribute("titleListQuest", titleListQuest);
 		model.addAttribute("addQuestionToTest", addQuestionToTest);
 		model.addAttribute("NoRegistersOnList", NoRegistersOnList);
 		model.addAttribute("select", select);
 		model.addAttribute("back", back);
+		
 
 		return "questionlistsurvey";
 	}

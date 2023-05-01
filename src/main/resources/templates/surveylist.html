@@ -62,12 +62,16 @@
 										th:text="${delete}" class="btn btn-danger"
 										onclick="return confirm ('Are you sure to delete this item?')"></a></td>
 
-									<td><a th:href="@{'/app/survey/test/start/'+ ${survey.id}}" th:text="${startTest}"
+									<td  th:if="${survey.surveyQuestions.empty}"><a th:href="@{''}" th:text="${startTest}"
+										class="btn btn-light">
+									</a></td>
+
+									<td th:if="${!survey.surveyQuestions.empty}"><a th:href="@{'/app/survey/test/start/'+ ${survey.id}}" th:text="${startTest}"
 										class="btn btn-success">
 									</a></td>
 
 
-									<td><a th:href="@{'/app/survey/question/questionlist/'+ ${survey.id}}"
+									<td ><a th:href="@{'/app/survey/question/questionlist/'+ ${survey.id}}"
 										th:text="${AddQuestions}" class="btn btn-danger"></a></td>
 
 

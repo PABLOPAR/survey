@@ -33,6 +33,18 @@
 								<div>
 									<h5 th:text="${question.question}"></h5>
 								</div>
+							</td>
+
+							<td th:each="option: ${optionListSelected}" >
+								<div>
+								
+								<div th:text="${option.optionName}" ></div>
+<!-- 									<input type="radio"      "${question.question}"></h5> -->
+								</div>
+							</td>
+
+
+
 						</tr>
 
 					</tbody>

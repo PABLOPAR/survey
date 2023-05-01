@@ -14,7 +14,7 @@
 
 	<div class="container">
 
-		<form th:action="@{/app/survey/question/questionlist}"
+		<form th:action="@{'/app/survey/question/questionlist/'+ ${questionSurveySelected.idSurvey} }"
 			th:object="${questionSurveySelected}" method="post">
 			<div class="card">
 

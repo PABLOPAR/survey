@@ -30,7 +30,7 @@ public class Survey implements Serializable{
 	public  String surveyName;
 	
 	@ArrayNotNull
-	@Column(name="survey_question")
+	@Column(name="survey_question",length = 1000)
 	private ArrayList<Question> surveyQuestions= new ArrayList<Question>();
 
 	@Column(name="survey_score")
@@ -150,6 +150,9 @@ public class Survey implements Serializable{
 				+ ", surveyScore=" + surveyScore + ", peopleAnalized=" + peopleAnalized + ", categoryOptionId="
 				+ categoryOptionId + ", user=" + user + ", type=" + type + "]";
 	}
+
+
+
 	
 	
 	

@@ -1,10 +1,12 @@
 package com.pablop.survey.web.app.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pablop.survey.web.app.models.entity.Question;
 import com.pablop.survey.web.app.models.entity.Survey;
 
 @Service
@@ -58,9 +60,9 @@ public class SurveyServiceCrudImp implements IServiceSurvey {
 	}
 
 	@Override
-	public List<Survey> findSurveyList() {
+	public ArrayList<Survey> findSurveyList() {
 
-		return (List<Survey>) iSurveyServiceCrud.findAll();
+		return (ArrayList<Survey>) iSurveyServiceCrud.findAll();
 	}
 
 	
@@ -76,6 +78,24 @@ public class SurveyServiceCrudImp implements IServiceSurvey {
 			}
 		}
 
+	}
+
+	@Override
+	public void setQuestionSurveyByID(ArrayList<Question> surveyQuestions, Long idSurvey) {
+		
+		
+System.out.println("mirar aca: SURVEYSERVIMP"+surveyQuestions+idSurvey);
+
+
+
+		surveyfindById(idSurvey).setSurveyQuestions(surveyQuestions);
+		
+		iSurveyServiceCrud.save(surveyfindById(idSurvey));
+		
+		
+System.out.println("mirar surveySet: SURVEYSERVIMP"+ surveyfindById(idSurvey)); 	
+System.out.println("mirar lista SuRvEy: SURVEYSERVIMP"+ findSurveyList() );		
+		
 	}
 
 }

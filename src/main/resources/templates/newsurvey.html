@@ -10,9 +10,9 @@
 	<section th:replace="components/template :: menuBar"></section>
 	<div class="container">
 
-	<div class="font-weight-bold">
-		<h1 class="text-primary" th:text="${titleSetUpIndex}"></h1>
-	</div>
+		<div class="font-weight-bold">
+			<h1 class="text-primary" th:text="${titleSetUpIndex}"></h1>
+		</div>
 		<div class="card">
 
 			<form th:action="@{/app/survey/surveysetup}" th:object="${survey}"
@@ -25,42 +25,40 @@
 					<div class="row offset-sm-0">
 
 
-						
+
 
 						<h5 th:text="${categoryAlreadySelected}" class="text-success"></h5>
 						<h5 th:text="${survey.categoryOptionId}" class=" offset-sm-1"></h5>
 
 
-					<a th:href="@{/app/admin/questionsetup/categorylistdetail}"
-						th:text="${ViewCatDetail}" class="btn btn-success offset-sm-1"></a>
+						<a th:href="@{/app/admin/questionsetup/categorylistdetail}"
+							th:text="${ViewCatDetail}" class="btn btn-success offset-sm-1"></a>
 
 					</div>
 
-				<div class="h4">
-					<label for="surveyName" th:text="${addSurveyNameTitle}"></label>
+					<div class="h4">
+						<label for="surveyName" th:text="${addSurveyNameTitle}"></label>
 					</div>
 					<div>
 						<input type="text" id="surveyName" th:field="*{surveyName}"
 							class="form-control col-sm-5"
 							th:errorclass=" 'form-control alert-danger' ">
-							
-							<div class="h6 text-danger">
-							
-				<div th:if="${#fields.hasErrors('surveyName')}"
-					th:errors="*{surveyName}" class="form-text text-danger"></div>
-				<div th:if="${NameNotRepeated!=Null}" th:text="${NameNotRepeated}"></div>
-				</div>
-				</div>
+
+						<div class="h6 text-danger">
+
+							<div th:if="${#fields.hasErrors('surveyName')}"
+								th:errors="*{surveyName}" class="form-text text-danger"></div>
+							<div th:if="${NameNotRepeated!=Null}"
+								th:text="${NameNotRepeated}"></div>
+						</div>
+					</div>
 
 
 				</div>
 
-				<div class="form-group row">
-					
 
-						<input type="submit" class="btn btn-primary offset-md-1">
-
-					
+				<div th:if="${survey.categoryOptionId!=null}"  class="form-group row">
+					<input type="submit" class="btn btn-primary offset-md-1">
 				</div>
 
 

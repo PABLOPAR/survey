@@ -11,9 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.pablop.survey.web.app.models.entity.Category;
+import com.pablop.survey.web.app.models.entity.OptionQuestionCategory;
 import com.pablop.survey.web.app.models.entity.Question;
+import com.pablop.survey.web.app.models.entity.Survey;
+import com.pablop.survey.web.app.services.ICategoryService;
+import com.pablop.survey.web.app.services.IQuestionOptionService;
 import com.pablop.survey.web.app.services.IQuestionService;
 import com.pablop.survey.web.app.services.IQuestionSurveySelected;
+import com.pablop.survey.web.app.services.IServiceSurvey;
 
 @Controller
 @RequestMapping ("app/survey/test")
@@ -25,7 +31,15 @@ public class SurveyQuestionController {
 	@Autowired
 	private IQuestionSurveySelected iQuestionSurveySelected;
 	
-
+	@Autowired
+	private IServiceSurvey iServiceSurvey;
+	
+	@Autowired
+	private ICategoryService iCategoryService;
+	
+	@Autowired
+	private IQuestionOptionService iQuestionOptionService;
+	
 	
 	@Value("${text.SurveyListController.chooseYourSurvey}")
 	private String chooseYourSurvey;
@@ -108,10 +122,43 @@ public class SurveyQuestionController {
 	@GetMapping("/start/{id}")
 	public String surveyTest(@PathVariable Long id, Model model) {
 
-			
-		
-		List<Question> questionIncluded=iQuestionSurveySelected.getQuestionSurveyBySurveyId(id).getQuestionAsList();
-		
+		ArrayList<Question> questionListIncluded = null;
+
+		ArrayList<OptionQuestionCategory> optionListSelected = null;
+
+		List<Question> questionIncluded = iQuestionSurveySelected.getQuestionSurveyBySurveyId(id).getQuestionAsList();
+
+		if (id > 0) {
+			Survey survey = iServiceSurvey.surveyfindById(id);
+
+			survey.setSurveyQuestions(iQuestionSurveySelected.getQuestionSurveyBySurveyId(id).getQuestionAsList());
+
+			questionListIncluded = survey.getSurveyQuestions();
+
+			Long idCategorySurveyImplemented = survey.getCategoryOptionId();
+
+			Category categoryImplemented = iCategoryService.findCategoryById(idCategorySurveyImplemented);
+
+			if (categoryImplemented != null) {
+
+				Long idForThisCategory = categoryImplemented.getId();
+
+				if (idForThisCategory > 0) {
+
+					optionListSelected = new ArrayList<OptionQuestionCategory>();
+
+					List<OptionQuestionCategory> allOptionsAvailable = iQuestionOptionService.getOptionQuestionList();
+
+					for (OptionQuestionCategory option : allOptionsAvailable) {
+						if (option.getCategoryOptionId().equals(idForThisCategory)) {
+
+							optionListSelected.add(option);
+						}
+					}
+				}
+
+			}
+		}
 
 		model.addAttribute("surveyQuestions", questionIncluded);
 		model.addAttribute("FillInTitle", FillInTitle);
@@ -119,14 +166,9 @@ public class SurveyQuestionController {
 		model.addAttribute("NoRegistersOnList", NoRegistersOnList);
 		model.addAttribute("Options", Options);
 		model.addAttribute("back", back);
-
-		
-		
-		
-		
-		
+		model.addAttribute("optionListSelected", optionListSelected);
 
 		return "surveytest";
 	}
-	
+
 }

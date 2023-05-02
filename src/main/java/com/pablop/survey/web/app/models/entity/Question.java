@@ -48,6 +48,10 @@ public class Question implements Serializable{
 	private boolean selected;
 	
 	
+	@Column (name="value_chosen")
+	private Long idValChos;
+	
+	
 	
 	public Question() {
 		super();
@@ -91,8 +95,6 @@ public class Question implements Serializable{
 
 
 
-
-
 	public boolean isSelected() {
 		return selected;
 	}
@@ -113,10 +115,21 @@ public class Question implements Serializable{
 	}
 
 
+	public Long getIdValChos() {
+		return idValChos;
+	}
+
+
+	public void setIdValChos(Long idValChos) {
+		this.idValChos = idValChos;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Question [id=" + id + ", question=" + question + ", questionImportance=" + questionImportance
-				+ ", peopleAnalyzed=" + peopleAnalyzed + ", surveyIdFk=" + surveyIdFk + ", selected=" + selected + "]";
+				+ ", peopleAnalyzed=" + peopleAnalyzed + ", surveyIdFk=" + surveyIdFk + ", selected=" + selected
+				+ ", idValChos=" + idValChos + "]";
 	}
 
 

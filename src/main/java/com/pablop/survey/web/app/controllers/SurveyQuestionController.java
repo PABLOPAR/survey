@@ -124,16 +124,19 @@ public class SurveyQuestionController {
 
 		ArrayList<Question> questionListIncluded = null;
 
-		ArrayList<OptionQuestionCategory> optionListSelected = null;
+		List<OptionQuestionCategory> optionListSelected = null;
+		
+		Survey survey=null;
 
-		List<Question> questionIncluded = iQuestionSurveySelected.getQuestionSurveyBySurveyId(id).getQuestionAsList();
+		ArrayList<Question> questionIncluded = iQuestionSurveySelected.getQuestionSurveyBySurveyId(id).getQuestionAsList();
 
 		if (id > 0) {
-			Survey survey = iServiceSurvey.surveyfindById(id);
+			survey = iServiceSurvey.surveyfindById(id);
 
 			survey.setSurveyQuestions(iQuestionSurveySelected.getQuestionSurveyBySurveyId(id).getQuestionAsList());
 
 			questionListIncluded = survey.getSurveyQuestions();
+System.out.println("Preguntas del survey - SURVQUESTCONTR"+ questionListIncluded);			
 
 			Long idCategorySurveyImplemented = survey.getCategoryOptionId();
 
@@ -159,8 +162,9 @@ public class SurveyQuestionController {
 
 			}
 		}
+System.out.println("Info question SURVQUESTCONTR" + questionIncluded);
 
-		model.addAttribute("surveyQuestions", questionIncluded);
+		model.addAttribute("survey", survey);
 		model.addAttribute("FillInTitle", FillInTitle);
 		model.addAttribute("Questions", Questions);
 		model.addAttribute("NoRegistersOnList", NoRegistersOnList);

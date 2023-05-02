@@ -14,7 +14,7 @@ INSERT INTO category_options(id, category_name) VALUES (10001,'Por Frecuencia');
 
 INSERT INTO options_questions_category(id, category_option_id, option_name,ranking_option) VALUES (10000,10000, 'SI', 1);
 INSERT INTO options_questions_category(id, category_option_id, option_name,ranking_option) VALUES (10001,10000, 'NO', 2);
-INSERT INTO options_questions_category(id, category_option_id, option_name,ranking_option) VALUES (10002,10001, 'SEGURO', 1);
+INSERT INTO options_questions_category(id, category_option_id, option_name,ranking_option) VALUES (10002,10001, 'SIEMPRE', 1);
 INSERT INTO options_questions_category(id, category_option_id, option_name,ranking_option) VALUES (10003,10001, 'A VECES', 2);
 INSERT INTO options_questions_category(id, category_option_id, option_name,ranking_option) VALUES (10004,10001, 'NUNCA', 3);
 

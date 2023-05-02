@@ -101,8 +101,6 @@ public class SurveyListController {
 		
 		ArrayList<Survey> surveyList= (ArrayList<Survey>) iServiceSurvey.findSurveyList();
 		
-	System.out.println(" Mirar lista SURLISTCONTR"+ surveyList );
-
 		model.addAttribute("chooseYourSurvey", chooseYourSurvey);	
 		model.addAttribute("surveyList", surveyList);
 		model.addAttribute("survey", survey);		

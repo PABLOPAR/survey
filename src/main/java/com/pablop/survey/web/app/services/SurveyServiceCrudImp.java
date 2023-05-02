@@ -83,19 +83,11 @@ public class SurveyServiceCrudImp implements IServiceSurvey {
 	@Override
 	public void setQuestionSurveyByID(ArrayList<Question> surveyQuestions, Long idSurvey) {
 		
-		
-System.out.println("mirar aca: SURVEYSERVIMP"+surveyQuestions+idSurvey);
-
-
-
 		surveyfindById(idSurvey).setSurveyQuestions(surveyQuestions);
 		
 		iSurveyServiceCrud.save(surveyfindById(idSurvey));
 		
-		
-System.out.println("mirar surveySet: SURVEYSERVIMP"+ surveyfindById(idSurvey)); 	
-System.out.println("mirar lista SuRvEy: SURVEYSERVIMP"+ findSurveyList() );		
-		
+	
 	}
 
 }

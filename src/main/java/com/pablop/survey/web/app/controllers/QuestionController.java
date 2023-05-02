@@ -181,9 +181,7 @@ public class QuestionController {
 		iQuestionSurveySelected.QuestionSurveySelectedAdd(questionsToBeAdded);
 		
 		
-		System.out.println("PREGUNTAS A AGREGAR QUESTIONCONTROLLER"+ questionsToBeAdded );
-		
-		
+	
 		iServiceSurvey.setQuestionSurveyByID(questionsToBeAdded.getQuestionAsList(),id);
 		
 		

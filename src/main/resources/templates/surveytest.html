@@ -11,8 +11,8 @@
 		<h1 th:text="${FillInTitle}"
 			class="text-primary border border-primary border-top-0 border-left-0 border-right-0 border-bottom-5 p-2 "></h1>
 
-		<form th:action="@{/app/survey/surveysetup}"
-			th:object="${survey}" method="post">
+		<form th:action="@{'/app/survey/test/start/'+${survey.id}}"
+			th:object="${questionSurveySelected}" method="post">
 
 			<div th:if="${survey != null}">
 
@@ -26,10 +26,12 @@
 								<th class="text-danger" th:text="${Questions}"></th>
 								<th class="text-danger" th:text="${Options}"></th>
 							</tr>
+							</thead>
+							
 						<tbody class="card-body">
 
 
-							<tr th:each="question , itemStat: *{surveyQuestions}">
+							<tr th:each="question , itemStat: *{questionAsList}">
 
 								<td>
 									<div>
@@ -43,7 +45,7 @@
 										<label for="optionSelected" th:text="${option.optionName}"></label>
 
 										<input type="radio" id="optionSelected"
-											th:field="*{surveyQuestions[__${itemStat.index}__].idValChos}"
+											th:field="*{questionAsList[__${itemStat.index}__].idValChos}"
 											value="${option.id}" checked>
 
 									</div>
@@ -64,12 +66,14 @@
 
 
 			</div>
+			
+			<input type="hidden" th:field="${questionSurveySelected.idSurvey}">
+			
+		<div>
+				<input type="submit" class="btn btn-primary">
+		</div>
 		</form>
 
-		<div>
-			<a th:href="@{'/app/survey/list'}" th:text="${back}"
-				class="btn btn-primary"></a>
-		</div>
 
 
 

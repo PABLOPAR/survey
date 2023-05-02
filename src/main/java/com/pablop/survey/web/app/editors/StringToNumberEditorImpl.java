@@ -2,10 +2,9 @@ package com.pablop.survey.web.app.editors;
 
 import java.beans.PropertyEditorSupport;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import com.pablop.survey.web.app.services.IQuestionService;
-
+@Component
 public class StringToNumberEditorImpl extends PropertyEditorSupport{
 
 	

@@ -201,28 +201,6 @@ public class QuestionController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@GetMapping("/newquestion")
 	public String newquestion(Model model) {
 		model.addAttribute("title", title);

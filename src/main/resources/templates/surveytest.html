@@ -27,25 +27,26 @@
 								<th class="text-danger" th:text="${Options}"></th>
 							</tr>
 						<tbody class="card-body">
-						
-						
+
+
 							<tr th:each="question , itemStat: *{surveyQuestions}">
 
 								<td>
 									<div>
-										<h5 th:text="${question.question}"></h5>
+										<h5 class="h4" th:text="${question.question}"></h5>
 									</div>
 								</td>
 
-									
+
 								<td th:each="option: ${optionListSelected}">
-									<div th:text="${option.optionName}"></div> 
+									<div class="h5">
+										<label for="optionSelected" th:text="${option.optionName}"></label>
 
-									<input type="radio"
-									th:field="*{surveyQuestions[__${itemStat.index}__].idValChos}"
-									value="${option.id}" checked>
+										<input type="radio" id="optionSelected"
+											th:field="*{surveyQuestions[__${itemStat.index}__].idValChos}"
+											value="${option.id}" checked>
 
-
+									</div>
 
 								</td>
 

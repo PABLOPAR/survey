@@ -14,7 +14,7 @@
 
 	<div class="container">
 
-		<form th:action="@{'/app/survey/question/questionlist/' }"
+		<form th:action="@{'/app/peopleAnalyzed/select/'+ ${surveyId}}"
 			th:object="${peopleSelectedSurvey}" method="post">
 			<div class="card">
 
@@ -29,22 +29,21 @@
 
 						</tr>
 					<tbody class="card-body">
-					
-					
-					
+
+
+
 
 						<tr th:each="people: ${analyzedList}">
 
 
 							<td class="h4">
-								<div th:text="${people.firstName}+'-----------'+ ${people.email}"></div>
+								<div
+									th:text="${people.firstName}+'-----------'+ ${people.email}"></div>
 							</td>
 
-							<td class="h4">
-							<input type="radio"
+							<td class="h4"><input type="radio"
 								th:field="${peopleSelectedSurvey.idPeopleSelected}"
-								th:value="${people.id}" class="btn-check offset-md-1">
-								</td>
+								th:value="${people.id}" class="btn-check offset-md-1"></td>
 
 
 
@@ -55,20 +54,18 @@
 					</tbody>
 				</table>
 
+				<input type="hidden" th:field="${surveyId}">
 
 			</div>
-
-
-<!-- 			<input type="hidden" th:field="${questionSurveySelected.idSurvey}"> -->
-
 
 
 			<div>
 
-<!-- 				<input type="submit" class="btn btn-primary"> -->
+				<input type="submit" class="btn btn-primary">
+
 			</div>
-			
-			
+
+
 		</form>
 
 

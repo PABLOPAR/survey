@@ -37,7 +37,7 @@ public class Survey implements Serializable{
 	private Double surveyScore;
 	
 	@Column(name="people_analized")
-	private PeopleAnalyzed peopleAnalized; 
+	private Long idPeopleAnalized; 
 	
 	@Column (name="category_option_id")
     private Long categoryOptionId;
@@ -84,16 +84,6 @@ public class Survey implements Serializable{
 	}
 
 
-	public PeopleAnalyzed getFriendAnalized() {
-		return peopleAnalized;
-	}
-
-
-	public void setFriendAnalized(PeopleAnalyzed friendAnalized) {
-		this.peopleAnalized = friendAnalized;
-	}
-
-
 	public User getUser() {
 		return user;
 	}
@@ -124,16 +114,6 @@ public class Survey implements Serializable{
 	}
 
 
-	public PeopleAnalyzed getPeopleAnalized() {
-		return peopleAnalized;
-	}
-
-
-	public void setPeopleAnalized(PeopleAnalyzed peopleAnalized) {
-		this.peopleAnalized = peopleAnalized;
-	}
-
-
 	public Long getCategoryOptionId() {
 		return categoryOptionId;
 	}
@@ -144,10 +124,20 @@ public class Survey implements Serializable{
 	}
 
 
+	public Long getIdPeopleAnalized() {
+		return idPeopleAnalized;
+	}
+
+
+	public void setIdPeopleAnalized(Long idPeopleAnalized) {
+		this.idPeopleAnalized = idPeopleAnalized;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Survey [id=" + id + ", surveyName=" + surveyName + ", surveyQuestions=" + surveyQuestions
-				+ ", surveyScore=" + surveyScore + ", peopleAnalized=" + peopleAnalized + ", categoryOptionId="
+				+ ", surveyScore=" + surveyScore + ", idPeopleAnalized=" + idPeopleAnalized + ", categoryOptionId="
 				+ categoryOptionId + ", user=" + user + ", type=" + type + "]";
 	}
 

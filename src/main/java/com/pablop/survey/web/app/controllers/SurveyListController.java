@@ -24,6 +24,10 @@ public class SurveyListController {
 	@Autowired
 	private IQuestionSurveySelected iQuestionSurveySelected;
 	
+	@Autowired
+	private IServiceSurvey iServiceSurvey;
+	
+	
 	@Value("${text.SurveyListController.chooseYourSurvey}")
 	private String chooseYourSurvey;
 	
@@ -73,28 +77,24 @@ public class SurveyListController {
 	@Value("${text.back}")
 	public String back;
 	
-	
-	
-	
 	@Value("${text.NoRegistersOnList}")
 	public String NoRegistersOnList;
 	
 	@Value("${text.select}")
 	public String select;
-//	
-//	
-//	@Value("${}")
-//	public String ;
-//	
-//	@Value("${}")
-//	public String ;
+	
+	
+	@Value("${text.SurveyListController.personToTest}")
+	public String personToTest;
+	
+	@Value("${text.new}")
+	public String newTest;
 	
 	
 	
 	
 		
-	@Autowired
-	private IServiceSurvey iServiceSurvey;
+
 	
 	@GetMapping("/list")
 	public String surveylist(Model model) {
@@ -111,7 +111,11 @@ public class SurveyListController {
 		model.addAttribute("delete", delete);		
 		model.addAttribute("listQuest", listQuest);	
 		model.addAttribute("AddQuestionHeader", AddQuestionHeader);		
-		model.addAttribute("CreateQuestionHeader", CreateQuestionHeader);			
+		model.addAttribute("CreateQuestionHeader", CreateQuestionHeader);	
+		model.addAttribute("personToTest", personToTest);			
+		model.addAttribute("select", select);
+		model.addAttribute("newTest", newTest);		
+		
 		
 		return "surveylist";
 	}
@@ -154,6 +158,26 @@ public class SurveyListController {
 		return "questionlistsurvey";
 	}
 	
+	
+	@GetMapping("/startnewtest/{id}")
+	public String startNewTest(@PathVariable Long id, Model model) {
+		
+		Survey survModel= iServiceSurvey.surveyfindById(id);
+		
+		Survey currentSurvey= survModel;
+		
+		
+		
+		
+		Survey survey= new Survey();
+		
+		iServiceSurvey.save(survey);
+		
+		
+		
+
+		return "redirect:/app/survey/list";
+	}
 	
 	
 }

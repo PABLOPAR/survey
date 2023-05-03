@@ -18,6 +18,8 @@ public class PeopleSelectedSurvey  implements Serializable{
 	
 	private Long idPeopleSelected;
 	
+	private Long surveyId;
+	
 	
 
 	public PeopleSelectedSurvey(Long idPeopleSelected) {
@@ -38,9 +40,26 @@ public class PeopleSelectedSurvey  implements Serializable{
 		this.idPeopleSelected = idPeopleSelected;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getSurveyId() {
+		return surveyId;
+	}
+
+	public void setSurveyId(Long surveyId) {
+		this.surveyId = surveyId;
+	}
+
 	@Override
 	public String toString() {
-		return "PeopleSelectedSurvey [idPeopleSelected=" + idPeopleSelected + "]";
+		return "PeopleSelectedSurvey [id=" + id + ", idPeopleSelected=" + idPeopleSelected + ", surveyId=" + surveyId
+				+ "]";
 	}
 	
 	

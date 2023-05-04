@@ -96,6 +96,6 @@ System.out.println("Survey con person y ID SELPEOPCONT "+currentSurvey.toString(
 		
 		
 		
-		return "redirect:/app/survey/list";
+		return "redirect:/app/survey/list/onprocess";
 	}
 }

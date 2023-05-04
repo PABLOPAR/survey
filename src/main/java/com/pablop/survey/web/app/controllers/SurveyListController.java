@@ -180,4 +180,29 @@ public class SurveyListController {
 	}
 	
 	
+	@GetMapping("/list/onprocess")
+	public String surveyListOnProcess(Model model) {
+		
+ArrayList<Survey> surveyList= (ArrayList<Survey>) iServiceSurvey.findSurveyList();
+
+		
+		model.addAttribute("chooseYourSurvey", chooseYourSurvey);	
+		model.addAttribute("surveyList", surveyList);
+		model.addAttribute("survey", survey);		
+		model.addAttribute("edit", edit);		
+		model.addAttribute("AddQuestions", AddQuestions);	
+		model.addAttribute("startTest", startTest);			
+		model.addAttribute("AddNewSurvey", AddNewSurvey);		
+		model.addAttribute("delete", delete);		
+		model.addAttribute("listQuest", listQuest);	
+		model.addAttribute("AddQuestionHeader", AddQuestionHeader);		
+		model.addAttribute("CreateQuestionHeader", CreateQuestionHeader);	
+		model.addAttribute("personToTest", personToTest);			
+		model.addAttribute("select", select);
+		model.addAttribute("newTest", newTest);		
+		
+		return "surveyonprocess";}
+	
+	
+	
 }

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${head}"></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+</head>
+<body>
+
+
+	<section th:replace="components/template :: menuBar"></section>
+
+	<div class="container">
+
+		<div class="font-weight-bold">
+			<h1 class="text-primary" th:text="${chooseYourSurvey}"></h1>
+		</div>
+
+
+		<div class="container">
+
+			<h1 th:text="${title}" class="text-primary"></h1>
+
+			<div th:if="${surveyList==null}" th:text="${nothingShow}"></div>
+
+
+			<div th:if="${surveyList!=null}">
+				<div th:if="${surveyList!=null}">
+
+					<div class="card">
+
+
+
+						<table class="col-sm-16" th:if="${!surveyList.isEmpty()}">
+							<thead class="card-header">
+								<tr class="h4">
+									<th class="text-primary" th:text="${survey}"></th>
+									<th class="text-primary" th:text="${edit}"></th>
+									<th class="text-primary" th:text="${delete}"></th>
+									<th class="text-primary" th:text="${startTest}"></th>
+									<th class="text-primary" th:text="${AddQuestionHeader}"></th>
+									<th class="text-primary" th:text="${personToTest}"></th>
+									<th class="text-primary" th:text="${newTest}"></th>
+								</tr>
+							
+							<tbody class="card-body">
+
+								<tr th:each="survey: ${surveyList}">
+		
+							
+<!-- 									<td th:if="${survey.idPeopleAnalized == null}"> -->
+
+									<td th:if="${survey.idPeopleAnalized == null}" class="h5">
+										<h4 th:text="${survey.surveyName}"></h4>
+										<div>
+											<a th:href="@{'/app/survey/surveyquestions/' + ${survey.id}}"
+												th:text="${listQuest}" class="text-primary"></a>
+										</div>
+
+									</td>
+
+									<td th:if="${survey.idPeopleAnalized == null}"><a th:href="@{'/app/survey/edit/'+ ${survey.id}}"
+										th:text="${edit}" class="btn btn-warning"></a></td>
+
+									<td th:if="${survey.idPeopleAnalized == null}"><a th:href="@{'/app/survey/delete/'+ ${survey.id}}"
+										th:text="${delete}" class="btn btn-danger"
+										onclick="return confirm ('Are you sure to delete this item?')"></a></td>
+
+									<td th:if="${survey.surveyQuestions.empty}"><a
+										th:href="@{''}" th:text="${startTest}" class="btn btn-light">
+									</a></td>
+
+									<td th:if="${!survey.surveyQuestions.empty  and survey.idPeopleAnalized == null}"><a
+										th:href="@{'/app/survey/test/start/'+ ${survey.id}}"
+										th:text="${startTest}" class="btn btn-success"> </a></td>
+
+
+									<td th:if="${survey.surveyQuestions.empty  and survey.idPeopleAnalized == null}"><a
+										th:href="@{'/app/survey/question/questionlist/'+ ${survey.id}}"
+										th:text="${AddQuestions}" class="btn btn-danger"></a></td>
+
+									<td th:if="${!survey.surveyQuestions.empty and survey.idPeopleAnalized == null}"><a
+										th:href="@{''}" th:text="${AddQuestions}"
+										class="btn btn-light"></a></td>
+
+									<td th:if="${survey.idPeopleAnalized == null}"><a th:href="@{'/app/peopleAnalyzed/select/'+${survey.id}}"
+										th:text="${select}" class="btn btn-danger"></a></td>
+
+									<td th:if="${survey.idPeopleAnalized == null}"><a th:href="@{'/app/survey/startnewtest/' + ${survey.id}}"
+										th:text="${newTest}" class="btn btn-danger"></a></td>
+
+
+								</tr>
+
+							</tbody>
+						</table>
+
+
+						<a th:href="@{/app/survey/surveysetup}" th:text="${AddNewSurvey}"
+							class="btn btn-primary"></a>
+					</div>
+									<div><a th:href="@{/app/survey/question/newquestion}"
+										th:text="${CreateQuestionHeader}" class="btn btn-danger"></a></div>
+
+
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<section th:replace="components/template :: interceptor"></section>
+
+	<div class="fixed-bottom">
+		<section th:replace="components/template :: footer"></section>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+</html>

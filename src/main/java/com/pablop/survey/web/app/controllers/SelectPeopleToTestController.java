@@ -70,13 +70,13 @@ public class SelectPeopleToTestController {
 		
 		
 		Long surveyId=peopleSelectedSurvey.getSurveyId();
-		System.out.println("idSurvey SELECPEOPCONTR "+ surveyId);
+System.out.println("idSurvey SELECPEOPCONTR "+ surveyId);
 		
 		Survey modelSurvey=iServiceSurvey.surveyfindById(id);
 System.out.println("Survey MODEL SELECPEOPCONTR "+modelSurvey);
 		
 		
-		String newNameSurvey=modelSurvey.getSurveyName() + " " +personSearched.getFirstName();
+		String newNameSurvey=modelSurvey.getSurveyName() + " (" +personSearched.getFirstName()+")";
 				
 				
 				

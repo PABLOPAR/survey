@@ -13,6 +13,9 @@
 
 	<div class="container">
 
+							
+							
+							
 		<div class="font-weight-bold">
 			<h1 class="text-primary" th:text="${chooseYourSurvey}"></h1>
 		</div>
@@ -22,21 +25,27 @@
 
 			<h1 th:text="${title}" class="text-primary"></h1>
 
+			<div class="card">
+				<a th:href="@{/app/survey/list/onprocess}"
+					th:text="${viewMySurveys}" class="btn btn-primary float-right"></a>
+			</div>
+
+
 			<div th:if="${surveyList==null}" th:text="${nothingShow}"></div>
 
 
 			<div th:if="${surveyList!=null}">
 				<div th:if="${surveyList!=null}">
 
+							
+							
 					<div class="card">
-
 
 
 						<table class="col-sm-16" th:if="${!surveyList.isEmpty()}">
 							<thead class="card-header">
 								<tr class="h4">
 									<th class="text-primary" th:text="${survey}"></th>
-									<th class="text-primary" th:text="${edit}"></th>
 									<th class="text-primary" th:text="${delete}"></th>
 									<th class="text-primary" th:text="${AddQuestionHeader}"></th>
 									<th class="text-primary" th:text="${personToTest}"></th>
@@ -55,30 +64,26 @@
 									</td>
 
 									<td th:if="${survey.idPeopleAnalized == null}"><a
-										th:href="@{'/app/survey/edit/'+ ${survey.id}}"
-										th:text="${edit}" class="btn btn-warning"></a></td>
-
-									<td th:if="${survey.idPeopleAnalized == null}"><a
 										th:href="@{'/app/survey/delete/'+ ${survey.id}}"
 										th:text="${delete}" class="btn btn-danger"
 										onclick="return confirm ('Are you sure to delete this item?')"></a></td>
 
 									<td
-										th:if="${survey.surveyQuestions.empty}"><a
+										th:if="${survey.surveyQuestions.empty and survey.isALayOut==false}"><a
 										th:href="@{'/app/survey/question/questionlist/'+ ${survey.id}}"
-										th:text="${AddQuestions}" class="btn btn-danger"></a></td>
+										th:text="${AddQuestions}" class="btn btn-warning"></a></td>
 
 									<td
-										th:if="${!survey.surveyQuestions.empty}"><a
+										th:if="${!survey.surveyQuestions.empty and survey.isALayOut==false}"><a
 										th:href="@{''}" th:text="${AddQuestions}"
 										class="btn btn-light"></a></td>
 
-									<td th:if="${!survey.surveyQuestions.empty}"><a
+									<td th:if="${!survey.surveyQuestions.empty and survey.isALayOut==false}"><a
 										th:href="@{'/app/peopleAnalyzed/select/'+${survey.id}}"
-										th:text="${select}" class="btn btn-danger"></a></td>
+										th:text="${select}" class="btn btn-success"></a></td>
 
 
-									<td th:if="${survey.surveyQuestions.empty}"><a
+									<td th:if="${survey.surveyQuestions.empty  and survey.isALayOut==false}"><a
 										th:href="@{''}"
 										th:text="${select}" class="btn btn-light"></a></td>
 
@@ -87,8 +92,12 @@
 
 
 						<a th:href="@{/app/survey/surveysetup}" th:text="${AddNewSurvey}"
-							class="btn btn-primary"></a>
+							class="btn btn-success"></a> 
 					</div>
+					
+
+					
+					
 					<div>
 						<a th:href="@{/app/survey/question/newquestion}"
 							th:text="${CreateQuestionHeader}" class="btn btn-danger"></a>

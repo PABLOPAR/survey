@@ -90,8 +90,12 @@ public class SurveyListController {
 	@Value("${text.new}")
 	public String newTest;
 	
+	@Value("${text.SurveyListController.viewMySurveys}")
+	public String viewMySurveys;
 	
-	
+	@Value("${text.indexController.analyzedPeople.nothingShow}")
+	public String nothingShow;
+
 	
 		
 
@@ -114,7 +118,11 @@ public class SurveyListController {
 		model.addAttribute("CreateQuestionHeader", CreateQuestionHeader);	
 		model.addAttribute("personToTest", personToTest);			
 		model.addAttribute("select", select);
-		model.addAttribute("newTest", newTest);		
+		model.addAttribute("newTest", newTest);	
+		model.addAttribute("viewMySurveys", viewMySurveys);	
+		model.addAttribute("viewMySurveys", viewMySurveys);	
+		model.addAttribute("viewMySurveys", viewMySurveys);		
+		
 		
 		
 		return "surveylist";
@@ -199,7 +207,10 @@ ArrayList<Survey> surveyList= (ArrayList<Survey>) iServiceSurvey.findSurveyList(
 		model.addAttribute("CreateQuestionHeader", CreateQuestionHeader);	
 		model.addAttribute("personToTest", personToTest);			
 		model.addAttribute("select", select);
-		model.addAttribute("newTest", newTest);		
+		model.addAttribute("newTest", newTest);	
+		model.addAttribute("nothingShow", nothingShow);		
+		model.addAttribute("back", back);
+		
 		
 		return "surveyonprocess";}
 	

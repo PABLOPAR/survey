@@ -78,16 +78,12 @@ System.out.println("Survey MODEL SELECPEOPCONTR "+modelSurvey);
 		
 		String newNameSurvey=modelSurvey.getSurveyName() + " (" +personSearched.getFirstName()+")";
 				
-				
-				
-
-
 		Survey currentSurvey= new Survey();
 		currentSurvey.setSurveyName(newNameSurvey);
 		currentSurvey.setCategoryOptionId(modelSurvey.getCategoryOptionId());
 		currentSurvey.setSurveyQuestions(modelSurvey.getSurveyQuestions());
 		currentSurvey.setIdPeopleAnalized(idPersonSelected);
-		currentSurvey.setIdPeopleAnalized(idPersonSelected);
+		currentSurvey.setALayOut(true);
 		
 		iServiceSurvey.save(currentSurvey);
 		

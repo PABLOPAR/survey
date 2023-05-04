@@ -47,6 +47,11 @@ public class Survey implements Serializable{
 	
 	@Column
 	private String type;
+	
+	@Column
+	private boolean isALayOut; 
+	
+	
 
 	
 	public Survey() {
@@ -134,11 +139,21 @@ public class Survey implements Serializable{
 	}
 
 
+	public boolean isALayOut() {
+		return isALayOut;
+	}
+
+
+	public void setALayOut(boolean isALayOut) {
+		this.isALayOut = isALayOut;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Survey [id=" + id + ", surveyName=" + surveyName + ", surveyQuestions=" + surveyQuestions
 				+ ", surveyScore=" + surveyScore + ", idPeopleAnalized=" + idPeopleAnalized + ", categoryOptionId="
-				+ categoryOptionId + ", user=" + user + ", type=" + type + "]";
+				+ categoryOptionId + ", user=" + user + ", type=" + type + ", isALayOut=" + isALayOut + "]";
 	}
 
 

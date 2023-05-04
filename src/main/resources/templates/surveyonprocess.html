@@ -30,9 +30,15 @@
 
 					<div class="card">
 
+						<div th:if="${surveyList.empty}">
+
+							<h5 th:text="${nothingShow}"></h5>
+
+						</div>
 
 
-						<table class="col-sm-16" th:if="${!surveyList.isEmpty()}">
+
+						<table class="col-sm-16" th:if="${!surveyList.empty}">
 							<thead class="card-header">
 								<tr class="h4">
 									<th class="text-primary" th:text="${survey}"></th>
@@ -46,8 +52,6 @@
 								<tr th:each="survey: ${surveyList}">
 		
 							
-<!-- 									<td th:if="${survey.idPeopleAnalized == null}"> -->
-
 									<td th:if="${survey.idPeopleAnalized != null}" class="h5">
 										<h4 th:text="${survey.surveyName}"></h4>
 										<div>
@@ -70,12 +74,16 @@
 
 
 								</tr>
-
+								
 							</tbody>
 						</table>
 
 					</div>
 									
+						<div>
+							<a th:href="@{/app/survey/list}" th:text="${back}"
+								class="btn btn-primary"></a>
+						</div>
 
 
 

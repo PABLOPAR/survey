@@ -71,30 +71,22 @@ public class SurveyResultController {
 
 		Survey surveyAnalyzed = iServiceSurvey.surveyfindById(id);
 		
-System.out.println("surveyAnalyzed SURVRESULTCONTR "+surveyAnalyzed);		
-
 		List<Question> questionsAnalyzed = surveyAnalyzed.getSurveyQuestions();
 
-//System.out.println("questionsAnalyzed SURVRESULTCONTR "	+questionsAnalyzed);	
-		
-		
 		Long categoryOptionId = surveyAnalyzed.getCategoryOptionId();
 		
-//System.out.println("categoryOptionId SURVRESULTCONTR "+	categoryOptionId);	
-
 		List<OptionQuestionCategory> optionQuestionCategory = iQuestionOptionService.getOptionQuestionList();
 
-//System.out.println("optionQuestionCategory SURVRESULTCONTR "+optionQuestionCategory	);			
-		
+			
 		ArrayList<OptionQuestionCategory> optionInclInCatSelect = new ArrayList<OptionQuestionCategory>();
 
-Long idSurveyPersonAnalyz = surveyAnalyzed.getIdPeopleAnalized();
+		Long idSurveyPersonAnalyz = surveyAnalyzed.getIdPeopleAnalized();
 
-//System.out.println("idSurveyPersonAnalyz SURVRESULTCONTR "+	idSurveyPersonAnalyz);
+
 		
 		PeopleAnalyzed personAnalyzed = iPeopleService.findPeopleById(idSurveyPersonAnalyz);
 
-//System.out.println("personAnalyzed SURVRESULTCONTR "+personAnalyzed	);
+
 		
 		for (OptionQuestionCategory option : optionQuestionCategory) {
 			if (option.getCategoryOptionId().equals(categoryOptionId)) {
@@ -108,7 +100,7 @@ Long idSurveyPersonAnalyz = surveyAnalyzed.getIdPeopleAnalized();
 
 			if (option.getRankingOption() > maxRankingValue) {
 				maxRankingValue = option.getRankingOption();
-//System.out.println("maxRankingValue SURVRESULTCONTR "+maxRankingValue);				
+			
 				
 			}
 		}
@@ -119,29 +111,27 @@ Long idSurveyPersonAnalyz = surveyAnalyzed.getIdPeopleAnalized();
 		for (Question question : questionsAnalyzed) {
 
 			if (question.getIdValChos() != null) {
-System.out.println("QuestionImportance SURVRESULTCONTR "+(question.getQuestionImportance() / 10));				
-System.out.println("IdValChos SURVRESULTCONTR "+(question.getIdValChos()));		
-System.out.println("findRankingById SURVRESULTCONTR "+iQuestionOptionService.findRankingById(question.getIdValChos()));	
+	
+System.out.println("getQuestionImportance SURV-RES-CONTR "+(double)question.getQuestionImportance() / 10);
+System.out.println("question.getIdValChos() SURV-RES-CONTR "+question.getIdValChos());
+System.out.println("iQuestionOptionService SURV-RES-CONTR "+iQuestionOptionService.findRankingById(question.getIdValChos()));
 
-				
+
 				questionResult = ((double)question.getQuestionImportance() / 10)
 						* iQuestionOptionService.findRankingById(question.getIdValChos());
 				
 				
 				
-				System.out.println("questionResul SURVRESULTCONTR "+questionResult);
+
 				surveyScore = surveyScore + questionResult;
-				System.out.println("surveyScore SURVRESULTCONTR "+surveyScore);
+
 				maxScoreforTest = maxScoreforTest * ((double)question.getQuestionImportance() / 10) + maxScoreforTest;
-				System.out.println("maxScoreforTest SURVRESULTCONTR "+maxScoreforTest);
+
 			}
 		}
-System.out.println("optionInclInCatSelect SURVRESULTCONTR "+optionInclInCatSelect);
 
 		surveyAnalyzed.setSurveyScore(surveyScore);
-System.out.println("maxScoreforTest SURVRESULTCONTR "+maxScoreforTest	);
-System.out.println("surveyScore SURVRESULTCONTR "+surveyScore	);
-System.out.println("questionResult SURVRESULTCONTR "+questionResult	);
+
 
 		model.addAttribute("title", title);
 		model.addAttribute("maxScoreSurveyText", maxScoreSurveyText);

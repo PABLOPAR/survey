@@ -48,8 +48,26 @@ public class Survey implements Serializable{
 	@Column
 	private String type;
 	
-	@Column
+	@Column(name="is_a_layout")
 	private boolean isALayOut; 
+	
+	
+//	public double highestPossibleScore() {
+//		double result=0;
+//		
+//		for(Question question: surveyQuestions) {
+//			
+//			
+//			
+//		}
+//		
+//		
+//		
+//	}
+	
+	
+	
+	
 	
 	
 

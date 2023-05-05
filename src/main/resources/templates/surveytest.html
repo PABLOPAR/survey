@@ -50,6 +50,18 @@
 
 									</div>
 
+									<input type="hidden"
+									th:field="*{questionAsList[__${itemStat.index}__].id}"> <input
+									type="hidden"
+									th:field="*{questionAsList[__${itemStat.index}__].questionImportance}">
+									<input type="hidden"
+									th:field="*{questionAsList[__${itemStat.index}__].surveyIdFk}">
+									<input type="hidden"
+									th:field="*{questionAsList[__${itemStat.index}__].selected}"> <input
+									type="hidden"
+									th:field="*{questionAsList[__${itemStat.index}__].question}">
+
+
 								</td>
 
 

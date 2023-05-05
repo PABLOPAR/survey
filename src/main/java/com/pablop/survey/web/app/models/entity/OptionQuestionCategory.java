@@ -23,9 +23,6 @@ public class OptionQuestionCategory implements Serializable{
 	private Long id;
 	
 	
-//	@Column (name="category_option")
-//    private CategoryOption categoryOption;
-	
 	@Column (name="category_option_id")
     private Long categoryOptionId;
 	

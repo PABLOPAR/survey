@@ -53,6 +53,13 @@
 								th:field="*{questionAsList[__${itemStat.index}__].surveyIdFk}">
 							</td>
 
+							<td><input type="hidden"
+								th:field="*{questionAsList[__${itemStat.index}__].questionImportance}">
+							</td>
+
+							<td><input type="hidden"
+								th:field="*{questionAsList[__${itemStat.index}__].idValChos}">
+							</td>
 
 						</tr>
 

@@ -151,10 +151,9 @@ public class SurveyListController {
 	@GetMapping("/surveyquestions/{id}")
 	public String surveyList(@PathVariable Long id, Model model) {
 
-		
+		Survey surveyAnalyzed= iServiceSurvey.surveyfindById(id);
+		List<Question> questionIncluded=surveyAnalyzed.getSurveyQuestions();
 
-		List<Question> questionIncluded=iQuestionSurveySelected.getQuestionSurveyBySurveyId(id).getQuestionAsList();
-		
 		model.addAttribute("surveyQuestions", questionIncluded);
 		model.addAttribute("titleListQuest", titleListQuest);
 		model.addAttribute("addQuestionToTest", addQuestionToTest);

@@ -23,4 +23,25 @@ public class OptionQuestionImplCrud implements IQuestionOptionService{
 	}
 	
 	
+	@Override
+	@Transactional(readOnly = true)
+	public int findRankingById(Long id) {
+
+		int rankingSearched = 0;
+		int index = 0;
+
+		List<OptionQuestionCategory> allOptionsAvailable = getOptionQuestionList();
+
+		while (index < allOptionsAvailable.size() && rankingSearched == 0) {
+			if (allOptionsAvailable.get(index).getId().equals(id)) {
+				rankingSearched = allOptionsAvailable.get(index).getRankingOption();
+
+			}
+		}
+
+		return rankingSearched;
+
+	}
+	
+	
 }

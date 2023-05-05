@@ -29,6 +29,13 @@ import com.pablop.survey.web.app.services.IServiceSurvey;
 @SessionAttributes("survey")
 public class NewSurveyController {
 
+
+	@Autowired
+	private ICategoryService iCategoryService;
+
+	@Autowired
+	private IServiceSurvey iServiceSurvey;
+	
 	@Value("${text.SurveySetUpController.titleSetUpIndex}")
 	private String titleSetUpIndex;
 
@@ -50,14 +57,7 @@ public class NewSurveyController {
 	@Value("${text.questionSetUpController.categoryAlreadySelected}")
 	private String categoryAlreadySelected;
 
-	@Autowired
-	private IOptionQuestionCategoryCrud iOptionQuestionCategoryCrud;
 
-	@Autowired
-	private ICategoryService iCategoryService;
-
-	@Autowired
-	private IServiceSurvey iServiceSurvey;
 
 	@GetMapping("/surveysetup")
 	public String surveyIndexSetUp(Model model) {

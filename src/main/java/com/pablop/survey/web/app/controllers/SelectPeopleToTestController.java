@@ -83,6 +83,7 @@ System.out.println("Survey MODEL SELECPEOPCONTR "+modelSurvey);
 		currentSurvey.setCategoryOptionId(modelSurvey.getCategoryOptionId());
 		currentSurvey.setSurveyQuestions(modelSurvey.getSurveyQuestions());
 		currentSurvey.setIdPeopleAnalized(idPersonSelected);
+		
 		currentSurvey.setALayOut(true);
 		
 		iServiceSurvey.save(currentSurvey);

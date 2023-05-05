@@ -113,6 +113,8 @@ public class QuestionController {
 	public String questionlist(@PathVariable Long id, Model model) {
 
 		List<Question> allQuestionAvailable = iQuestionService.questionList();
+		
+System.out.println("allQuestionAvailable QUESTIONCONTROLLER"+allQuestionAvailable);		
 
 		QuestionSurveySelected questionSurveySelected = new QuestionSurveySelected();
 		
@@ -130,6 +132,8 @@ public class QuestionController {
 		}
 		
 		List<Question> questionAsList=questionSurveySelected.getQuestionAsList();
+		
+System.out.println("questionAsList QUESTIONCONTROLLER"+questionAsList);			
 
 
 		IdRegister idRegister= new IdRegister();
@@ -161,6 +165,9 @@ public class QuestionController {
 
 		
 		QuestionSurveySelected questionsToBeAdded = new QuestionSurveySelected();
+		
+System.out.println("questionAsList QUESTIONCONTROLLER"+questionSurveySelected);		
+		
 
 		for (Question question : questionSurveySelected.getQuestionAsList()) {
 

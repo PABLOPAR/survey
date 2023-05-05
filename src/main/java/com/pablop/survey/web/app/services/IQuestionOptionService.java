@@ -8,4 +8,5 @@ public interface IQuestionOptionService {
 
 	
 	public List<OptionQuestionCategory> getOptionQuestionList();
+	public int findRankingById(Long id);
 }

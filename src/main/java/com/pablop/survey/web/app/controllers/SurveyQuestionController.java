@@ -110,11 +110,6 @@ public class SurveyQuestionController {
 	public String FillInTitle;
 	
 	
-
-	
-	
-	
-	
 	
 	
 	
@@ -191,10 +186,21 @@ public class SurveyQuestionController {
 	@PostMapping("/start/{id}")
 	public String saveRecords(@PathVariable Long id, QuestionSurveySelected questionSurveySelected, Model model) {
 		
+		List<Question> questionWithChosenValues=questionSurveySelected.getQuestionAsList();
 		
-		System.out.println("Info survey guardada SURVQUESTCONTR" +questionSurveySelected );
+		Survey surveyAnalized= iServiceSurvey.surveyfindById(id);
+		
+		surveyAnalized.setSurveyQuestions((ArrayList<Question>) questionWithChosenValues);
 		
 		
-		return "redirect:/app/survey/list";
+		
+		iServiceSurvey.save(surveyAnalized);
+	
+System.out.println("surveyAnalyzed SURVQUESTCONTR "  + surveyAnalized);	
+	
+
+
+		
+		return "redirect:/app/survey/results/{id}";
 	}
 }

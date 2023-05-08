@@ -82,12 +82,8 @@ public class SurveyResultController {
 
 		Long idSurveyPersonAnalyz = surveyAnalyzed.getIdPeopleAnalized();
 
-
-		
 		PeopleAnalyzed personAnalyzed = iPeopleService.findPeopleById(idSurveyPersonAnalyz);
 
-
-		
 		for (OptionQuestionCategory option : optionQuestionCategory) {
 			if (option.getCategoryOptionId().equals(categoryOptionId)) {
 				optionInclInCatSelect.add(option);
@@ -100,44 +96,49 @@ public class SurveyResultController {
 
 			if (option.getRankingOption() > maxRankingValue) {
 				maxRankingValue = option.getRankingOption();
-			
-				
+
 			}
 		}
 
 		double maxScoreforTest = 0;
 		double surveyScore = 0;
 		double questionResult = 0;
+		double questionResultMaxPossib=0;
+		double maxPossibleQuestResult=0;
+		
 		for (Question question : questionsAnalyzed) {
 
 			if (question.getIdValChos() != null) {
-	
-System.out.println("getQuestionImportance SURV-RES-CONTR "+(double)question.getQuestionImportance() / 10);
-System.out.println("question.getIdValChos() SURV-RES-CONTR "+question.getIdValChos());
-System.out.println("iQuestionOptionService SURV-RES-CONTR "+iQuestionOptionService.findRankingById(question.getIdValChos()));
 
+				System.out.println(
+						"getQuestionImportance SURV-RES-CONTR " + (double) question.getQuestionImportance() / 10);
+				System.out.println("question.getIdValChos() SURV-RES-CONTR " + question.getIdValChos());
+				System.out.println("iQuestionOptionService SURV-RES-CONTR "
+						+ iQuestionOptionService.findRankingById(question.getIdValChos()));
 
-				questionResult = ((double)question.getQuestionImportance() / 10)
+				questionResult = ((double) question.getQuestionImportance() / 10)
 						* iQuestionOptionService.findRankingById(question.getIdValChos());
-				
-				
-				
 
 				surveyScore = surveyScore + questionResult;
+				
+				
+				questionResultMaxPossib=((double) question.getQuestionImportance() / 10)* maxRankingValue;
 
-				maxScoreforTest = maxScoreforTest * ((double)question.getQuestionImportance() / 10) + maxScoreforTest;
+				maxPossibleQuestResult=maxPossibleQuestResult+questionResultMaxPossib;
 
+				//app entra en un loop cuando agrego mas de una opcion para realizar el test.
+				
 			}
 		}
 
 		surveyAnalyzed.setSurveyScore(surveyScore);
 
-
+		
 		model.addAttribute("title", title);
-		model.addAttribute("maxScoreSurveyText", maxScoreSurveyText);
+		model.addAttribute("maxPossibleQuestResult", maxPossibleQuestResult);
 		model.addAttribute("ScoreResult", ScoreResult);
 		model.addAttribute("surveyScore", surveyScore);
-		model.addAttribute("maxScoreforTest", maxScoreforTest);
+		model.addAttribute("maxScoreSurveyText", maxScoreSurveyText);
 		model.addAttribute("personAnalyzed", personAnalyzed);
 //		model.addAttribute("", );
 //		model.addAttribute("", );

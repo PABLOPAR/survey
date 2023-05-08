@@ -96,8 +96,9 @@ public class SurveyListController {
 	@Value("${text.indexController.analyzedPeople.nothingShow}")
 	public String nothingShow;
 
-	
-		
+	@Value("${text.SurveyListController.viewResult}")
+	public String viewResult;
+
 
 	
 	@GetMapping("/list")
@@ -209,6 +210,8 @@ ArrayList<Survey> surveyList= (ArrayList<Survey>) iServiceSurvey.findSurveyList(
 		model.addAttribute("newTest", newTest);	
 		model.addAttribute("nothingShow", nothingShow);		
 		model.addAttribute("back", back);
+		model.addAttribute("viewResult", viewResult);		
+		
 		
 		
 		return "surveyonprocess";}

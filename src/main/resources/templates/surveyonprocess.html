@@ -44,7 +44,9 @@
 									<th class="text-primary" th:text="${survey}"></th>
 									<th class="text-primary" th:text="${delete}"></th>
 									<th class="text-primary" th:text="${startTest}"></th>
-
+									<th class="text-primary" th:text="${viewResult}"></th>
+									
+									
 								</tr>
 							
 							<tbody class="card-body">
@@ -71,7 +73,9 @@
 										th:href="@{'/app/survey/test/start/'+ ${survey.id}}"
 										th:text="${startTest}" class="btn btn-success"> </a></td>
 
-
+									<td th:if="${!survey.surveyQuestions.empty  and survey.idPeopleAnalized != null}"><a
+										th:href="@{'/app/survey/results/'+ ${survey.id}}"
+										th:text="${viewResult}" class="btn btn-warning"> </a></td>
 
 								</tr>
 								

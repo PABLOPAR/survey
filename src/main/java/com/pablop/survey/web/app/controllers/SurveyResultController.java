@@ -45,8 +45,8 @@ public class SurveyResultController {
 	@Value("${text.SurveyResult.ScoreResult}")
 	private String ScoreResult;
 	
-//	@Value("${}")
-//	private String replace;
+	@Value("${text.back}")
+	private String back;
 //	
 //	@Value("${}")
 //	private String replace;
@@ -110,11 +110,6 @@ public class SurveyResultController {
 
 			if (question.getIdValChos() != null) {
 
-				System.out.println(
-						"getQuestionImportance SURV-RES-CONTR " + (double) question.getQuestionImportance() / 10);
-				System.out.println("question.getIdValChos() SURV-RES-CONTR " + question.getIdValChos());
-				System.out.println("iQuestionOptionService SURV-RES-CONTR "
-						+ iQuestionOptionService.findRankingById(question.getIdValChos()));
 
 				questionResult = ((double) question.getQuestionImportance() / 10)
 						* iQuestionOptionService.findRankingById(question.getIdValChos());
@@ -140,7 +135,7 @@ public class SurveyResultController {
 		model.addAttribute("surveyScore", surveyScore);
 		model.addAttribute("maxScoreSurveyText", maxScoreSurveyText);
 		model.addAttribute("personAnalyzed", personAnalyzed);
-//		model.addAttribute("", );
+		model.addAttribute("back",back );
 //		model.addAttribute("", );
 //		model.addAttribute("", );
 

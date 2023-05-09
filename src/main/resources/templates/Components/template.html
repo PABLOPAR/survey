@@ -31,8 +31,15 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav">
+
 					<li class="nav-item active"><a class="nav-link"
-						th:href="@{/app/index}">Home<span class="sr-only">(current)</span>
+						th:href="@{/app/user/newuser}">New User<span class="sr-only"></span>
+					</a></li>
+					
+					
+					<li class="nav-item active"><a class="nav-link"
+						th:href="@{/app/user/userprofile}">User Profile<span
+							class="sr-only"></span>
 					</a></li>
 
 
@@ -42,33 +49,26 @@
 					</a></li>
 
 
-					<li class="nav-item active"><a class="nav-link"
-						th:href="@{/app/user/userprofile}">User Profile<span
-							class="sr-only"></span>
-					</a></li>
 
 
-					<li class="nav-item active"><a class="nav-link"
-						th:href="@{/app/user/newuser}">New User<span class="sr-only"></span>
-					</a></li>
 
 						<li class="nav-item active"><a class="nav-link"
 							th:href="@{/app/survey/list}">Survey List<span class="sr-only"></span>
 						</a></li>
 
 
-						<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href=""
-						id="navbarDropdownMenuLink" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> New Items </a>
+<!-- 						<li class="nav-item dropdown"><a -->
+<!-- 						class="nav-link dropdown-toggle" href="" -->
+<!-- 						id="navbarDropdownMenuLink" data-toggle="dropdown" -->
+<!-- 						aria-haspopup="true" aria-expanded="false"> New Items </a> -->
 
-						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="">New People Analyzed</a> <a
-								class="dropdown-item" href="">New User</a> <a
-								class="dropdown-item" href="">New Question</a>
+<!-- 						<div class="dropdown-menu" -->
+<!-- 							aria-labelledby="navbarDropdownMenuLink"> -->
+<!-- 							<a class="dropdown-item" href="">New People Analyzed</a> <a -->
+<!-- 								class="dropdown-item" href="">New User</a> <a -->
+<!-- 								class="dropdown-item" href="">New Question</a> -->
 
-						</div></li>
+<!-- 						</div></li> -->
 				</ul>
 			</div>
 

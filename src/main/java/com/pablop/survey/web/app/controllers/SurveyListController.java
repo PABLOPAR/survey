@@ -70,8 +70,8 @@ public class SurveyListController {
 	@Value("${text.SurveyListController.AddQuestionHeader}")
 	public String AddQuestionHeader;
 	
-//	@Value("${text.SurveyListController.CreateQuestionHeader}")
-//	public String CreateQuestionHeader;
+	@Value("${text.QuestionSheetController.showQuestion.tab}")
+	public String questionsText;
 
 	
 	@Value("${text.back}")
@@ -169,6 +169,9 @@ public class SurveyListController {
 		model.addAttribute("select", select);
 		model.addAttribute("back", back);
 		model.addAttribute("addNewQuestion", addNewQuestion);
+		model.addAttribute("questionsText", questionsText);		
+		
+		
 		
 		
 		

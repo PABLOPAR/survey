@@ -16,22 +16,24 @@
 
 			<div th:if="${surveyQuestions != null}">
 
-				<table class="col-sm-16" th:if="${!surveyQuestions.isEmpty()}">
+				<table  th:if="${!surveyQuestions.isEmpty()}">
 
 
 					<thead class="card-header">
 						<tr class="h4">
-							<th class="text-danger" th:text="${questionTitleCard}"></th>
-							<th class="text-danger" th:text="${edit}"></th>
+							<th class="text-danger" th:text="${questionsText}"></th>
 						</tr>
+					</thead>
+					
 					<tbody class="card-body">
 
 						<tr th:each="question: ${surveyQuestions}">
 
 							<td>
-								<div>
 									<h5 th:text="${question.question}"></h5>
-								</div>
+
+							</td>
+
 						</tr>
 
 					</tbody>
@@ -47,7 +49,7 @@
 			</div>
 		</div>
 		
-		<div>
+		<div class="my-2">
 			<a th:href="@{'/app/survey/question/newquestion/'+${id}}"
 				th:text="${addNewQuestion}" class="btn btn-danger"></a>
 		</div>

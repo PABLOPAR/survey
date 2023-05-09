@@ -130,12 +130,35 @@ public class SurveyResultController {
 		
 		surveyAnalyzed.setSurveyScore(surveyScore);
 		
+			
 		iServiceSurvey.edit(surveyAnalyzed);
 		
+		float score= (float) surveyScore;
+		String resultScore=String.format("%.2f", score);
+		
+		float maxScore= (float) maxPossibleQuestResult;
+		String maxPosiVal=String.format("%.2f", maxScore);	
+		
+		
+		
+		
+		double possitive=(surveyScore/maxPossibleQuestResult)*10;
+		double negative=10-possitive;
+		
+		
+		model.addAttribute("possitive", possitive);
+		model.addAttribute("negative", negative);
+		
+		
+		
+		
+		
+		
+		
 		model.addAttribute("title", title);
-		model.addAttribute("maxPossibleQuestResult", maxPossibleQuestResult);
+		model.addAttribute("maxPossibleQuestResult", maxPosiVal);
 		model.addAttribute("ScoreResult", ScoreResult);
-		model.addAttribute("surveyScore", surveyScore);
+		model.addAttribute("surveyScore", resultScore);
 		model.addAttribute("maxScoreSurveyText", maxScoreSurveyText);
 		model.addAttribute("personAnalyzed", personAnalyzed);
 		model.addAttribute("back",back );

@@ -13,47 +13,50 @@
 
 
 		<div class="card">
-		
-		<div th:if="${surveyQuestions != null}">
 
-			<table class="col-sm-16" th:if="${!surveyQuestions.isEmpty()}">
+			<div th:if="${surveyQuestions != null}">
 
-
-				<thead class="card-header">
-					<tr class="h4">
-						<th class="text-danger" th:text="${questionTitleCard}"></th>
-						<th class="text-danger" th:text="${edit}"></th>
-					</tr>
-				<tbody class="card-body">
-
-					<tr th:each="question: ${surveyQuestions}">
-
-						<td>
-							<div>
-								<h5 th:text="${question.question}"></h5>
-							</div>
+				<table class="col-sm-16" th:if="${!surveyQuestions.isEmpty()}">
 
 
+					<thead class="card-header">
+						<tr class="h4">
+							<th class="text-danger" th:text="${questionTitleCard}"></th>
+							<th class="text-danger" th:text="${edit}"></th>
+						</tr>
+					<tbody class="card-body">
+
+						<tr th:each="question: ${surveyQuestions}">
+
+							<td>
+								<div>
+									<h5 th:text="${question.question}"></h5>
+								</div>
+						</tr>
+
+					</tbody>
+
+				</table>
 
 
-					</tr>
-
-				</tbody>
-
-			</table>
+				<div th:if="${#lists.isEmpty(surveyQuestions)}">
+					<h5 th:text="${NoRegistersOnList}"></h5>
+				</div>
 
 
-			<div th:if="${#lists.isEmpty(surveyQuestions)}">
-				<h5  th:text="${NoRegistersOnList}"></h5>
 			</div>
-
-
 		</div>
-</div>
-
-								<div><a
-									th:href="@{'/app/survey/list'}"
-									th:text="${back}" class="btn btn-primary"></a></div>
+		
+		<div>
+			<a th:href="@{'/app/survey/question/newquestion/'+${id}}"
+				th:text="${addNewQuestion}" class="btn btn-danger"></a>
+		</div>
+		
+		
+		<div>
+			<a th:href="@{'/app/survey/list'}" th:text="${back}"
+				class="btn btn-primary"></a>
+		</div>
 
 
 

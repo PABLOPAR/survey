@@ -70,10 +70,9 @@ public class SelectPeopleToTestController {
 		
 		
 		Long surveyId=peopleSelectedSurvey.getSurveyId();
-System.out.println("idSurvey SELECPEOPCONTR "+ surveyId);
 		
 		Survey modelSurvey=iServiceSurvey.surveyfindById(id);
-System.out.println("Survey MODEL SELECPEOPCONTR "+modelSurvey);
+
 		
 		
 		String newNameSurvey=modelSurvey.getSurveyName() + " (" +personSearched.getFirstName()+")";
@@ -87,8 +86,7 @@ System.out.println("Survey MODEL SELECPEOPCONTR "+modelSurvey);
 		currentSurvey.setALayOut(true);
 		
 		iServiceSurvey.save(currentSurvey);
-		
-System.out.println("Survey con person y ID SELPEOPCONT "+currentSurvey.toString());
+
 		
 		
 		

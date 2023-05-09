@@ -26,6 +26,18 @@ public class SurveyServiceCrudImp implements IServiceSurvey {
 		}
 		
 	}
+	
+	@Override
+	@Transactional
+	public void edit(Survey newSurvey) {
+
+		Survey surveyToBeModified = surveyfindById(newSurvey.getId());
+		surveyToBeModified = newSurvey;
+		iSurveyServiceCrud.save(surveyToBeModified);
+
+	}
+		
+	
 
 	@Override
 	@Transactional(readOnly=true)

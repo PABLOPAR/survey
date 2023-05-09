@@ -9,11 +9,12 @@
 <body>
 	<section th:replace="components/template :: menuBar"></section>
 
-	<div class="container">
+	<div class="container  my-2">
 
 		<div class="card">
 			<div class="card-header">
-				<h1 class="text-primary" th:text="${title + ': '  +personAnalyzed.firstName}"></h1>
+				<h1 class="text-primary"
+					th:text="${title + ': '  +personAnalyzed.firstName}"></h1>
 			</div>
 
 			<div class="card-body">
@@ -26,18 +27,43 @@
 			</div>
 		</div>
 
+		<div th:if="${percentageObtain>85}">
+			<h2 th:text="${trust}" class="text-center text-success"></h2>
+
+			<img class="rounded mx-auto d-block my-1"
+				th:src="@{/images/YouCanTrust.jpg}" width="300" height="200"></img>
+		</div>
+
+		<div th:if="${percentageObtain>=60 and percentageObtain<=85}">
+			<h2 th:text="${analyze}" class="text-center text-warning"></h2>
+			<img class="rounded mx-auto d-block "
+				th:src="@{/images/analyzeEachSitu.jpg}" width="300" height="200"></img>
+		</div>
+
+
+
+		<div th:if="${percentageObtain<60}">
+			<h2 th:text="${beAware}" class="text-center text-danger"></h2>
+			<img class="rounded mx-auto d-block" th:src="@{/images/beAware.jpg}"
+				width="300" height="200"></img>
+		</div>
+
+
+
+
 		<div>
 			<a th:href="@{/app/survey/list/onprocess}" th:text="${back}"
 				class="btn btn-primary"></a>
 		</div>
-		
-	</div>
+
 	<section th:replace="components/template :: interceptor"></section>
-	
-	
-		<div class="fixed-bottom">
-	<section th:replace="components/template :: footer"></section>
+
 	</div>
+
+	<div class="fixed-bottom">
+		<section th:replace="components/template :: footer"></section>
+	</div>
+	
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>

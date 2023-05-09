@@ -69,9 +69,14 @@
 										onclick="return confirm ('Are you sure to delete this item?')"></a></td>
 
 
-									<td th:if="${!survey.surveyQuestions.empty  and survey.idPeopleAnalized != null}"><a
+									<td th:if="${!survey.surveyQuestions.empty  and survey.idPeopleAnalized != null and survey.surveyScore==null}"><a
 										th:href="@{'/app/survey/test/start/'+ ${survey.id}}"
 										th:text="${startTest}" class="btn btn-success"> </a></td>
+
+									<td
+										th:if="${!survey.surveyQuestions.empty  and survey.idPeopleAnalized != null and survey.surveyScore!=null}"><a
+										th:href="@{''}"
+										th:text="${startTest}" class="btn btn-light"> </a></td>
 
 									<td th:if="${!survey.surveyQuestions.empty  and survey.idPeopleAnalized != null}"><a
 										th:href="@{'/app/survey/results/'+ ${survey.id}}"

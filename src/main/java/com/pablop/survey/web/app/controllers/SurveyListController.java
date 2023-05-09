@@ -70,8 +70,8 @@ public class SurveyListController {
 	@Value("${text.SurveyListController.AddQuestionHeader}")
 	public String AddQuestionHeader;
 	
-	@Value("${text.SurveyListController.CreateQuestionHeader}")
-	public String CreateQuestionHeader;
+//	@Value("${text.SurveyListController.CreateQuestionHeader}")
+//	public String CreateQuestionHeader;
 
 	
 	@Value("${text.back}")
@@ -98,6 +98,12 @@ public class SurveyListController {
 
 	@Value("${text.SurveyListController.viewResult}")
 	public String viewResult;
+	
+	@Value("${text.SurveyListController.addNewQuestion}")
+	public String addNewQuestion;
+	
+	
+	
 
 
 	
@@ -116,7 +122,7 @@ public class SurveyListController {
 		model.addAttribute("delete", delete);		
 		model.addAttribute("listQuest", listQuest);	
 		model.addAttribute("AddQuestionHeader", AddQuestionHeader);		
-		model.addAttribute("CreateQuestionHeader", CreateQuestionHeader);	
+//		model.addAttribute("CreateQuestionHeader", CreateQuestionHeader);	
 		model.addAttribute("personToTest", personToTest);			
 		model.addAttribute("select", select);
 		model.addAttribute("newTest", newTest);	
@@ -155,12 +161,16 @@ public class SurveyListController {
 		Survey surveyAnalyzed= iServiceSurvey.surveyfindById(id);
 		List<Question> questionIncluded=surveyAnalyzed.getSurveyQuestions();
 
+		model.addAttribute("surveyId", id);
 		model.addAttribute("surveyQuestions", questionIncluded);
 		model.addAttribute("titleListQuest", titleListQuest);
 		model.addAttribute("addQuestionToTest", addQuestionToTest);
 		model.addAttribute("NoRegistersOnList", NoRegistersOnList);
 		model.addAttribute("select", select);
 		model.addAttribute("back", back);
+		model.addAttribute("addNewQuestion", addNewQuestion);
+		
+		
 		
 
 		return "questionlistsurvey";
@@ -192,7 +202,7 @@ public class SurveyListController {
 	public String surveyListOnProcess(Model model) {
 		
 ArrayList<Survey> surveyList= (ArrayList<Survey>) iServiceSurvey.findSurveyList();
-
+System.out.println("surveyList SUR-LIS-CONT"+surveyList);
 		
 		model.addAttribute("chooseYourSurvey", chooseYourSurvey);	
 		model.addAttribute("surveyList", surveyList);
@@ -204,7 +214,7 @@ ArrayList<Survey> surveyList= (ArrayList<Survey>) iServiceSurvey.findSurveyList(
 		model.addAttribute("delete", delete);		
 		model.addAttribute("listQuest", listQuest);	
 		model.addAttribute("AddQuestionHeader", AddQuestionHeader);		
-		model.addAttribute("CreateQuestionHeader", CreateQuestionHeader);	
+//		model.addAttribute("CreateQuestionHeader", CreateQuestionHeader);	
 		model.addAttribute("personToTest", personToTest);			
 		model.addAttribute("select", select);
 		model.addAttribute("newTest", newTest);	

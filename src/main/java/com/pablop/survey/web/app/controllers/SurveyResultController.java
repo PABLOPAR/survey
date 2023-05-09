@@ -47,17 +47,17 @@ public class SurveyResultController {
 	
 	@Value("${text.back}")
 	private String back;
-//	
-//	@Value("${}")
-//	private String replace;
-//		
-//	@Value("${}")
-//	private String replace;
-//	
-//	@Value("${}")
-//	private String replace;
 	
+	@Value("${text.SurveyResultController.trust}")
+	private String trust;
+		
+	@Value("${text.SurveyResultController.beAware}")
+	private String beAware;
 	
+	@Value("${text.SurveyResultController.analyze}")
+	private String analyze;
+	
+
 	
 	
 	
@@ -72,7 +72,7 @@ public class SurveyResultController {
 		Survey surveyAnalyzed = iServiceSurvey.surveyfindById(id);
 		
 		List<Question> questionsAnalyzed = surveyAnalyzed.getSurveyQuestions();
-
+		
 		Long categoryOptionId = surveyAnalyzed.getCategoryOptionId();
 		
 		List<OptionQuestionCategory> optionQuestionCategory = iQuestionOptionService.getOptionQuestionList();
@@ -121,13 +121,16 @@ public class SurveyResultController {
 
 				maxPossibleQuestResult=maxPossibleQuestResult+questionResultMaxPossib;
 
-				//app entra en un loop cuando agrego mas de una opcion para realizar el test.
+				
 				
 			}
 		}
 
+		double percentageObtain= (surveyScore/maxPossibleQuestResult)*100;
+		
 		surveyAnalyzed.setSurveyScore(surveyScore);
-
+		
+		iServiceSurvey.edit(surveyAnalyzed);
 		
 		model.addAttribute("title", title);
 		model.addAttribute("maxPossibleQuestResult", maxPossibleQuestResult);
@@ -136,9 +139,14 @@ public class SurveyResultController {
 		model.addAttribute("maxScoreSurveyText", maxScoreSurveyText);
 		model.addAttribute("personAnalyzed", personAnalyzed);
 		model.addAttribute("back",back );
-//		model.addAttribute("", );
-//		model.addAttribute("", );
-
+		model.addAttribute("percentageObtain",percentageObtain );
+		model.addAttribute("beAware",beAware );
+		model.addAttribute("trust",trust );
+		model.addAttribute("analyze",analyze );		
+		
+		
+		
+		
 		return "surveyresult";
 	}
 }

@@ -22,6 +22,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.pablop.survey.web.app.models.entity.IdRegister;
 import com.pablop.survey.web.app.models.entity.Question;
 import com.pablop.survey.web.app.models.entity.QuestionSurveySelected;
+import com.pablop.survey.web.app.models.entity.Survey;
 import com.pablop.survey.web.app.services.IQuestionService;
 import com.pablop.survey.web.app.services.IQuestionSurveySelected;
 import com.pablop.survey.web.app.services.IServiceSurvey;
@@ -114,8 +115,6 @@ public class QuestionController {
 
 		List<Question> allQuestionAvailable = iQuestionService.questionList();
 		
-System.out.println("allQuestionAvailable QUESTIONCONTROLLER"+allQuestionAvailable);		
-
 		QuestionSurveySelected questionSurveySelected = new QuestionSurveySelected();
 		
 		questionSurveySelected.setIdSurvey(id);
@@ -133,9 +132,6 @@ System.out.println("allQuestionAvailable QUESTIONCONTROLLER"+allQuestionAvailabl
 		
 		List<Question> questionAsList=questionSurveySelected.getQuestionAsList();
 		
-System.out.println("questionAsList QUESTIONCONTROLLER"+questionAsList);			
-
-
 		IdRegister idRegister= new IdRegister();
 		
 		model.addAttribute("QuestionListTitle", QuestionListTitle);
@@ -165,8 +161,6 @@ System.out.println("questionAsList QUESTIONCONTROLLER"+questionAsList);
 
 		
 		QuestionSurveySelected questionsToBeAdded = new QuestionSurveySelected();
-		
-System.out.println("questionAsList QUESTIONCONTROLLER"+questionSurveySelected);		
 		
 
 		for (Question question : questionSurveySelected.getQuestionAsList()) {
@@ -208,12 +202,17 @@ System.out.println("questionAsList QUESTIONCONTROLLER"+questionSurveySelected);
 	
 	
 	
-	@GetMapping("/newquestion")
-	public String newquestion(Model model) {
+	@GetMapping("/newquestion/{id}")
+	public String newquestion(@PathVariable Long id, Model model) {
 		model.addAttribute("title", title);
 
+
+		
+		
+		
 		Question question=new Question();
 		
+		model.addAttribute("surveyId", id);
 		model.addAttribute("question", question);
 		model.addAttribute("title",title );		
 		model.addAttribute("addYourQuestion",addYourQuestion );	
@@ -227,10 +226,17 @@ System.out.println("questionAsList QUESTIONCONTROLLER"+questionSurveySelected);
 	}
 	
 	
-	@PostMapping("/newquestion")
-	public String addNewQuestion(@Valid Question question, BindingResult result, Model model, SessionStatus status) {
+	@PostMapping("/newquestion/{id}")
+	public String addNewQuestion(@PathVariable Long id, @Valid Question question, BindingResult result, Model model, SessionStatus status) {
 		model.addAttribute("title", title);
 
+		
+		Survey surveyAnalyzed= iServiceSurvey.surveyfindById(id);
+		
+		surveyAnalyzed.getSurveyQuestions().add(question);
+		
+		iServiceSurvey.edit(surveyAnalyzed);
+		
 		
 		if(result.hasErrors()) {
 			model.addAttribute("title",title );		

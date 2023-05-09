@@ -91,10 +91,7 @@ public class SurveyQuestionController {
 	@Value("${text.SurveyListController.AddQuestionHeader}")
 	public String AddQuestionHeader;
 	
-	@Value("${text.SurveyListController.CreateQuestionHeader}")
-	public String CreateQuestionHeader;
 
-	
 	@Value("${text.back}")
 	public String back;
 	
@@ -130,15 +127,21 @@ public class SurveyQuestionController {
 
 		QuestionSurveySelected questionSurveySelected = new QuestionSurveySelected();
 		
+	
+		
 		Survey survey=iServiceSurvey.surveyfindById(id);
 		
 		
+		ArrayList<Question> questionAsList = survey.getSurveyQuestions();
+		
 		List<OptionQuestionCategory> optionListSelected = null;
 		
-		
-		ArrayList<Question> questionAsList = survey.getSurveyQuestions();
+
+
 
 		questionSurveySelected.setQuestionAsList(questionAsList);
+
+		
 		questionSurveySelected.setIdSurvey(id);
 
 		Long idCategorySurveyImplemented = survey.getCategoryOptionId();
@@ -165,7 +168,7 @@ public class SurveyQuestionController {
 
 		}
 		
-		
+
 		
 		model.addAttribute("questionAsList", questionAsList);
 		model.addAttribute("survey", survey);
@@ -196,11 +199,7 @@ public class SurveyQuestionController {
 		
 		iServiceSurvey.save(surveyAnalized);
 	
-System.out.println("surveyAnalyzed SURVQUESTCONTR "  + surveyAnalized);	
-	
 
-
-		
 		return "redirect:/app/survey/results/{id}";
 	}
 }

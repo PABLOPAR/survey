@@ -14,6 +14,6 @@ public interface IServiceSurvey {
 	public List<Survey> findSurveyList();
 	public void deleteSurveyById(Long id);
 	public void setQuestionSurveyByID(ArrayList<Question> surveyQuestions, Long idSurvey);
-	
+	public void edit(Survey newSurvey);
 
 }

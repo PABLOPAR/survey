@@ -121,7 +121,7 @@ public class NewUserController {
 
 		status.setComplete();
 
-		return "redirect:/app/index";
+		return "redirect:/app/user/userprofile";
 	}
 
 	@GetMapping("/userprofile")

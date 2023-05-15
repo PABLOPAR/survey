@@ -3,6 +3,8 @@ INSERT INTO persons (id,email,first_name,last_name,id_User,type) VALUES(1000,'Le
 INSERT INTO persons (id,email,first_name,last_name,id_User,type) VALUES(1001,'Paul@gmail.com','Paul','McCartney',1,'peopleAnalyzed');
 INSERT INTO persons (id,email,first_name,last_name,id_User,type) VALUES(1002,'George@gmail.com','George','Harrison',1,'peopleAnalyzed');
 INSERT INTO persons (id,email,first_name,last_name,id_User,type) VALUES(1003,'Ringo@gmail.com','Ringo','Starr',1,'peopleAnalyzed');
+INSERT INTO persons (id,email,first_name,last_name,id_User,type) VALUES(1004,'Joaquín@gmail.com','Joaquín','Sabina',1,'peopleAnalyzed');
+
 
 INSERT INTO questions (id,question,question_importance, question_selected) VALUES (1000000,'Le dejarías tu casa para sus vacaciones?',8, 0);
 INSERT INTO questions (id,question,question_importance, question_selected) VALUES (1000001,'Le prestarías dinero que necesitas que te devuelva en un plazo determinado?',7, 0);

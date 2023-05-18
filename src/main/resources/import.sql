@@ -33,3 +33,7 @@ INSERT INTO Countries (name, code) VALUES ( 'United Kingdom' , 'UK');
 INSERT INTO Countries (name, code) VALUES ( 'Ukraine' , 'UA');
 INSERT INTO Countries (name, code) VALUES ( 'Spain' , 'ES');
 
+INSERT INTO Roles (rol_id, name) VALUES (1000, 'Administrator');
+INSERT INTO Roles (rol_id, name) VALUES (1001, 'Users');
+
+

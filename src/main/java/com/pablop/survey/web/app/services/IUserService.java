@@ -9,4 +9,6 @@ public interface IUserService {
 	
 	public List<User> getUserList();
 	public void save (User user);
+	public User getUserById(Long id);
+	public User getUserByEmail(String email);
 }

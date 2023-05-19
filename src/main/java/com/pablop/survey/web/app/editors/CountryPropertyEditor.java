@@ -1,6 +1,8 @@
 package com.pablop.survey.web.app.editors;
 
 import java.beans.PropertyEditorSupport;
+import java.util.List;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -35,8 +37,20 @@ public class CountryPropertyEditor extends PropertyEditorSupport implements ICou
 
 	@Override
 	public Country getCountrybyId(Long id) {
-		// Not yet Implemented
-		return null;
+
+		List<Country> allCountries = countryListServiceImpl.getCountryListObject();
+
+		int index = 0;
+		Country countrySearched = null;
+
+		while (index < allCountries.size() && countrySearched == null) {
+			if (allCountries.get(index).getId().equals(id)) {
+				countrySearched = allCountries.get(index);
+			} else {
+				index++;
+			}
+		}
+		return countrySearched;
 	}
 	
 	

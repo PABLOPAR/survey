@@ -92,7 +92,7 @@ public class NewPeopleAnalyzedController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
-
+		binder.registerCustomEditor(Country.class, "country", (PropertyEditor) countryEditor);
 	
 	}
 	
@@ -158,6 +158,8 @@ public class NewPeopleAnalyzedController {
 		} else {
 			urlResult= "redirect:peopleanalyzed";
 		}
+		
+		
 		
 		model.addAttribute("fieldPeopleTestedEmail", fieldPeopleTestedEmail);
 		model.addAttribute("fieldPeopleTestedBirthday", fieldPeopleTestedBirthday);

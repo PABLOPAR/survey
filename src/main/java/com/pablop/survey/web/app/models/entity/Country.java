@@ -55,7 +55,7 @@ public class Country implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Country [name=" + name + ", code=" + code + "]";
+		return this.id.toString();
 	}
 
 	public Long getId() {

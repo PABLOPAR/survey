@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.pablop.survey.web.app.editors.CountryPropertyEditor;
 import com.pablop.survey.web.app.editors.ICountryEditor;
-import com.pablop.survey.web.app.editors.IRoleEditor;
 import com.pablop.survey.web.app.models.entity.BooleanOption;
 import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.Role;
@@ -49,8 +49,10 @@ public class NewUserController {
 	@Autowired
 	private IRolesService iRolesService;
 	
+
 	
-	private IRoleEditor iRoleEditor;
+	@Autowired
+	ICountryEditor iCountryEditor;
 	
 	
 	@Value("${text.indexController.userProfile.fieldUserProfileFirstName}")
@@ -107,7 +109,7 @@ public class NewUserController {
 		
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(Country.class, "country", (PropertyEditor) countryEditor);
+		binder.registerCustomEditor(Country.class, "country", (PropertyEditor) iCountryEditor);
 //		binder.registerCustomEditor(User.class, "role", (PropertyEditor) iRoleEditor);		
 		
 	}

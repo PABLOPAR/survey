@@ -24,6 +24,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.pablop.survey.web.app.editors.ICountryEditor;
 import com.pablop.survey.web.app.editors.IRoleEditor;
+import com.pablop.survey.web.app.models.entity.BooleanOption;
 import com.pablop.survey.web.app.models.entity.Country;
 import com.pablop.survey.web.app.models.entity.Role;
 import com.pablop.survey.web.app.models.entity.User;
@@ -91,6 +92,17 @@ public class NewUserController {
 	@Value("${text.NewUserController.roles}")
 	private String roles;
 	
+	@Value("${text.NewUserController.isActiveTitle}")
+	private String isActiveTitle;	
+	
+	@Value("${text.NewUserController.isActiveYes}")
+	private String isActiveYes;	
+	
+	@Value("${text.NewUserController.profileIsActiveYes}")
+	private String profileIsActiveYes;	
+	
+	@Value("${text.NewUserController.isActiveNo}")
+	private String isActiveNo;	
 	
 		
 	@InitBinder
@@ -100,7 +112,13 @@ public class NewUserController {
 		
 	}
 	
-	
+	@ModelAttribute("yesNoOptions")
+	public ArrayList<BooleanOption> yesNoOptions() {
+		ArrayList<BooleanOption> yesNoOptions = new ArrayList<BooleanOption>();
+		yesNoOptions.add(new BooleanOption(isActiveYes, true));
+		yesNoOptions.add(new BooleanOption(isActiveNo, false));
+		return yesNoOptions;
+	}
 
 	@ModelAttribute("countryList")
 	private List<Country> coutryList() {
@@ -110,11 +128,12 @@ public class NewUserController {
 	@GetMapping("/newuser")
 	public String newUser(Model model) {
 		
-		
+		Boolean selected=false;
 		ArrayList<Role> possibleRoles= iRolesService.findAllRoles();
 		
 
 		User user = new User();
+		user.setUserActive(true);
 		model.addAttribute("title", title);
 		model.addAttribute("incomplete", incomplete);
 		model.addAttribute("fieldUserProfileFirstName", fieldUserProfileFirstName);
@@ -125,7 +144,13 @@ public class NewUserController {
 		model.addAttribute("possibleRoles", possibleRoles);
 		model.addAttribute("roleTitle", roleTitle);		
 		model.addAttribute("user", user);
-
+		model.addAttribute("isActiveTitle", isActiveTitle);		
+		model.addAttribute("profileIsActiveYes", profileIsActiveYes);			
+		model.addAttribute("isActiveNo", isActiveNo);	
+		model.addAttribute("isActiveYes", isActiveYes);			
+		model.addAttribute("selected", selected);			
+		
+		
 		return "newuser";
 	}
 
@@ -146,13 +171,21 @@ public class NewUserController {
 			model.addAttribute("roleTitle", roleTitle);
 			model.addAttribute("roles", roles);	
 			model.addAttribute("possibleRoles", possibleRoles);
+			model.addAttribute("isActiveTitle", isActiveTitle);	
+			model.addAttribute("profileIsActiveYes", profileIsActiveYes);
+			model.addAttribute("isActiveNo", isActiveNo);	
+			model.addAttribute("isActiveYes", isActiveYes);
 			return "newuser";
 		}
+
+System.out.println("NEW CONTROLLER USER selected "+user.isUserActive());
+//		user.setUserActive(isUserActive);
 
 		iUserService.save(user);
 
 		User userSearched = iUserService.getUserByEmail(email);
-
+		
+		
 		String userEmail = userSearched.getEmail();
 
 		status.setComplete();
@@ -163,9 +196,6 @@ public class NewUserController {
 	@GetMapping("/userprofile/{userEmail}")
 	public String userProfile(@PathVariable String userEmail, Model model) {
 
-		
-		
-		
 		User user = iUserService.getUserByEmail(userEmail);
 		ArrayList<Long> userRoles = user.getRoleIds();
 		ArrayList<String> roleNames = new ArrayList<String>();
@@ -184,7 +214,11 @@ public class NewUserController {
 		model.addAttribute("roleNames", roleNames);
 		model.addAttribute("roles", roles);	
 		model.addAttribute("user", user);
-		model.addAttribute("titleUserProfile", titleUserProfile);		
+		model.addAttribute("titleUserProfile", titleUserProfile);	
+		model.addAttribute("isActiveTitle", isActiveTitle);	
+		model.addAttribute("isActiveYes", isActiveYes);			
+		model.addAttribute("profileIsActiveYes", profileIsActiveYes);			
+		
 		
 		
 		return "userprofile";

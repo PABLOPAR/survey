@@ -45,10 +45,7 @@ public class PeopleAnalyzed extends Person implements Serializable{
 	private Country country;
 
 
-	public PeopleAnalyzed(String firstName, String email) {
-		super(firstName,email);
-		// TODO Auto-generated constructor stub
-	}
+
 
 	public PeopleAnalyzed() {
 	}

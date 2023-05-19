@@ -34,7 +34,7 @@ public abstract class Person implements Serializable {
 
 	@Email
 	@Column(name = "email")
-	@Size(min = 3, max = 25)
+	@Size(min = 3, max = 50)
 	@NotBlank
 	private String email;
 
@@ -50,18 +50,24 @@ public abstract class Person implements Serializable {
 
 	@Column(name = "rol_id")
 	private ArrayList<Long> roleIds;
+	
+	@Column(name="is_active")
+	private Boolean isUserActive;
 
 	@PrePersist
 	public void prePersist() {
 		creationDate = new Date();
 	}
 
-	public Person(String firstName, String email) {
-		super();
 
-		this.firstName = firstName;
+	public Person(@Email @Size(min = 3, max = 50) @NotBlank String email,
+			@NotEmpty @Size(min = 2, max = 30) String firstName, Boolean isUserActive) {
+		super();
 		this.email = email;
+		this.firstName = firstName;
+		this.isUserActive = isUserActive;
 	}
+
 
 	public Person() {
 	}
@@ -108,11 +114,32 @@ public abstract class Person implements Serializable {
 		this.roleIds = roleIds;
 	}
 
+	public Boolean isUserActive() {
+		return isUserActive;
+	}
+
+	public void setUserActive(Boolean isUserActive) {
+		this.isUserActive = isUserActive;
+	}
+
+
+	public Boolean getIsUserActive() {
+		return isUserActive;
+	}
+
+	public void setIsUserActive(Boolean isUserActive) {
+		this.isUserActive = isUserActive;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Person [id=" + id + ", email=" + email + ", firstName=" + firstName + ", creationDate=" + creationDate
-				+ ", roleIds=" + roleIds + "]";
+				+ ", roleIds=" + roleIds + ", isUserActive=" + isUserActive + "]";
 	}
+
+
+
 
 
 

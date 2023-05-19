@@ -108,8 +108,20 @@
 						</div>
 					</div>
 
+<div th:class="row">
+					<label class="h4" th:text="${isActiveTitle}"></label>
 
 
+						<div th:each="option: ${yesNoOptions}" th:class="offset-1">
+
+							<div><label for="optionSelected" th:text="${option.name}"></label></div>
+
+							<div><input type="radio" id="optionSelected"
+								th:field="*{isUserActive}" th:value="${option.boleanOption}"
+								checked></div>
+
+						</div>
+</div>
 
 
 
@@ -122,7 +134,7 @@
 
 						</div>
 					</div>
-
+					</div>
 				</form>
 			</div>
 		</div>

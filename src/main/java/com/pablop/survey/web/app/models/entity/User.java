@@ -51,8 +51,8 @@ public class User extends Person implements Serializable{
 	@Column(name="user_people_analyzed")
 	private ArrayList<PeopleAnalyzed> userPeopleAnalyzed;
 
-	public User(Date birthday, String firstName, String email) {
-		super(firstName, email);
+	public User(Date birthday, String firstName, String email, Boolean isUserActive) {
+		super(firstName, email, isUserActive);
 		userListSurvey= new ArrayList<Survey>();
 		userPeopleAnalyzed= new ArrayList<PeopleAnalyzed>();
 		
@@ -64,10 +64,6 @@ public class User extends Person implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String firstName, String email) {
-		super(firstName, email);
-		// TODO Auto-generated constructor stub
-	}
 
 	public String getLastName() {
 		return lastName;

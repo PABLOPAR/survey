@@ -178,9 +178,6 @@ public class NewUserController {
 			return "newuser";
 		}
 
-System.out.println("NEW CONTROLLER USER selected "+user.isUserActive());
-//		user.setUserActive(isUserActive);
-
 		iUserService.save(user);
 
 		User userSearched = iUserService.getUserByEmail(email);

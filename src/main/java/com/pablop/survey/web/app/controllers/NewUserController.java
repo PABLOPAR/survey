@@ -22,10 +22,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.pablop.survey.web.app.editors.CountryPropertyEditor;
 import com.pablop.survey.web.app.editors.ICountryEditor;
 import com.pablop.survey.web.app.models.entity.BooleanOption;
 import com.pablop.survey.web.app.models.entity.Country;
+import com.pablop.survey.web.app.models.entity.Person;
 import com.pablop.survey.web.app.models.entity.Role;
 import com.pablop.survey.web.app.models.entity.User;
 import com.pablop.survey.web.app.services.CountryListService;
@@ -182,6 +182,21 @@ public class NewUserController {
 
 		iUserService.save(user);
 
+//		EXAMPLE OF IMPLEMENTATION OF PROTOTYPE PATTERN
+//		System.out.println("NewUserController original" + user);
+//
+//		User user2=null;
+//		try {
+//			user2 = (User) user.clone();
+//		} catch (CloneNotSupportedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	 
+//		System.out.println("NewUserController original"+ user2);
+	
+	
+		
 		User userSearched = iUserService.getUserByEmail(email);
 		
 		

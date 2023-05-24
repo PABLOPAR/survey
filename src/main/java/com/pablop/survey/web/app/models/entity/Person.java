@@ -24,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity(name = "persons")
 @DiscriminatorColumn(name = "type")
-public abstract class Person implements Serializable {
+public abstract class Person implements Serializable,Cloneable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -136,6 +136,18 @@ public abstract class Person implements Serializable {
 	public String toString() {
 		return "Person [id=" + id + ", email=" + email + ", firstName=" + firstName + ", creationDate=" + creationDate
 				+ ", roleIds=" + roleIds + ", isUserActive=" + isUserActive + "]";
+	}
+
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		Object clone = null;
+		try {
+			clone = super.clone();
+		} catch (CloneNotSupportedException e) {
+
+		}
+		return clone;
 	}
 
 

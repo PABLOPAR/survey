@@ -4,8 +4,21 @@
 <meta charset="UTF-8">
 <title th:text="${tab}"></title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+<style>
+input[type=radio] {
+    width: 25px;
+    height: 25px;
+}
+</style>
+
 </head>
 <body>
+
+
+
+
+
 	<section th:replace="components/template :: menuBar"></section>
 	<div class="container">
 		<h1 th:text="${selectPersontitle}"
@@ -43,7 +56,7 @@
 
 							<td class="h4"><input type="radio"
 								th:field="${peopleSelectedSurvey.idPeopleSelected}"
-								th:value="${people.id}" class="btn-check offset-md-1"></td>
+								th:value="${people.id}" ></td>
 
 
 

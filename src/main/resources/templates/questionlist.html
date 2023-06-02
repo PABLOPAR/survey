@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <title th:text="${tab}"></title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+<style>
+.checkbox-lg{
+ scale: 1.7;
+ margin-right: 0.8rem;
+ }
+
+</style>
+
+
+
 </head>
 <body>
 	<section th:replace="components/template :: menuBar"></section>
@@ -32,14 +43,14 @@
 
 						<tr th:each="question, itemStat: *{questionAsList}">
 
-
 							<td class="h4">
 								<div th:text="${question.question}"></div>
 							</td>
 
-							<td class="h4"><input type="checkbox"
+							<td class="h4 form-check checkbox-lg">
+							<input type="checkbox"
 								th:field="*{questionAsList[__${itemStat.index}__].selected}"
-								value="1" class="btn-check offset-md-1"></td>
+								value="1" ></td>
 
 							<td><input type="hidden"
 								th:field="*{questionAsList[__${itemStat.index}__].id}">

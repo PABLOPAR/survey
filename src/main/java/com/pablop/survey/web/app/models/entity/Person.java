@@ -24,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity(name = "persons")
 @DiscriminatorColumn(name = "type")
-public abstract class Person implements Serializable,Cloneable {
+public abstract class Person implements Serializable,Cloneable, Comparable<Person> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -148,6 +148,13 @@ public abstract class Person implements Serializable,Cloneable {
 
 		}
 		return clone;
+	}
+
+
+	@Override
+	public int compareTo(Person p) {
+		
+		return firstName.compareTo(p.getFirstName());
 	}
 
 

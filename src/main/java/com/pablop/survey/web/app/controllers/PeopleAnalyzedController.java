@@ -1,6 +1,7 @@
 package com.pablop.survey.web.app.controllers;
 
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -157,6 +158,10 @@ public class PeopleAnalyzedController {
 	public String analyzedPeople(Model model) {
 
 		List<PeopleAnalyzed> AnalyzedList = peopleAnalyzedList.getPeopleAnalyzedList();
+		
+		Collections.sort(AnalyzedList);
+		
+		
 		
 		model.addAttribute("peopleAnalyzed", peopleAnalyzed);
 		model.addAttribute("nothingShow", nothingShow);

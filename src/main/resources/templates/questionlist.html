@@ -6,11 +6,10 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 
 <style>
-.checkbox-lg{
- scale: 1.7;
- margin-right: 0.8rem;
- }
-
+input[type=checkbox] {
+    width: 25px;
+    height: 25px;
+}
 </style>
 
 
@@ -47,7 +46,7 @@
 								<div th:text="${question.question}"></div>
 							</td>
 
-							<td class="h4 form-check checkbox-lg">
+							<td class="h4 form-check">
 							<input type="checkbox"
 								th:field="*{questionAsList[__${itemStat.index}__].selected}"
 								value="1" ></td>

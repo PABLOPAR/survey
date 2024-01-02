@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${head}"></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+	<section th:replace="components/template :: menuBar"></section>
+
+
+	<div class="container">
+
+		<h1 th:text="${title}" class="text-primary"></h1>
+
+		<div th:if="${usersList==null}" th:text="${nothingShow}"></div>
+
+
+		<div th:if="${usersList!=null}">
+			<div th:if="${usersList!=null}">
+
+				<div class="card">
+
+
+
+					<table class="col-sm-16" th:if="${!usersList.isEmpty()}">
+						<thead class="card-header" >
+							<tr class="h4">
+								<th class="text-danger" th:text="${name}"></th>
+								<th class="text-danger" th:text="${lastName}"></th>
+								<th class="text-danger" th:text="${birthday}"></th>
+								<th class="text-danger" th:text="${country}"></th>
+								<th class="text-danger" th:text="${email}"></th>
+								<th class="text-danger" th:text="${creationDateText}"></th>
+								<th class="text-danger" th:text="${delete}"></th>
+							</tr>
+							
+							
+						<tbody class="card-body">
+
+							<tr th:each="person: ${usersList}">
+								<td class="h5">
+									<ul>
+										<li><a
+											th:href="@{'/app/survey/peopletestedprofile/'+ ${person.email}}"
+											th:text="${person.firstName}"></a></li>
+									</ul>
+								</td>
+
+								<td th:if="${person.lastName}" th:text="${person.lastName}"></td>
+								<td th:if="!${person.lastName}" th:text="${noData}"></td>
+
+
+								<td th:text="${#dates.format(person.birthday,'dd/MM/yyyy')}"></td>
+
+
+
+								<td th:if="${person.country}"
+									th:text="${person.getCountryString()}"></td>
+								<td th:if="!${person.country}" th:text="${noData}">
+								
+								
+								<td th:if="${person.email}" th:text="${person.email}"></td>
+								<td th:if="!${person.email}" th:text="${noData}"></td>
+
+								<td th:if="${person.creationDate}"
+									th:text="${person.creationDate}"></td>
+								<td th:if="!${person.creationDate}" th:text="${noData}"></td>
+
+
+								<td><a
+									th:href="@{'/app/survey/peopleAnalyzed/delete/'+ ${person.id}}"
+									th:text="${delete}" class="btn btn-danger"
+									onclick="return confirm ('Are you sure to delete this item?')"></a></td>
+
+
+							</tr>
+
+
+						</tbody>
+						
+						
+					</table>
+
+				</div>
+				<div class="form-group row">
+					<div class="my-3 mx-4">
+
+						<a th:href="@{/app/user/newuser}" th:text="${addNewUser}"
+							class="btn btn-primary"></a>
+
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<img class="rounded mx-auto d-block"
+					th:src="@{/images/ANALYZED.jpg}" width="200" height="200"></img>
+			</div>
+		</div>
+	</div>
+	<section th:replace="components/template :: interceptor"></section>
+	
+		<div class="fixed-bottom">
+	<section th:replace="components/template :: footer"></section>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+</html>

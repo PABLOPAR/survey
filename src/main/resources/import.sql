@@ -1,9 +1,4 @@
-INSERT INTO persons (id,email,first_name,last_name,type,is_active) VALUES(100,'brian@gmail.com','Brian Samuel','Epstein','user',0);
-INSERT INTO persons (id,email,first_name,last_name,id_User,type,is_active) VALUES(1000,'Lenon@gmail.com','John','Lennon',1,'peopleAnalyzed',0);
-INSERT INTO persons (id,email,first_name,last_name,id_User,type,is_active) VALUES(1001,'Paul@gmail.com','Paul','McCartney',1,'peopleAnalyzed',0);
-INSERT INTO persons (id,email,first_name,last_name,id_User,type,is_active) VALUES(1002,'George@gmail.com','George','Harrison',1,'peopleAnalyzed',0);
-INSERT INTO persons (id,email,first_name,last_name,id_User,type,is_active) VALUES(1003,'Ringo@gmail.com','Ringo','Starr',1,'peopleAnalyzed',0);
-INSERT INTO persons (id,email,first_name,last_name,id_User,type,is_active) VALUES(1004,'Joaquín@gmail.com','Joaquín','Sabina',1,'peopleAnalyzed',0);
+
 
 
 INSERT INTO questions (id,question,question_importance, question_selected) VALUES (1000000,'Le dejarías tu casa para sus vacaciones?',8, 0);

@@ -153,7 +153,7 @@ public class PeopleAnalyzedController {
 	}
 
 	
-	
+//	@GetMapping("/peopleanalyzed/{id}")	
 	@GetMapping("/peopleanalyzed")
 	public String analyzedPeople(Model model) {
 

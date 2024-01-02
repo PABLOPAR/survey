@@ -3,16 +3,15 @@ package com.pablop.survey.web.app.models.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
@@ -45,11 +44,15 @@ public class User extends Person implements Serializable{
 	@Column(name="countries")	
 	private Country country;
 
-	@Column(name="user_list_survys")
-	private ArrayList<Survey> userListSurvey;
+	@Column(name = "user_list_surveys")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "users")
+	private List<Survey> userListSurvey;
 
 	@Column(name="user_people_analyzed")
-	private ArrayList<PeopleAnalyzed> userPeopleAnalyzed;
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="id_User")
+	private List<PeopleAnalyzed> userPeopleAnalyzed;
 
 	public User(Date birthday, String firstName, String email, Boolean isUserActive) {
 		super(firstName, email, isUserActive);
@@ -69,50 +72,72 @@ public class User extends Person implements Serializable{
 		return lastName;
 	}
 
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 
 	public Date getBirthday() {
 		return birthday;
 	}
 
+
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 
+
 	public Country getCountry() {
 		return country;
 	}
+	
+	
+	public String getCountryString() {
+		return country.getName();
+	};
+
 
 	public void setCountry(Country country) {
 		this.country = country;
 	}
 
-	public ArrayList<Survey> getUserListSurvey() {
+
+	public List<Survey> getUserListSurvey() {
 		return userListSurvey;
 	}
 
-	public void setUserListSurvey(ArrayList<Survey> userListSurvey) {
+
+	public void setUserListSurvey(List<Survey> userListSurvey) {
 		this.userListSurvey = userListSurvey;
 	}
 
-	public ArrayList<PeopleAnalyzed> getUserPeopleAnalyzed() {
+
+	public List<PeopleAnalyzed> getUserPeopleAnalyzed() {
 		return userPeopleAnalyzed;
 	}
 
-	public void setUserPeopleAnalyzed(ArrayList<PeopleAnalyzed> userPeopleAnalyzed) {
+
+	public void setUserPeopleAnalyzed(List<PeopleAnalyzed> userPeopleAnalyzed) {
 		this.userPeopleAnalyzed = userPeopleAnalyzed;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 
 	@Override
 	public String toString() {
 		return "User [lastName=" + lastName + ", birthday=" + birthday + ", country=" + country + ", userListSurvey="
-				+ userListSurvey + ", userPeopleAnalyzed=" + userPeopleAnalyzed + ", getFirstName()=" + getFirstName()
-				+ ", getEmail()=" + getEmail() + "]";
+				+ userListSurvey + ", userPeopleAnalyzed=" + userPeopleAnalyzed + ", getLastName()=" + getLastName()
+				+ ", getBirthday()=" + getBirthday() + ", getCountry()=" + getCountry() + ", getUserListSurvey()="
+				+ getUserListSurvey() + ", getUserPeopleAnalyzed()=" + getUserPeopleAnalyzed() + "]";
 	}
 
+
+	
 
 
 
